@@ -12,6 +12,8 @@
 // Project files
 #include "gtest/gtest.h"
 #include "DesignByContract.h"
+#include "../tinyXML/tinyxml.h"
+
 
 
 #endif //PROJECTVLIEGVELD_TYPES_H
