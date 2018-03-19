@@ -170,19 +170,59 @@ void System::land(airplane *plane, airport *port) const {
     cout << plane->getFCallsign() << " is landing at " << port->getFName() << " on runway " << run->getFName() << endl;
     cout << plane->getFCallsign() << " has landed at " << port->getFName() << " on runway " << run->getFName() << endl;
     cout << plane->getFCallsign() << " is taxiing to Gate 1" << endl;
-    cout << plane->getFCallsign() << " is standing at Gate 1" << endl;
+    cout << plane->getFCallsign() << " is standing at Gate 1" << endl << endl;
+
+    // Set status to landed
+//    plane->setFStatus(EPlaneStatus::kLanded);
 }
 
 void System::takeoff(airplane *plane, airport *port) const {
+    // Get free runway
+    runway* run = getFreeRunway(port);
 
+    // If there isn't one, error msg and return
+    if (!run) {
+        cerr << "No free runway! Stay on hold " << plane->getFCallsign() << endl;
+        return;
+    }
+
+    // Set height to 0 feet
+    int heightInThousandsFeet = 0;
+
+    // Initial messages
+    cout << plane->getFCallsign() << " is standing at Gate 1" << endl;
+    cout << plane->getFCallsign() << " is taxiing to runway " << run->getFName() << endl;
+    cout << plane->getFCallsign() << " is taking off at " << port->getFName() << " on runway " << run->getFName() << endl;
+
+    // Ascend loop
+    while (heightInThousandsFeet < 5) {
+        ++heightInThousandsFeet;
+        cout << plane->getFCallsign() << " ascended to " << heightInThousandsFeet << ".000 ft." << endl;
+    }
+
+    // Last message
+    cout << plane->getFCallsign() << " has left " << port->getFName() << endl << endl;
+
+    // Set status to finished
+//    plane->setFStatus(EPlaneStatus::kFinished);
 }
 
 void System::gate(airplane *plane, airport *port) const {
+//    if (plane->getFStatus() == EPlaneStatus::kLanded) {
+        cout << plane->getFPassengers() << " passengers exited " << plane->getFCallsign() << " at gate 1 of " << port->getFName() << endl;
+        cout << plane->getFCallsign() << " has been checked for technical malfunctions" << endl;
 
+//    }
+
+    // IF STATUS IS DEPARTURE
+    cout << plane->getFCallsign() << " has been refueled" << endl;
+    cout << plane->getFPassengers() << " boarded " << plane->getFCallsign() << " at gate 1 of " << port->getFName() << endl << endl;
 }
 
 void System::run() {
     land(airplanes[0], airports[0]);
+    gate(airplanes[0], airports[0]);
+    takeoff(airplanes[0], airports[0]);
 }
 
 // GETTERS
