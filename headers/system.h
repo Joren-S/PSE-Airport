@@ -17,7 +17,7 @@ private:
 public:
     // main
     void setup(const string& filename);
-    void log(const string& filename = "log.txt");
+    void log(const string& filename = "../log.txt");
     void run();
 
     // add new objects
@@ -27,6 +27,8 @@ public:
 
     // helper functions
     airport *findAirportByIATA(const string& iata);
+    void info();
+    int runwaysInAirport(airport* ap) const;
 
     // getters
     vector<airport*> getAirports();

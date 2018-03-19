@@ -8,6 +8,7 @@
 #include "../headers/runway.h"
 
 #include <stdio.h>
+#include <fstream>
 
 using namespace std;
 
@@ -103,42 +104,33 @@ void System::setup(const string &filename) {
 }
 
 void System::log(const string &filename) {
+    // TODO: make sure the Require compiles
+//    REQUIRE(!airports.empty(), "List of airports cannot be empty");
 
-    // tijdelijke logging voor gemakkelijker te debuggen
+    // Output file
+    ofstream out(filename.c_str());
 
-    // airports
-    cout << "AIRPORTS" << endl;
-    vector<airport *>::iterator itr;
-    vector<airport *> airports = System::getAirports();
+    // Loop over airports
+    vector<airport*>::iterator itr;
     for (itr = airports.begin(); itr < airports.end(); ++itr) {
         airport* cur_ap = *itr;
-        cout << "Name: " << cur_ap->getFName() << endl;
-        cout << "IATA: " << cur_ap->getFIata() << endl;
-        cout << "Callsign: " << cur_ap->getFCallsign() << endl;
-        cout << "Gates: " << cur_ap->getFGates() << endl << endl;
+        out << "Airport: " << cur_ap->getFName() << " (" << cur_ap->getFIata() << ")\n";
+        out << " -> gates: " << cur_ap->getFGates() << endl;
+        out << " -> runways: " << runwaysInAirport(cur_ap) << endl;
+        out << endl;
     }
 
-    // RUNWAYS
-    cout << "RUNWAYS" << endl;
-    vector<runway *>::iterator itr_run;
-    vector<runway *> runways = System::getRunways();
-    for (itr_run = runways.begin(); itr_run < runways.end(); ++itr_run) {
-        runway* cur_rw = *itr_run;
-        cout << "Name: " << cur_rw->getFName() << endl;
-        cout << "IATA: " << cur_rw->getFAirport()->getFIata() << endl << endl;
-    }
-
-    // AIRPLANES
-    cout << "AIRPLANES" << endl;
+    // Loop over airplanes
     vector<airplane *>::iterator itr_air;
-    vector<airplane *> airplanes = System::getAirplanes();
     for (itr_air = airplanes.begin(); itr_air < airplanes.end(); ++itr_air) {
         airplane* cur_ap = *itr_air;
-        cout << "Number: " << cur_ap->getFNumber() << endl;
-        cout << "Callsign: " << cur_ap->getFCallsign() << endl;
-        cout << "Model: " << cur_ap->getFModel() << endl;
-        cout << "Status: " << cur_ap->getFStatus() << endl << endl;
+        out << "Airplane: " << cur_ap->getFCallsign() << " (" << cur_ap->getFNumber() << ")\n";
+        out << " -> model: " << cur_ap->getFModel() << endl;
+        out << endl;
     }
+
+    // Close file
+    out.close();
 }
 
 void System::run() {
@@ -190,6 +182,7 @@ bool System::addAirplane(const string& number, const string& callsign, const str
     ap->setFCallsign(callsign);
     ap->setFModel(model);
     ap->setFStatus((EPlaneStatus)status);
+    ap->setFPassengers(4);
     System::airplanes.push_back(ap);
     return true;
 }
@@ -208,4 +201,55 @@ airport *System::findAirportByIATA(const string& iata) {
         }
     }
     return 0;
+}
+
+
+void System::info() {
+    // tijdelijke logging voor gemakkelijker te debuggen
+
+    // airports
+    cout << "AIRPORTS" << endl;
+    vector<airport *>::iterator itr;
+    vector<airport *> airports = System::getAirports();
+    for (itr = airports.begin(); itr < airports.end(); ++itr) {
+        airport* cur_ap = *itr;
+        cout << "Name: " << cur_ap->getFName() << endl;
+        cout << "IATA: " << cur_ap->getFIata() << endl;
+        cout << "Callsign: " << cur_ap->getFCallsign() << endl;
+        cout << "Gates: " << cur_ap->getFGates() << endl << endl;
+    }
+
+    // RUNWAYS
+    cout << "RUNWAYS" << endl;
+    vector<runway *>::iterator itr_run;
+    vector<runway *> runways = System::getRunways();
+    for (itr_run = runways.begin(); itr_run < runways.end(); ++itr_run) {
+        runway* cur_rw = *itr_run;
+        cout << "Name: " << cur_rw->getFName() << endl;
+        cout << "IATA: " << cur_rw->getFAirport()->getFIata() << endl << endl;
+    }
+
+    // AIRPLANES
+    cout << "AIRPLANES" << endl;
+    vector<airplane *>::iterator itr_air;
+    vector<airplane *> airplanes = System::getAirplanes();
+    for (itr_air = airplanes.begin(); itr_air < airplanes.end(); ++itr_air) {
+        airplane* cur_ap = *itr_air;
+        cout << "Number: " << cur_ap->getFNumber() << endl;
+        cout << "Callsign: " << cur_ap->getFCallsign() << endl;
+        cout << "Model: " << cur_ap->getFModel() << endl;
+        cout << "Status: " << cur_ap->getFStatus() << endl << endl;
+    }
+}
+
+int System::runwaysInAirport(airport *ap) const {
+    int count = 0;
+    vector<runway*>::const_iterator itr;
+    for (itr = runways.begin(); itr < runways.end(); ++itr) {
+        runway *run = *itr;
+        if (run->getFAirport() == ap) {
+            ++count;
+        }
+    }
+    return count;
 }
