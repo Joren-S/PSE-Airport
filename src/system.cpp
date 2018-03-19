@@ -133,6 +133,54 @@ void System::log(const string &filename) {
     out.close();
 }
 
+runway* System::getFreeRunway(airport *ap) const {
+    vector<runway*>::const_iterator itr;
+    for (itr = runways.begin(); itr < runways.end(); ++itr) {
+        runway *run = *itr;
+        if (run->getFAirport() == ap) {
+            return run;
+        }
+    }
+    return nullptr;
+}
+
+void System::land(airplane *plane, airport *port) const {
+    // Get free runway
+    runway* run = getFreeRunway(port);
+
+    // If there isn't one, error msg and return
+    if (!run) {
+        cerr << "No free runway! Divert " << plane->getFCallsign() << endl;
+        return;
+    }
+
+    // Set height to 10.000 feet
+    int heightInThousandsFeet = 10;
+
+    // Initial message
+    cout << plane->getFCallsign() << " is approaching " << port->getFName() << " at " << heightInThousandsFeet << ".000 ft." << endl;
+
+    // Descend loop
+    while (heightInThousandsFeet > 1000) {
+        --heightInThousandsFeet;
+        cout << plane->getFCallsign() << " descended to " << heightInThousandsFeet << ".000 ft." << endl;
+    }
+
+    // Land and taxi to gate
+    cout << plane->getFCallsign() << " is landing at " << port->getFName() << " on " << run->getFName() << endl;
+    cout << plane->getFCallsign() << " has landed at " << port->getFName() << " on " << run->getFName() << endl;
+    cout << plane->getFCallsign() << " is taxiing to Gate 1" << endl;
+    cout << plane->getFCallsign() << " is standing at Gate 1" << endl;
+}
+
+void System::takeoff(airplane *plane, airport *port) const {
+
+}
+
+void System::gate(airplane *plane, airport *port) const {
+
+}
+
 void System::run() {
 
 }
