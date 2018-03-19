@@ -4,6 +4,15 @@
 
 #include "../headers/airplane.h"
 
+
+int airplane::getFPassengers() const {
+    return fPassengers;
+}
+
+void airplane::setFPassengers(int fPassengers) {
+    airplane::fPassengers = fPassengers;
+}
+
 const string &airplane::getFNumber() const {
     return fNumber;
 }
