@@ -141,7 +141,7 @@ runway* System::getFreeRunway(airport *ap) const {
             return run;
         }
     }
-    return nullptr;
+    return NULL;
 }
 
 void System::land(airplane *plane, airport *port) const {
@@ -161,14 +161,14 @@ void System::land(airplane *plane, airport *port) const {
     cout << plane->getFCallsign() << " is approaching " << port->getFName() << " at " << heightInThousandsFeet << ".000 ft." << endl;
 
     // Descend loop
-    while (heightInThousandsFeet > 1000) {
+    while (heightInThousandsFeet > 1) {
         --heightInThousandsFeet;
         cout << plane->getFCallsign() << " descended to " << heightInThousandsFeet << ".000 ft." << endl;
     }
 
     // Land and taxi to gate
-    cout << plane->getFCallsign() << " is landing at " << port->getFName() << " on " << run->getFName() << endl;
-    cout << plane->getFCallsign() << " has landed at " << port->getFName() << " on " << run->getFName() << endl;
+    cout << plane->getFCallsign() << " is landing at " << port->getFName() << " on runway " << run->getFName() << endl;
+    cout << plane->getFCallsign() << " has landed at " << port->getFName() << " on runway " << run->getFName() << endl;
     cout << plane->getFCallsign() << " is taxiing to Gate 1" << endl;
     cout << plane->getFCallsign() << " is standing at Gate 1" << endl;
 }
@@ -182,7 +182,7 @@ void System::gate(airplane *plane, airport *port) const {
 }
 
 void System::run() {
-
+    land(airplanes[0], airports[0]);
 }
 
 // GETTERS
