@@ -25,10 +25,7 @@ private:
     int runwaysInAirport(airport *ap) const;
     runway* getFreeRunway(airport* ap) const;
 
-    // getters
-    vector<airport*> getAirports();
-    vector<runway*> getRunways();
-    vector<airplane*> getAirplanes();
+
 
     // use cases
     void land(airplane*, airport*) const;
@@ -43,6 +40,11 @@ public:
 
     // debug info
     void info();
+
+    // getters
+    vector<airport*> getAirports();
+    vector<runway*> getRunways();
+    vector<airplane*> getAirplanes();
 };
 
 #endif //PROJECTVLIEGVELD_SYSTEM_H

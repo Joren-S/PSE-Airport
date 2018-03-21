@@ -239,6 +239,9 @@ void System::takeoff(airplane *plane, airport *port) const {
 
     // Set status to finished
     plane->setFStatus(kFinished);
+
+    // Set to no gate
+    plane->setFGateID(-1);
 }
 
 void System::gate(airplane *plane, airport *port) const {
