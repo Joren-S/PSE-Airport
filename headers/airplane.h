@@ -8,7 +8,7 @@
 #include <string>
 using namespace std;
 
-enum EPlaneStatus { kApproaching, kLanded, kGate, kTaxiing, kFinished };
+enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
 
 
 class airplane {
@@ -16,10 +16,15 @@ private:
     string fNumber, fCallsign, fModel;
     EPlaneStatus fStatus;
     int fPassengers;
+    int fGateID;
 public:
 
 
     // Getters and Setters
+    int getFGateID() const;
+
+    void setFGateID(int id);
+
     int getFPassengers() const;
 
     void setFPassengers(int fPassengers);

@@ -6,6 +6,7 @@
 #define PROJECTVLIEGVELD_AIRPORTS_H
 
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -13,7 +14,17 @@ class airport {
 private:
     string fName, fIata, fCallsign;
     int fGates;
+    stack<int> fGateStack;
+
 public:
+//    airport(const string& name, const string& iata, const string& callsign, int numGates);
+
+    void initStack();
+
+    int getFreeGate();
+
+    void restoreGate(int id);
+
     // Getters and Setters
     const string &getFName() const;
 

@@ -19,3 +19,11 @@ airport *runway::getFAirport() const {
 void runway::setFAirport(airport *fAirport) {
     runway::fAirport = fAirport;
 }
+
+bool runway::isFree() const {
+    return runway::fFree;
+}
+
+void runway::setFree(bool free) {
+    runway::fFree = free;
+}

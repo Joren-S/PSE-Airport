@@ -44,3 +44,11 @@ EPlaneStatus airplane::getFStatus() const {
 void airplane::setFStatus(EPlaneStatus fStatus) {
     airplane::fStatus = fStatus;
 }
+
+int airplane::getFGateID() const {
+    return airplane::fGateID;
+}
+
+void airplane::setFGateID(int id) {
+    airplane::fGateID = id;
+}

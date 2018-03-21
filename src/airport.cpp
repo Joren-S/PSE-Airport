@@ -3,6 +3,22 @@
 //
 
 #include "../headers/airport.h"
+//
+//airport::airport(const string &name, const string &iata, const string &callsign, int numGates):
+//        fName(name),
+//        fIata(iata),
+//        fCallsign(callsign),
+//        fGates(numGates) {
+//    for (int i=1; i<=numGates; ++i) {
+//        fGateStack.push(i);
+//    }
+//}
+
+void airport::initStack() {
+    for (int i = fGates; i > 0; --i) {
+        fGateStack.push(i);
+    }
+}
 
 const string &airport::getFName() const {
     return fName;
@@ -34,4 +50,17 @@ int airport::getFGates() const {
 
 void airport::setFGates(int fGates) {
     airport::fGates = fGates;
+}
+
+int airport::getFreeGate() {
+    if (airport::fGateStack.empty()) {
+        return -1;
+    }
+    int temp = airport::fGateStack.top();
+    airport::fGateStack.pop();
+    return temp;
+}
+
+void airport::restoreGate(int id) {
+    airport::fGateStack.push(id);
 }

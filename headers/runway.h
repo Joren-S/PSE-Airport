@@ -12,8 +12,9 @@ class airport;
 
 class runway {
 private:
+    bool fFree;
     string fName;
-    airport* fAirport;
+    airport *fAirport;
 public:
     // Getters and Setters
     const string &getFName() const;
@@ -23,7 +24,11 @@ public:
     airport *getFAirport() const;
 
     void setFAirport(airport *fAirport);
-};
 
+    bool isFree() const;
+
+    void setFree(bool free);
+
+};
 
 #endif //PROJECTVLIEGVELD_RUNWAYS_H
