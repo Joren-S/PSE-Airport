@@ -54,6 +54,7 @@ void System::setup(const string &filename) {
             else {
                 cerr << "Missing field(s) for airport." << endl;
             }
+            delete tmp;
         }
 
         //  RUNWAYS
@@ -84,6 +85,7 @@ void System::setup(const string &filename) {
             else {
                 cerr << "Missing field(s) for runway." << endl;
             }
+            delete tmp;
         }
 
         // AIRPLANES
@@ -127,6 +129,7 @@ void System::setup(const string &filename) {
             else {
                 cerr << "Missing field(s) for airplane." << endl;
             }
+            delete tmp;
         }
     }
 
