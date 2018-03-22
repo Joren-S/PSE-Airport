@@ -17,8 +17,6 @@ private:
     stack<int> fGateStack;
 
 public:
-//    airport(const string& name, const string& iata, const string& callsign, int numGates);
-
     void initStack();
 
     int getFreeGate();

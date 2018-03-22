@@ -25,6 +25,7 @@ protected:
 
 
 TEST_F(SystemTest, DefaultConstructor) {
+    // Test to check if there are 0 airplanes, airports or runways.
     ASSERT_TRUE(sys.getAirplanes().empty());
     ASSERT_TRUE(sys.getAirports().empty());
     ASSERT_TRUE(sys.getRunways().empty());
@@ -33,15 +34,19 @@ TEST_F(SystemTest, DefaultConstructor) {
 
 TEST_F(SystemTest, Setup) {
     sys.setup("../input.xml");
+
+    // Test to check if there are more than 0 airplanes, airports and runways.
     ASSERT_TRUE(!sys.getAirplanes().empty());
     ASSERT_TRUE(!sys.getAirports().empty());
     ASSERT_TRUE(!sys.getRunways().empty());
 
+    // Test to check if all runways are free.
     for (size_t i = 0; i < sys.getRunways().size(); ++i) {
         runway* rw = sys.getRunways().at((int)i);
         ASSERT_TRUE(rw->isFree());
     }
 
+    // Test to check if all airplanes have a valid status (kApproaching or kGate).
     for (size_t i = 0; i < sys.getAirplanes().size(); ++i) {
         airplane* ap = sys.getAirplanes().at((int)i);
         ASSERT_TRUE(ap->getFStatus() != (3  || 1)); // kLanded, kFinished
@@ -52,20 +57,17 @@ TEST_F(SystemTest, Run) {
     sys.setup("../input.xml");
     sys.run();
 
+    // Test to check if all planes are finished and no longer have a gate assigned to them.
     for (size_t i = 0; i < sys.getAirplanes().size(); ++i) {
         airplane* ap = sys.getAirplanes().at((int)i);
         ASSERT_TRUE(ap->getFStatus() == kFinished);
         ASSERT_TRUE(ap->getFGateID() == -1);
     }
 
+    // Test to check if all runways are free.
     for (size_t i = 0; i < sys.getRunways().size(); ++i) {
         runway* rw = sys.getRunways().at((int)i);
         ASSERT_TRUE(rw->isFree());
-    }
-
-    for (size_t i = 0; i < sys.getAirplanes().size(); ++i) {
-        airplane* ap = sys.getAirplanes().at((int)i);
-        ASSERT_TRUE(ap->getFStatus() == (kFinished)); // kLanded, kFinished
     }
 }
 
@@ -73,6 +75,8 @@ TEST_F(SystemTest, Run) {
 //    sys.setup("../input.xml");
 //    sys.run();
 //    sys.log();
+//
+//    // Test to check if the output file is correct.
 //    ASSERT_TRUE(FileCompare);
 //}
 

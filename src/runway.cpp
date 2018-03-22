@@ -4,6 +4,8 @@
 
 #include "../headers/runway.h"
 
+// Getters en setters
+
 const string &runway::getFName() const {
     return fName;
 }

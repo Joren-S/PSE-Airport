@@ -5,6 +5,8 @@
 #include "../headers/airplane.h"
 
 
+// Getters and setters
+
 int airplane::getFPassengers() const {
     return fPassengers;
 }

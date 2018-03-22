@@ -2,7 +2,7 @@
 // Created by uauser on 3/1/18.
 //
 
-#include "../headers/airport.h"
+#include "../../PSE-Airport/headers/airport.h"
 //
 //airport::airport(const string &name, const string &iata, const string &callsign, int numGates):
 //        fName(name),
@@ -15,10 +15,29 @@
 //}
 
 void airport::initStack() {
+    // Initialize the stack for our gates (with 1 being the last value to get pushed).
     for (int i = fGates; i > 0; --i) {
         fGateStack.push(i);
     }
 }
+
+int airport::getFreeGate() {
+    // Pops and returns the next available free gate ID from the stack.
+    // Returns -1 if no gate is available.
+    if (airport::fGateStack.empty()) {
+        return -1;
+    }
+    int temp = airport::fGateStack.top();
+    airport::fGateStack.pop();
+    return temp;
+}
+
+void airport::restoreGate(int id) {
+    // Push a gate ID back on the stack when it's free again.
+    airport::fGateStack.push(id);
+}
+
+// Getters en setters
 
 const string &airport::getFName() const {
     return fName;
@@ -50,17 +69,4 @@ int airport::getFGates() const {
 
 void airport::setFGates(int fGates) {
     airport::fGates = fGates;
-}
-
-int airport::getFreeGate() {
-    if (airport::fGateStack.empty()) {
-        return -1;
-    }
-    int temp = airport::fGateStack.top();
-    airport::fGateStack.pop();
-    return temp;
-}
-
-void airport::restoreGate(int id) {
-    airport::fGateStack.push(id);
 }

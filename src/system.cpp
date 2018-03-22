@@ -3,7 +3,7 @@
 //
 
 #include "../headers/system.h"
-#include "../headers/airport.h"
+#include "../../PSE-Airport/headers/airport.h"
 #include "../headers/airplane.h"
 #include "../headers/runway.h"
 
@@ -21,6 +21,7 @@ void System::setup(const string &filename) {
 //    }
     int fieldCount = 0;
 
+    // We iterate over all root elements.
     for (TiXmlElement *root = xml.FirstChildElement(); root != NULL; root = root->NextSiblingElement()) {
 
         // AIRPORTS
@@ -28,6 +29,8 @@ void System::setup(const string &filename) {
         if (strcmp(root->Value(), "AIRPORT") == 0) {
             fieldCount = 0;
             airport *tmp = new airport();
+
+            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
             for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
 
                 if (strcmp(elem->Value(), "name") == 0) {
@@ -47,6 +50,8 @@ void System::setup(const string &filename) {
                     fieldCount++;
                 }
             }
+
+            // If there were 4 field (all fields present), add the airport to our system.
             if (fieldCount == 4) {
                 System::addAirport(tmp->getFName(), tmp->getFIata(), tmp->getFCallsign(), tmp->getFGates());
             }
@@ -61,6 +66,8 @@ void System::setup(const string &filename) {
             fieldCount = 0;
             string iata;
             runway *tmp = new runway();
+
+            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
             for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
 
                 if (strcmp(elem->Value(), "name") == 0) {
@@ -72,6 +79,9 @@ void System::setup(const string &filename) {
                     fieldCount++;
                 }
             }
+
+            // If there were 2 fields (all fields present), add the runway to our system.
+            // It can still fail inside 'addRunway' if the airport tied to the IATA does not exist in our system.
             if (fieldCount == 2) {
                 System::addRunway(tmp->getFName(), iata);
             }
@@ -83,8 +93,11 @@ void System::setup(const string &filename) {
         // AIRPLANES
 
         else if (strcmp(root->Value(), "AIRPLANE") == 0) {
+            int ap_status = 0;
             fieldCount = 0;
             airplane *tmp = new airplane();
+
+            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
             for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
 
                 if (strcmp(elem->Value(), "number") == 0) {
@@ -100,18 +113,28 @@ void System::setup(const string &filename) {
                     fieldCount++;
                 }
                 else if (strcmp(elem->Value(), "status") == 0) {
+                    string status = elem->GetText();
+                    // By default, the status is kApproaching.
+                    // We also allow the initial state to be 'at gate' and change ap_status to kGate if so.
+                    ap_status = 0;
+                    if (status == "Gate") {
+                        ap_status = 2;
+                    }
                     fieldCount++;
                 }
             }
+
+            // If there were 4 fields (all fields present), add the runway to our system.
             if (fieldCount == 4) {
-                // 0 = EPlaneStatus::kApproaching.
-                System::addAirplane(tmp->getFNumber(), tmp->getFCallsign(), tmp->getFModel(), 0);
+                System::addAirplane(tmp->getFNumber(), tmp->getFCallsign(), tmp->getFModel(), ap_status);
             }
             else {
                 cerr << "Missing field(s) for airplane." << endl;
             }
         }
     }
+
+    // We are finished with our XML file, so we clear it.
     xml.Clear();
 }
 
@@ -142,17 +165,6 @@ void System::log(const string &filename) {
 
     // Close file
     out.close();
-}
-
-runway* System::getFreeRunway(airport *ap) const {
-    vector<runway*>::const_iterator itr;
-    for (itr = runways.begin(); itr < runways.end(); ++itr) {
-        runway *run = *itr;
-        if (run->isFree() && run->getFAirport() == ap) {
-            return run;
-        }
-    }
-    return NULL;
 }
 
 void System::land(airplane *plane, airport *port) const {
@@ -205,7 +217,7 @@ void System::land(airplane *plane, airport *port) const {
 }
 
 void System::takeoff(airplane *plane, airport *port) const {
-    // Check status
+    // Check if plane is at gate
     if (plane->getFStatus() != kGate) {
         cerr << plane->getFCallsign() << " is not able to takeoff, not at gate." << endl;
         return;
@@ -269,6 +281,7 @@ void System::run() {
     }
 }
 
+
 // GETTERS
 
 vector<airport*> System::getAirports() {
@@ -284,7 +297,7 @@ vector<airplane*> System::getAirplanes() {
 }
 
 
-// NEW OBJECTS
+// ADDING NEW OBJECTS
 
 bool System::addAirport(const string& name, const string& iata, const string& callsign, int numGates) {
     airport *ap = new airport();
@@ -326,7 +339,7 @@ bool System::addAirplane(const string& number, const string& callsign, const str
 // HELPER FUNCTIONS
 
 airport *System::findAirportByIATA(const string& iata) {
-
+    // Check all airports and if the airport matches the IATA, return this airport.
     vector<airport *>::iterator itr;
     vector<airport *> airports = System::getAirports();
     for (itr = airports.begin(); itr < airports.end(); ++itr) {
@@ -338,11 +351,39 @@ airport *System::findAirportByIATA(const string& iata) {
     return 0;
 }
 
+int System::runwaysInAirport(airport *ap) const {
+    // Check all runways and if it's in the correct airport, increase our counter.
+    // Finally, return this counter.
+    int count = 0;
+    vector<runway*>::const_iterator itr;
+    for (itr = runways.begin(); itr < runways.end(); ++itr) {
+        runway *run = *itr;
+        if (run->getFAirport() == ap) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+runway* System::getFreeRunway(airport *ap) const {
+    // Check all runways and return the runway if it's in the correct airport and is free.
+    vector<runway*>::const_iterator itr;
+    for (itr = runways.begin(); itr < runways.end(); ++itr) {
+        runway *run = *itr;
+        if (run->isFree() && run->getFAirport() == ap) {
+            return run;
+        }
+    }
+    return NULL;
+}
+
+
+// DEBUGGING
 
 void System::info() {
-    // tijdelijke logging voor gemakkelijker te debuggen
+    // Temporary logging for easier debugging.
 
-    // airports
+    // AIRPORTS
     cout << "AIRPORTS" << endl;
     vector<airport *>::iterator itr;
     vector<airport *> airports = System::getAirports();
@@ -375,16 +416,4 @@ void System::info() {
         cout << "Model: " << cur_ap->getFModel() << endl;
         cout << "Status: " << cur_ap->getFStatus() << endl << endl;
     }
-}
-
-int System::runwaysInAirport(airport *ap) const {
-    int count = 0;
-    vector<runway*>::const_iterator itr;
-    for (itr = runways.begin(); itr < runways.end(); ++itr) {
-        runway *run = *itr;
-        if (run->getFAirport() == ap) {
-            ++count;
-        }
-    }
-    return count;
 }
