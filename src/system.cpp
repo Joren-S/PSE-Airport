@@ -3,11 +3,7 @@
 //
 
 #include "../headers/system.h"
-#include "../../PSE-Airport/headers/airport.h"
-#include "../headers/airplane.h"
-#include "../headers/runway.h"
 
-#include <stdio.h>
 #include <fstream>
 
 using namespace std;
@@ -168,11 +164,14 @@ void System::log(const string &filename) {
 }
 
 void System::land(airplane *plane, airport *port) const {
+    string error = plane->getFCallsign() + " is not able to land.";
+    REQUIRE(plane->getFStatus() == kApproaching, error.c_str());
+
     // Check status
-    if (plane->getFStatus() != kApproaching) {
-        cerr << plane->getFCallsign() << " is not able to land." << endl;
-        return;
-    }
+//    if (plane->getFStatus() != kApproaching) {
+//        cerr << plane->getFCallsign() << " is not able to land." << endl;
+//        return;
+//    }
 
     // Get free runway
     runway* run = getFreeRunway(port);
@@ -217,6 +216,9 @@ void System::land(airplane *plane, airport *port) const {
 }
 
 void System::takeoff(airplane *plane, airport *port) const {
+    string error = plane->getFCallsign() + " is not able to takeoff, not at gate.";
+    REQUIRE(plane->getFStatus() == kGate, error.c_str());
+
     // Check if plane is at gate
     if (plane->getFStatus() != kGate) {
         cerr << plane->getFCallsign() << " is not able to takeoff, not at gate." << endl;
@@ -257,10 +259,13 @@ void System::takeoff(airplane *plane, airport *port) const {
 }
 
 void System::gate(airplane *plane, airport *port) const {
-    if (plane->getFStatus() != kLanded) {
-        cerr << plane->getFCallsign() << " has not landed, thus cannot be at gate." << endl;
-        return;
-    }
+    string error = plane->getFCallsign() + " has not landed, thus cannot be at gate.";
+    REQUIRE(plane->getFStatus() == kLanded, error.c_str());
+
+//    if (plane->getFStatus() != kLanded) {
+//        cerr << plane->getFCallsign() << " has not landed, thus cannot be at gate." << endl;
+//        return;
+//    }
     cout << plane->getFPassengers() << " passengers exited " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << port->getFName() << endl;
     cout << plane->getFCallsign() << " has been checked for technical malfunctions" << endl;
     cout << plane->getFCallsign() << " has been refueled" << endl;
@@ -312,10 +317,14 @@ bool System::addAirport(const string& name, const string& iata, const string& ca
 
 bool System::addRunway(const string& name, const string& iata) {
     airport *home = System::findAirportByIATA(iata);
-    if (home == 0) {
-        cerr << "Can't add runway to non-existing airport." << endl;
-        return false;
-    }
+    string error = "Can't add runway to non-existing airport.";
+    REQUIRE(home != 0, error.c_str());
+
+//    if (home == 0) {
+//        cerr << "Can't add runway to non-existing airport." << endl;
+//        return false;
+//    }
+
     runway *rw = new runway();
     rw->setFName(name);
     rw->setFAirport(home);
