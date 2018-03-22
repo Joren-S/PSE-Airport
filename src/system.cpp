@@ -6,7 +6,6 @@
 
 #include <fstream>
 
-using namespace std;
 
 void System::setup(const string &filename) {
     TiXmlDocument xml;
@@ -262,11 +261,11 @@ void System::takeoff(airplane *plane, airport *port) const {
 }
 
 void System::gate(airplane *plane, airport *port) const {
-    string error = plane->getFCallsign() + " has not landed, thus cannot be at gate.";
+    string error = plane->getFCallsign() + " has not landed or is already at gate.";
     REQUIRE(plane->getFStatus() == kLanded, error.c_str());
 
 //    if (plane->getFStatus() != kLanded) {
-//        cerr << plane->getFCallsign() << " has not landed, thus cannot be at gate." << endl;
+//        cerr << plane->getFCallsign() << " has not landed or is already at gate." << endl;
 //        return;
 //    }
     cout << plane->getFPassengers() << " passengers exited " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << port->getFName() << endl;
@@ -278,6 +277,19 @@ void System::gate(airplane *plane, airport *port) const {
 
 void System::run() {
     vector<airplane*>::iterator itr;
+//    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
+//        if ((*itr)->getFStatus() == kGate) {
+//            takeoff(*itr, airports[0]);
+//        }
+//        else if ((*itr)->getFStatus() == kApproaching) {
+//            land(*itr, airports[0]);
+//        }
+//    }
+//    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
+//        if ((*itr)->getFStatus() == kLanded) {
+//            gate(*itr, airports[0]);
+//        }
+//    }
     for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
         land(*itr, airports[0]);
     }
@@ -342,6 +354,10 @@ bool System::addAirplane(const string& number, const string& callsign, const str
     ap->setFCallsign(callsign);
     ap->setFModel(model);
     ap->setFStatus((EPlaneStatus)status);
+    ap->setFGateID(-1);
+    if (ap->getFStatus() == kGate) {
+        ap->setFGateID(findAirportByIATA("ANR")->getFreeGate());
+    }
     ap->setFPassengers(4);
     System::airplanes.push_back(ap);
     return true;
