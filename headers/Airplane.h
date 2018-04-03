@@ -11,7 +11,7 @@ using namespace std;
 enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
 
 
-class airplane {
+class Airplane {
 private:
     string fNumber, fCallsign, fModel;
     EPlaneStatus fStatus;

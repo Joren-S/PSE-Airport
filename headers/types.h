@@ -16,9 +16,9 @@
 #include "../tinyXML/tinyxml.h"
 
 // Project files
-#include "airplane.h"
-#include "airport.h"
-#include "runway.h"
-#include "system.h"
+#include "Airplane.h"
+#include "Airport.h"
+#include "Runway.h"
+#include "System.h"
 
 #endif //PROJECTVLIEGVELD_TYPES_H

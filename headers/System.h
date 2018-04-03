@@ -11,26 +11,26 @@ using namespace std;
 
 class System {
 private:
-    vector<airport*> airports;
-    vector<airplane*> airplanes;
-    vector<runway*> runways;
+    vector<Airport*> airports;
+    vector<Airplane*> airplanes;
+    vector<Runway*> runways;
 
     // add new objects
     bool addAirport(const string& name, const string& iata, const string& callsign, int numGates);
-    bool addRunway(const string& name, const string& airport);
+    bool addRunway(const string& name, const string& Airport);
     bool addAirplane(const string& number, const string& callsign, const string& model, int status);
 
     // helper functions
-    airport* findAirportByIATA(const string& iata);
-    int runwaysInAirport(airport *ap) const;
-    runway* getFreeRunway(airport* ap) const;
+    Airport* findAirportByIATA(const string& iata);
+    int runwaysInAirport(Airport *ap) const;
+    Runway* getFreeRunway(Airport* ap) const;
 
 
 
     // use cases
-    void land(airplane*, airport*) const;
-    void gate(airplane*, airport*) const;
-    void takeoff(airplane*, airport*) const;
+    void land(Airplane*, Airport*) const;
+    void gate(Airplane*, Airport*) const;
+    void takeoff(Airplane*, Airport*) const;
 
 public:
     // main
@@ -42,9 +42,9 @@ public:
     void info();
 
     // getters
-    vector<airport*> getAirports();
-    vector<runway*> getRunways();
-    vector<airplane*> getAirplanes();
+    vector<Airport*> getAirports();
+    vector<Runway*> getRunways();
+    vector<Airplane*> getAirplanes();
 };
 
 #endif //PROJECTVLIEGVELD_SYSTEM_H

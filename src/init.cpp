@@ -1,4 +1,4 @@
-#include "headers/system.h"
+#include "../headers/System.h"
 
 
 int main() {

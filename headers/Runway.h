@@ -8,22 +8,22 @@
 #include <string>
 using namespace std;
 
-class airport;
+class Airport;
 
-class runway {
+class Runway {
 private:
     bool fFree;
     string fName;
-    airport *fAirport;
+    Airport *fAirport;
 public:
     // Getters and Setters
     const string &getFName() const;
 
     void setFName(const string &fName);
 
-    airport *getFAirport() const;
+    Airport *getFAirport() const;
 
-    void setFAirport(airport *fAirport);
+    void setFAirport(Airport *fAirport);
 
     bool isFree() const;
 
