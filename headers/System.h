@@ -24,7 +24,7 @@ private:
     Airport* findAirportByIATA(const string& iata);
     int runwaysInAirport(Airport *ap) const;
     Runway* getFreeRunway(Airport* ap) const;
-
+    bool simulationFinished() const;
 
 
     // use cases

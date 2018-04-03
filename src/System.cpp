@@ -279,29 +279,50 @@ void System::gate(Airplane *plane, Airport *port) const {
 }
 
 void System::run() {
+    string errormsg = "No airport available, can't run system";
+//    REQUIRE(!airports.empty(), errormsg.c_str());
+
+    // Set up iterator
     vector<Airplane*>::iterator itr;
-//    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
-//        if ((*itr)->getFStatus() == kGate) {
-//            takeoff(*itr, airports[0]);
-//        }
-//        else if ((*itr)->getFStatus() == kApproaching) {
-//            land(*itr, airports[0]);
-//        }
-//    }
-//    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
-//        if ((*itr)->getFStatus() == kLanded) {
-//            gate(*itr, airports[0]);
-//        }
-//    }
-    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
-        land(*itr, airports[0]);
+
+    // Pick first airport in the list
+    Airport* airport = airports[0];
+
+    // While the simulation is not finished
+    while (!simulationFinished()) {
+        // Loop over all the planes
+        for (itr = airplanes.begin(); itr != airplanes.end(); itr++) {
+            Airplane* plane = *itr;
+
+            // If plane status is approaching, land
+            if (plane->getFStatus() == kApproaching) {
+                land(plane, airport);
+            }
+
+            // If plane status is gate, takeoff
+            else if (plane->getFStatus() == kGate) {
+                takeoff(plane, airport);
+            }
+
+            // If plane status is landed, go to gate
+            else if (plane->getFStatus() == kLanded) {
+                gate(plane, airport);
+            }
+        }
     }
-    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
-        gate(*itr, airports[0]);
+
+    errormsg = "Simulation is not finished yet, error occured";
+//    ENSURE(simulationFinished(), errormsg);
+}
+
+bool System::simulationFinished() const {
+    std::vector<Airplane*>::const_iterator itr;
+    for (itr = airplanes.begin(); itr != airplanes.end(); itr++) {
+        if ((*itr)->getFStatus() != kFinished) {
+            return false;
+        }
     }
-    for (itr = airplanes.begin(); itr < airplanes.end(); ++itr) {
-        takeoff(*itr, airports[0]);
-    }
+    return true;
 }
 
 
