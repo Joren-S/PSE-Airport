@@ -12,12 +12,12 @@ include_directories(gtest/include)
 link_directories(gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES init.cpp
+set(RELEASE_SOURCE_FILES src/init.cpp
         src/airplane.cpp src/airport.cpp src/runway.cpp src/system.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES init_test.cpp
+set(DEBUG_SOURCE_FILES src/init_test.cpp
         src/airplane.cpp src/airport.cpp src/runway.cpp src/system.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
 
