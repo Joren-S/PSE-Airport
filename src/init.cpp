@@ -1,18 +1,9 @@
 #include "../headers/System.h"
 
-
 int main() {
-    System *sys = new System();
-
-    try {
-        sys->setup("../input.xml");
-        sys->run();
-        sys->log();
-    }
-    catch (runtime_error &error) {
-        cerr << error.what() << endl;
-    }
-
-    delete sys;
+    System system;
+    system.setup("../input.xml");
+    system.run();
+    system.log();
     return 0;
 }
