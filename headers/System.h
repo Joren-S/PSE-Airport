@@ -30,7 +30,7 @@ private:
     /**
      * Finds an airport with a specific IATA
      */
-    Airport* findAirportByIATA(const string& iata);
+    Airport* findAirportByIATA(const string& iata) const;
 
     /**
      * Return how many runways an airport has
@@ -54,7 +54,8 @@ private:
      * Logs the info to an output stream, defaulted to "cout".
      * REQUIRE: plane status is approaching &&
      * a gate at target airport is available &&
-     * a runway at target airport is available
+     * a runway at target airport is available &&
+     * at least one airport in the system
      * ENSURE: plane status is kLanded
      */
     void land(Airplane*, Airport*, ostream& = cout) const;
@@ -62,16 +63,18 @@ private:
     /**
      * Performs duties at the gate for an airplane in an airport.
      * Logs the info to an output stream, defaulted to "cout".
-     * REQUIRE: plane status is kLanded
+     * REQUIRE: plane status is kLanded &&
+     * at least one airport in the system
      * ENSURE: plane status is kGate
      */
     void gate(Airplane*, Airport*, ostream& = cout) const;
 
     /**
-     * Lands an airplane on an airport.
+     * Performs a takeoff of a plane on an airport
      * Logs the info to an output stream, defaulted to "cout".
      * REQUIRE: plane status is kGate &&
-     * a runway at target airport is available
+     * a runway at target airport is available &&
+     * at least one airport in the system
      * ENSURE: plane status is kFinished
      */
     void takeoff(Airplane*, Airport*, ostream& = cout) const;
@@ -127,7 +130,7 @@ public:
     bool addRunway(const string& name, const string& Airport);
 
     /**
-     * Adds a runway to the simulation with the given specifications
+     * Adds an airplane to the simulation with the given specifications
      * REQUIRE: available gate if the airplane should be at a gate
      * ENSURE: airplane is added to the vector of airplanes
      * @return boolean indicating success
@@ -138,19 +141,19 @@ public:
      * Getter for the airports in the simulation
      * @return vec of all airports
      */
-    vector<Airport*> getAirports();
+    vector<Airport*> getAirports() const;
 
     /**
      * Getter for the runways in the simulation
      * @return vec of all runways
      */
-    vector<Runway*> getRunways();
+    vector<Runway*> getRunways() const;
 
     /**
      * Getter for the airplanes in the simulation
      * @return vec of all airplanes
      */
-    vector<Airplane*> getAirplanes();
+    vector<Airplane*> getAirplanes() const;
 
 };
 

@@ -15,10 +15,9 @@ class Airplane {
 private:
     string fNumber, fCallsign, fModel;
     EPlaneStatus fStatus;
-    int fPassengers;
-    int fGateID;
-public:
+    int fPassengers, fGateID;
 
+public:
 
     // Getters and Setters
     int getFGateID() const;

@@ -331,15 +331,15 @@ bool System::simulationFinished() const {
 
 // GETTERS
 
-vector<Airport*> System::getAirports() {
+vector<Airport*> System::getAirports() const {
     return System::airports;
 }
 
-vector<Runway*> System::getRunways() {
+vector<Runway*> System::getRunways() const {
     return System::runways;
 }
 
-vector<Airplane*> System::getAirplanes() {
+vector<Airplane*> System::getAirplanes() const {
     return System::airplanes;
 }
 
@@ -393,7 +393,7 @@ bool System::addAirplane(const string& number, const string& callsign, const str
 
 // HELPER FUNCTIONS
 
-Airport *System::findAirportByIATA(const string& iata) {
+Airport *System::findAirportByIATA(const string& iata) const {
     // Check all airports and if the Airport matches the IATA, return this Airport.
     vector<Airport *>::iterator itr;
     vector<Airport *> airports = System::getAirports();
