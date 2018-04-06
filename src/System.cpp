@@ -8,11 +8,12 @@
 void System::setup(const string &filename) {
     TiXmlDocument xml;
     string error = "Couldn't open " + filename + ".";
-
 //    REQUIRE(xml.LoadFile(filename.c_str()), error.c_str());
 
+    // Temporary for when DesignByContract.h doesn't work
     if (!xml.LoadFile(filename.c_str()))  {
-        throw runtime_error("Couldn't open " + filename + ".");
+        cerr << "Couldn't open " + filename + "." << endl;
+        return;
     }
 
     int fieldCount = 0;
@@ -20,7 +21,7 @@ void System::setup(const string &filename) {
     // We iterate over all root elements.
     for (TiXmlElement *root = xml.FirstChildElement(); root != NULL; root = root->NextSiblingElement()) {
 
-        // AIRPORTS
+        // AirportS
 
         if (strcmp(root->Value(), "AIRPORT") == 0) {
             fieldCount = 0;
@@ -138,12 +139,12 @@ void System::setup(const string &filename) {
 }
 
 void System::log(const string &filename) {
-//    REQUIRE(!airports.empty(), "List of airports cannot be empty");
+//    REQUIRE(!Airports.empty(), "List of Airports cannot be empty");
 
     // Output file
     ofstream out(filename.c_str());
 
-    // Loop over airports
+    // Loop over Airports
     vector<Airport*>::iterator itr;
     for (itr = airports.begin(); itr < airports.end(); ++itr) {
         Airport* cur_ap = *itr;
@@ -166,122 +167,130 @@ void System::log(const string &filename) {
     out.close();
 }
 
-void System::land(Airplane *plane, Airport *port, ostream& out) const {
-    string error = plane->getFCallsign() + " is not able to land.";
-//    REQUIRE(plane->getFStatus() == kApproaching, error.c_str());
+void System::land(Airplane *plane, Airport *airport, ostream& out) const {
+    // Correct status
+    string error = plane->getFCallsign() + " is not able to land, wrong status.";
+    // REQUIRE(plane->getFStatus() == kApproaching, error.c_str());
 
-    // Check status
-//    if (plane->getFStatus() != kApproaching) {
-//        cerr << plane->getFCallsign() << " is not able to land." << endl;
-//        return;
-//    }
+    // Airport available
+    error = plane->getFCallsign() + " is not able to land, no airport available.";
+    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
 
-    // Get free Runway
-    Runway* run = getFreeRunway(port);
+    // Runway available
+    Runway* runway = getFreeRunway(airport);
+    error = plane->getFCallsign() + " is not able to land, no open runway.";
+    // REQUIRE(runway != NULL, error.c_str());
+    
+    // Gate available
+    int gate = airport->getFreeGate();
+    error = plane->getFCallsign() + " is not able to land, no gate available.";
+    // REQUIRE(gate != -1, error.c_str());
 
-    // If there isn't one, error msg and return
-    if (!run) {
-        cerr << "No free Runway! Divert " << plane->getFCallsign() << endl;
-        return;
-    }
-
-    // Get gate
-    int gate = port->getFreeGate();
-
-    // Check if available
-    if (gate < 0) {
-        cerr << "No free gate! Divert " << plane->getFCallsign() << endl;
-        return;
-    }
-
+    // Set plane's gate ID
     plane->setFGateID(gate);
 
     // Initial message
-    out << plane->getFCallsign() << " is approaching " << port->getFName() << " at " << plane->getAltitude() << ".000 ft." << endl;
+    out << plane->getFCallsign() << " is approaching " << airport->getFName() << " at " << plane->getAltitude() << ".000 ft." << endl;
 
     // Descend loop
     while (plane->getAltitude() > 1) {
+        // Decrease altitude by 1.000 feet
         plane->decreaseAltitude(1);
+
+        // Log
         out << plane->getFCallsign() << " descended to " << plane->getAltitude() << ".000 ft." << endl;
     }
 
     // Land and taxi to gate
-    out << plane->getFCallsign() << " is landing at " << port->getFName() << " on Runway " << run->getFName() << endl;
-    out << plane->getFCallsign() << " has landed at " << port->getFName() << " on Runway " << run->getFName() << endl;
+    out << plane->getFCallsign() << " is landing at " << airport->getFName() << " on Runway " << runway->getFName() << endl;
+    out << plane->getFCallsign() << " has landed at " << airport->getFName() << " on Runway " << runway->getFName() << endl;
     out << plane->getFCallsign() << " is taxiing to Gate " << plane->getFGateID() << endl;
     out << plane->getFCallsign() << " is standing at Gate " << plane->getFGateID() << endl << endl;
 
     // Set status to landed
     plane->setFStatus(kLanded);
+
+    // Succesfully landed
+    error = "Plane status has not been changed correctly";
+    // ENSURE(plane->getFStatus() == kLanded, error.c_str());
 }
 
-void System::takeoff(Airplane *plane, Airport *port, ostream& out) const {
+void System::takeoff(Airplane *plane, Airport *airport, ostream& out) const {
+    // Correct status
     string error = plane->getFCallsign() + " is not able to takeoff, not at gate.";
-//    REQUIRE(plane->getFStatus() == kGate, error.c_str());
+    // REQUIRE(plane->getFStatus() == kGate, error.c_str());
+    
+    // Runway available
+    Runway* runway = getFreeRunway(airport);
+    error = plane->getFCallsign() + " is not able to land because of no open runway.";
+    // REQUIRE(runway != NULL, error.c_str());
 
-    // Check if plane is at gate
-    if (plane->getFStatus() != kGate) {
-        cerr << plane->getFCallsign() << " is not able to takeoff, not at gate." << endl;
-        return;
-    }
-
-    // Get free Runway
-    Runway* run = getFreeRunway(port);
-
-    // If there isn't one, error msg and return
-    if (!run) {
-        cerr << "No free Runway! Stay on hold " << plane->getFCallsign() << endl;
-        return;
-    }
+    // Airport available
+    error = plane->getFCallsign() + " is not able to land, no airport available.";
+    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
 
     // Initial messages
     out << plane->getFCallsign() << " is standing at Gate " << plane->getFGateID() << endl;
-    out << plane->getFCallsign() << " is taxiing to Runway " << run->getFName() << endl;
-    out << plane->getFCallsign() << " is taking off at " << port->getFName() << " on Runway " << run->getFName() << endl;
+    out << plane->getFCallsign() << " is taxiing to Runway " << runway->getFName() << endl;
+    out << plane->getFCallsign() << " is taking off at " << airport->getFName() << " on Runway " << runway->getFName() << endl;
 
     // Ascend loop
     while (plane->getAltitude() < 5) {
+        // Increase altitude by 1.000 feet
         plane->increaseAltitude(1);
+
+        // Log
         out << plane->getFCallsign() << " ascended to " << plane->getAltitude() << ".000 ft." << endl;
     }
 
     // Last message
-    out << plane->getFCallsign() << " has left " << port->getFName() << endl << endl;
+    out << plane->getFCallsign() << " has left " << airport->getFName() << endl << endl;
 
     // Set status to finished
     plane->setFStatus(kFinished);
 
     // Restore gate
-    port->restoreGate(plane->getFGateID());
+    airport->restoreGate(plane->getFGateID());
 
-    // Set to no gate
+    // Set plane to no gate
     plane->setFGateID(-1);
+
+    // Succesful takeoff
+    error = "Plane status has not been changed correctly";
+    // ENSURE(plane->getFStatus() == kFinished, error.c_str());
 }
 
-void System::gate(Airplane *plane, Airport *port, ostream& out) const {
+void System::gate(Airplane *plane, Airport *airport, ostream& out) const {
+    // Correct status
     string error = plane->getFCallsign() + " has not landed or is already at gate.";
-//    REQUIRE(plane->getFStatus() == kLanded, error.c_str());
+    // REQUIRE(plane->getFStatus() == kLanded, error.c_str());
 
-//    if (plane->getFStatus() != kLanded) {
-//        cerr << plane->getFCallsign() << " has not landed or is already at gate." << endl;
-//        return;
-//    }
-    out << plane->getFPassengers() << " passengers exited " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << port->getFName() << endl;
+    // Airport available
+    error = plane->getFCallsign() + " is not able to land, no airport available.";
+    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
+
+    // Log
+    out << plane->getFPassengers() << " passengers exited " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << airport->getFName() << endl;
     out << plane->getFCallsign() << " has been checked for technical malfunctions" << endl;
     out << plane->getFCallsign() << " has been refueled" << endl;
-    out << plane->getFPassengers() << " boarded " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << port->getFName() << endl << endl;
+    out << plane->getFPassengers() << " boarded " << plane->getFCallsign() << " at gate " << plane->getFGateID() << " of " << airport->getFName() << endl << endl;
     plane->setFStatus(kGate);
+
+    // Succesfully performed duties at gate
+    error = "Plane status has not been changed correctly";
+    // ENSURE(plane->getFStatus() == kGate, error.c_str());
 }
 
 void System::run() {
-    string errormsg = "No airport available, can't run system";
-//    REQUIRE(!airports.empty() && !simulationFinished(), errormsg.c_str());
+    // Airport available and simulation not finished
+    string errormsg = "No Airport available, can't run system";
+//    REQUIRE(!Airports.empty() && !simulationFinished(), errormsg.c_str());
 
     // Set up iterator
     vector<Airplane*>::iterator itr;
 
-    // Pick first airport in the list
-    Airport* airport = airports[0];
+    // Pick first Airport in the list
+    Airport* Airport = airports[0];
 
     // While the simulation is not finished
     while (!simulationFinished()) {
@@ -291,17 +300,17 @@ void System::run() {
 
             // If plane status is approaching, land
             if (plane->getFStatus() == kApproaching) {
-                land(plane, airport);
+                land(plane, Airport);
             }
 
             // If plane status is gate, takeoff
             else if (plane->getFStatus() == kGate) {
-                takeoff(plane, airport);
+                takeoff(plane, Airport);
             }
 
             // If plane status is landed, go to gate
             else if (plane->getFStatus() == kLanded) {
-                gate(plane, airport);
+                gate(plane, Airport);
             }
         }
     }
@@ -390,10 +399,10 @@ bool System::addAirplane(const string& number, const string& callsign, const str
 // HELPER FUNCTIONS
 
 Airport *System::findAirportByIATA(const string& iata) const {
-    // Check all airports and if the Airport matches the IATA, return this Airport.
+    // Check all Airports and if the Airport matches the IATA, return this Airport.
     vector<Airport *>::iterator itr;
-    vector<Airport *> airports = System::getAirports();
-    for (itr = airports.begin(); itr < airports.end(); ++itr) {
+    vector<Airport *> Airports = System::getAirports();
+    for (itr = Airports.begin(); itr < Airports.end(); ++itr) {
         Airport* cur_ap = *itr;
         if (cur_ap->getFIata() == iata) {
             return cur_ap;
@@ -435,10 +444,10 @@ System::~System() {
         delete *planeItr;
     }
 
-    // Delete all airports
-    vector<Airport*>::iterator airportItr;
-    for (airportItr = airports.begin(); airportItr != airports.end(); airportItr++) {
-        delete *airportItr;
+    // Delete all Airports
+    vector<Airport*>::iterator AirportItr;
+    for (AirportItr = airports.begin(); AirportItr != airports.end(); AirportItr++) {
+        delete *AirportItr;
     }
 
     // Delete all runways
