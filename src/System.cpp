@@ -196,16 +196,13 @@ void System::land(Airplane *plane, Airport *port, ostream& out) const {
 
     plane->setFGateID(gate);
 
-    // Set height to 10.000 feet
-    int heightInThousandsFeet = 10;
-
     // Initial message
-    out << plane->getFCallsign() << " is approaching " << port->getFName() << " at " << heightInThousandsFeet << ".000 ft." << endl;
+    out << plane->getFCallsign() << " is approaching " << port->getFName() << " at " << plane->getAltitude() << ".000 ft." << endl;
 
     // Descend loop
-    while (heightInThousandsFeet > 1) {
-        --heightInThousandsFeet;
-        out << plane->getFCallsign() << " descended to " << heightInThousandsFeet << ".000 ft." << endl;
+    while (plane->getAltitude() > 1) {
+        plane->decreaseAltitude(1);
+        out << plane->getFCallsign() << " descended to " << plane->getAltitude() << ".000 ft." << endl;
     }
 
     // Land and taxi to gate
@@ -237,18 +234,15 @@ void System::takeoff(Airplane *plane, Airport *port, ostream& out) const {
         return;
     }
 
-    // Set height to 0 feet
-    int heightInThousandsFeet = 0;
-
     // Initial messages
     out << plane->getFCallsign() << " is standing at Gate " << plane->getFGateID() << endl;
     out << plane->getFCallsign() << " is taxiing to Runway " << run->getFName() << endl;
     out << plane->getFCallsign() << " is taking off at " << port->getFName() << " on Runway " << run->getFName() << endl;
 
     // Ascend loop
-    while (heightInThousandsFeet < 5) {
-        ++heightInThousandsFeet;
-        out << plane->getFCallsign() << " ascended to " << heightInThousandsFeet << ".000 ft." << endl;
+    while (plane->getAltitude() < 5) {
+        plane->increaseAltitude(1);
+        out << plane->getFCallsign() << " ascended to " << plane->getAltitude() << ".000 ft." << endl;
     }
 
     // Last message
@@ -382,6 +376,10 @@ bool System::addAirplane(const string& number, const string& callsign, const str
     ap->setFGateID(-1);
     if (ap->getFStatus() == kGate) {
         ap->setFGateID(findAirportByIATA("ANR")->getFreeGate());
+        ap->setAltitude(0);
+    }
+    else {
+        ap->setAltitude(10);
     }
     ap->setFPassengers(4);
     System::airplanes.push_back(ap);
