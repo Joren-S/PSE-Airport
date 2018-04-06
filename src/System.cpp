@@ -4,8 +4,6 @@
 
 #include "../headers/System.h"
 
-#include <fstream>
-
 
 void System::setup(const string &filename) {
     TiXmlDocument xml;

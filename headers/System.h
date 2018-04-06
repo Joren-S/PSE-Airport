@@ -5,9 +5,22 @@
 #ifndef PROJECTVLIEGVELD_SYSTEM_H
 #define PROJECTVLIEGVELD_SYSTEM_H
 
-#include "types.h"
+// STL
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
 
-using namespace std;
+// Libraries
+#include "gtest/gtest.h"
+#include "DesignByContract.h"
+#include "../tinyXML/tinyxml.h"
+
+// Project headers
+#include "Airplane.h"
+#include "Airport.h"
+#include "Runway.h"
+
 
 class System {
 private:
