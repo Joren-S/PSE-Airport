@@ -3,18 +3,18 @@
 //
 
 #include "../headers/Airport.h"
-//
-//Airport::Airport(const string &name, const string &iata, const string &callsign, int numGates):
-//        fName(name),
-//        fIata(iata),
-//        fCallsign(callsign),
-//        fGates(numGates) {
-//    for (int i=1; i<=numGates; ++i) {
-//        fGateStack.push(i);
-//    }
-//}
+
+Airport::Airport(const string &name, const string &iata, const string &callsign, int gates): fName(name),
+                                                                                             fIata(iata),
+                                                                                             fCallsign(callsign),
+                                                                                             fGates(gates) {
+    initStack();
+}
 
 void Airport::initStack() {
+    string error = "Can't initialize gate stack, already in use";
+//    REQUIRE(fGateStack.empty(), error.c_str());
+
     // Initialize the stack for our gates (with 1 being the last value to get pushed).
     for (int i = fGates; i > 0; --i) {
         fGateStack.push(i);
@@ -22,19 +22,44 @@ void Airport::initStack() {
 }
 
 int Airport::getFreeGate() {
-    // Pops and returns the next available free gate ID from the stack.
-    // Returns -1 if no gate is available.
-    if (Airport::fGateStack.empty()) {
-        return -1;
-    }
+    string error = "Can't get free gate, no available";
+//    REQUIRE(!fGateStack.empty(), error.c_str());
+
+    // Get top of stack
     int temp = Airport::fGateStack.top();
+
+    // Pop it
     Airport::fGateStack.pop();
+
+    // Return value
     return temp;
 }
 
 void Airport::restoreGate(int id) {
+    // Check if gate exists
+    string error = "Gate does not exist";
+//    REQUIRE(id <= fGates && id > 0, error.c_str());
+
+    // Check if gate is already available
+//    error = "Gate is already available";
+//    stack<int> copy = fGateStack;
+//    bool elemInStack = false;
+//    while (!copy.empty()) {
+//        int elem = copy.top();
+//        copy.pop();
+//        if (elem == id) {
+//            elemInStack = true;
+//            break;
+//        }
+//    }
+//    REQUIRE(!elemInStack, error);
+
     // Push a gate ID back on the stack when it's free again.
     Airport::fGateStack.push(id);
+
+    // Succesfully added
+    error = "Gate was not succesfully added to stack";
+//    REQUIRE(fGateStack.top() == id, error.c_str());
 }
 
 // Getters en setters

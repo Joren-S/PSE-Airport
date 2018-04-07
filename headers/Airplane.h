@@ -12,12 +12,29 @@ using namespace std;
 
 enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
 
-
 class Airplane {
 private:
+
+    /**
+     * Members indication number, callsign and moder
+     */
     string fNumber, fCallsign, fModel;
+
+    /**
+     * Status of plane
+     */
     EPlaneStatus fStatus;
-    int fPassengers, fGateID;
+
+    /**
+     * Amount of passengers
+     */
+    int fPassengers;
+
+    /**
+     * Gate where the airplane is at.
+     * If the value is -1, the airplane is not at a gate
+     */
+    int fGateID;
 
     /**
      * Altitude in 1000feet
@@ -25,6 +42,16 @@ private:
     int fAltitude;
 
 public:
+
+    /**
+     * Constructor
+     */
+    Airplane(const string& number, const string& callsign, const string& model, EPlaneStatus status, int passengers);
+
+    /**
+     * Default constructor
+     */
+    Airplane() {}
 
     /**
      * Increases the plane's altitude by a given amount
@@ -41,31 +68,18 @@ public:
 
     // Getters and Setters
     int getAltitude() const;
-
     void setAltitude(int altitude);
-
     int getFGateID() const;
-
     void setFGateID(int id);
-
     int getFPassengers() const;
-
     void setFPassengers(int fPassengers);
-
     const string &getFNumber() const;
-
     void setFNumber(const string &fNumber);
-
     const string &getFCallsign() const;
-
     void setFCallsign(const string &fCallsign);
-
     const string &getFModel() const;
-
     void setFModel(const string &fModel);
-
     EPlaneStatus getFStatus() const;
-
     void setFStatus(EPlaneStatus fStatus);
 
 };

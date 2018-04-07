@@ -4,6 +4,24 @@
 
 #include "../headers/Airplane.h"
 
+Airplane::Airplane(const string &number, const string &callsign, const string &model, EPlaneStatus status,
+                   int passengers): fNumber(number),
+                                    fCallsign(callsign),
+                                    fModel(model),
+                                    fStatus(status),
+                                    fPassengers(passengers) {
+    // Set altitude
+    if (status == kGate or status == kLanded) {
+        fAltitude = 0;
+    }
+    else {
+        fAltitude = 10;
+    }
+
+    // Set to no gate, is changed when added to the system
+    fGateID = -1;
+}
+
 void Airplane::decreaseAltitude(int difference) {
     string errmsg = "New altitude can't be less than 0!";
     //REQUIRE(fAltitude - difference >= 0, errmsg.c_str());

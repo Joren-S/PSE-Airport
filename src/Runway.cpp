@@ -4,7 +4,27 @@
 
 #include "../headers/Runway.h"
 
-// Getters en setters
+Runway::Runway(bool free, const string& name, Airport* airport, ERunwayType type, int length):    fFree(free),
+                                                                                                  fName(name),
+                                                                                                  fAirport(airport),
+                                                                                                  fType(type),
+                                                                                                  fLength(length) {}
+
+ERunwayType Runway::getType() const {
+    return fType;
+}
+
+void Runway::setType(ERunwayType type) {
+    fType = type;
+}
+
+int Runway::getLength() const {
+    return fLength;
+}
+
+void Runway::setLength(int length) {
+    fLength = length;
+}
 
 const string &Runway::getFName() const {
     return fName;
