@@ -9,21 +9,22 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
 
 // Libraries
 #include "gtest/gtest.h"
 #include "DesignByContract.h"
-#include "../tinyXML/tinyxml.h"
 
 // Project headers
 #include "Airplane.h"
 #include "Airport.h"
 #include "Runway.h"
+#include "Input.h"
 
 
 class System {
 private:
+
+    //TODO: bool properly initialized
 
     /**
      * Vector of pointers to all the airports
@@ -39,11 +40,6 @@ private:
      * Vector of pointers to all the runways
      */
     vector<Runway*> runways;
-
-    /**
-     * Finds an airport with a specific IATA
-     */
-    Airport* findAirportByIATA(const string& iata) const;
 
     /**
      * Return how many runways an airport has
@@ -95,21 +91,14 @@ private:
 public:
 
     /**
-     * Default constructor
+     * Constructor
      */
-    System() {};
+    System(Input&);
 
     /**
      * Destructor
      */
     ~System();
-
-    /**
-     * Initializes the system using the given input file.
-     * REQUIRE: valid input file
-     * @param filename: name of the input file
-     */
-    void setup(const string& filename);
 
     /**
      * Logs information of the airports and airplanes to a
@@ -126,29 +115,6 @@ public:
      * ENSURE: simulation ended
      */
     void run();
-
-    /**
-     * Adds an airport to the simulation with the given specifications
-     * ENSURE: airport is added to the vector of airports
-     * @return boolean indicating success
-     */
-    bool addAirport(const string& name, const string& iata, const string& callsign, int numGates);
-
-    /**
-     * Adds a runway to the simulation with the given specifications
-     * REQUIRE: airport has to exist
-     * ENSURE: runway is added to the vector of runways
-     * @return boolean indicating success
-     */
-    bool addRunway(const string& name, const string& Airport);
-
-    /**
-     * Adds an airplane to the simulation with the given specifications
-     * REQUIRE: available gate if the airplane should be at a gate
-     * ENSURE: airplane is added to the vector of airplanes
-     * @return boolean indicating success
-     */
-    bool addAirplane(const string& number, const string& callsign, const string& model, int status);
 
     /**
      * Getter for the airports in the simulation

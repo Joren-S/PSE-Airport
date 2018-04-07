@@ -19,6 +19,7 @@ protected:
     }
 
     // Declares the variables your tests want to use.
+    Input input {"../input.xml"};
     System sys;
 };
 
@@ -33,8 +34,6 @@ TEST_F(SystemTest, DefaultConstructor) {
 
 
 TEST_F(SystemTest, Setup) {
-    sys.setup("../input.xml");
-
     // Test to check if there are more than 0 airplanes, airports and runways.
     ASSERT_TRUE(!sys.getAirplanes().empty());
     ASSERT_TRUE(!sys.getAirports().empty());
@@ -54,7 +53,6 @@ TEST_F(SystemTest, Setup) {
 }
 
 TEST_F(SystemTest, Run) {
-    sys.setup("../input.xml");
     sys.run();
 
     // Test to check if all planes are finished and no longer have a gate assigned to them.
@@ -79,7 +77,6 @@ TEST_F(SystemTest, Run) {
 //    // Test to check if the output file is correct.
 //    ASSERT_TRUE(FileCompare);
 //}
-
 
 
 int main(int argc, char **argv) {

@@ -10,6 +10,10 @@ Runway::Runway(bool free, const string& name, Airport* airport, ERunwayType type
                                                                                                   fType(type),
                                                                                                   fLength(length) {}
 
+Runway::Runway() {
+    fAirport = NULL;
+}
+
 ERunwayType Runway::getType() const {
     return fType;
 }

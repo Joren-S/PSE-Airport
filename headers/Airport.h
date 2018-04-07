@@ -38,8 +38,9 @@ public:
 
     /**
      * Default constructor
+     * Set int values to -1, to check if field are initialized
      */
-    Airport() {}
+    Airport();
 
     /**
      * Initializes the gateStack

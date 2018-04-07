@@ -1,9 +1,17 @@
 #include "../headers/System.h"
 
 int main() {
-    System system;
-    system.setup("../input.xml");
+    // Read input
+    Input input("../input.xml");
+
+    // Initialize system with input
+    System system(input);
+
+    // Run the simulation
     system.run();
+
+    // Log information to output file
     system.log();
+
     return 0;
 }

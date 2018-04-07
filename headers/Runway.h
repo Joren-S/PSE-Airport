@@ -50,8 +50,9 @@ public:
 
     /**
      * Default constructor
+     * Set airport to NULL
      */
-    Runway() {}
+    Runway();
 
     // Getters and Setters
     ERunwayType getType() const;

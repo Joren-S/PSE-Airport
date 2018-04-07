@@ -50,8 +50,10 @@ public:
 
     /**
      * Default constructor
+     * Set int values to -1, to check if field are initialized
+     * Set status to approaching
      */
-    Airplane() {}
+    Airplane();
 
     /**
      * Increases the plane's altitude by a given amount

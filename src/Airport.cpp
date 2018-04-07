@@ -11,6 +11,10 @@ Airport::Airport(const string &name, const string &iata, const string &callsign,
     initStack();
 }
 
+Airport::Airport() {
+    fGates = -1;
+}
+
 void Airport::initStack() {
     string error = "Can't initialize gate stack, already in use";
 //    REQUIRE(fGateStack.empty(), error.c_str());

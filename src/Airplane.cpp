@@ -22,6 +22,11 @@ Airplane::Airplane(const string &number, const string &callsign, const string &m
     fGateID = -1;
 }
 
+Airplane::Airplane() {
+    fPassengers = fGateID = fAltitude = -1;
+    fStatus = kApproaching;
+}
+
 void Airplane::decreaseAltitude(int difference) {
     string errmsg = "New altitude can't be less than 0!";
     //REQUIRE(fAltitude - difference >= 0, errmsg.c_str());
