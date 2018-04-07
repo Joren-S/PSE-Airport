@@ -1,5 +1,5 @@
 //
-// Created by bartv on 4/7/2018.
+// Created by Max on 4/7/2018.
 //
 
 #include "../headers/Input.h"
@@ -16,266 +16,22 @@ Input::Input(const string &filename) {
         return;
     }
 
-    // Keep track of how many fields we have per element
-    int fieldCount = 0;
-
     // We iterate over all root elements.
     for (TiXmlElement *root = xml.FirstChildElement(); root != NULL; root = root->NextSiblingElement()) {
 
         // Airports
         if (strcmp(root->Value(), "AIRPORT") == 0) {
-            // Reset fieldCount
-            fieldCount = 0;
-
-            // Make new object
-            Airport *tmp = new Airport();
-
-            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
-            for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
-
-                if (strcmp(elem->Value(), "name") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFName() != "") {
-                        cerr << "Duplicate data in Airport." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airport name
-                    tmp->setFName(elem->GetText());
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "iata") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFIata() != "") {
-                        cerr << "Duplicate data in Airport." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airport iata
-                    tmp->setFIata(elem->GetText());
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "callsign") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFCallsign() != "") {
-                        cerr << "Duplicate data in Airport." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airport callsign
-                    tmp->setFCallsign(elem->GetText());
-
-                    // Increase fieldcount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "gates") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFGates() != -1) {
-                        cerr << "Duplicate data in Airport." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airport gates
-                    tmp->setFGates(atoi(elem->GetText()));
-
-                    // Increase fieldcount
-                    fieldCount++;
-                }
-                else {
-                    cerr << "Invalid field: " << elem->Value() << endl;
-                    fieldCount = -1;
-                    break;
-                }
-            }
-
-            // If there were 4 field (all fields present), add the Airport to our system.
-            if (fieldCount == 4) {
-                Input::addAirport(tmp);
-                continue;
-            }
-
-            // Something went wrong, if the field count is -1, an error msg has already been logged
-            // Else, there were missing fields
-            if (fieldCount != -1) {
-                cerr << "Missing field(s) for Airport." << endl;
-            }
-
-            // Delete the object
-            delete tmp;
+            readAirport(root->FirstChildElement());
         }
 
         //  RUNWAYS
         else if (strcmp(root->Value(), "RUNWAY") == 0) {
-            // Reset fieldCount
-            fieldCount = 0;
-
-            // Make new object
-            Runway *tmp = new Runway();
-
-            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
-            for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
-
-                if (strcmp(elem->Value(), "name") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFName() != "") {
-                        cerr << "Duplicate data in Runway." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set runway name
-                    tmp->setFName(elem->GetText());
-
-                    // Increase fieldcount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "airport") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFAirport() != NULL) {
-                        cerr << "Duplicate data in Runway." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Get airport from IATA
-                    Airport* airport = findAirportByIATA(elem->GetText());
-
-                    // No airport found
-                    if (airport == NULL) {
-                        cerr << "Did not find airport with iata: " << elem->GetText() << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set runway airport
-                    tmp->setFAirport(airport);
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-            }
-
-            // If there were 2 fields (all fields present), add the Runway to our system.
-            if (fieldCount == 2) {
-                Input::addRunway(tmp);
-                continue;
-            }
-
-            // Something went wrong, if the field count is -1, an error msg has already been logged
-            // Else, there were missing fields
-            if (fieldCount != -1) {
-                cerr << "Missing field(s) for Runway." << endl;
-            }
-
-            // Delete the object
-            delete tmp;
+            readRunway(root->FirstChildElement());
         }
 
         // AIRPLANES
         else if (strcmp(root->Value(), "AIRPLANE") == 0) {
-            int ap_status = 0;
-
-            // Reset fieldCount
-            fieldCount = 0;
-
-            // Make new object
-            Airplane *tmp = new Airplane();
-
-            //  We iterate over all members, check if it's a valid element and if so, add it to our object.
-            for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement()) {
-
-                if (strcmp(elem->Value(), "number") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFNumber() != "") {
-                        cerr << "Duplicate data in Airplane." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airplane number
-                    tmp->setFNumber(elem->GetText());
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "callsign") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFCallsign() != "") {
-                        cerr << "Duplicate data in Airplane." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airplane callsign
-                    tmp->setFCallsign(elem->GetText());
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "model") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFModel() != "") {
-                        cerr << "Duplicate data in Airplane." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set airplane model
-                    tmp->setFModel(elem->GetText());
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-                else if (strcmp(elem->Value(), "status") == 0) {
-                    // Check for duplicate data
-                    if (tmp->getFStatus() != 0) {
-                        cerr << "Duplicate data in Airplane status." << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Set status
-                    if (strcmp(elem->GetText(), "Gate") == 0) {
-                        tmp->setFStatus(kGate);
-                        tmp->setAltitude(0);
-                    }
-                    else if (strcmp(elem->GetText(), "Approaching") == 0) {
-                        tmp->setFStatus(kApproaching);
-                        tmp->setAltitude(10);
-                    }
-                    else {
-                        cerr << "Invalid data for Airplane status" << endl;
-                        fieldCount = -1;
-                        break;
-                    }
-
-                    // Increase fieldCount
-                    fieldCount++;
-                }
-            }
-
-            // If there were 4 field (all fields present), add the Airplane to our system.
-            if (fieldCount == 4) {
-                Input::addAirplane(tmp);
-                continue;
-            }
-
-            // Something went wrong, if the field count is -1, an error msg has already been logged
-            // Else, there were missing fields
-            if (fieldCount != -1) {
-                cerr << "Missing field(s) for Airplane." << endl;
-            }
-
-            // Delete the object
-            delete tmp;
+            readAirplane(root->FirstChildElement());
         }
 
         // Invalid element
@@ -286,6 +42,257 @@ Input::Input(const string &filename) {
 
     // We are finished with our XML file, so we clear it.
     xml.Clear();
+}
+
+void Input::readAirplane(TiXmlElement *elem) {
+    // Keep track of how many fields the element has
+    int fieldCount = 0;
+
+    // Make new object
+    Airplane *tmp = new Airplane();
+
+    //  We iterate over all members, check if it's a valid element and if so, add it to our object.
+    for (; elem != NULL; elem = elem->NextSiblingElement()) {
+
+        if (strcmp(elem->Value(), "number") == 0) {
+            // Check for duplicate data
+            if (tmp->getFNumber() != "") {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane number
+            tmp->setFNumber(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "callsign") == 0) {
+            // Check for duplicate data
+            if (tmp->getFCallsign() != "") {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane callsign
+            tmp->setFCallsign(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "model") == 0) {
+            // Check for duplicate data
+            if (tmp->getFModel() != "") {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane model
+            tmp->setFModel(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "status") == 0) {
+            // Check for duplicate data
+            if (tmp->getFStatus() != 0) {
+                cerr << "Duplicate data in Airplane status." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set status
+            if (strcmp(elem->GetText(), "Gate") == 0) {
+                tmp->setFStatus(kGate);
+                tmp->setAltitude(0);
+            }
+            else if (strcmp(elem->GetText(), "Approaching") == 0) {
+                tmp->setFStatus(kApproaching);
+                tmp->setAltitude(10);
+            }
+            else {
+                cerr << "Invalid data for Airplane status" << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+    }
+
+    // If there were 4 field (all fields present), add the Airplane to our system.
+    if (fieldCount == 4) {
+        Input::addAirplane(tmp);
+        return;
+    }
+
+    // Something went wrong, if the field count is -1, an error msg has already been logged
+    // Else, there were missing fields
+    if (fieldCount != -1) {
+        cerr << "Missing field(s) for Airplane." << endl;
+    }
+
+    // Delete the object
+    delete tmp;
+}
+
+void Input::readRunway(TiXmlElement *elem) {
+    // Keep track of how many fields the element has
+    int fieldCount = 0;
+
+    // Make new object
+    Runway *tmp = new Runway();
+
+    //  We iterate over all members, check if it's a valid element and if so, add it to our object.
+    for (; elem != NULL; elem = elem->NextSiblingElement()) {
+
+        if (strcmp(elem->Value(), "name") == 0) {
+            // Check for duplicate data
+            if (tmp->getFName() != "") {
+                cerr << "Duplicate data in Runway." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set runway name
+            tmp->setFName(elem->GetText());
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "airport") == 0) {
+            // Check for duplicate data
+            if (tmp->getFAirport() != NULL) {
+                cerr << "Duplicate data in Runway." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Get airport from IATA
+            Airport* airport = findAirportByIATA(elem->GetText());
+
+            // No airport found
+            if (airport == NULL) {
+                cerr << "Did not find airport with iata: " << elem->GetText() << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set runway airport
+            tmp->setFAirport(airport);
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+    }
+
+    // If there were 2 fields (all fields present), add the Runway to our system.
+    if (fieldCount == 2) {
+        Input::addRunway(tmp);
+        return;
+    }
+
+    // Something went wrong, if the field count is -1, an error msg has already been logged
+    // Else, there were missing fields
+    if (fieldCount != -1) {
+        cerr << "Missing field(s) for Runway." << endl;
+    }
+
+    // Delete the object
+    delete tmp;
+}
+
+void Input::readAirport(TiXmlElement *elem) {
+    // Keep track of how many fields the element has
+    int fieldCount = 0;
+
+    // Make new object
+    Airport *tmp = new Airport();
+
+    //  We iterate over all members, check if it's a valid element and if so, add it to our object.
+    for (; elem != NULL; elem = elem->NextSiblingElement()) {
+
+        if (strcmp(elem->Value(), "name") == 0) {
+            // Check for duplicate data
+            if (tmp->getFName() != "") {
+                cerr << "Duplicate data in Airport." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airport name
+            tmp->setFName(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "iata") == 0) {
+            // Check for duplicate data
+            if (tmp->getFIata() != "") {
+                cerr << "Duplicate data in Airport." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airport iata
+            tmp->setFIata(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "callsign") == 0) {
+            // Check for duplicate data
+            if (tmp->getFCallsign() != "") {
+                cerr << "Duplicate data in Airport." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airport callsign
+            tmp->setFCallsign(elem->GetText());
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "gates") == 0) {
+            // Check for duplicate data
+            if (tmp->getFGates() != -1) {
+                cerr << "Duplicate data in Airport." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airport gates
+            tmp->setFGates(atoi(elem->GetText()));
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else {
+            cerr << "Invalid field: " << elem->Value() << endl;
+            fieldCount = -1;
+            break;
+        }
+    }
+
+    // If there were 4 field (all fields present), add the Airport to our system.
+    if (fieldCount == 4) {
+        Input::addAirport(tmp);
+        return;
+    }
+
+    // Something went wrong, if the field count is -1, an error msg has already been logged
+    // Else, there were missing fields
+    if (fieldCount != -1) {
+        cerr << "Missing field(s) for Airport." << endl;
+    }
+
+    // Delete the object
+    delete tmp;
 }
 
 void Input::addAirport(Airport *airport) {

@@ -1,5 +1,5 @@
 //
-// Created by bartv on 4/7/2018.
+// Created by Max on 4/7/2018.
 //
 
 #ifndef PROJECTVLIEGVELD_INPUT_H
@@ -25,7 +25,7 @@ using namespace std;
 
 class Input {
 private:
-    
+
     /**
      * Vector of pointers to all the airports
      */
@@ -46,14 +46,29 @@ private:
      */
     Airport* findAirportByIATA(const string& iata) const;
 
+    /**
+     * Reads an airport from a given xml element
+     */
+    void readAirport(TiXmlElement *elem);
+
+    /**
+     * Reads a runway from a given xml element
+     */
+    void readRunway(TiXmlElement *elem);
+
+    /**
+     * Reads an airplane from a given xml element
+     */
+    void readAirplane(TiXmlElement *elem);
+
 public:
-    
+
     /**
      * Constructor, reads all the elements from a given file
      * @param filename: name of the file with input
      */
     Input(const string& filename);
-    
+
     /**
      * Default constructor, for manually adding elements
      */
@@ -95,5 +110,5 @@ public:
      * @return vec of all airplanes
      */
     vector<Airplane*> getAirplanes() const;
-    
+
 };
