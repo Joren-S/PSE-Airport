@@ -32,7 +32,31 @@ void System::log(const string &filename) {
         Airplane* cur_ap = *itr_air;
         out << "Airplane: " << cur_ap->getFCallsign() << " (" << cur_ap->getFNumber() << ")\n";
         out << " -> model: " << cur_ap->getFModel() << endl;
-        out << endl;
+        out << " -> type: ";
+        if (cur_ap->getType() == kPrivate) {
+            out << "private";
+        } else if (cur_ap->getType() == kAirline) {
+            out << "airline";
+        } else if (cur_ap->getType() == kMilitary) {
+            out << "military";
+        } else if (cur_ap->getType() == kEmergency) {
+            out << "emergency";
+        }
+        out << endl << " -> engine: ";
+        if (cur_ap->getEngine() == kJet) {
+            out << "jet";
+        } else if (cur_ap->getEngine() == kPropeller) {
+            out << "propeller";
+        }
+        out << endl << " -> size: ";
+        if (cur_ap->getSize() == kSmall) {
+            out << "small";
+        } else if (cur_ap->getSize() == kMedium) {
+            out << "medium";
+        } else if (cur_ap->getSize() == kLarge) {
+            out << "large";
+        }
+        out << endl << endl;
     }
 
     // Close file
@@ -58,6 +82,9 @@ void System::land(Airplane *plane, Airport *airport, ostream& out) const {
     error = plane->getFCallsign() + " is not able to land, no gate available.";
     // REQUIRE(gate != -1, error.c_str());
 
+    // Set runway to unavailable
+    runway->setFree(false);
+
     // Set plane's gate ID
     plane->setFGateID(gate);
 
@@ -82,6 +109,9 @@ void System::land(Airplane *plane, Airport *airport, ostream& out) const {
     // Set status to landed
     plane->setFStatus(kLanded);
 
+    // Make runway available again
+    runway->setFree(true);
+
     // Succesfully landed
     error = "Plane status has not been changed correctly";
     // ENSURE(plane->getFStatus() == kLanded, error.c_str());
@@ -100,6 +130,9 @@ void System::takeoff(Airplane *plane, Airport *airport, ostream& out) const {
     // Airport available
     error = plane->getFCallsign() + " is not able to land, no airport available.";
     // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
+
+    // Set runway to unavailable
+    runway->setFree(false);
 
     // Initial messages
     out << plane->getFCallsign() << " is standing at Gate " << plane->getFGateID() << endl;
@@ -126,6 +159,9 @@ void System::takeoff(Airplane *plane, Airport *airport, ostream& out) const {
 
     // Set plane to no gate
     plane->setFGateID(-1);
+
+    // Make runway available again
+    runway->setFree(true);
 
     // Succesful takeoff
     error = "Plane status has not been changed correctly";
