@@ -9,8 +9,15 @@
 #include "DesignByContract.h"
 
 using namespace std;
+// type, engine, size and passengers
 
 enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
+
+enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency };
+
+enum EPlaneSize { kSmall, kMedium, kLarge };
+
+enum EPlaneEngine { kPropeller, kJet };
 
 class Airplane {
 private:
@@ -24,6 +31,21 @@ private:
      * Status of plane
      */
     EPlaneStatus fStatus;
+
+    /**
+     * Size of plane
+     */
+    EPlaneSize fSize;
+
+    /**
+     * Engine type of plane
+     */
+    EPlaneEngine fEngine;
+
+    /**
+     * Type of plane
+     */
+    EPlaneType fType;
 
     /**
      * Amount of passengers
@@ -69,6 +91,12 @@ public:
     void decreaseAltitude(int difference);
 
     // Getters and Setters
+    EPlaneSize getSize() const;
+    void setSize(EPlaneSize size);
+    EPlaneType getType() const;
+    void setType(EPlaneType type);
+    EPlaneEngine getEngine() const;
+    void setEngine(EPlaneEngine engine);
     int getAltitude() const;
     void setAltitude(int altitude);
     int getFGateID() const;

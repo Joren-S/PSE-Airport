@@ -25,6 +25,9 @@ Airplane::Airplane(const string &number, const string &callsign, const string &m
 Airplane::Airplane() {
     fPassengers = fGateID = fAltitude = -1;
     fStatus = kApproaching;
+    fEngine = kPropeller;
+    fType = kPrivate;
+    fSize = kSmall;
 }
 
 void Airplane::decreaseAltitude(int difference) {
@@ -44,6 +47,30 @@ void Airplane::increaseAltitude(int difference) {
 }
 
 // Getters and setters
+
+EPlaneSize Airplane::getSize() const {
+    return fSize;
+}
+
+void Airplane::setSize(EPlaneSize size) {
+    fSize = size;
+}
+
+EPlaneType Airplane::getType() const {
+    return fType;
+}
+
+void Airplane::setType(EPlaneType type) {
+    fType = type;
+}
+
+EPlaneEngine Airplane::getEngine() const {
+    return fEngine;
+}
+
+void Airplane::setEngine(EPlaneEngine engine) {
+    fEngine = engine;
+}
 
 int Airplane::getAltitude() const {
     return fAltitude;

@@ -105,11 +105,11 @@ void Input::readAirplane(TiXmlElement *elem) {
             }
 
             // Set status
-            if (strcmp(elem->GetText(), "Gate") == 0) {
+            if (strcmp(elem->GetText(), "gate") == 0) {
                 tmp->setFStatus(kGate);
                 tmp->setAltitude(0);
             }
-            else if (strcmp(elem->GetText(), "Approaching") == 0) {
+            else if (strcmp(elem->GetText(), "approaching") == 0) {
                 tmp->setFStatus(kApproaching);
                 tmp->setAltitude(10);
             }
@@ -122,6 +122,101 @@ void Input::readAirplane(TiXmlElement *elem) {
             // Increase fieldCount
             fieldCount++;
         }
+        else if (strcmp(elem->Value(), "passengers") == 0) {
+            // Check for duplicate data
+            if (tmp->getFPassengers() != -1) {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane passengers
+            tmp->setFPassengers(atoi(elem->GetText()));
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "type") == 0) {
+            // Check for duplicate data
+            if (tmp->getType() != 0) {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane type
+            if (strcmp(elem->GetText(), "private") == 0) {
+                tmp->setType(kPrivate);
+            }
+            else if (strcmp(elem->GetText(), "airline") == 0) {
+                tmp->setType(kAirline);
+            }
+            else if (strcmp(elem->GetText(), "military") == 0) {
+                tmp->setType(kMilitary);
+            }
+            else if (strcmp(elem->GetText(), "emergency") == 0) {
+                tmp->setType(kEmergency);
+            }
+            else {
+                cerr << "Invalid data for Airplane type" << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "engine") == 0) {
+            // Check for duplicate data
+            if (tmp->getEngine() != 0) {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane engine
+            if (strcmp(elem->GetText(), "propeller") == 0) {
+                tmp->setEngine(kPropeller);
+            }
+            else if (strcmp(elem->GetText(), "jet") == 0) {
+                tmp->setEngine(kJet);
+            }
+            else {
+                cerr << "Invalid data for Airplane engine." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Increase fieldcount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "size") == 0) {
+            // Check for duplicate data
+            if (tmp->getSize() != 0) {
+                cerr << "Duplicate data in Airplane." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set airplane size
+            if (strcmp(elem->GetText(), "small") == 0) {
+                tmp->setSize(kSmall);
+            }
+            else if (strcmp(elem->GetText(), "medium") == 0) {
+                tmp->setSize(kMedium);
+            }
+            else if (strcmp(elem->GetText(), "large") == 0) {
+                tmp->setSize(kLarge);
+            }
+            else {
+                cerr << "Invalid data for Airplane size." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Increase fieldcount
+            fieldCount++;
+        }
         else {
             cerr << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
@@ -130,7 +225,7 @@ void Input::readAirplane(TiXmlElement *elem) {
     }
 
     // If there were 4 field (all fields present), add the Airplane to our system.
-    if (fieldCount == 4) {
+    if (fieldCount == 8) {
         Input::addAirplane(tmp);
         return;
     }
