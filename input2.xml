@@ -1,0 +1,24 @@
+<AIRPORT>
+	<name>Antwerp International Airport</name>
+	<iata>ANR</iata>
+	<callsign>Antwerp Tower</callsign>
+	<gates>10</gates>
+</AIRPORT>
+<RUNWAY>
+	<name>11R</name>
+	<airport>ANR</airport>
+	<type>asphalt</type>
+	<length>1510</length>
+</RUNWAY>
+<RUNWAY>
+	<name>11L</name>
+	<airport>ANR</airport>
+	<type>grass</type>
+	<length>1010</length>
+</RUNWAY>
+<AIRPLANE>
+	<number>N11842</number>
+	<callsign>Cessna 842</callsign>
+	<model>Cessna 340</model>
+	<status>Approaching</status>
+</AIRPLANE>

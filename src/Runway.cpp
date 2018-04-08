@@ -12,6 +12,8 @@ Runway::Runway(bool free, const string& name, Airport* airport, ERunwayType type
 
 Runway::Runway() {
     fAirport = NULL;
+    fType = kAsphalt;
+    fLength = -1;
 }
 
 ERunwayType Runway::getType() const {

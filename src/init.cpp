@@ -2,7 +2,7 @@
 
 int main() {
     // Read input
-    Input input("../input.xml");
+    Input input("../input2.xml");
 
     // Initialize system with input
     System system(input);

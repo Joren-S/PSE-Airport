@@ -24,12 +24,12 @@ Input::Input(const string &filename) {
             readAirport(root->FirstChildElement());
         }
 
-        //  RUNWAYS
+        // Runways
         else if (strcmp(root->Value(), "RUNWAY") == 0) {
             readRunway(root->FirstChildElement());
         }
 
-        // AIRPLANES
+        // Airplanes
         else if (strcmp(root->Value(), "AIRPLANE") == 0) {
             readAirplane(root->FirstChildElement());
         }
@@ -122,6 +122,11 @@ void Input::readAirplane(TiXmlElement *elem) {
             // Increase fieldCount
             fieldCount++;
         }
+        else {
+            cerr << "Invalid field: " << elem->Value() << endl;
+            fieldCount = -1;
+            break;
+        }
     }
 
     // If there were 4 field (all fields present), add the Airplane to our system.
@@ -188,10 +193,52 @@ void Input::readRunway(TiXmlElement *elem) {
             // Increase fieldCount
             fieldCount++;
         }
+        else if (strcmp(elem->Value(), "type") == 0) {
+            // Check for duplicate data
+            if (tmp->getType() != 0) {
+                cerr << "Duplicate data in Runway." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set type
+            if (strcmp(elem->GetText(), "grass") == 0) {
+                tmp->setType(kGrass);
+            }
+            else if (strcmp(elem->GetText(), "asphalt") == 0) {
+                tmp->setType(kAsphalt);
+            }
+            else {
+                cerr << "Invalid data for Runway status." << endl;
+                fieldCount = -1;
+            }
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "length") == 0) {
+            // Check for duplicate data
+            if (tmp->getLength() != -1) {
+                cerr << "Duplicate data in Runway." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set runway length
+            tmp->setLength(atoi(elem->GetText()));
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else {
+            cerr << "Invalid field: " << elem->Value() << endl;
+            fieldCount = -1;
+            break;
+        }
     }
 
     // If there were 2 fields (all fields present), add the Runway to our system.
-    if (fieldCount == 2) {
+    if (fieldCount == 4) {
         Input::addRunway(tmp);
         return;
     }

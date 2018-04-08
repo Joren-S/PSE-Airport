@@ -11,7 +11,7 @@ using namespace std;
 
 class Airport;
 
-enum ERunwayType { kGrass, kAsphalt };
+enum ERunwayType { kAsphalt, kGrass };
 
 class Runway {
 private:
