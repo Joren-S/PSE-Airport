@@ -56,49 +56,49 @@ void Input::readAirplane(TiXmlElement *elem) {
 
         if (strcmp(elem->Value(), "number") == 0) {
             // Check for duplicate data
-            if (tmp->getFNumber() != "") {
+            if (tmp->getNumber() != "") {
                 cerr << "Duplicate data in Airplane." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airplane number
-            tmp->setFNumber(elem->GetText());
+            tmp->setNumber(elem->GetText());
 
             // Increase fieldCount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "callsign") == 0) {
             // Check for duplicate data
-            if (tmp->getFCallsign() != "") {
+            if (tmp->getCallsign() != "") {
                 cerr << "Duplicate data in Airplane." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airplane callsign
-            tmp->setFCallsign(elem->GetText());
+            tmp->setCallsign(elem->GetText());
 
             // Increase fieldCount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "model") == 0) {
             // Check for duplicate data
-            if (tmp->getFModel() != "") {
+            if (tmp->getModel() != "") {
                 cerr << "Duplicate data in Airplane." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airplane model
-            tmp->setFModel(elem->GetText());
+            tmp->setModel(elem->GetText());
 
             // Increase fieldCount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "status") == 0) {
             // Check for duplicate data
-            if (tmp->getFStatus() != 0) {
+            if (tmp->getStatus() != 0) {
                 cerr << "Duplicate data in Airplane status." << endl;
                 fieldCount = -1;
                 break;
@@ -106,11 +106,11 @@ void Input::readAirplane(TiXmlElement *elem) {
 
             // Set status
             if (strcmp(elem->GetText(), "gate") == 0) {
-                tmp->setFStatus(kGate);
+                tmp->setStatus(kGate);
                 tmp->setAltitude(0);
             }
             else if (strcmp(elem->GetText(), "approaching") == 0) {
-                tmp->setFStatus(kApproaching);
+                tmp->setStatus(kApproaching);
                 tmp->setAltitude(10);
             }
             else {
@@ -124,14 +124,14 @@ void Input::readAirplane(TiXmlElement *elem) {
         }
         else if (strcmp(elem->Value(), "passengers") == 0) {
             // Check for duplicate data
-            if (tmp->getFPassengers() != -1) {
+            if (tmp->getPassengers() != -1) {
                 cerr << "Duplicate data in Airplane." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airplane passengers
-            tmp->setFPassengers(atoi(elem->GetText()));
+            tmp->setPassengers(atoi(elem->GetText()));
 
             // Increase fieldcount
             fieldCount++;
@@ -252,21 +252,21 @@ void Input::readRunway(TiXmlElement *elem) {
 
         if (strcmp(elem->Value(), "name") == 0) {
             // Check for duplicate data
-            if (tmp->getFName() != "") {
+            if (tmp->getName() != "") {
                 cerr << "Duplicate data in Runway." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set runway name
-            tmp->setFName(elem->GetText());
+            tmp->setName(elem->GetText());
 
             // Increase fieldcount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "airport") == 0) {
             // Check for duplicate data
-            if (tmp->getFAirport() != NULL) {
+            if (tmp->getAirport() != NULL) {
                 cerr << "Duplicate data in Runway." << endl;
                 fieldCount = -1;
                 break;
@@ -283,7 +283,7 @@ void Input::readRunway(TiXmlElement *elem) {
             }
 
             // Set runway airport
-            tmp->setFAirport(airport);
+            tmp->setAirport(airport);
 
             // Increase fieldCount
             fieldCount++;
@@ -360,56 +360,56 @@ void Input::readAirport(TiXmlElement *elem) {
 
         if (strcmp(elem->Value(), "name") == 0) {
             // Check for duplicate data
-            if (tmp->getFName() != "") {
+            if (tmp->getName() != "") {
                 cerr << "Duplicate data in Airport." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airport name
-            tmp->setFName(elem->GetText());
+            tmp->setName(elem->GetText());
 
             // Increase fieldCount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "iata") == 0) {
             // Check for duplicate data
-            if (tmp->getFIata() != "") {
+            if (tmp->getIata() != "") {
                 cerr << "Duplicate data in Airport." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airport iata
-            tmp->setFIata(elem->GetText());
+            tmp->setIata(elem->GetText());
 
             // Increase fieldCount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "callsign") == 0) {
             // Check for duplicate data
-            if (tmp->getFCallsign() != "") {
+            if (tmp->getCallsign() != "") {
                 cerr << "Duplicate data in Airport." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airport callsign
-            tmp->setFCallsign(elem->GetText());
+            tmp->setCallsign(elem->GetText());
 
             // Increase fieldcount
             fieldCount++;
         }
         else if (strcmp(elem->Value(), "gates") == 0) {
             // Check for duplicate data
-            if (tmp->getFGates() != -1) {
+            if (tmp->getGates() != -1) {
                 cerr << "Duplicate data in Airport." << endl;
                 fieldCount = -1;
                 break;
             }
 
             // Set airport gates
-            tmp->setFGates(atoi(elem->GetText()));
+            tmp->setGates(atoi(elem->GetText()));
 
             // Increase fieldcount
             fieldCount++;
@@ -466,12 +466,12 @@ void Input::addAirplane(Airplane *airplane) {
     Airport* airport = airports[0];
 
     // Set gate
-    if (airplane->getFStatus() == kGate) {
+    if (airplane->getStatus() == kGate) {
         // Get gate from airport, if nothing available it will end the program
-        airplane->setFGateID(airport->getFreeGate());
+        airplane->setGateID(airport->getFreeGate());
     }
     else {
-        airplane->setFGateID(-1);
+        airplane->setGateID(-1);
     }
 
     // Add the airplane to the simulation
@@ -487,7 +487,7 @@ Airport *Input::findAirportByIATA(const string& iata) const {
     vector<Airport*>::const_iterator itr;
     for (itr = airports.begin(); itr < airports.end(); ++itr) {
         Airport* cur_ap = *itr;
-        if (cur_ap->getFIata() == iata) {
+        if (cur_ap->getIata() == iata) {
             return cur_ap;
         }
     }

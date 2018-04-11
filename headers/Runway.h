@@ -59,10 +59,10 @@ public:
     void setType(ERunwayType type);
     int getLength() const;
     void setLength(int length);
-    const string &getFName() const;
-    void setFName(const string &fName);
-    Airport *getFAirport() const;
-    void setFAirport(Airport *fAirport);
+    const string &getName() const;
+    void setName(const string &fName);
+    Airport *getAirport() const;
+    void setAirport(Airport *fAirport);
     bool isFree() const;
     void setFree(bool free);
 

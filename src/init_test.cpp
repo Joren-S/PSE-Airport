@@ -48,7 +48,7 @@ TEST_F(SystemTest, Setup) {
     // Test to check if all airplanes have a valid status (kApproaching or kGate).
     for (size_t i = 0; i < sys.getAirplanes().size(); ++i) {
         Airplane* ap = sys.getAirplanes().at((int)i);
-        ASSERT_TRUE(ap->getFStatus() != (3  || 1)); // kLanded, kFinished
+        ASSERT_TRUE(ap->getStatus() != (3  || 1)); // kLanded, kFinished
     }
 }
 
@@ -58,8 +58,8 @@ TEST_F(SystemTest, Run) {
     // Test to check if all planes are finished and no longer have a gate assigned to them.
     for (size_t i = 0; i < sys.getAirplanes().size(); ++i) {
         Airplane* ap = sys.getAirplanes().at((int)i);
-        ASSERT_TRUE(ap->getFStatus() == kFinished);
-        ASSERT_TRUE(ap->getFGateID() == -1);
+        ASSERT_TRUE(ap->getStatus() == kFinished);
+        ASSERT_TRUE(ap->getGateID() == -1);
     }
 
     // Test to check if all runways are free.

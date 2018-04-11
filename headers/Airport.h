@@ -64,14 +64,14 @@ public:
     void restoreGate(int id);
 
     // Getters and Setters
-    const string &getFName() const;
-    void setFName(const string &fName);
-    const string &getFIata() const;
-    void setFIata(const string &fIata);
-    const string &getFCallsign() const;
-    void setFCallsign(const string &fCallsign);
-    int getFGates() const;
-    void setFGates(int fGates);
+    const string &getName() const;
+    void setName(const string &fName);
+    const string &getIata() const;
+    void setIata(const string &fIata);
+    const string &getCallsign() const;
+    void setCallsign(const string &fCallsign);
+    int getGates() const;
+    void setGates(int fGates);
 
 };
 

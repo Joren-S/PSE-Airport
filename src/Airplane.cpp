@@ -80,50 +80,50 @@ void Airplane::setAltitude(int altitude) {
     fAltitude = altitude;
 }
 
-int Airplane::getFPassengers() const {
+int Airplane::getPassengers() const {
     return fPassengers;
 }
 
-void Airplane::setFPassengers(int fPassengers) {
+void Airplane::setPassengers(int fPassengers) {
     Airplane::fPassengers = fPassengers;
 }
 
-const string &Airplane::getFNumber() const {
+const string &Airplane::getNumber() const {
     return fNumber;
 }
 
-void Airplane::setFNumber(const string &fNumber) {
+void Airplane::setNumber(const string &fNumber) {
     Airplane::fNumber = fNumber;
 }
 
-const string &Airplane::getFCallsign() const {
+const string &Airplane::getCallsign() const {
     return fCallsign;
 }
 
-void Airplane::setFCallsign(const string &fCallsign) {
+void Airplane::setCallsign(const string &fCallsign) {
     Airplane::fCallsign = fCallsign;
 }
 
-const string &Airplane::getFModel() const {
+const string &Airplane::getModel() const {
     return fModel;
 }
 
-void Airplane::setFModel(const string &fModel) {
+void Airplane::setModel(const string &fModel) {
     Airplane::fModel = fModel;
 }
 
-EPlaneStatus Airplane::getFStatus() const {
+EPlaneStatus Airplane::getStatus() const {
     return fStatus;
 }
 
-void Airplane::setFStatus(EPlaneStatus fStatus) {
+void Airplane::setStatus(EPlaneStatus fStatus) {
     Airplane::fStatus = fStatus;
 }
 
-int Airplane::getFGateID() const {
+int Airplane::getGateID() const {
     return Airplane::fGateID;
 }
 
-void Airplane::setFGateID(int id) {
+void Airplane::setGateID(int id) {
     Airplane::fGateID = id;
 }

@@ -32,19 +32,19 @@ void Runway::setLength(int length) {
     fLength = length;
 }
 
-const string &Runway::getFName() const {
+const string &Runway::getName() const {
     return fName;
 }
 
-void Runway::setFName(const string &fName) {
+void Runway::setName(const string &fName) {
     Runway::fName = fName;
 }
 
-Airport *Runway::getFAirport() const {
+Airport *Runway::getAirport() const {
     return fAirport;
 }
 
-void Runway::setFAirport(Airport *fAirport) {
+void Runway::setAirport(Airport *fAirport) {
     Runway::fAirport = fAirport;
 }
 

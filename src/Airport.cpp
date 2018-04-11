@@ -68,34 +68,34 @@ void Airport::restoreGate(int id) {
 
 // Getters en setters
 
-const string &Airport::getFName() const {
+const string &Airport::getName() const {
     return fName;
 }
 
-void Airport::setFName(const string &fName) {
+void Airport::setName(const string &fName) {
     Airport::fName = fName;
 }
 
-const string &Airport::getFIata() const {
+const string &Airport::getIata() const {
     return fIata;
 }
 
-void Airport::setFIata(const string &fIata) {
+void Airport::setIata(const string &fIata) {
     Airport::fIata = fIata;
 }
 
-const string &Airport::getFCallsign() const {
+const string &Airport::getCallsign() const {
     return fCallsign;
 }
 
-void Airport::setFCallsign(const string &fCallsign) {
+void Airport::setCallsign(const string &fCallsign) {
     Airport::fCallsign = fCallsign;
 }
 
-int Airport::getFGates() const {
+int Airport::getGates() const {
     return fGates;
 }
 
-void Airport::setFGates(int fGates) {
+void Airport::setGates(int fGates) {
     Airport::fGates = fGates;
 }

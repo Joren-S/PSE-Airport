@@ -99,18 +99,18 @@ public:
     void setEngine(EPlaneEngine engine);
     int getAltitude() const;
     void setAltitude(int altitude);
-    int getFGateID() const;
-    void setFGateID(int id);
-    int getFPassengers() const;
-    void setFPassengers(int fPassengers);
-    const string &getFNumber() const;
-    void setFNumber(const string &fNumber);
-    const string &getFCallsign() const;
-    void setFCallsign(const string &fCallsign);
-    const string &getFModel() const;
-    void setFModel(const string &fModel);
-    EPlaneStatus getFStatus() const;
-    void setFStatus(EPlaneStatus fStatus);
+    int getGateID() const;
+    void setGateID(int id);
+    int getPassengers() const;
+    void setPassengers(int fPassengers);
+    const string &getNumber() const;
+    void setNumber(const string &fNumber);
+    const string &getCallsign() const;
+    void setCallsign(const string &fCallsign);
+    const string &getModel() const;
+    void setModel(const string &fModel);
+    EPlaneStatus getStatus() const;
+    void setStatus(EPlaneStatus fStatus);
 
 };
 
