@@ -97,5 +97,7 @@ int Airport::getGates() const {
 }
 
 void Airport::setGates(int fGates) {
+    string error = "Number of gates cannot be negative!";
+//    REQUIRE(fGates >= 0, error.c_str());
     Airport::fGates = fGates;
 }
