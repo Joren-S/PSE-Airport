@@ -7,6 +7,7 @@
 
 #include "DesignByContract.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -26,6 +27,11 @@ public:
      * 0 <= minute < 60
      */
     Time(int hour = 12, int minute = 0);
+
+    /**
+     * Return the time in a formatted style like such: "13:45"
+     */
+    string formatted() const;
 
     /**
      * Advances the time by an amount of minutes
@@ -52,7 +58,6 @@ public:
 
     /**
      * Getter for the hour
-     * @return
      */
     int getHour() const;
 

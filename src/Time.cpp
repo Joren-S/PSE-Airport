@@ -9,6 +9,33 @@ Time::Time(int hour, int minute) {
     setMinute(minute);
 }
 
+string Time::formatted() const {
+    // Set up an output string stream
+    ostringstream stream;
+
+    // Append a 0 if the hour is not two digits
+    if (fHour < 10) {
+        stream << 0;
+    }
+
+    // Set the hour
+    stream << fHour;
+
+    // Add the ':'
+    stream << ':';
+
+    // Append a 0 if the minute is not two digits
+    if (fMinute < 10) {
+        stream << 0;
+    }
+
+    // Set the minute
+    stream << fMinute;
+
+    // Return the string
+    return stream.str();
+}
+
 void Time::advance(int minutes) {
     // Check for valid value for minutes
     string error = "Invalid value for minute.";
@@ -16,20 +43,11 @@ void Time::advance(int minutes) {
 
     // While there are minutes remaining
     while (minutes) {
-        // Special case for last minute of the hour
-        if (fMinute == 59) {
-            // Special case for last hour of the day
-            if (fHour == 23) {
-                fHour = 0;
-            }
-            else {
-                ++fHour;
-            }
-            fMinute = 0;
-        }
-        else {
-            ++fMinute;
-        }
+        // Increase minute
+        fMinute = fMinute == 59? 0: fMinute + 1;
+
+        // Increase hour
+        fHour = fHour == 23? 0: fHour + 1;
 
         // Decrease minutes
         --minutes;

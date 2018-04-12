@@ -19,6 +19,7 @@
 #include "Airport.h"
 #include "Runway.h"
 #include "Input.h"
+#include "Time.h"
 
 
 class System {
