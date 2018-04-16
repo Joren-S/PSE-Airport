@@ -4,11 +4,6 @@
 
 #include "../headers/Runway.h"
 
-Runway::Runway(bool free, const string& name, Airport* airport, ERunwayType type, int length):    fFree(free),
-                                                                                                  fName(name),
-                                                                                                  fAirport(airport),
-                                                                                                  fType(type),
-                                                                                                  fLength(length) {}
 
 Runway::Runway() {
     fAirport = NULL;

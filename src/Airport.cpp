@@ -4,12 +4,6 @@
 
 #include "../headers/Airport.h"
 
-Airport::Airport(const string &name, const string &iata, const string &callsign, int gates): fName(name),
-                                                                                             fIata(iata),
-                                                                                             fCallsign(callsign),
-                                                                                             fGates(gates) {
-    initStack();
-}
 
 Airport::Airport() {
     fGates = -1;

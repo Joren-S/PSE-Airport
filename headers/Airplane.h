@@ -66,11 +66,6 @@ private:
 public:
 
     /**
-     * Constructor
-     */
-    Airplane(const string& number, const string& callsign, const string& model, EPlaneStatus status, int passengers);
-
-    /**
      * Default constructor
      * Set int values to -1, to check if field are initialized
      * Set status to approaching

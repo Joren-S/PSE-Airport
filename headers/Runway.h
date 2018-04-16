@@ -42,12 +42,7 @@ private:
     int fLength;
 
 public:
-
-    /**
-     * Constructor
-     */
-    Runway(bool free, const string& name, Airport* airport, ERunwayType type, int length);
-
+    
     /**
      * Default constructor
      * Set airport to NULL
