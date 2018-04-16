@@ -9,7 +9,6 @@
 #include "DesignByContract.h"
 
 using namespace std;
-// type, engine, size and passengers
 
 enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
 
@@ -18,6 +17,7 @@ enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency };
 enum EPlaneSize { kSmall, kMedium, kLarge };
 
 enum EPlaneEngine { kPropeller, kJet };
+
 
 class Airplane {
 private:
