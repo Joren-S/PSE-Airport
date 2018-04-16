@@ -4,14 +4,25 @@
 
 #include "../headers/System.h"
 
-System::System(Input &input) {
+System::System() {
+    fInitCheck = this;
+    ENSURE(this->properlyInitialized(), "System was not properly initialized.");
+}
+
+bool System::properlyInitialized() const {
+    return fInitCheck == this;
+}
+
+void System::import(Input &input) {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     airports = input.getAirports();
     airplanes = input.getAirplanes();
     runways = input.getRunways();
 }
 
 void System::log(const string &filename) {
-//    REQUIRE(!airports.empty(), "List of Airports cannot be empty");
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(!airports.empty(), "List of Airports cannot be empty");
 
     // Output file
     ofstream out(filename.c_str());
@@ -65,23 +76,24 @@ void System::log(const string &filename) {
 }
 
 void System::land(Airplane *plane, Airport *airport, ostream& out) const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     // Correct status
     string error = plane->getCallsign() + " is not able to land, wrong status.";
-    // REQUIRE(plane->getStatus() == kApproaching, error.c_str());
+    REQUIRE(plane->getStatus() == kApproaching, error.c_str());
 
     // Airport available
     error = plane->getCallsign() + " is not able to land, no airport available.";
-    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
+    REQUIRE(!airports.empty() && airport != NULL, error.c_str());
 
     // Runway available
     Runway* runway = getFreeRunway(airport);
     error = plane->getCallsign() + " is not able to land, no open runway.";
-    // REQUIRE(runway != NULL, error.c_str());
+    REQUIRE(runway != NULL, error.c_str());
     
     // Gate available
     int gate = airport->getFreeGate();
     error = plane->getCallsign() + " is not able to land, no gate available.";
-    // REQUIRE(gate != -1, error.c_str());
+    REQUIRE(gate != -1, error.c_str());
 
     // Set runway to unavailable
     runway->setFree(false);
@@ -115,22 +127,22 @@ void System::land(Airplane *plane, Airport *airport, ostream& out) const {
 
     // Succesfully landed
     error = "Plane status has not been changed correctly";
-    // ENSURE(plane->getStatus() == kLanded, error.c_str());
+    ENSURE(plane->getStatus() == kLanded, error.c_str());
 }
 
 void System::takeoff(Airplane *plane, Airport *airport, ostream& out) const {
     // Correct status
     string error = plane->getCallsign() + " is not able to takeoff, not at gate.";
-    // REQUIRE(plane->getStatus() == kGate, error.c_str());
+    REQUIRE(plane->getStatus() == kGate, error.c_str());
     
     // Runway available
     Runway* runway = getFreeRunway(airport);
     error = plane->getCallsign() + " is not able to land because of no open runway.";
-    // REQUIRE(runway != NULL, error.c_str());
+    REQUIRE(runway != NULL, error.c_str());
 
     // Airport available
     error = plane->getCallsign() + " is not able to land, no airport available.";
-    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
+    REQUIRE(!airports.empty() && airport != NULL, error.c_str());
 
     // Set runway to unavailable
     runway->setFree(false);
@@ -166,17 +178,17 @@ void System::takeoff(Airplane *plane, Airport *airport, ostream& out) const {
 
     // Succesful takeoff
     error = "Plane status has not been changed correctly";
-    // ENSURE(plane->getStatus() == kFinished, error.c_str());
+    ENSURE(plane->getStatus() == kFinished, error.c_str());
 }
 
 void System::gate(Airplane *plane, Airport *airport, ostream& out) const {
     // Correct status
     string error = plane->getCallsign() + " has not landed or is already at gate.";
-    // REQUIRE(plane->getStatus() == kLanded, error.c_str());
+    REQUIRE(plane->getStatus() == kLanded, error.c_str());
 
     // Airport available
     error = plane->getCallsign() + " is not able to land, no airport available.";
-    // REQUIRE(!airports.empty() && airport != NULL, error.c_str());
+    REQUIRE(!airports.empty() && airport != NULL, error.c_str());
 
     // Log
     out << plane->getPassengers() << " passengers exited " << plane->getCallsign() << " at gate " << plane->getGateID() << " of " << airport->getName() << endl;
@@ -187,13 +199,13 @@ void System::gate(Airplane *plane, Airport *airport, ostream& out) const {
 
     // Succesfully performed duties at gate
     error = "Plane status has not been changed correctly";
-    // ENSURE(plane->getStatus() == kGate, error.c_str());
+    ENSURE(plane->getStatus() == kGate, error.c_str());
 }
 
 void System::run() {
     // Airport available and simulation not finished
     string errormsg = "No Airport available, can't run system";
-//    REQUIRE(!airports.empty() && !simulationFinished(), errormsg.c_str());
+    REQUIRE(!airports.empty() && !simulationFinished(), errormsg.c_str());
 
     // Set up iterator
     vector<Airplane*>::iterator itr;
@@ -225,7 +237,7 @@ void System::run() {
     }
 
     errormsg = "Simulation is not finished yet, error occured";
-//    ENSURE(simulationFinished(), errormsg);
+    ENSURE(simulationFinished(), errormsg.c_str());
 }
 
 bool System::simulationFinished() const {

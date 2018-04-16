@@ -25,7 +25,10 @@
 class System {
 private:
 
-    //TODO: bool properly initialized
+    /**
+     * Pointer to the system to check for proper initialization
+     */
+    System *fInitCheck;
 
     /**
      * Vector of pointers to all the airports
@@ -92,14 +95,26 @@ private:
 public:
 
     /**
-     * Constructor
+     * Default constructor
+     * ENSURE: properlyInitialized
      */
-    System(Input&);
+    System();
 
     /**
      * Destructor
      */
     ~System();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
+
+    /**
+     * Imports the given input
+     * REQUIRE: properlyInitialized
+     */
+    void import(Input&);
 
     /**
      * Logs information of the airports and airplanes to a

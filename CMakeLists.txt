@@ -13,13 +13,13 @@ link_directories(gtest/lib)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES src/init.cpp
-        src/airplane.cpp src/airport.cpp src/runway.cpp src/system.cpp src/Input.cpp
+        src/Airplane.cpp src/Airport.cpp src/Runway.cpp src/System.cpp src/Input.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES src/init_test.cpp
-        src/airplane.cpp src/airport.cpp src/runway.cpp src/system.cpp src/Input.cpp
-        tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
+        src/Airplane.cpp src/Airport.cpp src/Runway.cpp src/System.cpp src/Input.cpp
+        tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp src/TestUtils.cpp headers/TestUtils.h)
 
 # Create RELEASE target
 add_executable(pv ${RELEASE_SOURCE_FILES})

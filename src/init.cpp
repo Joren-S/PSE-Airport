@@ -4,8 +4,11 @@ int main() {
     // Read input
     Input input("../input.xml");
 
-    // Initialize system with input
-    System system(input);
+    // Initialize system
+    System system;
+
+    // Import data
+    system.import(input);
 
     // Run the simulation
     system.run();
