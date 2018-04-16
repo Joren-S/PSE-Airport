@@ -11,7 +11,7 @@ Airport::Airport() {
 
 void Airport::initStack() {
     string error = "Can't initialize gate stack, already in use";
-//    REQUIRE(fGateStack.empty(), error.c_str());
+    REQUIRE(fGateStack.empty(), error.c_str());
 
     // Initialize the stack for our gates (with 1 being the last value to get pushed).
     for (int i = fGates; i > 0; --i) {
@@ -21,7 +21,7 @@ void Airport::initStack() {
 
 int Airport::getFreeGate() {
     string error = "Can't get free gate, no available";
-//    REQUIRE(!fGateStack.empty(), error.c_str());
+    REQUIRE(!fGateStack.empty(), error.c_str());
 
     // Get top of stack
     int temp = Airport::fGateStack.top();
@@ -36,28 +36,27 @@ int Airport::getFreeGate() {
 void Airport::restoreGate(int id) {
     // Check if gate exists
     string error = "Gate does not exist";
-//    REQUIRE(id <= fGates && id > 0, error.c_str());
+    REQUIRE(id <= fGates && id > 0, error.c_str());
 
     // Check if gate is already available
-//    error = "Gate is already available";
-//    stack<int> copy = fGateStack;
-//    bool elemInStack = false;
-//    while (!copy.empty()) {
-//        int elem = copy.top();
-//        copy.pop();
-//        if (elem == id) {
-//            elemInStack = true;
-//            break;
-//        }
-//    }
-//    REQUIRE(!elemInStack, error);
+    stack<int> copy = fGateStack;
+    bool elemInStack = false;
+    while (!copy.empty()) {
+        int elem = copy.top();
+        copy.pop();
+        if (elem == id) {
+            elemInStack = true;
+            break;
+        }
+    }
+    REQUIRE(!elemInStack, "Gate is already available");
 
     // Push a gate ID back on the stack when it's free again.
     Airport::fGateStack.push(id);
 
     // Succesfully added
     error = "Gate was not succesfully added to stack";
-//    REQUIRE(fGateStack.top() == id, error.c_str());
+    REQUIRE(fGateStack.top() == id, error.c_str());
 }
 
 // Getters en setters
@@ -91,7 +90,6 @@ int Airport::getGates() const {
 }
 
 void Airport::setGates(int fGates) {
-    string error = "Number of gates cannot be negative!";
-//    REQUIRE(fGates >= 0, error.c_str());
+    REQUIRE(fGates >= 0, "Number of gates cannot be negative!");
     Airport::fGates = fGates;
 }

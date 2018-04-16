@@ -19,9 +19,7 @@ int Flightplan::getDeparture() const {
 }
 
 void Flightplan::setDeparture(int departure) {
-    string error = "Wrong value for departure.";
-//    REQUIRE(departure >= 0 && departure < 60, error.c_str());
-
+    REQUIRE(departure >= 0 && departure < 60, "Wrong value for departure.");
     Flightplan::fDeparture = departure;
 }
 
@@ -30,9 +28,7 @@ int Flightplan::getArrival() const {
 }
 
 void Flightplan::setArrival(int arrival) {
-    string error = "Wrong value for arrival.";
-//    REQUIRE(arrival >= 0 && arrival < 60, error.c_str());
-
+    REQUIRE(arrival >= 0 && arrival < 60, "Wrong value for arrival.");
     Flightplan::fArrival = arrival;
 }
 
@@ -41,8 +37,6 @@ int Flightplan::getInterval() const {
 }
 
 void Flightplan::setInterval(int interval) {
-    string error = "Wrong value for interval.";
-//    REQUIRE(interval > 0, error.c_str());
-
+    REQUIRE(interval > 0, "Wrong value for interval.");
     Flightplan::fInterval = interval;
 }

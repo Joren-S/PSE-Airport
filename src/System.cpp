@@ -203,9 +203,7 @@ void System::gate(Airplane *plane, Airport *airport, ostream& out) const {
 }
 
 void System::run() {
-    // Airport available and simulation not finished
-    string errormsg = "No Airport available, can't run system";
-    REQUIRE(!airports.empty() && !simulationFinished(), errormsg.c_str());
+    REQUIRE(!airports.empty() && !simulationFinished(), "No Airport available, can't run system");
 
     // Set up iterator
     vector<Airplane*>::iterator itr;
@@ -235,9 +233,7 @@ void System::run() {
             }
         }
     }
-
-    errormsg = "Simulation is not finished yet, error occured";
-    ENSURE(simulationFinished(), errormsg.c_str());
+    ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
 }
 
 bool System::simulationFinished() const {

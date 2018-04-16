@@ -14,18 +14,18 @@ Airplane::Airplane() {
 
 void Airplane::decreaseAltitude(int difference) {
     string errmsg = "New altitude can't be less than 0!";
-    //REQUIRE(fAltitude - difference >= 0, errmsg.c_str());
-    //int oldAltitude = Airplane::fAltitude;
+    REQUIRE(fAltitude - difference >= 0, errmsg.c_str());
+    int oldAltitude = Airplane::fAltitude;
     Airplane::fAltitude -= difference;
     errmsg = "Altitude hasn't been decreased correctly.";
-    //ENSURE(fAltitude == oldAltitude - difference, errmsg.c_str());
+    ENSURE(fAltitude == oldAltitude - difference, errmsg.c_str());
 }
 
 void Airplane::increaseAltitude(int difference) {
-    //int oldAltitude = Airplane::fAltitude;
+    int oldAltitude = Airplane::fAltitude;
     Airplane::fAltitude += difference;
     string errmsg = "Altitude hasn't been increased correctly.";
-    //ENSURE(fAltitude == oldAltitude + difference, errmsg.c_str());
+    ENSURE(fAltitude == oldAltitude + difference, errmsg.c_str());
 }
 
 // Getters and setters

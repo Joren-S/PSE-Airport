@@ -8,13 +8,7 @@ Input::Input(const string &filename) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
     string error = "Couldn't open " + filename + ".";
-//    REQUIRE(xml.LoadFile(filename.c_str()), error.c_str());
-
-    // Temporary for when DesignByContract.h doesn't work
-    if (!xml.LoadFile(filename.c_str()))  {
-        cerr << "Couldn't open " + filename + "." << endl;
-        return;
-    }
+    REQUIRE(xml.LoadFile(filename.c_str()), error.c_str());
 
     // We iterate over all root elements.
     for (TiXmlElement *root = xml.FirstChildElement(); root != NULL; root = root->NextSiblingElement()) {
