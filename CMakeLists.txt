@@ -17,9 +17,9 @@ set(RELEASE_SOURCE_FILES src/init.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES src/init_test.cpp
+set(DEBUG_SOURCE_FILES test/init_test.cpp
         src/Airplane.cpp src/Airport.cpp src/Runway.cpp src/System.cpp src/Input.cpp
-        tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp src/TestUtils.cpp headers/TestUtils.h)
+        tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp test/TestUtils.cpp headers/TestUtils.h)
 
 # Create RELEASE target
 add_executable(pv ${RELEASE_SOURCE_FILES})
