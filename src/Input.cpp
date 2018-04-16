@@ -45,6 +45,9 @@ void Input::readAirplane(TiXmlElement *elem) {
     // Make new object
     Airplane *tmp = new Airplane();
 
+    // Pointer to the associated flightplan
+    Flightplan* flightplan;
+
     //  We iterate over all members, check if it's a valid element and if so, add it to our object.
     for (; elem != NULL; elem = elem->NextSiblingElement()) {
 
@@ -211,6 +214,15 @@ void Input::readAirplane(TiXmlElement *elem) {
             // Increase fieldcount
             fieldCount++;
         }
+        else if (strcmp(elem->Value(), "FLIGHTPLAN") == 0) {
+            flightplan = readFlightplan(elem->FirstChildElement());
+            if (flightplan == NULL) {
+                fieldCount = -1;
+                cerr << "Didn't add airplane because of invalid flightplan." << endl;
+                break;
+            }
+            fieldCount++;
+        }
         else {
             cerr << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
@@ -219,7 +231,7 @@ void Input::readAirplane(TiXmlElement *elem) {
     }
 
     // If there were 4 field (all fields present), add the Airplane to our system.
-    if (fieldCount == 8) {
+    if (fieldCount == 9) {
         Input::addAirplane(tmp);
         return;
     }
@@ -232,6 +244,10 @@ void Input::readAirplane(TiXmlElement *elem) {
 
     // Delete the object
     delete tmp;
+
+    // Delete the flightplan
+    delete flightplan;
+    flightplans.pop_back();
 }
 
 void Input::readRunway(TiXmlElement *elem) {
@@ -431,6 +447,97 @@ void Input::readAirport(TiXmlElement *elem) {
     delete tmp;
 }
 
+Flightplan* Input::readFlightplan(TiXmlElement *elem) {
+    // Keep track of how many fields the element has
+    int fieldCount = 0;
+
+    // Make new object
+    Flightplan *tmp = new Flightplan();
+
+    //  We iterate over all members, check if it's a valid element and if so, add it to our object.
+    for (; elem != NULL; elem = elem->NextSiblingElement()) {
+        if (strcmp(elem->Value(), "destination") == 0) {
+            // Check for duplicate data
+            if (tmp->getDestination() != "") {
+                cerr << "Duplicate data in Flightplan." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set destination
+            tmp->setDestination(elem->GetText());
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "departure") == 0) {
+            // Check for duplicate data
+            if (tmp->getDeparture() != -1) {
+                cerr << "Duplicate data in Flightplan." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set destination
+            tmp->setDeparture(atoi(elem->GetText()));
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "arrival") == 0) {
+            // Check for duplicate data
+            if (tmp->getArrival() != -1) {
+                cerr << "Duplicate data in Flightplan." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set destination
+            tmp->setArrival(atoi(elem->GetText()));
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+        else if (strcmp(elem->Value(), "interval") == 0) {
+            // Check for duplicate data
+            if (tmp->getInterval() != -1) {
+                cerr << "Duplicate data in Flightplan." << endl;
+                fieldCount = -1;
+                break;
+            }
+
+            // Set destination
+            tmp->setInterval(atoi(elem->GetText()));
+
+            // Increase fieldCount
+            fieldCount++;
+        }
+
+        else {
+            cerr << "Invalid field: " << elem->Value() << endl;
+            fieldCount = -1;
+            break;
+        }
+    }
+
+    // If there were 4 field (all fields present), add the Airport to our system.
+    if (fieldCount == 4) {
+        Input::addFlightplan(tmp);
+        return tmp;
+    }
+
+    // Something went wrong, if the field count is -1, an error msg has already been logged
+    // Else, there were missing fields
+    if (fieldCount != -1) {
+        cerr << "Missing field(s) for Airport." << endl;
+    }
+
+    // Delete the object
+    delete tmp;
+
+    return NULL;
+}
+
 void Input::addAirport(Airport *airport) {
     // Initialize gateStack
     airport->initStack();
@@ -438,23 +545,22 @@ void Input::addAirport(Airport *airport) {
     // Add to vec
     airports.push_back(airport);
 
-    // Check if succesfully added
-    string error = "Airplane was not added to simulation.";
-//    ENSURE(airports.back() == airport, error.c_str());
+    ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
 }
 
 void Input::addRunway(Runway *runway) {
     runways.push_back(runway);
-
-    // Check if succesfully added
-    string error = "Runway was not added to simulation.";
-//    ENSURE(runways.back() == runway, error.c_str());
+    ENSURE(runways.back() == runway, "Runway was not added to simulation.");
 }
 
+void Input::addFlightplan(Flightplan *flightplan) {
+    flightplans.push_back(flightplan);
+    ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
+}
+
+
 void Input::addAirplane(Airplane *airplane) {
-    // An airport has to be available
-    string error = "No airport available so can't add airplane";
-//    REQUIRE(!airports.empty(), error.c_str());
+    REQUIRE(!airports.empty(), "No airport available so can't add airplane");
 
     // Get airport
     Airport* airport = airports[0];
@@ -472,8 +578,7 @@ void Input::addAirplane(Airplane *airplane) {
     airplanes.push_back(airplane);
 
     // Make sure the airplane has been added
-    error = "Airplane was not added to simulation.";
-//    ENSURE(airplanes.back() == airplane, error.c_str());
+    ENSURE(airplanes.back() == airplane, "Airplane was not added to simulation.");
 }
 
 Airport *Input::findAirportByIATA(const string& iata) const {

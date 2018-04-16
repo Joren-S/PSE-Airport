@@ -20,6 +20,7 @@
 #include "Airport.h"
 #include "Airplane.h"
 #include "Runway.h"
+#include "Flightplan.h"
 
 using namespace std;
 
@@ -42,6 +43,11 @@ private:
     vector<Runway*> runways;
 
     /**
+     * Vector of pointer to all the flightplans
+     */
+     vector<Flightplan*> flightplans;
+
+    /**
      * Finds an airport with a specific IATA
      */
     Airport* findAirportByIATA(const string& iata) const;
@@ -60,6 +66,13 @@ private:
      * Reads an airplane from a given xml element
      */
     void readAirplane(TiXmlElement *elem);
+
+    /**
+     * Reads a flightplan from a given xml element
+     * Returns a pointer to the flightplan, so when there is an error in
+     * reading it or the associated airplane, we can do cleanup
+     */
+    Flightplan* readFlightplan(TiXmlElement *elem);
 
 public:
 
@@ -92,6 +105,12 @@ public:
      * ENSURE: airplane is added to the vector of airplanes
      */
     void addAirplane(Airplane* airplane);
+
+    /**
+     * Adds a flightplan to the simulation with the given specifications
+     * ENSURE: flightplan is added to the vector of flightplans
+     */
+    void addFlightplan(Flightplan* flightplan);
 
     /**
      * Getter for the airports in the simulation

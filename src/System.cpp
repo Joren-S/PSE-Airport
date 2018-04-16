@@ -203,7 +203,7 @@ void System::gate(Airplane *plane, Airport *airport, ostream& out) const {
 }
 
 void System::run() {
-    REQUIRE(!airports.empty() && !simulationFinished(), "No Airport available, can't run system");
+    REQUIRE(!airports.empty(), "No Airport available, can't run system");
 
     // Set up iterator
     vector<Airplane*>::iterator itr;
