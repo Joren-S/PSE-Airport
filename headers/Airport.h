@@ -8,6 +8,7 @@
 #include <string>
 #include <stack>
 #include "DesignByContract.h"
+#include "Runway.h"
 
 using namespace std;
 
@@ -28,6 +29,8 @@ private:
      * Stack of available gates
      */
     stack<int> fGateStack;
+
+    vector<Runway*> fRunways;
 
 public:
 
@@ -58,6 +61,14 @@ public:
      */
     void restoreGate(int id);
 
+    /**
+     * Adds a runway to the airport
+     * REQUIRE: runway not present &&
+     * not nullptr
+     * ENSURE: added in order
+     */
+    void addRunway(Runway*);
+
     // Getters and Setters
     const string &getName() const;
     void setName(const string &fName);
@@ -67,6 +78,7 @@ public:
     void setCallsign(const string &fCallsign);
     int getGates() const;
     void setGates(int fGates);
+    vector<Runway*> getRunways() const;
 
 };
 

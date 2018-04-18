@@ -7,11 +7,18 @@
 
 #include <string>
 #include "DesignByContract.h"
+#include "Time.h"
+#include "Airplane.h"
 
 using namespace std;
 
 class Flightplan {
 private:
+
+    /**
+     * Airplane associated with the flightplan
+     */
+    Airplane* fAirplane;
 
     /**
      * IATA of destination airport.
@@ -58,12 +65,16 @@ public:
      */
     void setInterval(int fInterval);
 
+    void getEvent(Time time);
+
     // Remaining Getters and Setters
     const std::string &getDestination() const;
     void setDestination(const std::string &fDestination);
     int getDeparture() const;
     int getArrival() const;
     int getInterval() const;
+    void setAirplane(Airplane*);
+    Airplane* getAirplane() const;
 
 };
 

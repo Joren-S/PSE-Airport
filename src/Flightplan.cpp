@@ -40,3 +40,22 @@ void Flightplan::setInterval(int interval) {
     REQUIRE(interval > 0, "Wrong value for interval.");
     Flightplan::fInterval = interval;
 }
+
+void Flightplan::getEvent(Time time) {
+//    Time startingTime(12, fDeparture);
+//
+//    for (int i=0; i<12; i++) {
+//        Time newTime = Time(startingTime.getHour() + fInterval * i, fDeparture);
+//        if (newTime == time) {
+//
+//        }
+//    }
+}
+
+Airplane* Flightplan::getAirplane() const {
+    return fAirplane;
+}
+
+void Flightplan::setAirplane(Airplane *airplane) {
+    fAirplane = airplane;
+}

@@ -216,6 +216,7 @@ void Input::readAirplane(TiXmlElement *elem) {
         }
         else if (strcmp(elem->Value(), "FLIGHTPLAN") == 0) {
             flightplan = readFlightplan(elem->FirstChildElement());
+            flightplan->setAirplane(tmp);
             if (flightplan == NULL) {
                 fieldCount = -1;
                 cerr << "Didn't add airplane because of invalid flightplan." << endl;
@@ -573,12 +574,6 @@ void Input::addAirplane(Airplane *airplane) {
     else {
         airplane->setGateID(-1);
     }
-
-    // Add the airplane to the simulation
-    airplanes.push_back(airplane);
-
-    // Make sure the airplane has been added
-    ENSURE(airplanes.back() == airplane, "Airplane was not added to simulation.");
 }
 
 Airport *Input::findAirportByIATA(const string& iata) const {
@@ -601,6 +596,6 @@ vector<Runway*> Input::getRunways() const {
     return Input::runways;
 }
 
-vector<Airplane*> Input::getAirplanes() const {
-    return Input::airplanes;
+vector<Flightplan*> Input::getFlightplans() const {
+    return flightplans;
 }

@@ -33,11 +33,6 @@ private:
     vector<Airport*> airports;
 
     /**
-     * Vector of pointers to all the airplanes
-     */
-    vector<Airplane*> airplanes;
-
-    /**
      * Vector of pointers to all the runways
      */
     vector<Runway*> runways;
@@ -129,5 +124,11 @@ public:
      * @return vec of all airplanes
      */
     vector<Airplane*> getAirplanes() const;
+
+    /**
+     * Getter for the flightplans in the simulation
+     * @return vec of all flightplans
+     */
+    vector<Flightplan*> getFlightplans() const;
 
 };

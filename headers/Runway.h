@@ -41,6 +41,11 @@ private:
      */
     int fLength;
 
+    /**
+     * Taxipoint associated with runway
+     */
+    string fTaxiPoint;
+
 public:
     
     /**
@@ -60,6 +65,8 @@ public:
     void setAirport(Airport *fAirport);
     bool isFree() const;
     void setFree(bool free);
+    string getTaxiPoint() const;
+    void setTaxiPoint(const string&);
 
 };
 

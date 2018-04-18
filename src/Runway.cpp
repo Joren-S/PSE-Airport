@@ -50,3 +50,11 @@ bool Runway::isFree() const {
 void Runway::setFree(bool free) {
     Runway::fFree = free;
 }
+
+string Runway::getTaxiPoint() const {
+    return fTaxiPoint;
+}
+
+void Runway::setTaxiPoint(const string &name) {
+    fTaxiPoint = name;
+}

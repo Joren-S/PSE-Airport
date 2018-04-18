@@ -31,19 +31,34 @@ private:
     System *fInitCheck;
 
     /**
-     * Vector of pointers to all the airports
+     * Object that keeps track of time
      */
-    vector<Airport*> airports;
+    Time fTime;
+
+    /**
+     * Ending time of simulation
+     */
+    Time fEndTime;
+
+    /**
+     * Output stream for ATC
+     */
+    ostream& fATC;
 
     /**
      * Vector of pointers to all the airplanes
      */
-    vector<Airplane*> airplanes;
+    vector<Airport*> fAirports;
 
     /**
      * Vector of pointers to all the runways
      */
-    vector<Runway*> runways;
+    vector<Runway*> fRunways;
+
+    /**
+     * Vector of pointers to all the flightplans
+     */
+    vector<Flightplan*> fFlightplans;
 
     /**
      * Return how many runways an airport has
@@ -98,7 +113,7 @@ public:
      * Default constructor
      * ENSURE: properlyInitialized
      */
-    System();
+    System(ostream& atc, Time end);
 
     /**
      * Destructor
@@ -145,10 +160,10 @@ public:
     vector<Runway*> getRunways() const;
 
     /**
-     * Getter for the airplanes in the simulation
-     * @return vec of all airplanes
+     * Getter for the flightplans in the simulation
+     * @return
      */
-    vector<Airplane*> getAirplanes() const;
+    vector<Flightplan*> getFlightplans() const;
 
 };
 

@@ -2,6 +2,7 @@
 // Created by uauser on 3/1/18.
 //
 
+#include <vector>
 #include "../headers/Airport.h"
 
 
@@ -92,4 +93,23 @@ int Airport::getGates() const {
 void Airport::setGates(int fGates) {
     REQUIRE(fGates >= 0, "Number of gates cannot be negative!");
     Airport::fGates = fGates;
+}
+
+void Airport::addRunway(Runway *runway) {
+    REQUIRE(runway != NULL, "Runway cannot be NULL.");
+    vector<Runway*>::const_iterator itr;
+    bool present = false;
+    for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
+        if ((*itr)->getName() == runway->getName()) {
+            present = true;
+            break;
+        }
+    }
+    REQUIRE(!present, "Runway is already in system.");
+    fRunways.push_back(runway);
+    ENSURE(fRunways.back() == runway, "Runway was not added to the system.");
+}
+
+vector<Runway*> Airport::getRunways() const {
+    return fRunways;
 }
