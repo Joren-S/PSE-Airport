@@ -320,13 +320,18 @@ Runway* System::getFreeRunway(Airport *ap) const {
 }
 
 System::~System() {
-    // Delete flightplans, define destructor for flightplans
-
-    // Delete all Airports
-    vector<Airport*>::iterator AirportItr;
+    // Delete all flightplans
+    vector<Airport*>::iterator airportItr;
     vector<Airport*> airports = getAirports();
-    for (AirportItr = airports.begin(); AirportItr != airports.end(); AirportItr++) {
-        delete *AirportItr;
+    for (airportItr = airports.begin(); airportItr != airports.end(); ++airportItr) {
+        delete *airportItr;
+    }
+
+    // Delete all airports
+    vector<Flightplan*>::iterator flightplanItr;
+    vector<Flightplan*> flightplans = getFlightplans();
+    for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
+        delete *flightplanItr;
     }
 
     // Delete all runways

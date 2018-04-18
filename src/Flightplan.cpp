@@ -64,3 +64,7 @@ Airplane* Flightplan::getAirplane() const {
 void Flightplan::setAirplane(Airplane *airplane) {
     fAirplane = airplane;
 }
+
+Flightplan::~Flightplan() {
+    delete fAirplane;
+}

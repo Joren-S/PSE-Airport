@@ -23,11 +23,14 @@ int main() {
     // Run the simulation
     system.run();
 
+    // Close files
+    atc.close();
+    log.close();
+
     // Log information to output file
     system.info();
 
-    // Close file
-    atc.close();
+
 
     return 0;
 }

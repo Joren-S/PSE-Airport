@@ -50,6 +50,11 @@ public:
     Flightplan();
 
     /**
+     * Destructor
+     */
+    ~Flightplan();
+
+    /**
      * Setter for departure time
      * REQUIRE: 0 <= departure < 60
      */
