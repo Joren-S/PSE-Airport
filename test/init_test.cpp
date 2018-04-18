@@ -78,7 +78,7 @@ TEST_F(SystemTest, Run) {
 //TEST_F(SystemTest, Log) {
 //    system.setup("../input.xml");
 //    system.run();
-//    system.log();
+//    system.info();
 //
 //    // Test to check if the output file is correct.
 //    ASSERT_TRUE(FileCompare);

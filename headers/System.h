@@ -46,6 +46,11 @@ private:
     ostream& fATC;
 
     /**
+     * Output stream for all logging
+     */
+    ostream& fLog;
+
+    /**
      * Vector of pointers to all the airplanes
      */
     vector<Airport*> fAirports;
@@ -86,7 +91,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kLanded
      */
-    void land(Airplane*, Airport*, ostream& = cout) const;
+    void land(Airplane*, Airport*) const;
 
     /**
      * Performs duties at the gate for an airplane in an airport.
@@ -95,7 +100,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kGate
      */
-    void gate(Airplane*, Airport*, ostream& = cout) const;
+    void gate(Airplane*, Airport*) const;
 
     /**
      * Performs a takeoff of a plane on an airport
@@ -105,15 +110,15 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kFinished
      */
-    void takeoff(Airplane*, Airport*, ostream& = cout) const;
+    void takeoff(Airplane*, Airport*) const;
 
 public:
 
     /**
-     * Default constructor
+     * Constructor
      * ENSURE: properlyInitialized
      */
-    System(ostream& atc, Time end);
+    System(ostream& atc, ostream& log, Time end);
 
     /**
      * Destructor
@@ -137,7 +142,7 @@ public:
      * REQUIRE: at least one airport in the system
      * @param filename: name of the to be generated txt file
      */
-    void log(const string& filename = "../log.txt");
+    void info(const string &filename = "../output/info.txt");
 
     /**
      * Runs the complete simulation

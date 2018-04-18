@@ -1,7 +1,8 @@
 #include "../headers/System.h"
 #define ENDTIME Time(0, 0)
 #define INPUTFILENAME "../input.xml"
-#define ATCFILENAME "../ATC.txt"
+#define ATCFILENAME "../output/ATC.txt"
+#define LOGFILENAME "../outpu/log.txt"
 
 int main() {
     // Read input
@@ -10,8 +11,11 @@ int main() {
     // Output file for atc
     ofstream atc(ATCFILENAME);
 
+    // Output file for logging
+    ofstream log(LOGFILENAME);
+
     // Initialize system
-    System system(atc, ENDTIME);
+    System system(atc, log, ENDTIME);
 
     // Import data
     system.import(input);
@@ -20,7 +24,7 @@ int main() {
     system.run();
 
     // Log information to output file
-    system.log();
+    system.info();
 
     // Close file
     atc.close();
