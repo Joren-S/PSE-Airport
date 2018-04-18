@@ -61,6 +61,16 @@ public:
      */
     int getHour() const;
 
+    /**
+     * Operator== overloaded
+     */
+    bool operator==(const Time&) const;
+
+    /**
+     * Operator< overloaded
+     */
+    bool operator<(const Time&) const;
+
 };
 
 

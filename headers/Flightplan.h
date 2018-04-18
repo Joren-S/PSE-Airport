@@ -10,6 +10,8 @@
 #include "Time.h"
 #include "Airplane.h"
 
+enum EEvent { kLand, kTakeoff, kNothing };
+
 using namespace std;
 
 class Flightplan {
@@ -65,7 +67,11 @@ public:
      */
     void setInterval(int fInterval);
 
-    void getEvent(Time time);
+    /**
+     * Returns the event at the given time
+     * @param time
+     */
+    EEvent getEvent(Time time);
 
     // Remaining Getters and Setters
     const std::string &getDestination() const;

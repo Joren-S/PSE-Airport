@@ -41,15 +41,20 @@ void Flightplan::setInterval(int interval) {
     Flightplan::fInterval = interval;
 }
 
-void Flightplan::getEvent(Time time) {
-//    Time startingTime(12, fDeparture);
-//
-//    for (int i=0; i<12; i++) {
-//        Time newTime = Time(startingTime.getHour() + fInterval * i, fDeparture);
-//        if (newTime == time) {
-//
-//        }
-//    }
+EEvent Flightplan::getEvent(Time time) {
+    Time startingTime(12, fDeparture);
+
+    for (int i=0; i<12; i++) {
+        Time newTime = Time(startingTime.getHour() + fInterval * i, fDeparture);
+        if (newTime == time) {
+            return kTakeoff;
+        }
+        newTime = Time(startingTime.getHour() + fInterval * i, fArrival);
+        if (newTime == time) {
+            return kLand;
+        }
+    }
+    return kNothing;
 }
 
 Airplane* Flightplan::getAirplane() const {

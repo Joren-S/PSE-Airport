@@ -73,3 +73,19 @@ int Time::getHour() const {
 int Time::getMinute() const {
     return fMinute;
 }
+
+
+bool Time::operator==(const Time& time) const {
+    return time.getHour() == this->getHour() and time.getMinute() == this->getMinute();
+}
+
+
+bool Time::operator<(const Time& time) const {
+    if (this->getHour() < time.getHour()) {
+        return true;
+    }
+    if (this->getHour() > time.getHour()) {
+        return false;
+    }
+    return this->getMinute() < time.getMinute();
+}

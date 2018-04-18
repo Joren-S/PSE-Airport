@@ -218,7 +218,29 @@ void System::run() {
         vector<Flightplan*>::iterator flightplanItr;
         vector<Flightplan *> flightplans = getFlightplans();
         for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
-            airport->getCallsign();
+            // Change airplane status according to flightplan
+            Flightplan* flightplan = *flightplanItr;
+            EEvent event = flightplan->getEvent(fTime);
+            Airplane* airplane = flightplan->getAirplane();
+            if (event == kLand) {
+                airplane->setStatus(kApproaching);
+            }
+            if (event == kTakeoff) {
+                airplane->setStatus(kGate);
+            }
+
+            // Perform necessary actions according to plane status
+            if (airplane->getStatus() == kApproaching) {
+                land(airplane, airport);
+            }
+            else if (airplane->getStatus() == kLanded) {
+                gate(airplane, airport);
+            }
+            else if (airplane->getStatus() == kGate) {
+                takeoff(airplane, airport);
+            }
+
+
         }
         fTime.advance();
     }
@@ -249,8 +271,7 @@ void System::run() {
 }
 
 bool System::simulationFinished() const {
-    // fTime <= ENDTIME
-    return fTime.getHour() != 0;
+    return !(fTime < fEndTime or fTime == fEndTime);
 }
 
 
