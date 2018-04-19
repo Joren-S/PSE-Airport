@@ -11,7 +11,7 @@ using namespace std;
 
 class Airport;
 
-enum ERunwayType { kAsphalt, kGrass };
+enum ERunwayType { kAsphalt, kGrass, kDefaultRunType };
 
 class Runway {
 private:
@@ -53,6 +53,11 @@ public:
      * Set airport to NULL
      */
     Runway();
+
+    /**
+     * Checks if all the data members were initialized
+     */
+    bool complete() const;
 
     // Getters and Setters
     ERunwayType getType() const;

@@ -30,7 +30,5 @@ int main() {
     // Log information to output file
     system.info();
 
-
-
     return 0;
 }

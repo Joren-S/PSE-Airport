@@ -5,10 +5,11 @@
 #include "../headers/Runway.h"
 
 
-Runway::Runway() {
-    fAirport = NULL;
-    fType = kAsphalt;
-    fLength = -1;
+Runway::Runway(): fFree(true), fAirport(NULL), fType(kDefaultRunType), fLength(-1) {}
+
+bool Runway::complete() const {
+    return !(fType == kDefaultRunType or fAirport == NULL or
+             fLength == -1 or fName.empty() or fTaxiPoint.empty());
 }
 
 ERunwayType Runway::getType() const {

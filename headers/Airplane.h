@@ -12,18 +12,18 @@ using namespace std;
 
 enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
 
-enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency };
+enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
-enum EPlaneSize { kSmall, kMedium, kLarge };
+enum EPlaneSize { kSmall, kMedium, kLarge, kDefaultSize };
 
-enum EPlaneEngine { kPropeller, kJet };
+enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
 
 
 class Airplane {
 private:
 
     /**
-     * Members indication number, callsign and moder
+     * Members indicating number, callsign and model
      */
     string fNumber, fCallsign, fModel;
 
@@ -48,7 +48,7 @@ private:
     EPlaneType fType;
 
     /**
-     * Amount of passengers
+     * Amount of passengers it can hold
      */
     int fPassengers;
 
@@ -84,6 +84,11 @@ public:
      * ENSURE: altitude has been decreased by the difference
      */
     void decreaseAltitude(int difference);
+
+    /**
+     * Checks if all the data members were initialized
+     */
+    bool complete() const;
 
     // Getters and Setters
     EPlaneSize getSize() const;

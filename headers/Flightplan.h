@@ -78,6 +78,11 @@ public:
      */
     EEvent getEvent(Time time);
 
+    /**
+     * Checks if all the data members were initialized
+     */
+    bool complete() const;
+
     // Remaining Getters and Setters
     const std::string &getDestination() const;
     void setDestination(const std::string &fDestination);

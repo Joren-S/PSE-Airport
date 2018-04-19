@@ -4,7 +4,13 @@
 
 #include "../headers/Flightplan.h"
 
-Flightplan::Flightplan(): fDeparture(-1), fArrival(-1), fInterval(-1) {}
+Flightplan::Flightplan(): fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterval(-1) {}
+
+bool Flightplan::complete() const {
+    return !(fDeparture == -1 or fArrival == -1 or
+            fAirplane == NULL or fInterval == -1 or
+            fDestination.empty());
+}
 
 const std::string &Flightplan::getDestination() const {
     return fDestination;

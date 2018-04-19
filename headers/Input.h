@@ -33,11 +33,6 @@ private:
     vector<Airport*> airports;
 
     /**
-     * Vector of pointers to all the runways
-     */
-    vector<Runway*> runways;
-
-    /**
      * Vector of pointer to all the flightplans
      */
      vector<Flightplan*> flightplans;
@@ -61,6 +56,14 @@ private:
      * Reads an airplane from a given xml element
      */
     void readAirplane(TiXmlElement *elem);
+
+    /**
+     * Reads a taxiroute and return the name of the
+     * taxipoint of the runway.
+     * When returning the empty string, taxiroute
+     * was not valid.
+     */
+    string readTaxiroute(TiXmlElement *elem, Airport*);
 
     /**
      * Reads a flightplan from a given xml element
@@ -95,13 +98,6 @@ public:
     void addRunway(Runway* runway);
 
     /**
-     * Adds an airplane to the simulation with the given specifications
-     * REQUIRE: airport available
-     * ENSURE: airplane is added to the vector of airplanes
-     */
-    void addAirplane(Airplane* airplane);
-
-    /**
      * Adds a flightplan to the simulation with the given specifications
      * ENSURE: flightplan is added to the vector of flightplans
      */
@@ -112,18 +108,6 @@ public:
      * @return vec of all airports
      */
     vector<Airport*> getAirports() const;
-
-    /**
-     * Getter for the runways in the simulation
-     * @return vec of all runways
-     */
-    vector<Runway*> getRunways() const;
-
-    /**
-     * Getter for the airplanes in the simulation
-     * @return vec of all airplanes
-     */
-    vector<Airplane*> getAirplanes() const;
 
     /**
      * Getter for the flightplans in the simulation

@@ -51,30 +51,14 @@ private:
     ostream& fLog;
 
     /**
-     * Vector of pointers to all the airplanes
+     * The airport of the simulation
      */
-    vector<Airport*> fAirports;
+    Airport* fAirport;
 
     /**
-     * Vector of pointers to all the runways
-     */
-    vector<Runway*> fRunways;
-
-    /**
-     * Vector of pointers to all the flightplans
+     * Vector containing all the flightplans
      */
     vector<Flightplan*> fFlightplans;
-
-    /**
-     * Return how many runways an airport has
-     */
-    int runwaysInAirport(Airport *ap) const;
-
-    /**
-     * Get a free runway from a given airport if available.
-     * Return a nullptr otherwise
-     */
-    Runway* getFreeRunway(Airport* ap) const;
 
     /**
      * Checks if the simulation has ended.
@@ -91,7 +75,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kLanded
      */
-    void land(Airplane*, Airport*) const;
+    void land(Airplane*) const;
 
     /**
      * Performs duties at the gate for an airplane in an airport.
@@ -100,7 +84,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kGate
      */
-    void gate(Airplane*, Airport*) const;
+    void gate(Airplane*) const;
 
     /**
      * Performs a takeoff of a plane on an airport
@@ -110,7 +94,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kFinished
      */
-    void takeoff(Airplane*, Airport*) const;
+    void takeoff(Airplane*) const;
 
 public:
 
@@ -130,7 +114,7 @@ public:
      */
     bool properlyInitialized() const;
 
-    /**sys
+    /**
      * Imports the given input
      * REQUIRE: properlyInitialized
      */
@@ -153,20 +137,12 @@ public:
     void run();
 
     /**
-     * Getter for the airports in the simulation
-     * @return vec of all airports
+     * Getter for the airport in the simulation
      */
-    vector<Airport*> getAirports() const;
-
-    /**
-     * Getter for the runways in the simulation
-     * @return vec of all runways
-     */
-    vector<Runway*> getRunways() const;
+    Airport* getAirport() const;
 
     /**
      * Getter for the flightplans in the simulation
-     * @return
      */
     vector<Flightplan*> getFlightplans() const;
 

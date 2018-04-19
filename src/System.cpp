@@ -6,6 +6,7 @@
 
 System::System(ostream& atc, ostream& log, Time end): fEndTime(end), fATC(atc), fLog(log) {
     fTime = Time();
+    fAirport = NULL;
     fInitCheck = this;
     ENSURE(this->properlyInitialized(), "System was not properly initialized.");
 }
@@ -16,34 +17,35 @@ bool System::properlyInitialized() const {
 
 void System::import(Input &input) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
-    fAirports = input.getAirports();
-    fRunways = input.getRunways();
     fFlightplans = input.getFlightplans();
+    fAirport = input.getAirports()[0];
 }
 
 void System::info(const string &filename) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
-    REQUIRE(!getAirports().empty(), "List of Airports cannot be empty");
+    REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     // Output file
     ofstream fLog(filename.c_str());
 
-    // Loop over Airports
-    vector<Airport*>::iterator itr;
-    vector<Airport*> airports = getAirports();
-    for (itr = airports.begin(); itr < airports.end(); ++itr) {
-        Airport* cur_ap = *itr;
-        fLog << "Airport: " << cur_ap->getName() << " (" << cur_ap->getIata() << ")\n";
-        fLog << " -> gates: " << cur_ap->getGates() << endl;
-        fLog << " -> runways: " << runwaysInAirport(cur_ap) << endl;
-        fLog << endl;
-    }
+    // Log airport info
+    fLog << "Airport: " << fAirport->getName() << " (" << fAirport->getIata() << ")\n";
+    fLog << " -> gates: " << fAirport->getGates() << endl;
+    fLog << " -> runways: " << fAirport->amountOfRunways() << endl;
+    fLog << endl;
 
-    // Loop over airplanes
+    // Set up iterator
     vector<Flightplan *>::iterator itr_air;
+
+    // Get flightplans
     vector<Flightplan *> flightplans = getFlightplans();
+
+    // Loop over all of them
     for (itr_air = flightplans.begin(); itr_air < flightplans.end(); ++itr_air) {
+        // Get airplane
         Airplane* cur_ap = (*itr_air)->getAirplane();
+
+        // Log information
         fLog << "Airplane: " << cur_ap->getCallsign() << " (" << cur_ap->getNumber() << ")\n";
         fLog << " -> model: " << cur_ap->getModel() << endl;
         fLog << " -> type: ";
@@ -78,150 +80,46 @@ void System::info(const string &filename) {
     fLog.close();
 }
 
-void System::land(Airplane *plane, Airport *airport) const {
+void System::land(Airplane *plane) const {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
-    // Correct status
-    string error = plane->getCallsign() + " is not able to land, wrong status.";
-    REQUIRE(plane->getStatus() == kApproaching, error.c_str());
 
-    // Airport available
-    error = plane->getCallsign() + " is not able to land, no airport available.";
-    REQUIRE(!getAirports().empty() && airport != NULL, error.c_str());
-
-    // Runway available
-    Runway* runway = getFreeRunway(airport);
-    error = plane->getCallsign() + " is not able to land, no open runway.";
-    REQUIRE(runway != NULL, error.c_str());
-    
-    // Gate available
-    int gate = airport->getFreeGate();
-    error = plane->getCallsign() + " is not able to land, no gate available.";
-    REQUIRE(gate != -1, error.c_str());
-
-    // Set runway to unavailable
-    runway->setFree(false);
-
-    // Set plane's gate ID
-    plane->setGateID(gate);
-
-    // Initial message
-    fLog << plane->getCallsign() << " is approaching " << airport->getName() << " at " << plane->getAltitude() << ".000 ft." << endl;
-
-    // Descend loop
-    while (plane->getAltitude() > 1) {
-        // Decrease altitude by 1.000 feet
-        plane->decreaseAltitude(1);
-
-        // Log
-        fLog << plane->getCallsign() << " descended to " << plane->getAltitude() << ".000 ft." << endl;
-    }
-
-    // Land and taxi to gate
-    fLog << plane->getCallsign() << " is landing at " << airport->getName() << " on Runway " << runway->getName() << endl;
-    fLog << plane->getCallsign() << " has landed at " << airport->getName() << " on Runway " << runway->getName() << endl;
-    fLog << plane->getCallsign() << " is taxiing to Gate " << plane->getGateID() << endl;
-    fLog << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl << endl;
-
-    // Set status to landed
-    plane->setStatus(kLanded);
-
-    // Make runway available again
-    runway->setFree(true);
-
-    // Succesfully landed
-    error = "Plane status has not been changed correctly";
-    ENSURE(plane->getStatus() == kLanded, error.c_str());
 }
 
-void System::takeoff(Airplane *plane, Airport *airport) const {
-    // Correct status
-    string error = plane->getCallsign() + " is not able to takeoff, not at gate.";
-    REQUIRE(plane->getStatus() == kGate, error.c_str());
-    
-    // Runway available
-    Runway* runway = getFreeRunway(airport);
-    error = plane->getCallsign() + " is not able to land because of no open runway.";
-    REQUIRE(runway != NULL, error.c_str());
+void System::takeoff(Airplane *plane) const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
 
-    // Airport available
-    error = plane->getCallsign() + " is not able to land, no airport available.";
-    REQUIRE(!getAirports().empty() && airport != NULL, error.c_str());
-
-    // Set runway to unavailable
-    runway->setFree(false);
-
-    // Initial messages
-    fLog << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl;
-    fLog << plane->getCallsign() << " is taxiing to Runway " << runway->getName() << endl;
-    fLog << plane->getCallsign() << " is taking off at " << airport->getName() << " on Runway " << runway->getName() << endl;
-
-    // Ascend loop
-    while (plane->getAltitude() < 5) {
-        // Increase altitude by 1.000 feet
-        plane->increaseAltitude(1);
-
-        // Log
-        fLog << plane->getCallsign() << " ascended to " << plane->getAltitude() << ".000 ft." << endl;
-    }
-
-    // Last message
-    fLog << plane->getCallsign() << " has left " << airport->getName() << endl << endl;
-
-    // Set status to finished
-    plane->setStatus(kFinished);
-
-    // Restore gate
-    airport->restoreGate(plane->getGateID());
-
-    // Set plane to no gate
-    plane->setGateID(-1);
-
-    // Make runway available again
-    runway->setFree(true);
-
-    // Succesful takeoff
-    error = "Plane status has not been changed correctly";
-    ENSURE(plane->getStatus() == kFinished, error.c_str());
 }
 
-void System::gate(Airplane *plane, Airport *airport) const {
-    // Correct status
-    string error = plane->getCallsign() + " has not landed or is already at gate.";
-    REQUIRE(plane->getStatus() == kLanded, error.c_str());
+void System::gate(Airplane *plane) const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
 
-    // Airport available
-    error = plane->getCallsign() + " is not able to land, no airport available.";
-    REQUIRE(!getAirports().empty() && airport != NULL, error.c_str());
-
-    // Log
-    fLog << plane->getPassengers() << " passengers exited " << plane->getCallsign() << " at gate " << plane->getGateID() << " of " << airport->getName() << endl;
-    fLog << plane->getCallsign() << " has been checked for technical malfunctions" << endl;
-    fLog << plane->getCallsign() << " has been refueled" << endl;
-    fLog << plane->getPassengers() << " boarded " << plane->getCallsign() << " at gate " << plane->getGateID() << " of " << airport->getName() << endl << endl;
-    plane->setStatus(kGate);
-
-    // Succesfully performed duties at gate
-    error = "Plane status has not been changed correctly";
-    ENSURE(plane->getStatus() == kGate, error.c_str());
 }
 
 void System::run() {
-    REQUIRE(!getAirports().empty(), "No Airport available, can't run system");
-
-    // Set up iterator
-    vector<Airplane*>::iterator itr;
-
-    // Pick first Airport in the list
-    Airport* airport = getAirports()[0];
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     while (!simulationFinished()) {
+        // Set up iterator
         vector<Flightplan*>::iterator flightplanItr;
+
+        // Get flightplans
         vector<Flightplan *> flightplans = getFlightplans();
+
+        // Loop over flightplans
         for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
+
             // Change airplane status according to flightplan
+            // Get flightplan
             Flightplan* flightplan = *flightplanItr;
+
+            // Get the event at this time
             EEvent event = flightplan->getEvent(fTime);
+
+            // Get the airplane
             Airplane* airplane = flightplan->getAirplane();
+
+            // Set airplane status
             if (event == kLand) {
                 airplane->setStatus(kApproaching);
             }
@@ -231,113 +129,47 @@ void System::run() {
 
             // Perform necessary actions according to plane status
             if (airplane->getStatus() == kApproaching) {
-                land(airplane, airport);
+                land(airplane);
             }
             else if (airplane->getStatus() == kLanded) {
-                gate(airplane, airport);
+                gate(airplane);
             }
             else if (airplane->getStatus() == kGate) {
-                takeoff(airplane, airport);
+                takeoff(airplane);
             }
-
-
         }
+
+        // Advance time
         fTime.advance();
     }
 
-//    // While the simulation is not finished
-//    while (!simulationFinished()) {
-//        // Loop over all the planes
-//        for (itr = airplanes.begin(); itr != airplanes.end(); itr++) {
-//            Airplane* plane = *itr;
-//
-//            // If plane status is approaching, land
-//            if (plane->getStatus() == kApproaching) {
-//                land(plane, airport);
-//            }
-//
-//            // If plane status is gate, takeoff
-//            else if (plane->getStatus() == kGate) {
-//                takeoff(plane, airport);
-//            }
-//
-//            // If plane status is landed, go to gate
-//            else if (plane->getStatus() == kLanded) {
-//                gate(plane, airport);
-//            }
-//        }
-//    }
     ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
 }
 
 bool System::simulationFinished() const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     return !(fTime < fEndTime or fTime == fEndTime);
 }
 
 
-// GETTERS
-
-vector<Airport*> System::getAirports() const {
-    return System::fAirports;
-}
-
-vector<Runway*> System::getRunways() const {
-    return System::fRunways;
+Airport* System::getAirport() const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    return System::fAirport;
 }
 
 vector<Flightplan*> System::getFlightplans() const {
+    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     return System::fFlightplans;
 }
 
-// HELPER FUNCTIONS
-
-int System::runwaysInAirport(Airport *ap) const {
-    // Check all runways and if it's in the correct Airport, increase our counter.
-    // Finally, return this counter.
-    int count = 0;
-    vector<Runway*>::const_iterator itr;
-    vector<Runway*> runways = getRunways();
-    for (itr = runways.begin(); itr < runways.end(); ++itr) {
-        Runway *run = *itr;
-        if (run->getAirport() == ap) {
-            ++count;
-        }
-    }
-    return count;
-}
-
-Runway* System::getFreeRunway(Airport *ap) const {
-    // Check all runways and return the Runway if it's in the correct Airport and is free.
-    vector<Runway*>::const_iterator itr;
-    vector<Runway*> runways = getRunways();
-    for (itr = runways.begin(); itr < runways.end(); ++itr) {
-        Runway *run = *itr;
-        if (run->isFree() && run->getAirport() == ap) {
-            return run;
-        }
-    }
-    return NULL;
-}
-
 System::~System() {
-    // Delete all flightplans
-    vector<Airport*>::iterator airportItr;
-    vector<Airport*> airports = getAirports();
-    for (airportItr = airports.begin(); airportItr != airports.end(); ++airportItr) {
-        delete *airportItr;
-    }
+    // Delete airport
+    delete fAirport;
 
-    // Delete all airports
+    // Delete all flightplans
     vector<Flightplan*>::iterator flightplanItr;
     vector<Flightplan*> flightplans = getFlightplans();
     for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
         delete *flightplanItr;
-    }
-
-    // Delete all runways
-    vector<Runway*>::iterator runwayItr;
-    vector<Runway*> runways = getRunways();
-    for (runwayItr = runways.begin(); runwayItr != runways.end(); runwayItr++) {
-        delete *runwayItr;
     }
 }

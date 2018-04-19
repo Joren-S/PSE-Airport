@@ -9,12 +9,20 @@
 	<airport>ANR</airport>
 	<type>asphalt</type>
 	<length>1510</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+	</TAXIROUTE>
 </RUNWAY>
 <RUNWAY>
 	<name>11L</name>
 	<airport>ANR</airport>
 	<type>grass</type>
 	<length>1010</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+		<crossing>11R</crossing>
+		<taxipoint>Bravo</taxipoint>
+	</TAXIROUTE>
 </RUNWAY>
 <AIRPLANE>
 	<number>N11842</number>
@@ -24,7 +32,6 @@
 	<engine>propeller</engine>
 	<size>small</size>
 	<passengers>8</passengers>
-	<status>gate</status>
 	<FLIGHTPLAN>
 		<destination>LCY</destination>
 		<departure>15</departure>
@@ -40,7 +47,6 @@
 	<engine>jet</engine>
 	<size>large</size>
 	<passengers>400</passengers>
-	<status>approaching</status>
 	<FLIGHTPLAN>
 		<destination>JFK</destination>
 		<departure>10</departure>

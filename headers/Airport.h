@@ -16,12 +16,12 @@ class Airport {
 private:
 
     /**
-     * Members indication name, iata and callsign
+     * Members indicating name, iata and callsign
      */
     string fName, fIata, fCallsign;
 
     /**
-     * Amount of gate in the airport
+     * Amount of gates in the airport
      */
     int fGates;
 
@@ -30,6 +30,9 @@ private:
      */
     stack<int> fGateStack;
 
+    /**
+     * Vector of all the runways the airport contains
+     */
     vector<Runway*> fRunways;
 
 public:
@@ -69,6 +72,26 @@ public:
      */
     void addRunway(Runway*);
 
+    /**
+     * Return the first free runway in the airport
+     */
+    Runway* getFreeRunway() const;
+
+    /**
+     * Getter for the runways
+     */
+    vector<Runway*> getRunways() const;
+
+    /**
+     * Return the amount of runways the airport has
+     */
+    size_t amountOfRunways() const;
+
+    /**
+     * Checks if all the data members were initialized
+     */
+    bool complete() const;
+
     // Getters and Setters
     const string &getName() const;
     void setName(const string &fName);
@@ -78,7 +101,6 @@ public:
     void setCallsign(const string &fCallsign);
     int getGates() const;
     void setGates(int fGates);
-    vector<Runway*> getRunways() const;
 
 };
 

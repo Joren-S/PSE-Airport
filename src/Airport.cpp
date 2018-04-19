@@ -10,6 +10,20 @@ Airport::Airport() {
     fGates = -1;
 }
 
+size_t Airport::amountOfRunways() const {
+    return fRunways.size();
+}
+
+Runway* Airport::getFreeRunway() const {
+    vector<Runway*>::const_iterator itr;
+    for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
+        if ((*itr)->isFree()) {
+            return *itr;
+        }
+    }
+    return NULL;
+}
+
 void Airport::initStack() {
     string error = "Can't initialize gate stack, already in use";
     REQUIRE(fGateStack.empty(), error.c_str());
@@ -60,6 +74,11 @@ void Airport::restoreGate(int id) {
     REQUIRE(fGateStack.top() == id, error.c_str());
 }
 
+bool Airport::complete() const {
+    return !(fName.empty() or fCallsign.empty() or
+             fIata.empty() or fGates == -1);
+}
+
 // Getters en setters
 
 const string &Airport::getName() const {
@@ -100,7 +119,8 @@ void Airport::addRunway(Runway *runway) {
     vector<Runway*>::const_iterator itr;
     bool present = false;
     for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
-        if ((*itr)->getName() == runway->getName()) {
+        if ((*itr)->getName() == runway->getName() or
+                (*itr)->getTaxiPoint() == runway->getTaxiPoint()) {
             present = true;
             break;
         }

@@ -5,11 +5,18 @@
 #include "../headers/Airplane.h"
 
 Airplane::Airplane() {
-    fPassengers = fGateID = fAltitude = -1;
-    fStatus = kApproaching;
-    fEngine = kPropeller;
-    fType = kPrivate;
-    fSize = kSmall;
+    fPassengers = fGateID;
+    fAltitude = 0;
+    fStatus = kFinished;
+    fEngine = kDefaultEngine;
+    fType = kDefaultType;
+    fSize = kDefaultSize;
+}
+
+bool Airplane::complete() const {
+    return !(fEngine == kDefaultEngine or fType == kDefaultType
+             or fSize == kDefaultSize or fPassengers == -1 or
+            fModel.empty() or fCallsign.empty() or fNumber.empty());
 }
 
 void Airplane::decreaseAltitude(int difference) {
