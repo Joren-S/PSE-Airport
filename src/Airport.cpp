@@ -14,10 +14,11 @@ size_t Airport::amountOfRunways() const {
     return fRunways.size();
 }
 
-Runway* Airport::getFreeRunway() const {
+Runway* Airport::getFreeRunway(Airplane *plane) const {
+    REQUIRE(plane != NULL, "Plane object does not exist.");
     vector<Runway*>::const_iterator itr;
     for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
-        if ((*itr)->isFree()) {
+        if ((*itr)->isFree() and (*itr)->validForAirplane(plane)) {
             return *itr;
         }
     }

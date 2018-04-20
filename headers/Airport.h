@@ -74,8 +74,9 @@ public:
 
     /**
      * Return the first free runway in the airport
+     * ENSURE: Runway has the required specifications to allow the airplane to land.
      */
-    Runway* getFreeRunway() const;
+    Runway* getFreeRunway(Airplane *) const;
 
     /**
      * Getter for the runways
