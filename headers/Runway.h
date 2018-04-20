@@ -7,9 +7,13 @@
 
 #include <string>
 
+#include "Airplane.h"
+#include "DesignByContract.h"
+
 using namespace std;
 
 class Airport;
+class Airplane;
 
 enum ERunwayType { kAsphalt, kGrass, kDefaultRunType };
 
@@ -58,6 +62,12 @@ public:
      * Checks if all the data members were initialized
      */
     bool complete() const;
+
+    /**
+     * Check if this runway is valid for the provided airplane.
+     * REQUIRE: plane exists
+     */
+    bool validForAirplane(Airplane* plane) const;
 
     // Getters and Setters
     ERunwayType getType() const;

@@ -59,3 +59,72 @@ string Runway::getTaxiPoint() const {
 void Runway::setTaxiPoint(const string &name) {
     fTaxiPoint = name;
 }
+
+bool Runway::validForAirplane(Airplane *plane) const {
+    REQUIRE(plane != NULL, "Plane object does not exist.");
+
+    if (isFree()) {
+
+        EPlaneSize size = plane->getSize();
+        EPlaneEngine engine = plane->getEngine();
+        ERunwayType runwayType = getType();
+        int length = getLength();
+
+
+        if (size == kSmall) {
+            if (engine == kPropeller) {
+                if (length >= 500) {
+                    // Small, propeller, grass/no grass, l >= 500
+                    return true;
+                }
+            }
+            if (engine == kJet) {
+                if (runwayType != kGrass) {
+                    if (length >= 1000) {
+                        // Small, jet, no grass, l >= 1000
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if (size == kMedium) {
+            if (engine == kPropeller) {
+                if (runwayType != kGrass) {
+                    if (length >= 1000) {
+                        // Medium, propeller, no grass, l >= 1000
+                        return true;
+                    }
+                }
+            }
+            if (engine == kJet) {
+                if (runwayType != kGrass) {
+                    if (length >= 2000) {
+                        // Medium, jet, no grass, l >= 2000
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if (size == kLarge) {
+            if (engine == kPropeller) {
+                if (runwayType != kGrass) {
+                    if (length >= 1500) {
+                        // Large, propeller, no grass, l >= 1500
+                        return true;
+                    }
+                }
+            }
+            if (engine == kJet) {
+                if (runwayType != kGrass) {
+                    if (length >= 3000) {
+                        // Large, jet, no grass, l >= 3000
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
