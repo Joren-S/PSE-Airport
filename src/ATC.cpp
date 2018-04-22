@@ -29,8 +29,7 @@ void ATC::sendMessage(Time time, string source, string message) {
     Time lastActive = getLastActive();
     REQUIRE(time < lastActive, "Message can't be send at a time that has already passed.");
 
-    string msgFormatted = formatMessage(time, source, message);
-    ATCMessage *msg = new ATCMessage(time, msgFormatted);
+    ATCMessage *msg = new ATCMessage(time, formatMessage(time, source, message));
 
     // first, check to see if there are messages waiting in the queue already:
     if (getQueueSize() > 0) {
@@ -43,9 +42,9 @@ void ATC::sendMessage(Time time, string source, string message) {
         // first, we check and see if we can send our message.
         if (canSend(time)) {
             // if so, we can send it right away and we change LastActive
+            fStream << msg->fMessage;
             delete msg;
-            fStream << msgFormatted;
-            setLastActive(time);
+            setLastActive(msg->fTime);
         }
         else {
             // if not, we queue our message.
@@ -109,6 +108,7 @@ void ATC::doHeartbeat(Time curTime) {
             // send and delete object.
             fStream << msg->fMessage;
             delete msg;
+            setLastActive(msg->fTime);
         }
     }
 }
