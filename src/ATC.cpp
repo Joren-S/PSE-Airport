@@ -43,8 +43,8 @@ void ATC::sendMessage(Time time, string source, string message) {
         if (canSend(time)) {
             // if so, we can send it right away and we change LastActive
             fStream << msg->fMessage;
-            delete msg;
             setLastActive(msg->fTime);
+            delete msg;
         }
         else {
             // if not, we queue our message.
@@ -107,8 +107,8 @@ void ATC::doHeartbeat(Time curTime) {
 
             // send and delete object.
             fStream << msg->fMessage;
-            delete msg;
             setLastActive(msg->fTime);
+            delete msg;
         }
     }
 }
