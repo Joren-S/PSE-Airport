@@ -83,6 +83,50 @@ void System::info(const string &filename) {
 void System::land(Airplane *plane) const {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
 
+    EPlaneStatus status = plane->getStatus();
+    if (plane->getTimeRemaining() == 0) {
+        if (status == kApproaching) {
+            plane->setTimeRemaining(1);
+        }
+        else if (status == kDescending) {
+            if (plane->getAltitude() == 0) {
+                plane->setTimeRemaining(2);
+            }
+            else if (plane->getEngine() == kJet) {
+                plane->setTimeRemaining(1);
+            }
+            else {
+                plane->setTimeRemaining(2);
+            }
+        }
+    }
+
+    plane->decreaseTimeRemaining();
+
+    if (plane->getTimeRemaining() != 0) {
+        return;
+    }
+
+    if (status == kApproaching) {
+        fATC << "[" << fTime.formatted() << "][" << plane->getCallsign() << endl;
+        fATC << "$ " << fAirport->getCallsign() << ", " << plane->getCallsign() << ", arriving at " << fAirport->getName() << "." << endl;
+        fLog << plane->getCallsign() << " approaching" << endl;
+        plane->setAltitude(10);
+        plane->setStatus(kDescending);
+    }
+    else if (status == kDescending) {
+        plane->decreaseAltitude();
+        if (plane->getAltitude() == 0) {
+            fLog << plane->getCallsign() << " has landed" << endl;
+            plane->setStatus(kLanded);
+        }
+        else {
+            fLog << plane->getCallsign() << " has descended to " << plane->getAltitude() << endl;
+        }
+    }
+    else if (status == kCircling) {
+        fLog << plane->getCallsign() << " is circling at " << plane->getAltitude() << endl;
+    }
 }
 
 void System::takeoff(Airplane *plane) const {
@@ -127,8 +171,10 @@ void System::run() {
                 airplane->setStatus(kGate);
             }
 
+            EPlaneStatus status = airplane->getStatus();
+
             // Perform necessary actions according to plane status
-            if (airplane->getStatus() == kApproaching) {
+            if (status == kApproaching or status == kDescending or status == kCircling) {
                 land(airplane);
             }
             else if (airplane->getStatus() == kLanded) {
@@ -141,6 +187,10 @@ void System::run() {
 
         // Advance time
         fTime.advance();
+        cout << fTime.formatted() << endl;
+        if (fTime == Time(12,15)) {
+            cout << "What" << endl;
+        }
     }
 
     ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");

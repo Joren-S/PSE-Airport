@@ -1,8 +1,8 @@
 #include "../headers/System.h"
-#define ENDTIME Time(0, 0)
+#define ENDTIME Time(18)
 #define INPUTFILENAME "../input.xml"
 #define ATCFILENAME "../output/ATC.txt"
-#define LOGFILENAME "../outpu/log.txt"
+#define LOGFILENAME "../output/log.txt"
 
 int main() {
     // Read input

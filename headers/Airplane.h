@@ -10,7 +10,7 @@
 
 using namespace std;
 
-enum EPlaneStatus { kApproaching, kLanded, kGate, kFinished };
+enum EPlaneStatus { kApproaching, kDescending, kCircling, kLanded, kTaxiing, kGate, kFinished };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
@@ -63,6 +63,14 @@ private:
      */
     int fAltitude;
 
+
+    int fTimeRemaining;
+
+    /**
+     * Indicates the taxipoint it's at right now.
+     */
+    string fPosition;
+
 public:
 
     /**
@@ -76,14 +84,20 @@ public:
      * Increases the plane's altitude by a given amount
      * ENSURE: altitude has been raised by the difference
      */
-    void increaseAltitude(int difference);
+    void increaseAltitude(int difference = 1);
 
     /**
      * Decreases the plane's altitude by a given amount
      * REQUIRE: new altitude can't be less than 0
      * ENSURE: altitude has been decreased by the difference
      */
-    void decreaseAltitude(int difference);
+    void decreaseAltitude(int difference = 1);
+
+
+    void decreaseTimeRemaining();
+
+    string getLandEvent();
+
 
     /**
      * Checks if all the data members were initialized
@@ -111,6 +125,10 @@ public:
     void setModel(const string &fModel);
     EPlaneStatus getStatus() const;
     void setStatus(EPlaneStatus fStatus);
+    void setTimeRemaining(int time);
+    int getTimeRemaining() const;
+    void setPosition(const string&);
+    const string &getPosition() const;
 
 };
 

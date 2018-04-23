@@ -55,6 +55,9 @@ private:
      */
     Airport* fAirport;
 
+    bool f3Free;
+    bool f5Free;
+
     /**
      * Vector containing all the flightplans
      */

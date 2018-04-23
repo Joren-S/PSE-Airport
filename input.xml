@@ -34,8 +34,8 @@
 	<passengers>8</passengers>
 	<FLIGHTPLAN>
 		<destination>LCY</destination>
-		<departure>15</departure>
-		<arrival>45</arrival>
+		<departure>30</departure>
+		<arrival>15</arrival>
 		<interval>1</interval>
 	</FLIGHTPLAN>
 </AIRPLANE>

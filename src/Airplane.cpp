@@ -7,6 +7,7 @@
 Airplane::Airplane() {
     fPassengers = fGateID;
     fAltitude = 0;
+    fTimeRemaining = 0;
     fStatus = kFinished;
     fEngine = kDefaultEngine;
     fType = kDefaultType;
@@ -115,4 +116,28 @@ int Airplane::getGateID() const {
 
 void Airplane::setGateID(int id) {
     Airplane::fGateID = id;
+}
+
+int Airplane::getTimeRemaining() const {
+    return fTimeRemaining;
+}
+
+void Airplane::setTimeRemaining(int time) {
+    fTimeRemaining = time;
+}
+
+void Airplane::decreaseTimeRemaining() {
+    fTimeRemaining--;
+}
+
+const string& Airplane::getPosition() const {
+    return fPosition;
+}
+
+void Airplane::setPosition(const string &position) {
+    fPosition = position;
+}
+
+string Airplane::getLandEvent() {
+    return "";
 }

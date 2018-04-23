@@ -48,18 +48,31 @@ void Flightplan::setInterval(int interval) {
 }
 
 EEvent Flightplan::getEvent(Time time) {
-    Time startingTime(12, fDeparture);
+    // Start at 12:00
+    Time currentTime(12);
 
-    for (int i=0; i<12; i++) {
-        Time newTime = Time(startingTime.getHour() + fInterval * i, fDeparture);
-        if (newTime == time) {
+    // While not midnight
+    while (currentTime < Time(23, 59)) {
+        // Set to departure time
+        currentTime = Time(currentTime.getHour(), fDeparture);
+
+        // If times match up, return takeoff
+        if (currentTime == time) {
             return kTakeoff;
         }
-        newTime = Time(startingTime.getHour() + fInterval * i, fArrival);
-        if (newTime == time) {
+
+        // Set to arrival time
+        currentTime = Time(currentTime.getHour(), fArrival);
+
+        // If times match up, return land
+        if (currentTime == time) {
             return kLand;
         }
+
+        // Set advance hour by interval
+        currentTime = Time(currentTime.getHour() + fInterval);
     }
+
     return kNothing;
 }
 

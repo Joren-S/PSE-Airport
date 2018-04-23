@@ -37,7 +37,7 @@ string Time::formatted() const {
 }
 
 void Time::advance(int minutes) {
-    REQUIRE(minutes >= 0, "Invalid value for minute.");
+    REQUIRE(minutes >= 0, "Invalid value for minutes.");
 
     // While there are minutes remaining
     while (minutes) {
@@ -55,14 +55,12 @@ void Time::advance(int minutes) {
 }
 
 void Time::setMinute(int minute) {
-    string error = "Invalid value for minute.";
-//    REQUIRE(minute < 60 && minute >= 0, error.c_str());
+    REQUIRE(minute < 60 && minute >= 0, "Invalid value for minute.");
     fMinute = minute;
 }
 
 void Time::setHour(int hour) {
-    string error = "Invalid value for hour.";
-//    REQUIRE(hour < 24 && hour >= 0, error.c_str());
+    REQUIRE(hour < 24 && hour >= 0, "Invalid value for hour.");
     fHour = hour;
 }
 
