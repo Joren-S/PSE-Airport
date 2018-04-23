@@ -65,6 +65,13 @@ public:
     void restoreGate(int id);
 
     /**
+     * Returns the runway with the given taxipoint
+     */
+    Runway* getRunway(const string&) const;
+
+    Runway* getNextRunway(Airplane*) const;
+
+    /**
      * Adds a runway to the airport
      * REQUIRE: runway not present &&
      * not nullptr

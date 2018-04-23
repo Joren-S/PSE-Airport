@@ -50,6 +50,11 @@ private:
      */
     string fTaxiPoint;
 
+    /**
+     *
+     */
+    Runway* fRunway;
+
 public:
     
     /**

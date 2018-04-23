@@ -134,3 +134,32 @@ void Airport::addRunway(Runway *runway) {
 vector<Runway*> Airport::getRunways() const {
     return fRunways;
 }
+
+Runway* Airport::getRunway(const string &taxipoint) const {
+    vector<Runway*>::const_iterator itr;
+    vector<Runway*> runways = getRunways();
+
+    for (itr = runways.begin(); itr != runways.end(); ++itr) {
+        if ((*itr)->getTaxiPoint() == taxipoint) {
+            return *itr;
+        }
+    }
+
+    return NULL;
+}
+
+Runway* Airport::getNextRunway(Airplane *airplane) const {
+    vector<Runway*>::const_iterator itr;
+    vector<Runway*> runways = getRunways();
+
+    // TODO: not finished
+    for (itr = runways.begin(); itr != runways.end(); ++itr) {
+        if ((*itr)->getTaxiPoint() == airplane->getPosition()) {
+            if (airplane->getStatus() == kTaxiDeparture) {
+                return *itr;
+            }
+        }
+    }
+
+    return NULL;
+}

@@ -10,13 +10,15 @@
 
 using namespace std;
 
-enum EPlaneStatus { kApproaching, kDescending, kCircling, kLanded, kTaxiing, kGate, kFinished };
+enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
 enum EPlaneSize { kSmall, kMedium, kLarge, kDefaultSize };
 
 enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
+
+enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle };
 
 
 class Airplane {
@@ -63,13 +65,20 @@ private:
      */
     int fAltitude;
 
-
+    /**
+     * Time remaining of current operation.
+     */
     int fTimeRemaining;
 
     /**
      * Indicates the taxipoint it's at right now.
      */
     string fPosition;
+
+    /**
+     * Status of last request.
+     */
+    EPlaneRequest fRequest;
 
 public:
 
@@ -95,8 +104,6 @@ public:
 
 
     void decreaseTimeRemaining();
-
-    string getLandEvent();
 
 
     /**
@@ -129,6 +136,8 @@ public:
     int getTimeRemaining() const;
     void setPosition(const string&);
     const string &getPosition() const;
+    void setRequest(EPlaneRequest);
+    EPlaneRequest getRequest() const;
 
 };
 

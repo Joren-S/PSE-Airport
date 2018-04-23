@@ -118,14 +118,11 @@ void System::land(Airplane *plane) const {
         plane->decreaseAltitude();
         if (plane->getAltitude() == 0) {
             fLog << plane->getCallsign() << " has landed" << endl;
-            plane->setStatus(kLanded);
+            plane->setStatus(kTaxiArrival);
         }
         else {
             fLog << plane->getCallsign() << " has descended to " << plane->getAltitude() << endl;
         }
-    }
-    else if (status == kCircling) {
-        fLog << plane->getCallsign() << " is circling at " << plane->getAltitude() << endl;
     }
 }
 
@@ -144,6 +141,8 @@ void System::run() {
     REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     while (!simulationFinished()) {
+
+
         // Set up iterator
         vector<Flightplan*>::iterator flightplanItr;
 
@@ -174,11 +173,8 @@ void System::run() {
             EPlaneStatus status = airplane->getStatus();
 
             // Perform necessary actions according to plane status
-            if (status == kApproaching or status == kDescending or status == kCircling) {
+            if (status == kApproaching or status == kDescending) {
                 land(airplane);
-            }
-            else if (airplane->getStatus() == kLanded) {
-                gate(airplane);
             }
             else if (airplane->getStatus() == kGate) {
                 takeoff(airplane);

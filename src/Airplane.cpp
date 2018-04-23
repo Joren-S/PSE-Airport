@@ -8,7 +8,7 @@ Airplane::Airplane() {
     fPassengers = fGateID;
     fAltitude = 0;
     fTimeRemaining = 0;
-    fStatus = kFinished;
+    fStatus = kAway;
     fEngine = kDefaultEngine;
     fType = kDefaultType;
     fSize = kDefaultSize;
@@ -138,6 +138,11 @@ void Airplane::setPosition(const string &position) {
     fPosition = position;
 }
 
-string Airplane::getLandEvent() {
-    return "";
+EPlaneRequest Airplane::getRequest() const {
+    return fRequest;
 }
+
+void Airplane::setRequest(EPlaneRequest request) {
+    fRequest = request;
+}
+

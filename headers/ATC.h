@@ -7,9 +7,10 @@
 
 #include <queue>
 #include "Time.h"
+#include "Airport.h"
 
 
-struct ATCMessage {
+struct ATCRequest {
     // Used to store a message for the ATC alongside the original time.
 
     /**
@@ -18,14 +19,14 @@ struct ATCMessage {
     Time fTime;
 
     /**
-     * Content of message that was sent.
+     * Airplane that sent request
      */
-    string fMessage;
+    Airplane* fAirplane;
 
     /**
      * Constructor.
      */
-    ATCMessage(Time time, string msg) : fTime(time), fMessage(msg) {}
+    ATCRequest(Time time, Airplane* plane) : fTime(time), fAirplane(plane) {}
 };
 
 class ATC {
@@ -44,12 +45,17 @@ private:
     /**
      * Queue of messages.
      */
-    queue<ATCMessage*> fQueue;
+    queue<ATCRequest*> fQueue;
 
     /**
     * Time when ATC was last active.
     */
     Time fLastActive;
+
+    bool f3Occupied;
+    bool f5Occupied;
+
+    Airport* fAirport;
 
 public:
 
@@ -71,12 +77,7 @@ public:
     * REQUIRE: time can't be before the last time the ATC was active (can't send messages in the past)
     * ENSURE: message was queued if unable to send
     */
-    void sendMessage(Time, string, string);
-
-    /**
-    * Check if the ATC can send a message.
-    */
-    bool canSend(Time) const;
+    void sendRequest(Time, Airplane*);
 
     /**
     * Return the amount of messages queued.
@@ -94,7 +95,7 @@ public:
     * ENSURE: if queue is not empty -> return is not NULL
     * ENSURE: if queue is not empty -> return is no longer in queue
     */
-    ATCMessage *getNextQueuedMessage() const;
+    ATCRequest *getNextRequest() const;
 
     /**
     * Creates a correctly formatted ATC message when the contents are given.
@@ -109,9 +110,10 @@ public:
 
 
     // Getters and Setters
-    queue<ATCMessage*> getQueue() const;
+    queue<ATCRequest*> *getQueue() const;
     void setLastActive(Time);
     Time getLastActive() const;
+    Airport* getAirport() const;
 };
 
 
