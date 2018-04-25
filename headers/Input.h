@@ -26,6 +26,10 @@ using namespace std;
 
 class Input {
 private:
+    /**
+     * Pointer to itself
+     */
+    Input *fInitCheck;
 
     /**
      * Vector of pointers to all the airports
@@ -83,7 +87,12 @@ public:
     /**
      * Default constructor, for manually adding elements
      */
-    Input() {}
+    Input();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Adds an airport to the simulation

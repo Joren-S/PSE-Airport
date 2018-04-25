@@ -12,6 +12,7 @@ Airplane::Airplane() {
     fEngine = kDefaultEngine;
     fType = kDefaultType;
     fSize = kDefaultSize;
+    fInitCheck = this;
 }
 
 bool Airplane::complete() const {
@@ -146,3 +147,6 @@ void Airplane::setRequest(EPlaneRequest request) {
     fRequest = request;
 }
 
+bool Airplane::properlyInitialized() const {
+    return fInitCheck == this;
+}

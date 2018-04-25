@@ -13,6 +13,10 @@ using namespace std;
 
 class Time {
 private:
+    /**
+     * Pointer to itself
+     */
+    Time *fInitCheck;
 
     int fMinute;
     int fHour;
@@ -27,6 +31,11 @@ public:
      * 0 <= minute < 60
      */
     Time(int hour = 12, int minute = 0);
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Return the time in a formatted style like such: "13:45"

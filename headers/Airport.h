@@ -14,6 +14,10 @@ using namespace std;
 
 class Airport {
 private:
+    /**
+     * Pointer to itself
+     */
+    Airport *fInitCheck;
 
     /**
      * Members indicating name, iata and callsign
@@ -42,6 +46,11 @@ public:
      * Set int values to -1, to check if field are initialized
      */
     Airport();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Initializes the gateStack

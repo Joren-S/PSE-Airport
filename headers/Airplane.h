@@ -23,6 +23,10 @@ enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle };
 
 class Airplane {
 private:
+    /**
+     * Pointer to itself
+     */
+    Airplane *fInitCheck;
 
     /**
      * Members indicating number, callsign and model
@@ -88,6 +92,11 @@ public:
      * Set status to approaching
      */
     Airplane();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Increases the plane's altitude by a given amount

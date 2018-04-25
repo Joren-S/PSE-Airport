@@ -16,6 +16,10 @@ using namespace std;
 
 class Flightplan {
 private:
+    /**
+     * Pointer to itself
+     */
+    Flightplan *fInitCheck;
 
     /**
      * Airplane associated with the flightplan
@@ -53,6 +57,11 @@ public:
      * Destructor
      */
     ~Flightplan();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Setter for departure time
