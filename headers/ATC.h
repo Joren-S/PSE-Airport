@@ -9,7 +9,6 @@
 #include "Time.h"
 #include "Airport.h"
 
-
 struct ATCRequest {
     // Used to store a message for the ATC alongside the original time.
 
@@ -59,6 +58,11 @@ private:
 
 public:
 
+    bool get3occupied() const {return f3Occupied;}
+    void set3occupied(bool occupied) {f3Occupied = occupied; }
+    bool get5occupied() const {return f5Occupied;}
+    void set5occupied(bool occupied) {f5Occupied = occupied; }
+
     /**
     * Constructor
     * ENSURE: properlyInitialized
@@ -95,12 +99,12 @@ public:
     * ENSURE: if queue is not empty -> return is not NULL
     * ENSURE: if queue is not empty -> return is no longer in queue
     */
-    ATCRequest *getNextRequest() const;
+    ATCRequest *getNextRequest();
 
     /**
     * Creates a correctly formatted ATC message when the contents are given.
     */
-    string formatMessage(Time, string, string) const;
+    static string formatMessage(Time, string, string);
 
     /**
     * Check the queue for a queued message and send this message if possible.
@@ -108,12 +112,14 @@ public:
     */
     void doHeartbeat(Time);
 
+    void sendMessage(const string&);
 
     // Getters and Setters
-    queue<ATCRequest*> *getQueue() const;
+    queue<ATCRequest*> *getQueue();
     void setLastActive(Time);
     Time getLastActive() const;
     Airport* getAirport() const;
+    void setAirport(Airport*);
 };
 
 

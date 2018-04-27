@@ -5,10 +5,16 @@
 #ifndef PROJECTVLIEGVELD_AIRPLANES_H
 #define PROJECTVLIEGVELD_AIRPLANES_H
 
+// STL
 #include <string>
+
+// Libraries
 #include "DesignByContract.h"
 
-using namespace std;
+// Forward declaration
+class Runway;
+
+// Enums for the Airplane class
 
 enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing };
 
@@ -18,7 +24,7 @@ enum EPlaneSize { kSmall, kMedium, kLarge, kDefaultSize };
 
 enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
 
-enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle };
+enum EPlaneRequest { kPending, kAccepted, kDenied, kConfirmed, kIdle };
 
 
 class Airplane {
@@ -27,7 +33,7 @@ private:
     /**
      * Members indicating number, callsign and model
      */
-    string fNumber, fCallsign, fModel;
+    std::string fNumber, fCallsign, fModel;
 
     /**
      * Status of plane
@@ -73,7 +79,12 @@ private:
     /**
      * Indicates the taxipoint it's at right now.
      */
-    string fPosition;
+    std::string fPosition;
+
+    /**
+     * Indicates the runway on which the airplane lands/takes off
+     */
+    Runway* fRunway;
 
     /**
      * Status of last request.
@@ -124,20 +135,22 @@ public:
     void setGateID(int id);
     int getPassengers() const;
     void setPassengers(int fPassengers);
-    const string &getNumber() const;
-    void setNumber(const string &fNumber);
-    const string &getCallsign() const;
-    void setCallsign(const string &fCallsign);
-    const string &getModel() const;
-    void setModel(const string &fModel);
+    const std::string &getNumber() const;
+    void setNumber(const std::string &fNumber);
+    const std::string &getCallsign() const;
+    void setCallsign(const std::string &fCallsign);
+    const std::string &getModel() const;
+    void setModel(const std::string &fModel);
     EPlaneStatus getStatus() const;
     void setStatus(EPlaneStatus fStatus);
     void setTimeRemaining(int time);
     int getTimeRemaining() const;
-    void setPosition(const string&);
-    const string &getPosition() const;
+    void setPosition(const std::string&);
+    const std::string &getPosition() const;
     void setRequest(EPlaneRequest);
     EPlaneRequest getRequest() const;
+    Runway* getRunway() const;
+    void setRunway(Runway*);
 
 };
 

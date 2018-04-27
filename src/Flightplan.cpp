@@ -52,7 +52,7 @@ EEvent Flightplan::getEvent(Time time) {
     Time currentTime(12);
 
     // While not midnight
-    while (currentTime < Time(23, 59)) {
+    while (true) {
         // Set to departure time
         currentTime = Time(currentTime.getHour(), fDeparture);
 
@@ -70,7 +70,11 @@ EEvent Flightplan::getEvent(Time time) {
         }
 
         // Set advance hour by interval
-        currentTime = Time(currentTime.getHour() + fInterval);
+        currentTime.advance(60 * fInterval);
+
+        if (currentTime.getHour() < 12) {
+            break;
+        }
     }
 
     return kNothing;

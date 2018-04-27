@@ -7,13 +7,12 @@
 
 #include <string>
 
-#include "Airplane.h"
 #include "DesignByContract.h"
 
 using namespace std;
 
+#include "Airplane.h"
 class Airport;
-class Airplane;
 
 enum ERunwayType { kAsphalt, kGrass, kDefaultRunType };
 
@@ -24,6 +23,12 @@ private:
      * bool indicating if the runway is free
      */
     bool fFree;
+
+    /**
+     * bool indicating if the taxipoint associated with the
+     * runway is free
+     */
+    bool fTaxipointFree;
 
     /**
      * Name of the runway
@@ -87,6 +92,8 @@ public:
     void setFree(bool free);
     string getTaxiPoint() const;
     void setTaxiPoint(const string&);
+    bool isTaxiPointFree() const;
+    void setTaxiPointFree(bool free);
 
 };
 

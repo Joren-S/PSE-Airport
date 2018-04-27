@@ -4,10 +4,15 @@
 
 #include "../headers/Airplane.h"
 
+using namespace std;
+
 Airplane::Airplane() {
     fPassengers = fGateID;
     fAltitude = 0;
     fTimeRemaining = 0;
+    fRunway = NULL;
+    fRequest = kIdle;
+    fGateID = -1;
     fStatus = kAway;
     fEngine = kDefaultEngine;
     fType = kDefaultType;
@@ -127,6 +132,7 @@ void Airplane::setTimeRemaining(int time) {
 }
 
 void Airplane::decreaseTimeRemaining() {
+    REQUIRE(fTimeRemaining > 0, "Can't decrease time when it's 0");
     fTimeRemaining--;
 }
 
@@ -146,3 +152,10 @@ void Airplane::setRequest(EPlaneRequest request) {
     fRequest = request;
 }
 
+Runway* Airplane::getRunway() const {
+    return fRunway;
+}
+
+void Airplane::setRunway(Runway* runway) {
+    fRunway = runway;
+}

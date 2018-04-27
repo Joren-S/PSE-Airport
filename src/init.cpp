@@ -1,8 +1,8 @@
 #include "../headers/System.h"
-#define ENDTIME Time(18)
-#define INPUTFILENAME "../input.xml"
-#define ATCFILENAME "../output/ATC.txt"
-#define LOGFILENAME "../output/log.txt"
+#define ENDTIME         Time(18)
+#define INPUTFILENAME   "../input.xml"
+#define ATCFILENAME     "../output/ATC.txt"
+#define LOGFILENAME     "../output/log.txt"
 
 int main() {
     // Read input
@@ -10,6 +10,10 @@ int main() {
 
     // Output file for atc
     ofstream atc(ATCFILENAME);
+
+    if (atc.fail()) {
+        cout << "huh";
+    }
 
     // Output file for logging
     ofstream log(LOGFILENAME);

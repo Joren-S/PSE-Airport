@@ -4,6 +4,8 @@
 
 #include "../headers/Time.h"
 
+using namespace std;
+
 Time::Time(int hour, int minute) {
     setHour(hour);
     setMinute(minute);

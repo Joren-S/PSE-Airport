@@ -9,7 +9,6 @@
 #include <string>
 #include <sstream>
 
-using namespace std;
 
 class Time {
 private:
@@ -31,7 +30,7 @@ public:
     /**
      * Return the time in a formatted style like such: "13:45"
      */
-    string formatted() const;
+    std::string formatted() const;
 
     /**
      * Advances the time by an amount of minutes

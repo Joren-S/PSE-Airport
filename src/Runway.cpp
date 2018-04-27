@@ -125,3 +125,11 @@ bool Runway::validForAirplane(Airplane *plane) const {
     }
     return false;
 }
+
+bool Runway::isTaxiPointFree() const {
+    return fTaxipointFree;
+}
+
+void Runway::setTaxiPointFree(bool free) {
+    fTaxipointFree = free;
+}

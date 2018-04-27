@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 // Libraries
 #include "gtest/gtest.h"
@@ -20,6 +21,7 @@
 #include "Runway.h"
 #include "Input.h"
 #include "Time.h"
+#include "ATC.h"
 
 
 class System {
@@ -41,11 +43,6 @@ private:
     Time fEndTime;
 
     /**
-     * Output stream for ATC
-     */
-    ostream& fATC;
-
-    /**
      * Output stream for all logging
      */
     ostream& fLog;
@@ -55,8 +52,7 @@ private:
      */
     Airport* fAirport;
 
-    bool f3Free;
-    bool f5Free;
+    ATC fATC;
 
     /**
      * Vector containing all the flightplans
@@ -78,7 +74,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kLanded
      */
-    void land(Airplane*) const;
+    void land(Airplane*);
 
     /**
      * Performs duties at the gate for an airplane in an airport.
