@@ -151,7 +151,7 @@ void System::land(Airplane *plane) {
                     // Send message to fATC
                     string message;
                     if (plane->getAltitude() == 5) message = "Descend and maintain three thousand feet, " + plane->getCallsign() + ".";
-                    else message = "Cleared ILS approach runway " + fAirport->getRunway(plane->getPosition())->getName() + ", " + plane->getCallsign() + ".";
+                    else message = "Cleared ILS approach runway " + plane->getRunway()->getName() + ", " + plane->getCallsign() + ".";
                     fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                     // Set request
@@ -308,6 +308,11 @@ void System::land(Airplane *plane) {
         else if (status == kCrossing) {
             plane->setTimeRemaining(1);
         }
+
+        else if (status == kDeboarding) {
+            plane->setTimeRemaining(plane->getPassengers() / 2);
+            plane->setRequest(kConfirmed);
+        }
     }
 
     // Decrease time of operation
@@ -338,7 +343,9 @@ void System::land(Airplane *plane) {
         // Plane has landed
         if (plane->getAltitude() == 0) {
             // Log event
-            fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has landed at " << fAirport->getName() << " on runway RUNWAY" << endl;
+            fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has landed at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
+
+            plane->getRunway()->setFree(true);
 
             // Change status
             plane->setStatus(kTaxiArrival);
@@ -359,7 +366,7 @@ void System::land(Airplane *plane) {
 
             // Plane is landing
             if (plane->getAltitude() == 0) {
-                fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is landing at " << fAirport->getName() << " on runway RUNWAY" << endl;
+                fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is landing at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
             }
 
             // Plane has circled
@@ -405,7 +412,7 @@ void System::land(Airplane *plane) {
             fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl;
 
             // Change status to at airport
-            plane->setStatus(kAirport);
+            plane->setStatus(kDeboarding);
         }
 
         // Arrived at taxipoint
@@ -418,6 +425,17 @@ void System::land(Airplane *plane) {
         }
 
         // Set request status to idle
+        plane->setRequest(kIdle);
+    }
+
+    else if (status == kDeboarding) {
+        // Log event
+        fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers exited " <<
+             plane->getCallsign() << " at gate " << plane->getGateID() << " of " << fAirport->getName() << endl;
+
+        // Change status
+        plane->setStatus(kAirport);
+
         plane->setRequest(kIdle);
     }
 }
@@ -463,21 +481,21 @@ void System::run() {
             Airplane* airplane = flightplan->getAirplane();
 
             // Change airplane status according to flightplan
-            if (airplane->getStatus() == kAway or airplane->getStatus() == kAirport) {
-                if (event == kLand) {
-                    airplane->setStatus(kApproaching);
-                    cout << fTime.formatted() << endl;
-                }
-                if (event == kTakeoff) {
-                    airplane->setStatus(kGate);
-                }
+            // Plane has to be away to land
+            if (airplane->getStatus() == kAway and event == kLand) {
+                airplane->setStatus(kApproaching);
+            }
+
+            // Plane has to be at airport to takeoff
+            if (airplane->getStatus() == kAirport and event == kTakeoff) {
+                airplane->setStatus(kGate);
             }
 
             // Get the airplane status
             EPlaneStatus status = airplane->getStatus();
 
             // Perform necessary actions according to plane status
-            if (status == kApproaching or status == kDescending or status == kCrossing or status == kTaxiArrival) {
+            if (status == kApproaching or status == kDescending or status == kCrossing or status == kDeboarding or status == kTaxiArrival) {
                 land(airplane);
             }
             else if (airplane->getStatus() == kGate) {

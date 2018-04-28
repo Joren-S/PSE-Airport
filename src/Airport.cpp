@@ -155,7 +155,7 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     for (unsigned int i=0; i<runways.size(); i++) {
         if (runways[i]->getTaxiPoint() == airplane->getPosition()) {
             if (airplane->getStatus() == kTaxiArrival) {
-                return i-1 >= 0? runways[i-1]: NULL;
+                return (i == 0? NULL: runways[i-1]);
             }
             if (airplane->getStatus() == kTaxiDeparture) {
                 return i+1 < runways.size()? runways[i+1]: NULL;

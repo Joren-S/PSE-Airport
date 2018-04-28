@@ -146,6 +146,7 @@ void Input::readAirplane(TiXmlElement *elem) {
 
             // Set gate and altitude of plane
             if (flightplan->getArrival() > flightplan->getDeparture()) {
+                tmp->setStatus(kAirport);
                 tmp->setGateID(airports[0]->getFreeGate());
             }
 

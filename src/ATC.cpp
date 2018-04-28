@@ -218,19 +218,21 @@ void ATC::doHeartbeat(Time curTime) {
         if (airplane->getPosition().empty()) {
 
             // Change the position of the plane to the taxipoint of the runway
-            airplane->setPosition(airplane->getRunway()->getTaxiPoint());
+//            airplane->setPosition(airplane->getRunway()->getTaxiPoint());
 
             // Runway closest to the gates
-            if (airplane->getPosition() == fAirport->getRunways()[0]->getTaxiPoint()) {
+            if (airplane->getRunway() == fAirport->getRunways()[0]) {
 
                 // Get free gate
                 int gate = fAirport->getFreeGate();
                 ostringstream stream;
                 stream << gate;
 
+                airplane->setGateID(gate);
+
                 // Set up message
-                string message = airplane->getCallsign() + ", taxi tot gate " + stream.str()
-                                 + " via " + airplane->getPosition() + ".";
+                string message = airplane->getCallsign() + ", taxi to gate " + stream.str()
+                                 + " via " + airplane->getRunway()->getTaxiPoint() + ".";
 
                 // Send message to plane
                 fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
@@ -248,6 +250,8 @@ void ATC::doHeartbeat(Time curTime) {
                 // Send message to plane
                 fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
             }
+
+            airplane->setRequest(kAccepted);
         }
 
         else {
@@ -267,6 +271,8 @@ void ATC::doHeartbeat(Time curTime) {
                     ostringstream stream;
                     stream << gate;
 
+                    airplane->setGateID(gate);
+
                     message = airplane->getCallsign() + ", cleared to cross " +
                               runway->getName() + " taxi to gate " + stream.str()
                               + " via " + runway->getTaxiPoint() + ", " + airplane->getCallsign() + ".";
@@ -280,6 +286,8 @@ void ATC::doHeartbeat(Time curTime) {
 
                 // Send message to plane
                 fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+
+                airplane->setRequest(kAccepted);
             }
 
             // Runway is not free, set request to denied
