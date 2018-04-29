@@ -240,12 +240,16 @@ void ATC::doHeartbeat(Time curTime) {
             }
 
             else {
-                // Get the next runway
+//                Runway* runway = NULL;
+//                if ()
+                // Get the next runway by temporarily setting the position of the plane
+                airplane->setPosition(airplane->getRunway()->getTaxiPoint());
                 Runway* runway = fAirport->getNextRunway(airplane);
+                airplane->setPosition("");
 
                 // Set up message
                 string message = airplane->getCallsign() + ", taxi to holding point " +
-                                 runway->getName() + " via " + airplane->getPosition() + ".";
+                                 runway->getName() + " via " + airplane->getRunway()->getTaxiPoint() + ".";
 
                 // Send message to plane
                 fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
@@ -279,9 +283,15 @@ void ATC::doHeartbeat(Time curTime) {
                 }
 
                 else {
+                    string position = airplane->getPosition();
+                    airplane->setPosition(runway->getTaxiPoint());
+                    Runway* nextRunway = fAirport->getNextRunway(airplane);
+                    airplane->setPosition(position);
+
+
                     message = airplane->getCallsign() + ", cleared to cross " +
-                              runway->getName() + " taxi to holding point " + runway->getName()
-                              + " via " + airplane->getPosition() + ", " + airplane->getCallsign();
+                              runway->getName() + ", taxi to holding point " + nextRunway->getName()
+                              + " via " + runway->getTaxiPoint() + ", " + airplane->getCallsign();
                 }
 
                 // Send message to plane

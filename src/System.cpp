@@ -388,6 +388,8 @@ void System::land(Airplane *plane) {
         // Get the runway the plane just crossed
         Runway* runway = fAirport->getNextRunway(plane);
 
+        string pos = plane->getPosition();
+
         // Log event
         fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " crossed " << runway->getName() << "." << endl;
 
