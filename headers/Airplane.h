@@ -10,7 +10,7 @@
 
 using namespace std;
 
-enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing };
+enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing, kAscending, kPushback };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
