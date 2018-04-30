@@ -132,7 +132,9 @@ void Airplane::setTimeRemaining(int time) {
 }
 
 void Airplane::decreaseTimeRemaining() {
-    REQUIRE(fTimeRemaining > 0, "Can't decrease time when it's 0");
+    if (fTimeRemaining == 0) {
+        return;
+    }
     fTimeRemaining--;
 }
 
