@@ -1,0 +1,40 @@
+Joren
+-----
+Adding requires, ensures, documentation, properlyInitialized and testing:
+Airport
+ATC
+Runway
+
+Fuel inlezen en gebruiken takeoff
+
+Input testing: failures
+
+Output testing
+
+Grafische impressie
+
+Note:
+eerste runway
+
+Documentation system
+
+
+Max
+-----
+Adding requires, ensures, documentation, properlyInitialized and testing:
+Airplane
+Input
+Flightplan
+Time
+
+Input testing: happy day
+
+Output testing
+
+Squawk
+
+Documentation system
+
+
+
+
