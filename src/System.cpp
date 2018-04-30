@@ -4,7 +4,7 @@
 
 #include "../headers/System.h"
 
-System::System(ostream& atc, ostream& log, Time end): fEndTime(end), fATC(atc), fLog(log) {
+System::System(ostream& atc, Time end): fEndTime(end), fATC(new ATC(atc)) {
     fTime = Time();
     fAirport = NULL;
     fInitCheck = this;
@@ -19,7 +19,7 @@ void System::import(Input &input) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     fFlightplans = input.getFlightplans();
     fAirport = input.getAirports()[0];
-    fATC.setAirport(fAirport);
+    fATC->setAirport(fAirport);
 }
 
 void System::info(const string &filename) {
@@ -81,7 +81,8 @@ void System::info(const string &filename) {
     fLog.close();
 }
 
-void System::land(Airplane *plane) {
+
+void System::land(Airplane *plane, ostream& fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
 
     // Get status
@@ -98,10 +99,10 @@ void System::land(Airplane *plane) {
 
                 // Send message to fATC
                 string message = fAirport->getCallsign() + ", " + plane->getCallsign() + ", arriving at " + fAirport->getName() + ".";
-                fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                 // Send the request
-                fATC.sendRequest(fTime, plane);
+                fATC->sendRequest(fTime, plane);
 
                 // Set request to pending
                 plane->setRequest(kPending);
@@ -113,7 +114,7 @@ void System::land(Airplane *plane) {
             if (plane->getRequest() == kAccepted) {
                 // Send message to fATC
                 string message = "Descend and maintain five thousand feet, squawking SQUAWKCODE, " + plane->getCallsign();
-                fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                 // Set request to confirmed
                 plane->setRequest(kConfirmed);
@@ -133,7 +134,7 @@ void System::land(Airplane *plane) {
             }
         }
 
-        // Plane is descending
+            // Plane is descending
         else if (status == kDescending) {
 
             // If plane is at two of the key altitudes, check with fATC
@@ -142,7 +143,7 @@ void System::land(Airplane *plane) {
                 // If request is idle, nothing has been sent yet
                 if (plane->getRequest() == kIdle) {
                     // Send request to fATC
-                    fATC.sendRequest(fTime, plane);
+                    fATC->sendRequest(fTime, plane);
                     return;
                 }
 
@@ -152,7 +153,7 @@ void System::land(Airplane *plane) {
                     string message;
                     if (plane->getAltitude() == 5) message = "Descend and maintain three thousand feet, " + plane->getCallsign() + ".";
                     else message = "Cleared ILS approach runway " + plane->getRunway()->getName() + ", " + plane->getCallsign() + ".";
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                     // Set request
                     plane->setRequest(kConfirmed);
@@ -169,20 +170,20 @@ void System::land(Airplane *plane) {
                 if (plane->getRequest() == kDenied) {
                     // Send message to fATC
                     string message = "Holding south on the one eighty radial, " + plane->getCallsign();
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                     // Set time remaining
                     plane->setTimeRemaining(3);
                 }
             }
 
-            // Plane is going to land
+                // Plane is going to land
             else if (plane->getAltitude() == 0) {
                 plane->setTimeRemaining(2);
                 plane->setRequest(kConfirmed);
             }
 
-            // Normal descend
+                // Normal descend
             else {
                 plane->setTimeRemaining(plane->getEngine() == kJet? 1:2);
                 plane->setRequest(kConfirmed);
@@ -190,7 +191,7 @@ void System::land(Airplane *plane) {
 
         }
 
-        // Plane has landed
+            // Plane has landed
         else if (status == kTaxiArrival) {
 
             if (plane->getRequest() == kIdle) {
@@ -199,7 +200,7 @@ void System::land(Airplane *plane) {
                     // Send message to fATC
                     string message = fAirport->getCallsign() + ", " + plane->getCallsign() + ", runway " +
                                      plane->getRunway()->getName() + " vacated.";
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
                 }
 
                 else {
@@ -208,11 +209,11 @@ void System::land(Airplane *plane) {
 
                     // Send message to fATC
                     string message = fAirport->getCallsign() + ", " + plane->getCallsign() + ", holding short at " + runway->getName() + ".";
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
                 }
 
                 // Send the request
-                fATC.sendRequest(fTime, plane);
+                fATC->sendRequest(fTime, plane);
 
                 // Set request to pending
                 plane->setRequest(kPending);
@@ -240,7 +241,7 @@ void System::land(Airplane *plane) {
 
                         // Send message to fATC
                         string message = "Taxi to gate " + stream.str() + " via " + plane->getPosition() + ", " + plane->getCallsign() + ".";
-                        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
                     }
 
                     else {
@@ -249,7 +250,7 @@ void System::land(Airplane *plane) {
 
                         // Send message to fATC
                         string message = "Taxi to holding point " + next->getName() + " via " + plane->getPosition() + ".";
-                        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
                     }
 
                     // Change status to taxi arrival
@@ -257,7 +258,7 @@ void System::land(Airplane *plane) {
                 }
 
 
-                // Plane is about to cross last runway
+                    // Plane is about to cross last runway
                 else if (plane->getPosition() == fAirport->getRunways()[1]->getTaxiPoint()) {
                     // Get next runway
                     Runway* next = fAirport->getNextRunway(plane);
@@ -268,13 +269,13 @@ void System::land(Airplane *plane) {
 
                     // Send message to fATC
                     string message = "Cleared to cross " + next->getName() + ", taxi to gate " + stream.str() + " via " + next->getTaxiPoint() + ", " + plane->getCallsign() + ".";
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                     // Set plane status to crossing
                     plane->setStatus(kCrossing);
                 }
 
-                // Plane crosses a runway
+                    // Plane crosses a runway
                 else {
                     // Get next runway
                     Runway* next = fAirport->getNextRunway(plane);
@@ -287,7 +288,7 @@ void System::land(Airplane *plane) {
 
                     // Send message to fATC
                     string message = "Cleared to cross " + next->getName() + ", taxi to holding point " + afterNext->getName() + " via " + next->getTaxiPoint() + ", " + plane->getCallsign() + ".";
-                    fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+                    fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
                     // Set plane status to crossing
                     plane->setStatus(kCrossing);
@@ -338,7 +339,7 @@ void System::land(Airplane *plane) {
         plane->setRequest(kIdle);
     }
 
-    // Plane has finished descending
+        // Plane has finished descending
     else if (status == kDescending) {
         // Plane has landed
         if (plane->getAltitude() == 0) {
@@ -354,11 +355,11 @@ void System::land(Airplane *plane) {
         else {
 
             if (plane->getAltitude() == 3) {
-                fATC.set3occupied(false);
+                fATC->set3occupied(false);
             }
 
             if (plane->getAltitude() == 5) {
-                fATC.set5occupied(false);
+                fATC->set5occupied(false);
             }
 
             // Decrease altitude
@@ -369,12 +370,12 @@ void System::land(Airplane *plane) {
                 fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is landing at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
             }
 
-            // Plane has circled
+                // Plane has circled
             else if ((plane->getAltitude() == 3 or plane->getAltitude() == 5) and plane->getRequest() == kDenied) {
                 fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has circled at " << plane->getAltitude() << ".000ft." << endl;
             }
 
-            // Normal descend
+                // Normal descend
             else {
                 fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " descended to " << plane->getAltitude() << ".000ft." << endl;
             }
@@ -417,7 +418,7 @@ void System::land(Airplane *plane) {
             plane->setStatus(kDeboarding);
         }
 
-        // Arrived at taxipoint
+            // Arrived at taxipoint
         else {
             // Get runway
             Runway* runway = fAirport->getNextRunway(plane);
@@ -436,7 +437,7 @@ void System::land(Airplane *plane) {
              plane->getCallsign() << " at gate " << plane->getGateID() << " of " << fAirport->getName() << endl;
 
         // Change status
-        plane->setStatus(kAirport);
+        plane->setStatus(kParked);
 
         plane->setRequest(kIdle);
     }
@@ -444,7 +445,8 @@ void System::land(Airplane *plane) {
 
 #include <cmath>
 
-void System::takeoff(Airplane *plane) const {
+
+void System::takeoff(Airplane *plane, ostream& fLog) const {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     REQUIRE(this->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(plane != NULL, "Plane object does not exist.");
@@ -452,30 +454,79 @@ void System::takeoff(Airplane *plane) const {
     // if plane is still busy, we do nothing
     if (plane->getTimeRemaining() == 0) {
 
-        // if plane has an "invalid" status, we do nothing
+        // get needed information about airplane
         EPlaneSize size = plane->getSize();
         EPlaneStatus status = plane->getStatus();
         EPlaneRequest request = plane->getRequest();
+        string planeCS = plane->getCallsign();
+        string portCS = getAirport()->getCallsign();
 
+        Runway *dest = plane->getRunway();
+
+        // if plane has an "invalid" status, we do nothing
         if (status == kApproaching or status == kDescending or status == kTaxiArrival or status == kAway) {
             return;
         }
 
-        // pre-takeoff
+
+        // if plane is at airport, but not yet refueled and boarded
         if (status == kAirport) {
-            //refuel and let passengers board
-            plane->setTimeRemaining(ceil(plane->getPassengers() / 2) + 1);
-            plane->setStatus(kGate);
-            return;
+
+            // Check if plane already has IFR clearancy
+            if (request == kAccepted) {
+                // response
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Cleared to " + dest->getName() + ", initial altitude five thousand, expecting one zero zero in ten, squawking SQUAWK" + ", " + planeCS + "."));
+
+                // If so, we refuel and let passengers board
+
+                // TODO: fuel
+
+                plane->setTimeRemaining(int(ceil(plane->getPassengers() / 2.0)));
+
+                // log
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " has been refueled" << endl;
+                fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers boarded " << plane->getModel() << " at Gate " << plane->getGateID() << " of " << getAirport()->getName() << endl;
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is standing at Gate" << plane->getGateID() << endl;
+
+                // set status to kGate (= fully ready to start takeoff sequence) and return
+                plane->setStatus(kGate);
+
+                return;
+            }
+
+                // If plane hasn't sent a request yet, or the previous request was denied
+            else if (request == kIdle or request == kDenied) {
+
+                // Send new request to ATC, which takes 1 minute, and we change the status of the request
+                fATC->sendRequest(fTime, plane);
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", planeCS + ", " + planeCS + ", requesting IFR clearancy."));
+
+                // Advance
+                plane->setTimeRemaining(1);
+                plane->setRequest(kPending);
+                return;
+            }
+
+                // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
+            else return;
         }
 
-        // plane is fully ready and at gate
+        // plane is done refueling and boarding
         if (status == kGate) {
 
-            // plane has permission to start pushback
+            // Check if plane already has permission to start pushback
             if (request == kAccepted) {
+                // response
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Pushback approved, " + planeCS + "."));
+
+                // log
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is being pushed back" << endl;
+
+                // If so, we start the pushback and "forget" the previous request (kIdle)
                 plane->setStatus(kPushback);
                 plane->setRequest(kIdle);
+
+                // Depending on the size, pushing back takes longer or shorter
                 if (size == kSmall) {
                     plane->setTimeRemaining(1);
                 }
@@ -485,86 +536,237 @@ void System::takeoff(Airplane *plane) const {
                 if (size == kLarge) {
                     plane->setTimeRemaining(3);
                 }
+                return;
             }
 
-            // plane was denied or hasn't requested yet
+                // If plane hasn't sent a request yet, or the previous request was denied
             else if (request == kIdle or request == kDenied) {
-                // send request
+
+                // Send new request to ATC, which takes 1 minute, and we change the status of the request
                 fATC->sendRequest(fTime, plane);
+
+                stringstream ss;
+                ss << planeCS << ", " << planeCS << " at gate " << plane->getGateID() << ", requesting pushback.";
+
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", ss.str()));
                 plane->setTimeRemaining(1);
                 plane->setRequest(kPending);
                 return;
             }
-            // plane hasn't recieved an answer yet: keep waiting
+
+                // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
             else return;
         }
 
+        // plane is done pushing back
         if (status == kPushback) {
 
-            // plane has permission to start taxiing
+            // Check if plane already has permission to start taxiing
             if (request == kAccepted) {
+
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is taxiing to runway " << getAirport()->getRunway(plane->getRunway()->getTaxiPoint())->getName() << endl;
+
+                plane->setPosition("");
                 plane->setStatus(kTaxiDeparture);
                 plane->setRequest(kIdle);
             }
 
-            // plane was denied or hasn't requested yet
+                // If plane hasn't sent a request yet, or the previous request was denied
             else if (request == kIdle or request == kDenied) {
-                // send request
+
+                // Send new request to ATC, which takes 1 minute, and we change the status of the request
                 fATC->sendRequest(fTime, plane);
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", planeCS + " is ready to taxi."));
+
                 plane->setTimeRemaining(1);
                 plane->setRequest(kPending);
                 return;
             }
-            // plane hasn't recieved an answer yet: keep waiting
+
+                // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
             else return;
         }
 
+        // plane is at a taxipoint
         if (status == kTaxiDeparture) {
-            // Taxi to destination
-            if (plane->doNextTaxiStep()) {
-                plane->setStatus(kDeparture);
+
+            string tp = plane->getPosition();
+            Runway *cur_rw = getAirport()->getRunway(tp);
+            Runway *next_rw = getAirport()->getNextRunway(plane);
+
+
+            // If at start of taxi-procedure / gate after pushback
+            if (tp.empty()) {
+
+                // go to next taxipoint
+
+                // GET FIRST RUNWAY
+
+//                error
+
+
+                plane->setPosition(" new taxipoint ");
+                plane->setTimeRemaining(5);
+                return;
             }
-            else return;
+
+                // If taxiing
+            else {
+
+                // If at destination
+                if (tp == plane->getRunway()->getTaxiPoint()) {
+                    fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Taxi to runway " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
+                    plane->setStatus(kWaitingForDeparture);
+                }
+
+                    // if not: cross current runway
+                else {
+
+                    // Check if plane already has permission to start crossing
+                    if (request == kAccepted) {
+                        // response
+                        fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Cleared to cross " + cur_rw->getName() + ", taxi to holding point " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
+                        plane->setStatus(kCrossing);
+                        plane->setRequest(kIdle);
+                        next_rw->setFree(false);
+                        plane->setTimeRemaining(1); // crossing
+                        return;
+                    }
+
+                    if (request == kDenied) {
+                        fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Holding position, " + planeCS + "."));
+                        plane->setTimeRemaining(1); // wait
+                        return;
+                    }
+
+                        // If plane hasn't sent a request yet, or the previous request was denied and plane waited.
+                    else if (request == kIdle) {
+
+                        // Send new request to ATC, which takes 1 minute, and we change the status of the request
+                        fATC->sendRequest(fTime, plane);
+                        fATC->sendMessage(fATC->formatMessage(fTime, "AIR", portCS + ", " + planeCS + ", holding short at " + cur_rw->getName() + "."));
+                        plane->setTimeRemaining(1);
+                        plane->setRequest(kPending);
+                        return;
+                    }
+
+                        // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
+                    else return;
+
+                }
+            }
         }
 
+        // plane is done crossing runway
         if (status == kCrossing) {
-            // we immediately set it to kTaxiDeparture since we can never be stuck in kCrossing
-            // also, kCrossing only takes 1 minute.
+
+            // Set runway that was crossed to free
+            getAirport()->getRunway(plane->getPosition())->setFree(true);
+
+            // Set new position and status
+            plane->setPosition(getAirport()->getNextRunway(plane)->getTaxiPoint());
             plane->setStatus(kTaxiDeparture);
             return;
         }
 
+        // Plane is done taxiing and is waiting at runway
+        if (status == kWaitingForDeparture) {
+
+            // Check if plane already has permission to go on runway and start taking off
+            if (request == kAcceptedImmediate) {
+                plane->setStatus(kAscending);
+                plane->setRequest(kIdle);
+                plane->setTimeRemaining(1); // line up
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Runway " + dest->getName() + " cleared for take-off, " + planeCS + "."));
+                return;
+            }
+
+            // Check if plane already has permission to go on runway and wait
+            if (request == kAccepted) {
+                plane->setStatus(kDeparture);
+                plane->setRequest(kIdle);
+                plane->setTimeRemaining(1); // line up
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Lining up runway " + dest->getName() + " and wait, " + planeCS + "."));
+                return;
+            }
+
+            // plane has to wait
+            if (request == kDenied) {
+                plane->setTimeRemaining(1);
+                plane->setRequest(kIdle);
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Holding position, " + planeCS + "."));
+                return;
+            }
+
+                // If plane hasn't sent a request yet, or the previous request was denied and plane has waited
+            else if (request == kIdle) {
+
+                // Send new request to ATC, which takes 1 minute, and we change the status of the request
+                fATC->sendRequest(fTime, plane);
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", portCS + ", " + planeCS + ", holding short at " + dest->getName() + "."));
+                plane->setTimeRemaining(1);
+                plane->setRequest(kPending);
+                return;
+            }
+
+                // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
+            else return;
+        }
+
+        // Plane is waiting on runway
         if (status == kDeparture) {
-            // plane has permission to start taking off
+
+            // Check if plane already has permission to take off
             if (request == kAccepted) {
                 plane->setStatus(kAscending);
                 plane->setRequest(kIdle);
+                fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Runway " + dest->getName() + " cleared for take-off, " + planeCS + "."));
+
+                // log
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is taking off at " << getAirport()->getName() << " on runway " << dest->getName() << endl;
             }
 
-            // plane was denied or hasn't requested yet
+                // If plane hasn't sent a request yet, or the previous request was denied
             else if (request == kIdle or request == kDenied) {
-                // send request
+
+                // Send new request to ATC, which takes 1 minute, and we change the status of the request
+                // no message is needed since in this scenario (waiting on runway) the ATC will contact first.
                 fATC->sendRequest(fTime, plane);
                 plane->setTimeRemaining(1);
                 plane->setRequest(kPending);
                 return;
             }
-            // plane hasn't recieved an answer yet: keep waiting
+
+                // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
             else return;
         }
 
+        // Plane is taking off
         if (status == kAscending) {
+
+            // If plane is at a height < 5000 ft
             if (plane->getAltitude() < 5) {
+
+                // Ascend 1000 ft
                 plane->increaseAltitude(1);
-                plane->setTimeRemaining(plane->getType() == kPropeller? 2 : 1);
+                plane->setTimeRemaining(plane->getEngine() == kPropeller? 2 : 1);
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " ascended to " << plane->getAltitude() << ".000 ft." << endl;
             }
+
+                // plane is at a 5000 ft or higher
             else {
+
+                // plane is finished, left airport
+                fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " has left " << getAirport()->getName() << endl;
                 plane->setStatus(kAway);
             }
             return;
         }
     }
 }
+
+
+
 
 /*
  * fATC in System needs to become an ATC class instead of an ostream
@@ -575,14 +777,14 @@ void System::takeoff(Airplane *plane) const {
  * */
 
 
-void System::run() {
+void System::run(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
 
     while (!simulationFinished()) {
 
         // Each tick, we make sure our ATC handles requests.
-        fATC->doHeartbeat();
+        fATC->doHeartbeat(fTime);
 
 
         // Get flightplans and set up iterator
@@ -604,31 +806,24 @@ void System::run() {
             // Get the airplane
             Airplane* airplane = flightplan->getAirplane();
 
-            // Set airplane status
-            if (event == kLand) {
+            if (airplane->getStatus() == kAway and event == kLand) {
                 airplane->setStatus(kApproaching);
             }
-            if (event == kTakeoff) {
-                airplane->setStatus(kGate);
+
+            // Plane has to be at airport to takeoff
+            if (airplane->getStatus() == kParked and event == kTakeoff) {
+                airplane->setStatus(kAirport);
             }
 
-            EPlaneStatus status = airplane->getStatus();
+            land(airplane, log);
 
-            // Perform necessary actions according to plane status
-            if (status == kApproaching or status == kDescending) {
-                land(airplane);
-            }
-            else if (airplane->getStatus() == kGate) {
-                takeoff(airplane);
-            }
+            takeoff(airplane, log);
+
+            airplane->decreaseTimeRemaining();
         }
 
         // Advance time
         fTime.advance();
-        cout << fTime.formatted() << endl;
-        if (fTime == Time(12,15)) {
-            cout << "What" << endl;
-        }
     }
 
     ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
@@ -660,4 +855,13 @@ System::~System() {
     for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
         delete *flightplanItr;
     }
+}
+
+
+void System::initializeATC(ostream &log) {
+    fATC = new ATC(log);
+}
+
+void System::setEndTime(Time end) {
+    fEndTime = end;
 }

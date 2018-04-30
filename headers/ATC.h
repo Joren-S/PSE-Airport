@@ -9,6 +9,12 @@
 #include "Time.h"
 #include "Airport.h"
 
+struct Squawk {
+
+    int lastUsed;
+
+};
+
 struct ATCRequest {
     // Used to store a message for the ATC alongside the original time.
 

@@ -19,13 +19,13 @@ int main() {
     ofstream log(LOGFILENAME);
 
     // Initialize system
-    System system(atc, log, ENDTIME);
+    System system(atc,  ENDTIME);
 
     // Import data
     system.import(input);
 
     // Run the simulation
-    system.run();
+    system.run(log);
 
     // Close files
     atc.close();

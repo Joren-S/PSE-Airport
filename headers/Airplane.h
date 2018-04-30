@@ -17,7 +17,7 @@ class Runway;
 
 // Enums for the Airplane class
 
-enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kDeboarding, kGate, kDeparture, kAway, kAirport, kCrossing };
+enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kDeboarding, kGate, kDeparture, kAway, kAirport, kAscending, kPushback, kWaitingForDeparture, kParked, kCrossing, kCrossingDeparture };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
@@ -25,7 +25,7 @@ enum EPlaneSize { kSmall, kMedium, kLarge, kDefaultSize };
 
 enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
 
-enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle };
+enum EPlaneRequest { kPending, kAccepted, kDenied, kConfirmed, kAcceptedImmediate, kIdle };
 
 
 class Airplane {
@@ -159,6 +159,8 @@ public:
     const string &getPosition() const;
     void setRequest(EPlaneRequest);
     EPlaneRequest getRequest() const;
+    Runway* getRunway() const;
+    void setRunway(Runway*);
 
 };
 

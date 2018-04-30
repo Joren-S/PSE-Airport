@@ -24,12 +24,25 @@
 		<taxipoint>Bravo</taxipoint>
 	</TAXIROUTE>
 </RUNWAY>
+<!--<RUNWAY>-->
+	<!--<name>12B</name>-->
+	<!--<airport>ANR</airport>-->
+	<!--<type>asphalt</type>-->
+	<!--<length>1010</length>-->
+	<!--<TAXIROUTE>-->
+		<!--<taxipoint>Alpha</taxipoint>-->
+		<!--<crossing>11R</crossing>-->
+		<!--<taxipoint>Bravo</taxipoint>-->
+		<!--<crossing>11L</crossing>-->
+		<!--<taxipoint>Charlie</taxipoint>-->
+	<!--</TAXIROUTE>-->
+<!--</RUNWAY>-->
 <AIRPLANE>
 	<number>N11842</number>
 	<callsign>Cessna 842</callsign>
 	<model>Cessna 340</model>
 	<type>private</type>
-	<engine>propeller</engine>
+	<engine>jet</engine>
 	<size>small</size>
 	<passengers>8</passengers>
 	<FLIGHTPLAN>

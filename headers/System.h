@@ -43,16 +43,11 @@ private:
     Time fEndTime;
 
     /**
-     * Output stream for all logging
-     */
-    ostream& fLog;
-
-    /**
      * The airport of the simulation
      */
     Airport* fAirport;
 
-    ATC fATC;
+    ATC* fATC;
 
     /**
      * Vector containing all the flightplans
@@ -74,16 +69,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kLanded
      */
-    void land(Airplane*);
-
-    /**
-     * Performs duties at the gate for an airplane in an airport.
-     * Logs the info to an output stream, defaulted to "cout".
-     * REQUIRE: plane status is kLanded &&
-     * at least one airport in the system
-     * ENSURE: plane status is kGate
-     */
-    void gate(Airplane*) const;
+    void land(Airplane*, ostream& log);
 
     /**
      * Performs a takeoff of a plane on an airport
@@ -93,7 +79,7 @@ private:
      * at least one airport in the system
      * ENSURE: plane status is kFinished
      */
-    void takeoff(Airplane*) const;
+    void takeoff(Airplane*, ostream& log) const;
 
 public:
 
@@ -101,7 +87,7 @@ public:
      * Constructor
      * ENSURE: properlyInitialized
      */
-    System(ostream& atc, ostream& log, Time end);
+    System(ostream& atc, Time end);
 
     /**
      * Destructor
@@ -112,6 +98,11 @@ public:
      * Checks if the object is properly initialized
      */
     bool properlyInitialized() const;
+
+
+    void setEndTime(Time end);
+
+    void initializeATC(ostream& log);
 
     /**
      * Imports the given input
@@ -133,7 +124,7 @@ public:
      * simulation not ended yet.
      * ENSURE: simulation ended
      */
-    void run();
+    void run(ostream& log);
 
     /**
      * Getter for the airport in the simulation

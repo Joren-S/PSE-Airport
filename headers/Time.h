@@ -12,6 +12,7 @@
 
 class Time {
 private:
+
     /**
      * Pointer to itself
      */
