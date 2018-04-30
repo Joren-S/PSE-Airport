@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 // Libraries
 #include "gtest/gtest.h"

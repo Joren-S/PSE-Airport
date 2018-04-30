@@ -150,3 +150,11 @@ void Airplane::setRequest(EPlaneRequest request) {
 bool Airplane::properlyInitialized() const {
     return fInitCheck == this;
 }
+
+const string& Airplane::getDestination() const {
+    return fDestination;
+}
+
+void Airplane::setDestination(const string &dest){
+    fDestination = dest;
+}

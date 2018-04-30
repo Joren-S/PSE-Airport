@@ -10,7 +10,7 @@
 
 using namespace std;
 
-enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing, kAscending, kPushback };
+enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kGate, kDeparture, kAway, kAirport, kCrossing, kAscending, kPushback, kWaitingForDeparture };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
@@ -18,7 +18,7 @@ enum EPlaneSize { kSmall, kMedium, kLarge, kDefaultSize };
 
 enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
 
-enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle };
+enum EPlaneRequest { kPending, kAccepted, kDenied, kIdle, kAcceptedImmediate };
 
 
 class Airplane {
@@ -84,6 +84,11 @@ private:
      */
     EPlaneRequest fRequest;
 
+    /**
+     * Taxipoint tied to destination runway for takeoff.
+     */
+     string fDestination;
+
 public:
 
     /**
@@ -147,6 +152,8 @@ public:
     const string &getPosition() const;
     void setRequest(EPlaneRequest);
     EPlaneRequest getRequest() const;
+    void setDestination(const string&);
+    const string &getDestination() const;
 
 };
 

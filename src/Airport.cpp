@@ -153,11 +153,14 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     vector<Runway*>::const_iterator itr;
     vector<Runway*> runways = getRunways();
 
-    // TODO: not finished
-    for (itr = runways.begin(); itr != runways.end(); ++itr) {
-        if ((*itr)->getTaxiPoint() == airplane->getPosition()) {
-            if (airplane->getStatus() == kTaxiDeparture) {
-                return *itr;
+    for (unsigned int i=0; i<runways.size(); i++) {
+        if (runways[i]->getTaxiPoint() == airplane->getPosition()) {
+            EPlaneStatus status = airplane->getStatus();
+            if (status == kTaxiArrival or status == kCrossing) {
+                return (i == 0? NULL: runways[i-1]);
+            }
+            if (status == kTaxiDeparture) {
+                return i+1 < runways.size()? runways[i+1]: NULL;
             }
         }
     }
