@@ -4,7 +4,9 @@
 
 #include "../headers/Flightplan.h"
 
-Flightplan::Flightplan(): fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterval(-1) {}
+Flightplan::Flightplan(): fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterval(-1) {
+    fInitCheck = this;
+}
 
 bool Flightplan::complete() const {
     return !(fDeparture == -1 or fArrival == -1 or
@@ -90,4 +92,8 @@ void Flightplan::setAirplane(Airplane *airplane) {
 
 Flightplan::~Flightplan() {
     delete fAirplane;
+}
+
+bool Flightplan::properlyInitialized() const {
+    return fInitCheck == this;
 }

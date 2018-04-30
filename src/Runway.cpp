@@ -5,7 +5,9 @@
 #include "../headers/Runway.h"
 
 
-Runway::Runway(): fFree(true), fAirport(NULL), fType(kDefaultRunType), fLength(-1) {}
+Runway::Runway(): fFree(true), fAirport(NULL), fType(kDefaultRunType), fLength(-1) {
+    fInitCheck = this;
+}
 
 bool Runway::complete() const {
     return !(fType == kDefaultRunType or fAirport == NULL or
@@ -126,10 +128,6 @@ bool Runway::validForAirplane(Airplane *plane) const {
     return false;
 }
 
-bool Runway::isTaxiPointFree() const {
-    return fTaxipointFree;
-}
-
-void Runway::setTaxiPointFree(bool free) {
-    fTaxipointFree = free;
+bool Runway::properlyInitialized() const {
+    return fInitCheck == this;
 }

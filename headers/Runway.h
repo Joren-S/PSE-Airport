@@ -18,6 +18,10 @@ enum ERunwayType { kAsphalt, kGrass, kDefaultRunType };
 
 class Runway {
 private:
+    /**
+     * Pointer to itself
+     */
+    Runway *fInitCheck;
 
     /**
      * bool indicating if the runway is free
@@ -67,6 +71,11 @@ public:
      * Set airport to NULL
      */
     Runway();
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
     /**
      * Checks if all the data members were initialized

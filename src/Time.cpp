@@ -9,6 +9,7 @@ using namespace std;
 Time::Time(int hour, int minute) {
     setHour(hour);
     setMinute(minute);
+    fInitCheck = this;
 }
 
 string Time::formatted() const {
@@ -88,4 +89,8 @@ bool Time::operator<(const Time& time) const {
         return false;
     }
     return this->getMinute() < time.getMinute();
+}
+
+bool Time::properlyInitialized() const {
+    return fInitCheck == this;
 }

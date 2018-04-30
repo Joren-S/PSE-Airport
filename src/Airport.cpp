@@ -8,6 +8,7 @@
 
 Airport::Airport() {
     fGates = -1;
+    fInitCheck = this;
 }
 
 size_t Airport::amountOfRunways() const {
@@ -164,4 +165,8 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     }
 
     return NULL;
+}
+
+bool Airport::properlyInitialized() const {
+    return fInitCheck == this;
 }

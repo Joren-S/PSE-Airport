@@ -36,6 +36,11 @@ Input::Input(const string &filename) {
 
     // We are finished with our XML file, so we clear it.
     xml.Clear();
+    fInitCheck = this;
+}
+
+Input::Input() {
+    fInitCheck = this;
 }
 
 void Input::readAirplane(TiXmlElement *elem) {
@@ -500,4 +505,8 @@ vector<Airport*> Input::getAirports() const {
 
 vector<Flightplan*> Input::getFlightplans() const {
     return flightplans;
+}
+
+bool Input::properlyInitialized() const {
+    return fInitCheck == this;
 }
