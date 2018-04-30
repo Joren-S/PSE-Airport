@@ -35,6 +35,10 @@ Squawk
 
 Documentation system
 
-
+EXTRAS:
+Graphics engine
+Checking if a number in input is a number and not a string
+using namespace std; only in cpp files (better coding style)
+doxygen documentation
 
 
