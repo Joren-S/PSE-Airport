@@ -177,7 +177,7 @@ void Input::readAirplane(TiXmlElement *elem) {
     }
 
     // If all fields were present, no errors and airplane is complete, add the Airplane to our system.
-    if (fieldCount == 8 and tmp->complete()) {
+    if (fieldCount == 9 and tmp->complete()) {
         return;
     }
 

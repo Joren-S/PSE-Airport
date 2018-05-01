@@ -12,7 +12,8 @@
 
 int main() {
     // Read input
-    Input input(INPUTFILENAME);
+    Input input;
+    input.read(INPUTFILENAME);
 
     // Output file for atc
     ofstream atc(ATCFILENAME);
