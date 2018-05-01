@@ -19,7 +19,7 @@ class Runway; // Forward declaration
 
 // Enums for the Airplane class
 
-enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kCircling, kDeboarding, kGate, kDeparture, kAway,
+enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kCircling, kDeboarding, kTechnicalCheck, kGate, kDeparture, kAway,
                     kAirport, kAscending, kPushback, kWaitingForDeparture, kParked, kCrossingArrival, kCrossingDeparture };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };

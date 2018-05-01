@@ -104,8 +104,16 @@ void ATC::doHeartbeat(Time curTime) {
         // Change request status
         airplane->setRequest(kAccepted);
 
+        // Squawk code for plane
+        int squawk = getSquawk(airplane);
+        airplane->setSquawk(squawk);
+
+        // Convert to string
+        stringstream stream;
+        stream << squawk;
+
         // Send message to plane
-        string message = airplane->getCallsign() + ", radar contact, descend and maintain five thousand feet.";
+        string message = airplane->getCallsign() + ", radar contact, descend and maintain five thousand feet, squawk " + stream.str() + ".";
         fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
 
     }

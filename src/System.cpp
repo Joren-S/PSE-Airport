@@ -96,8 +96,12 @@ void System::approach(Airplane *plane, ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
     // Request has been accepted by fATC
     if (plane->getRequest() == kAccepted) {
+        // Convert int to string
+        stringstream stream;
+        stream << plane->getSquawk();
+
         // Send message to fATC
-        string message = "Descend and maintain five thousand feet, squawking SQUAWKCODE, " + plane->getCallsign() + ".";
+        string message = "Descend and maintain five thousand feet, squawking " + stream.str() + ", " + plane->getCallsign() + ".";
         fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Set the altitude of the plane
@@ -381,8 +385,32 @@ void System::deboard(Airplane *plane, ostream& log) {
     log << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers exited " <<
          plane->getCallsign() << " at gate " << plane->getGateID() << " of " << fAirport->getName() << endl;
 
+
+    if (plane->getSize() == kSmall) {
+        plane->setTimeRemaining(1);
+    }
+    else if (plane->getSize() == kMedium) {
+        plane->setTimeRemaining(2);
+    }
+    else if (plane->getSize() == kLarge) {
+        plane->setTimeRemaining(3);
+    }
+
     // Change status
-    plane->setStatus(kAirport);
+    plane->setStatus(kTechnicalCheck);
+
+    // Set request status to idle
+    plane->setRequest(kIdle);
+}
+
+void System::technicalCheck(Airplane *plane, ostream &log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
+
+    // Log event
+    log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has been checked for technical malfunctions" << endl;
+
+    // Change status
+    plane->setStatus(kParked);
 
     // Set request status to idle
     plane->setRequest(kIdle);
@@ -424,6 +452,11 @@ void System::land(Airplane *plane, ostream& log) {
     // Plane is deboarding
     else if (plane->getStatus() == kDeboarding) {
         deboard(plane, log);
+    }
+
+    // Plane is having a technical check
+    else if (plane->getStatus() == kTechnicalCheck) {
+        technicalCheck(plane, log);
     }
 }
 

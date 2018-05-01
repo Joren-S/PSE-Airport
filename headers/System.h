@@ -139,6 +139,13 @@ public:
     void deboard(Airplane*, ostream& log);
 
     /**
+     * Performs the technical check of the plane
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
+     */
+    void technicalCheck(Airplane*, ostream& log);
+
+    /**
      * Lands an airplane on the airport of the simulation.
      * Events are logged to the given ostream&.
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
