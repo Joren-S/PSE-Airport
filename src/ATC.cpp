@@ -15,21 +15,20 @@ ATC::ATC(ostream& stream): fStream(stream) {
     fInitCheck = this;
     f3Occupied = false;
     f5Occupied = false;
+    ENSURE(properlyInitialized(), "ATC was not properly initialized.");
 }
 
 bool ATC::properlyInitialized() const {
     return fInitCheck == this;
 }
 
-void ATC::setAirport(Airport *airport) {
-    fAirport = airport;
-}
-
-void ATC::sendMessage(const string &message) {
-    fStream << message << endl;
-}
 
 // Functions
+
+void ATC::sendMessage(const string &message) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    fStream << message << endl;
+}
 
 int ATC::getQueueSize() const {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
@@ -40,13 +39,11 @@ int ATC::getQueueSize() const {
 
 void ATC::sendRequest(Time time, Airplane *source) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-//    Time lastActive = getLastActive();
-//    REQUIRE(time < lastActive, "Message can't be send at a time that has already passed.");
+    REQUIRE(source != NULL, "Source is NULL.");
+    ATCRequest *rqst = new ATCRequest(time, source);
 
-    ATCRequest *msg = new ATCRequest(time, source);
-
-    getQueue()->push(msg);
-    ENSURE(getQueue()->back() == msg, "Message wasn't queued properly.");
+    getQueue()->push(rqst);
+    ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
 }
 
 string ATC::formatMessage(Time time, string source, string message) {
@@ -71,17 +68,16 @@ ATCRequest *ATC::getNextRequest() {
         return NULL;
     }
 
-    // If not empty:
-    // Get the message at the front of the queue and pop it.
-    ATCRequest *msg = getQueue()->front();
+    // If not empty, get the message at the front of the queue and pop it.
+    ATCRequest *rqst = getQueue()->front();
     getQueue()->pop();
 
-    // Make sure our message was retrieved and dequeued correctly.
-    ENSURE(getQueue()->front() != msg, "Message wasn't removed from the queue.");
-    ENSURE(msg != NULL, "Message popped from queue is NULL.");
+    // Make sure our message was retrieved and popped correctly.
+    ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
+    ENSURE(rqst != NULL, "Request popped from queue is NULL.");
 
     // Return our message.
-    return msg;
+    return rqst;
 }
 
 
@@ -96,9 +92,11 @@ void ATC::doHeartbeat(Time curTime) {
         return;
     }
 
-    // Get the airplane and status of airplane
+    // Get the airplane and status of airplane that made the request
     Airplane* airplane = request->fAirplane;
     EPlaneStatus status = airplane->getStatus();
+
+    // ---- LANDING ----
 
     // If plane is approaching, always accept request
     if (status == kApproaching) {
@@ -198,7 +196,7 @@ void ATC::doHeartbeat(Time curTime) {
         if (airplane->getPosition().empty()) {
 
             // Change the position of the plane to the taxipoint of the runway
-//            airplane->setPosition(airplane->getRunway()->getTaxiPoint());
+            // airplane->setPosition(airplane->getRunway()->getTaxiPoint());
 
             // Runway closest to the gates
             if (airplane->getRunway() == fAirport->getRunways()[0]) {
@@ -220,8 +218,8 @@ void ATC::doHeartbeat(Time curTime) {
             }
 
             else {
-//                Runway* runway = NULL;
-//                if ()
+                // Runway* runway = NULL;
+                // if ()
                 // Get the next runway by temporarily setting the position of the plane
                 airplane->setPosition(airplane->getRunway()->getTaxiPoint());
                 Runway* runway = fAirport->getNextRunway(airplane);
@@ -287,6 +285,122 @@ void ATC::doHeartbeat(Time curTime) {
         }
     }
 
+
+
+    // ---- TAKE-OFF ----
+
+    // First stage : Not refueled and not boarded.
+    else if (status == kAirport) {
+
+        // Requesting IFR clearance.
+        Runway *dest = getAirport()->getFreeRunway(airplane);
+        if (dest == NULL) {
+
+            // IFR clearance denied
+            airplane->setRunway(NULL);
+            airplane->setRequest(kDenied);
+        } else {
+
+            // IFR clearance granted.
+            airplane->setRunway(dest);
+            airplane->setRequest(kAccepted);
+            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
+                                                      ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + airplane->getSquawk() + "."));
+        }
+    }
+
+    // Plane was refueled and boared.
+    else if (status == kGate) {
+
+        // Requesting pushback
+        airplane->setRequest(kAccepted);
+        sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
+    }
+
+    // Plane was pushed back.
+    else if (status == kPushback) {
+
+        // Requesting permission to taxi
+        REQUIRE(getAirport()->getRunways().size() >= 1, "No runways in airport.");
+        Runway *firstRW = getAirport()->getRunways().at(0);
+        sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
+        airplane->setRequest(kAccepted);
+    }
+
+    // Plane started taxiing.
+    else if (status == kTaxiDeparture) {
+
+        // Requesting taxi instructions
+        Runway *rw = airplane->getRunway();
+
+        // if at destination -> go to runway
+        if (airplane->getPosition() == rw->getTaxiPoint()) {
+            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", taxi to runway " + rw->getName() + " via " + rw->getTaxiPoint() + "."));
+            airplane->setRequest(kDenied);
+        }
+
+        // if not at destination
+        else {
+
+            // if runway is free, plane can cross
+            if (rw->isFree()) {
+                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", cleared to cross " + rw->getName() + "."));
+                airplane->setRequest(kAccepted);
+            }
+
+            //if not, plane has to wait
+            else {
+                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+                airplane->setRequest(kDenied);
+            }
+        }
+    }
+
+    // Plane is waiting AT runway
+    else if (status == kWaitingForDeparture) {
+
+        // Requesting permission to take-off.
+        Runway *curRW = airplane->getRunway();
+        if (curRW->isFree()) {
+            if (f3Occupied == false) {
+
+                // Permission to line-up and take-off
+                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
+                airplane->setRequest(kAcceptedImmediate);
+            } else {
+
+                // Permission to line-up
+                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
+                airplane->setRequest(kAccepted);
+            }
+        } else {
+
+            // Permission denied, keep waiting.
+            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+            airplane->setRequest(kDenied);
+        }
+    }
+
+    // Plane is waiting ON runway
+    else if (status == kDeparture) {
+
+        // Requesting permission to start taking off
+        if (f3Occupied == false) {
+
+            // Permission granted, start take-off
+            airplane->setRequest(kAccepted);
+            string runwayName = getAirport()->getRunway(airplane->getPosition())->getName();
+            sendMessage(formatMessage(curTime, "ATC",
+                                      airplane->getCallsign() + ", runway " + runwayName + " cleared for take-off."));
+        }
+        else {
+
+            // Permission denied.
+            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+            airplane->setRequest(kDenied);
+        }
+    }
+
     // Let the plane wait a minute, message has to be sent
     airplane->setTimeRemaining(1);
 }
@@ -294,18 +408,50 @@ void ATC::doHeartbeat(Time curTime) {
 
 // Getters and setters
 queue<ATCRequest *> *ATC::getQueue() {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
     return &fQueue;
 }
 
 void ATC::setLastActive(Time time) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
     fLastActive = time;
+    ENSURE(fLastActive == time, "Field wasn't set properly");
 }
 
 Time ATC::getLastActive() const {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
     return fLastActive;
 }
 
 Airport* ATC::getAirport() const {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
     return fAirport;
 }
 
+void ATC::setAirport(Airport *airport) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    fAirport = airport;
+    ENSURE(fAirport == airport, "Field wasn't set properly");
+}
+
+bool ATC::get3occupied() const {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    return f3Occupied;
+}
+
+void ATC::set3occupied(bool occupied) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    f3Occupied = occupied;
+    ENSURE(f3Occupied == occupied, "Field wasn't set properly");
+}
+
+bool ATC::get5occupied() const {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    return f5Occupied;
+}
+
+void ATC::set5occupied(bool occupied) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    f5Occupied = occupied;
+    ENSURE(f5Occupied == occupied, "Field wasn't set properly");
+}
