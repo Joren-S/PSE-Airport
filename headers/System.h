@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 // Libraries
 #include "gtest/gtest.h"
@@ -33,7 +34,7 @@ private:
     System *fInitCheck;
 
     /**
-     * Object that keeps track of time
+     * Object that keeps track of current time
      */
     Time fTime;
 
@@ -47,6 +48,9 @@ private:
      */
     Airport* fAirport;
 
+    /**
+     * Air traffic control
+     */
     ATC* fATC;
 
     /**
@@ -61,13 +65,44 @@ private:
     bool simulationFinished() const;
 
     /**
-     * Lands an airplane on an airport.
-     * Logs the info to an output stream, defaulted to "cout".
-     * REQUIRE: plane status is approaching &&
-     * a gate at target airport is available &&
-     * a runway at target airport is available &&
-     * at least one airport in the system
-     * ENSURE: plane status is kLanded
+     * Performs the approach of a given plane.
+     * Events are logged to the given ostream&.
+     */
+    void approach(Airplane*, ostream& log);
+
+    /**
+     * Performs the descend of a given plane.
+     * Events are logged to the given ostream&.
+     */
+    void descend(Airplane*, ostream& log);
+
+    /**
+     * Performs the circling of a given plane.
+     * Events are logged to the given ostream&.
+     */
+    void circle(Airplane*, ostream& log);
+
+    /**
+     * Performs the taxiing upon arrival of a given plane.
+     * Events are logged to the given ostream&.
+     */
+    void taxiArrival(Airplane*, ostream& log);
+
+    /**
+     * Crosses a runway
+     * Events are logged to the given ostream&.
+     */
+    void crossArrival(Airplane*, ostream& log);
+
+    /**
+     * Performs the deboarding of a given plane.
+     * Events are logged to the given ostream&.
+     */
+    void deboard(Airplane*, ostream& log);
+
+    /**
+     * Lands an airplane on the airport of the simulation.
+     * Events are logged to the given ostream&.
      */
     void land(Airplane*, ostream& log);
 

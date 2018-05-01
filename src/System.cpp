@@ -27,13 +27,13 @@ void System::info(const string &filename) {
     REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     // Output file
-    ofstream fLog(filename.c_str());
+    ofstream out(filename.c_str());
 
     // Log airport info
-    fLog << "Airport: " << fAirport->getName() << " (" << fAirport->getIata() << ")\n";
-    fLog << " -> gates: " << fAirport->getGates() << endl;
-    fLog << " -> runways: " << fAirport->amountOfRunways() << endl;
-    fLog << endl;
+    out << "Airport: " << fAirport->getName() << " (" << fAirport->getIata() << ")\n";
+    out << " -> gates: " << fAirport->getGates() << endl;
+    out << " -> runways: " << fAirport->amountOfRunways() << endl;
+    out << endl;
 
     // Set up iterator
     vector<Flightplan *>::iterator itr_air;
@@ -47,47 +47,47 @@ void System::info(const string &filename) {
         Airplane* cur_ap = (*itr_air)->getAirplane();
 
         // Log information
-        fLog << "Airplane: " << cur_ap->getCallsign() << " (" << cur_ap->getNumber() << ")\n";
-        fLog << " -> model: " << cur_ap->getModel() << endl;
-        fLog << " -> type: ";
+        out << "Airplane: " << cur_ap->getCallsign() << " (" << cur_ap->getNumber() << ")\n";
+        out << " -> model: " << cur_ap->getModel() << endl;
+        out << " -> type: ";
         if (cur_ap->getType() == kPrivate) {
-            fLog << "private";
+            out << "private";
         } else if (cur_ap->getType() == kAirline) {
-            fLog << "airline";
+            out << "airline";
         } else if (cur_ap->getType() == kMilitary) {
-            fLog << "military";
+            out << "military";
         } else if (cur_ap->getType() == kEmergency) {
-            fLog << "emergency";
+            out << "emergency";
         }
-        fLog << endl << " -> engine: ";
+        out << endl << " -> engine: ";
         if (cur_ap->getEngine() == kJet) {
-            fLog << "jet";
+            out << "jet";
         } else if (cur_ap->getEngine() == kPropeller) {
-            fLog << "propeller";
+            out << "propeller";
         }
-        fLog << endl << " -> size: ";
+        out << endl << " -> size: ";
         if (cur_ap->getSize() == kSmall) {
-            fLog << "small";
+            out << "small";
         } else if (cur_ap->getSize() == kMedium) {
-            fLog << "medium";
+            out << "medium";
         } else if (cur_ap->getSize() == kLarge) {
-            fLog << "large";
+            out << "large";
         }
-        fLog << endl << " -> passengers: " << cur_ap->getPassengers() << endl;
-        fLog << endl;
+        out << endl << " -> passengers: " << cur_ap->getPassengers() << endl;
+        out << endl;
     }
 
     // Close file
-    fLog.close();
+    out.close();
 }
 
 
-void System::approach(Airplane *plane) {
+void System::approach(Airplane *plane, ostream& log) {
     // Request has been accepted by fATC
     if (plane->getRequest() == kAccepted) {
         // Send message to fATC
         string message = "Descend and maintain five thousand feet, squawking SQUAWKCODE, " + plane->getCallsign() + ".";
-        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Set the altitude of the plane
         plane->setAltitude(10);
@@ -99,7 +99,7 @@ void System::approach(Airplane *plane) {
         plane->setTimeRemaining(plane->getEngine() == kJet? 1:2);
 
         // Log
-        fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is approaching " << fAirport->getName() << " at " << plane->getAltitude() << ".000ft." << endl;
+        log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is approaching " << fAirport->getName() << " at " << plane->getAltitude() << ".000ft." << endl;
 
         // Set request to idle
         plane->setRequest(kIdle);
@@ -109,21 +109,21 @@ void System::approach(Airplane *plane) {
     else if (plane->getRequest() == kIdle) {
         // Send message to fATC
         string message = fAirport->getCallsign() + ", " + plane->getCallsign() + ", arriving at " + fAirport->getName() + ".";
-        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Send the request
-        fATC.sendRequest(fTime, plane);
+        fATC->sendRequest(fTime, plane);
 
         // Set request to pending
         plane->setRequest(kPending);
     }
 }
 
-void System::descend(Airplane *plane) {
+void System::descend(Airplane *plane, ostream& log) {
     // Plane has landed
     if (plane->getAltitude() == 0) {
         // Log event
-        fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has landed at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
+        log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has landed at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
 
         // Set runway to available
         plane->getRunway()->setFree(true);
@@ -144,18 +144,18 @@ void System::descend(Airplane *plane) {
 
         // If plane is at one of the key altitudes, send a request to atc
         if (plane->getAltitude() == 5 or plane->getAltitude() == 3) {
-            fATC.sendRequest(fTime, plane);
+            fATC->sendRequest(fTime, plane);
         }
 
         // If altitude is 0, the plane has started landing
         if (plane->getAltitude() == 0) {
-            fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is landing at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
+            log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is landing at " << fAirport->getName() << " on runway " << plane->getRunway()->getName() << endl;
             plane->setTimeRemaining(2);
         }
 
         // Normal descend
         else {
-            fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " descended to " << plane->getAltitude() << ".000ft." << endl;
+            log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " descended to " << plane->getAltitude() << ".000ft." << endl;
             plane->setTimeRemaining(plane->getEngine() == kJet ? 1 : 2);
         }
 
@@ -170,7 +170,7 @@ void System::descend(Airplane *plane) {
         else message = "Cleared ILS approach runway " + plane->getRunway()->getName() + ", " + plane->getCallsign() + ".";
 
         // Send message to fATC
-        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Set time remaining for descend
         plane->setTimeRemaining(plane->getEngine() == kJet? 1:2);
@@ -183,7 +183,7 @@ void System::descend(Airplane *plane) {
     if (plane->getRequest() == kDenied) {
         // Send message to ATC
         string message = "Holding south on the one eighty radial, " + plane->getCallsign();
-        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Set time remaining
         plane->setTimeRemaining(3);
@@ -193,31 +193,31 @@ void System::descend(Airplane *plane) {
     }
 }
 
-void System::circle(Airplane *plane) {
+void System::circle(Airplane *plane, ostream& log) {
     // Log event
-    fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has circled at " << plane->getAltitude() << ".000ft." << endl;
+    log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has circled at " << plane->getAltitude() << ".000ft." << endl;
 
     // Make the altitude available again for circling
     if (plane->getAltitude() == 3) {
-        fATC.set3occupied(false);
+        fATC->set3occupied(false);
     }
     else {
-        fATC.set3occupied(false);
+        fATC->set3occupied(false);
     }
 
     // Send a new request to descend
-    fATC.sendRequest(fTime, plane);
+    fATC->sendRequest(fTime, plane);
 
     // Set status to descending
     plane->setStatus(kDescending);
 }
 
 
-void System::taxiArrival(Airplane *plane) {
+void System::taxiArrival(Airplane *plane, ostream& log) {
     // Arrived at gate
     if (plane->getPosition() == fAirport->getRunways()[0]->getTaxiPoint() and plane->getRequest() == kConfirmed) {
         // Log event
-        fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl;
+        log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl;
 
         // Set time remaining for deboarding
         plane->setTimeRemaining(int(ceil(plane->getPassengers() / 2.0)));
@@ -232,7 +232,7 @@ void System::taxiArrival(Airplane *plane) {
         Runway* runway = fAirport->getNextRunway(plane);
 
         // Log event
-        fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has taxied to holding point at " << runway->getName() << endl;
+        log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has taxied to holding point at " << runway->getName() << endl;
 
         // Set request to idle
         plane->setRequest(kIdle);
@@ -255,8 +255,8 @@ void System::taxiArrival(Airplane *plane) {
         }
 
         // Send the request and message
-        fATC.sendRequest(fTime, plane);
-        fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+        fATC->sendRequest(fTime, plane);
+        fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
         // Set request to pending
         plane->setRequest(kPending);
@@ -289,7 +289,7 @@ void System::taxiArrival(Airplane *plane) {
             }
 
             // Send the message
-            fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+            fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
             // Change status to taxi arrival
             plane->setStatus(kTaxiArrival);
@@ -309,10 +309,10 @@ void System::taxiArrival(Airplane *plane) {
 
             // Send message to fATC
             string message = "Cleared to cross " + next->getName() + ", taxi to gate " + stream.str() + " via " + next->getTaxiPoint() + ", " + plane->getCallsign() + ".";
-            fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+            fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
             // Set plane status to crossing
-            plane->setStatus(kCrossing);
+            plane->setStatus(kCrossingArrival);
         }
 
         // Plane crosses a runway
@@ -328,10 +328,10 @@ void System::taxiArrival(Airplane *plane) {
 
             // Send message to fATC
             string message = "Cleared to cross " + next->getName() + ", taxi to holding point " + afterNext->getName() + " via " + next->getTaxiPoint() + ", " + plane->getCallsign() + ".";
-            fATC.sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
+            fATC->sendMessage(ATC::formatMessage(fTime, plane->getCallsign(), message));
 
             // Set plane status to crossing
-            plane->setStatus(kCrossing);
+            plane->setStatus(kCrossingArrival);
         }
 
         // Set request to confirmed
@@ -339,12 +339,12 @@ void System::taxiArrival(Airplane *plane) {
     }
 }
 
-void System::cross(Airplane *plane) {
+void System::crossArrival(Airplane *plane, ostream& log) {
     // Get the runway the plane just crossed
     Runway* runway = fAirport->getNextRunway(plane);
 
     // Log event
-    fLog << "[" << fTime.formatted() << "] " << plane->getCallsign() << " crossed " << runway->getName() << "." << endl;
+    log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " crossed " << runway->getName() << "." << endl;
 
     // Make runway available again
     runway->setFree(true);
@@ -359,9 +359,9 @@ void System::cross(Airplane *plane) {
     plane->setStatus(kTaxiArrival);
 }
 
-void System::deboard(Airplane *plane) {
+void System::deboard(Airplane *plane, ostream& log) {
     // Log event
-    fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers exited " <<
+    log << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers exited " <<
          plane->getCallsign() << " at gate " << plane->getGateID() << " of " << fAirport->getName() << endl;
 
     // Change status
@@ -371,7 +371,7 @@ void System::deboard(Airplane *plane) {
     plane->setRequest(kIdle);
 }
 
-void System::land(Airplane *plane) {
+void System::land(Airplane *plane, ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
 
     // If time remaining is not 0, plane is still busy
@@ -381,36 +381,35 @@ void System::land(Airplane *plane) {
 
     // Plane is approaching
     if (plane->getStatus() == kApproaching) {
-        approach(plane);
+        approach(plane, log);
     }
 
     // Plane is descending
     else if (plane->getStatus() == kDescending) {
-        descend(plane);
+        descend(plane, log);
     }
 
     // Plane is circling
     else if (plane->getStatus() == kCircling) {
-        circle(plane);
+        circle(plane, log);
     }
 
     // Plane is taxiing
     else if (plane->getStatus() == kTaxiArrival) {
-        taxiArrival(plane);
+        taxiArrival(plane, log);
     }
 
     // Plane is crossing a runway
-    else if (plane->getStatus() == kCrossing) {
-        cross(plane);
+    else if (plane->getStatus() == kCrossingArrival) {
+        crossArrival(plane, log);
     }
 
     // Plane is deboarding
     else if (plane->getStatus() == kDeboarding) {
-        deboard(plane);
+        deboard(plane, log);
     }
 }
 
-#include <cmath>
 
 
 void System::takeoff(Airplane *plane, ostream& fLog) const {
@@ -593,7 +592,7 @@ void System::takeoff(Airplane *plane, ostream& fLog) const {
                     if (request == kAccepted) {
                         // response
                         fATC->sendMessage(fATC->formatMessage(fTime, "AIR", "Cleared to cross " + cur_rw->getName() + ", taxi to holding point " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
-                        plane->setStatus(kCrossing);
+                        plane->setStatus(kCrossingDeparture);
                         plane->setRequest(kIdle);
                         next_rw->setFree(false);
                         plane->setTimeRemaining(1); // crossing
@@ -625,7 +624,7 @@ void System::takeoff(Airplane *plane, ostream& fLog) const {
         }
 
         // plane is done crossing runway
-        if (status == kCrossing) {
+        if (status == kCrossingDeparture) {
 
             // Set runway that was crossed to free
             getAirport()->getRunway(plane->getPosition())->setFree(true);
