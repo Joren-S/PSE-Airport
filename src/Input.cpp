@@ -6,7 +6,7 @@
 
 #include "../headers/Input.h"
 
-Input::Input(const string &filename) {
+void Input::read(const string &filename) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
     string error = "Couldn't open " + filename + ".";
@@ -38,7 +38,6 @@ Input::Input(const string &filename) {
 
     // We are finished with our XML file, so we clear it.
     xml.Clear();
-    fInitCheck = this;
 }
 
 Input::Input() {

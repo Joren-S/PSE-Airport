@@ -81,13 +81,7 @@ private:
 public:
 
     /**
-     * Constructor, reads all the elements from a given file
-     * @param filename: name of the file with input
-     */
-    Input(const string& filename);
-
-    /**
-     * Default constructor, for manually adding elements
+     * Default constructor
      */
     Input();
 
@@ -95,6 +89,12 @@ public:
      * Checks if the object is properly initialized
      */
     bool properlyInitialized() const;
+
+    /**
+     * Reads the given file and stores the information
+     * @param filename: name of the file with input
+     */
+    void read(const string& filename);
 
     /**
      * Adds an airport to the simulation
