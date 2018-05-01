@@ -8,6 +8,8 @@
 #define PROJECTVLIEGVELD_ATC_H
 
 #include <queue>
+#include <set>
+#include <stdlib.h>
 #include "Time.h"
 #include "Airport.h"
 
@@ -65,6 +67,11 @@ private:
      * Pointer to the airport the ATC is located in.
      */
     Airport* fAirport;
+
+    /**
+     * The set of used squawk codes
+     */
+    set<int> fUsedCodes;
 
 public:
 
@@ -131,6 +138,13 @@ public:
      * @param message: Message that needs to be send.
      */
     void sendMessage(const string &message);
+
+    /**
+     * Generates a squawk code for a given plane.
+     * The returned code will not be generated for any other plane.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     */
+    int getSquawk(Airplane*);
 
     /**
      * Getters and setters for the fields of the class.

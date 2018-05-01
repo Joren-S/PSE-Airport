@@ -216,3 +216,13 @@ void Airplane::setFuel(int fuel) {
     REQUIRE(fuel > 0, "Fuel can't be less than 1");
     fFuel = fuel;
 }
+
+void Airplane::setSquawk(int squawk) {
+    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(squawk > 0, "Squawk code can't be negative");
+    fSquawk = squawk;
+}
+
+int Airplane::getSquawk() const {
+    return fSquawk;
+}

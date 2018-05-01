@@ -455,3 +455,44 @@ void ATC::set5occupied(bool occupied) {
     f5Occupied = occupied;
     ENSURE(f5Occupied == occupied, "Field wasn't set properly");
 }
+
+int ATC::getSquawk(Airplane *airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    // Keep going until a code is found
+    while (true) {
+        // Set squawk to -1
+        int squawk = -1;
+
+        // Get info
+        EPlaneType type = airplane->getType();
+        EPlaneEngine engine = airplane->getEngine();
+        EPlaneSize size = airplane->getSize();
+
+        if (type == kPrivate and size == kSmall) {
+            squawk = (rand() % 777) + 1;
+        } else if (type == kPrivate and size == kMedium and engine == kJet) {
+            squawk = (rand() % 778) + 1000;
+        } else if (type == kAirline and size == kMedium and engine == kPropeller) {
+            squawk = (rand() % 778) + 2000;
+        } else if (type == kAirline and size == kMedium and engine == kJet) {
+            squawk = (rand() % 778) + 3000;
+        } else if (type == kAirline and size == kLarge and engine == kJet) {
+            squawk = (rand() % 778) + 4000;
+        } else if (type == kMilitary and
+                   ((size == kSmall and engine == kJet) or (size == kLarge and engine == kPropeller))) {
+            squawk = (rand() % 778) + 5000;
+        } else if (type == kEmergency and size == kSmall and engine == kPropeller) {
+            squawk = (rand() % 778) + 6000;
+        }
+
+        // If the code is not yet in use, return it
+        if (!fUsedCodes.count(squawk)) {
+            // If the code is -1, there aren't any squawk codes available for the type of plane
+            if (squawk != -1) {
+                // Add it to the set of usedCodes
+                fUsedCodes.insert(squawk);
+            }
+            return squawk;
+        }
+    }
+}

@@ -108,6 +108,11 @@ private:
      */
      int fFuel;
 
+     /**
+      * Squawk code of the airplane
+      */
+     int fSquawk;
+
 public:
 
     /**
@@ -188,6 +193,13 @@ public:
 
 
     /**
+     * Setter for the squawk code
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     *
+     */
+    void setSquawk(int squawk);
+
+    /**
      * Getters and setters for the fields of the class.
      * REQUIRE(properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
      *
@@ -217,6 +229,7 @@ public:
     Runway* getRunway() const;
     void setRunway(Runway*);
     int getFuel() const;
+    int getSquawk() const;
 
 };
 
