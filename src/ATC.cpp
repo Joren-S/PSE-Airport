@@ -47,28 +47,6 @@ void ATC::sendRequest(Time time, Airplane *source) {
 
     getQueue()->push(msg);
     ENSURE(getQueue()->back() == msg, "Message wasn't queued properly.");
-
-//    // first, check to see if there are messages waiting in the queue already:
-//    if (getQueueSize() > 0) {
-//        // if so: the current message gets queued in the back
-//        getQueue()->push(msg);
-//        ENSURE(getQueue()->back() == msg, "Message wasn't queued properly.");
-//    }
-//    else {
-//        // if not, we can try and send the message right away.
-//        // first, we check and see if we can send our message.
-//        if (canSend(time)) {
-//            // if so, we can send it right away and we change LastActive
-//            fStream << msg->fMessage;
-//            setLastActive(msg->fTime);
-//            delete msg;
-//        }
-//        else {
-//            // if not, we queue our message.
-//            getQueue()->push(msg);
-//            ENSURE(getQueue()->back() == msg, "Message wasn't queued properly.");
-//        }
-//    }
 }
 
 string ATC::formatMessage(Time time, string source, string message) {

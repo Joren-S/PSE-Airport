@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : domainTestsFlightplane.cpp
+// Name        : domainTestsFlightplan.cpp
 // Author      : Joren Servotte, Max Van Houcke
 // Description : Airport simulation, Project Software Engineering
 //============================================================================
