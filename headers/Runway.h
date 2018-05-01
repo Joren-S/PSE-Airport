@@ -33,12 +33,6 @@ private:
     bool fFree;
 
     /**
-     * bool indicating if the taxipoint associated with the
-     * runway is free
-     */
-    bool fTaxipointFree;
-
-    /**
      * Name of the runway
      */
     string fName;
@@ -117,8 +111,6 @@ public:
     void setFree(bool free);
     string getTaxiPoint() const;
     void setTaxiPoint(const string&);
-    bool isTaxiPointFree() const;
-    void setTaxiPointFree(bool free);
 
 };
 

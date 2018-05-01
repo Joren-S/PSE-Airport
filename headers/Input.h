@@ -26,8 +26,12 @@
 
 using namespace std;
 
+/**
+ * \brief: Class that reads input for the simulation
+ */
 class Input {
 private:
+
     /**
      * Pointer to itself
      */
@@ -42,11 +46,6 @@ private:
      * Vector of pointer to all the flightplans
      */
      vector<Flightplan*> flightplans;
-
-    /**
-     * Finds an airport with a specific IATA
-     */
-    Airport* findAirportByIATA(const string& iata) const;
 
     /**
      * Reads an airport from a given xml element
@@ -82,6 +81,7 @@ public:
 
     /**
      * Default constructor
+     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Input();
 
@@ -92,36 +92,51 @@ public:
 
     /**
      * Reads the given file and stores the information
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling read");
      * @param filename: name of the file with input
      */
     void read(const string& filename);
 
     /**
      * Adds an airport to the simulation
-     * ENSURE: airport is added to the vector of airports
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
+     * REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
+     * ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
      */
     void addAirport(Airport* airport);
 
     /**
      * Adds a runway to the simulation with the given specifications
-     * ENSURE: runway is added to the vector of runways
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
+     * REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
+     * ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
      */
     void addRunway(Runway* runway);
 
     /**
      * Adds a flightplan to the simulation with the given specifications
-     * ENSURE: flightplan is added to the vector of flightplans
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
+     * REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
+     * ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
      */
     void addFlightplan(Flightplan* flightplan);
 
     /**
+     * Finds an airport with a specific IATA
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
+     */
+    Airport* findAirportByIATA(const string& iata) const;
+
+    /**
      * Getter for the airports in the simulation
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
      * @return vec of all airports
      */
     vector<Airport*> getAirports() const;
 
     /**
      * Getter for the flightplans in the simulation
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
      * @return vec of all flightplans
      */
     vector<Flightplan*> getFlightplans() const;
