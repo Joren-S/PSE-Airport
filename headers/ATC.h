@@ -11,15 +11,7 @@
 #include "Time.h"
 #include "Airport.h"
 
-struct Squawk {
-
-    int lastUsed;
-
-};
-
 struct ATCRequest {
-    // Used to store a message for the ATC alongside the original time.
-
     /**
      * Time message was sent.
      */
@@ -59,75 +51,103 @@ private:
     */
     Time fLastActive;
 
+    /**
+     * Bool if 3.000ft is occupied.
+     */
     bool f3Occupied;
+
+    /**
+     * Bool if 5.000ft is occupied.
+     */
     bool f5Occupied;
 
+    /**
+     * Pointer to the airport the ATC is located in.
+     */
     Airport* fAirport;
 
 public:
 
-    bool get3occupied() const {return f3Occupied;}
-    void set3occupied(bool occupied) {f3Occupied = occupied; }
-    bool get5occupied() const {return f5Occupied;}
-    void set5occupied(bool occupied) {f5Occupied = occupied; }
-
     /**
-    * Constructor
-    * ENSURE: properlyInitialized
-    */
+     * Constructor
+     * ENSURE(properlyInitialized(), "ATC was not properly initialized.");
+     * @param stream: ostream to write to.
+     */
     ATC(ostream& stream);
 
     /**
-    * Checks if the object is properly initialized
-    */
+     * Checks if the object is properly initialized
+     * @return: Boolean indicating if properly initialized or not.
+     */
     bool properlyInitialized() const;
 
     /**
-    * Send a message.
-    * Message gets queued if it was unable to be sent.
-    * REQUIRE: properlyInitialized
-    * REQUIRE: time can't be before the last time the ATC was active (can't send messages in the past)
-    * ENSURE: message was queued if unable to send
-    */
-    void sendRequest(Time, Airplane*);
+     * Send a request to the ATC.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     * REQUIRE(source != NULL, "Source is NULL.");
+     * ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
+     * @param time: Time of the request.
+     * @param source: Airplane that made the request.
+     */
+    void sendRequest(Time time, Airplane* source);
 
     /**
-    * Return the amount of messages queued.
-    * This is also the time in minutes it will take until all messages are sent.
-    * REQUIRE: properlyInitialized
-    * ENSURE: return >= 0
-    */
+     * Return the amount of requests that are queued.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     * ENSURE(size >= 0, "Queue has a negative size.");
+     * @return: Size of the queue.
+     */
     int getQueueSize() const;
 
     /**
-    * Return the next queued message.
-    * If a message is found (queue is not empty), said message is removed from the queue.
-    * Returns NULL if queue is empty and no message was found.
-    * REQUIRE: properlyInitialized
-    * ENSURE: if queue is not empty -> return is not NULL
-    * ENSURE: if queue is not empty -> return is no longer in queue
-    */
+     * Get the next request that needs to be handled by the ATC.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     * ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
+     * ENSURE(msg != NULL, "Request popped from queue is NULL.");
+     * @return: Pointer to the request, NULL if queue is empty.
+     */
     ATCRequest *getNextRequest();
 
     /**
-    * Creates a correctly formatted ATC message when the contents are given.
-    */
-    static string formatMessage(Time, string, string);
+     * Creates a correctly formatted ATC message when the contents are given.
+     * @param time: Time of message.
+     * @param source: Sender of message.
+     * @param message: Content of message.
+     * @return: Formatted message.
+     */
+    static string formatMessage(Time time, string source, string message);
 
     /**
-    * Check the queue for a queued message and send this message if possible.
-     * REQUIRE: properlyInitialized.
-    */
-    void doHeartbeat(Time);
+     * Main function of the ATC, needs to be called every time we advance in time.
+     * Handles requests and responds correctly.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     * @param time: Time of "heartbeat".
+     */
+    void doHeartbeat(Time time);
 
-    void sendMessage(const string&);
+    /**
+     * Write a message to the ATC stream.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+     * @param message: Message that needs to be send.
+     */
+    void sendMessage(const string &message);
 
-    // Getters and Setters
+    /**
+     * Getters and setters for the fields of the class.
+     * REQUIRE(properlyInitialized(), "ATC wasn't properly initialized.");
+     *
+     * Setters:
+     * ENSURE(fField == value, "Field wasn't set properly");
+     */
     queue<ATCRequest*> *getQueue();
     void setLastActive(Time);
     Time getLastActive() const;
     Airport* getAirport() const;
     void setAirport(Airport*);
+    bool get3occupied() const;
+    void set3occupied(bool);
+    bool get5occupied() const;
+    void set5occupied(bool);
 };
 
 
