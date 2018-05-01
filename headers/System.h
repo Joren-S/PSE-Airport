@@ -60,10 +60,8 @@ public:
     void setEndTime(Time end);
 
     /**
-     * Initializes the air traffic control of
-     * the simulation with an ostream.
+     * Initializes the air traffic control of the simulation with an ostream
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
-     * @param log
      */
     void initializeATC(ostream& log);
 
@@ -74,26 +72,24 @@ public:
     void import(Input&);
 
     /**
-     * Logs information of the airports and airplanes to a
-     * text file.
+     * Logs information of the airports and airplanes to a text file
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
-     * REQUIRE: at least one airport in the system
-     * @param filename: name of the to be generated txt file
+     * REQUIRE(fAirport != NULL, "No airport in the simulation");
+     * @param filename: name of the to be generated txt file, default to "../output/info.txt"
      */
     void info(const string &filename = "../output/info.txt");
 
     /**
      * Runs the complete simulation
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
-     * REQUIRE: at least one airport in the system and
-     * simulation not ended yet.
-     * ENSURE: simulation ended
+     * REQUIRE(fAirport != NULL, "No airport in the simulation.");
+     * REQUIRE(!simulationFinished(), "Simulation is already finished");.
+     * ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
      */
     void run(ostream& log);
 
     /**
-     * Checks if the simulation has ended.
-     * i.e. specified end time has been reached.
+     * Checks if the simulation has ended, i.e. specified end time has been reached
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling simulationFinished");
      */
     bool simulationFinished() const;

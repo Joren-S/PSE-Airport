@@ -750,6 +750,7 @@ void System::takeoff(Airplane *plane, ostream& fLog) const {
 void System::run(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
+    REQUIRE(!simulationFinished(), "Simulation is already finished");
 
     while (!simulationFinished()) {
 
