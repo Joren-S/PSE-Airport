@@ -1,6 +1,7 @@
+//============================================================================
 // Author      : Serge Demeyer
 // Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
-
+//============================================================================
 
 #include <iostream>
 #include <fstream>

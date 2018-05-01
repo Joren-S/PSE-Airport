@@ -1,6 +1,8 @@
-//
-// Created by uauser on 3/1/18.
-//
+//============================================================================
+// Name        : Airport.h
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #ifndef PROJECTVLIEGVELD_AIRPORTS_H
 #define PROJECTVLIEGVELD_AIRPORTS_H

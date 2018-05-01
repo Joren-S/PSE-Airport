@@ -1,6 +1,9 @@
-//
-// Created by Max Van Houcke on 12-4-2018.
-//
+//============================================================================
+// Name        : Time.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
+
 
 #include "../headers/Time.h"
 

@@ -1,6 +1,8 @@
-//
-// Created by Max Van Houcke on 12-4-2018.
-//
+//============================================================================
+// Name        : Time.h
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #ifndef PROJECTVLIEGVELD_TIME_H
 #define PROJECTVLIEGVELD_TIME_H

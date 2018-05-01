@@ -1,6 +1,7 @@
+//============================================================================
 // Author      : Serge Demeyer
 // Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
-
+//============================================================================
 
 #ifndef PROJECTVLIEGVELD_TESTUTILS_H
 #define PROJECTVLIEGVELD_TESTUTILS_H

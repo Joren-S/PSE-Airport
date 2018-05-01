@@ -1,6 +1,8 @@
-//
-// Created by uauser on 3/1/18.
-//
+//============================================================================
+// Name        : Airport.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #include <vector>
 #include "../headers/Airport.h"

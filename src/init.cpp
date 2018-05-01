@@ -1,3 +1,9 @@
+//============================================================================
+// Name        : init.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
+
 #include "../headers/System.h"
 #define ENDTIME         Time(18)
 #define INPUTFILENAME   "../input.xml"

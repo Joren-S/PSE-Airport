@@ -1,7 +1,8 @@
-//
-// Created by uauser on 3/1/18.
-//
-
+//============================================================================
+// Name        : Airplane.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 #include "../headers/Airplane.h"
 
 using namespace std;

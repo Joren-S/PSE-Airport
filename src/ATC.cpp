@@ -1,6 +1,8 @@
-//
-// Created by Joren Servotte on 21.04.18.
-//
+//============================================================================
+// Name        : ATC.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #include <iostream>
 #include "../headers/ATC.h"

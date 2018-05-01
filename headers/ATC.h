@@ -1,6 +1,8 @@
-//
-// Created by Joren Servotte on 21.04.18.
-//
+//============================================================================
+// Name        : ATC.h
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #ifndef PROJECTVLIEGVELD_ATC_H
 #define PROJECTVLIEGVELD_ATC_H

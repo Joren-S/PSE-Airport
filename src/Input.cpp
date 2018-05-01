@@ -1,6 +1,8 @@
-//
-// Created by Max on 4/7/2018.
-//
+//============================================================================
+// Name        : Input.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #include "../headers/Input.h"
 

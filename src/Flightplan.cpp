@@ -1,6 +1,8 @@
-//
-// Created by Max Van Houcke on 12-4-2018.
-//
+//============================================================================
+// Name        : Flightplan.cpp
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #include "../headers/Flightplan.h"
 
