@@ -177,7 +177,7 @@ void Input::readAirplane(TiXmlElement *elem) {
     }
 
     // If all fields were present, no errors and airplane is complete, add the Airplane to our system.
-    if (fieldCount == 8 and tmp->complete()) {
+    if (fieldCount == 9 and tmp->complete()) {
         return;
     }
 
@@ -399,7 +399,7 @@ void Input::readAirport(TiXmlElement *elem) {
     }
 
     // If there were 4 field (all fields present), add the Airport to our system.
-    if (fieldCount == 4) {
+    if (fieldCount == 4 and tmp->complete()) {
         Input::addAirport(tmp);
         return;
     }
@@ -456,7 +456,7 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem) {
     }
 
     // If there were 4 field (all fields present), add the Airport to our system.
-    if (fieldCount == 4) {
+    if (fieldCount == 4 and tmp->complete()) {
         Input::addFlightplan(tmp);
         return tmp;
     }

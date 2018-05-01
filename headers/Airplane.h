@@ -123,7 +123,7 @@ public:
 
     /**
      * Increases the plane's altitude by a given amount
-     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling increaseAltitude");
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling increaseAltitude");
      * REQUIRE(difference > 0, "Difference can't be negative");
      * ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
      */
@@ -131,7 +131,7 @@ public:
 
     /**
      * Decreases the plane's altitude by a given amount
-     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling decreaseAltitude");
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseAltitude");
      * REQUIRE(difference > 0, "Difference can't be negative");
      * REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
      * ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
@@ -141,20 +141,57 @@ public:
     /**
      * Decreases the time of the remaining operation by one.
      * If there's no operation busy, it does nothing.
-     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling decreaseTimeRemaining");
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseTimeRemaining");
      */
     void decreaseTimeRemaining();
 
     /**
      * Checks if all the data members were initialized
-     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling Airplane::complete");
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane::complete");
      */
     bool complete() const;
 
+    /**
+     * Setter for the altitude
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * REQUIRE(altitude >= 0, "Altitude can't be negative");
+     */
+    void setAltitude(int altitude);
 
-    // Getters and Setters
-    // REQUIRE(this->properlyInitialized) for all
+    /**
+     * Setter for the time remaining on the operation
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * REQUIRE(time >= 0, "Time remaining can't be negative");
+     */
+    void setTimeRemaining(int time);
 
+    /**
+     * Setter for the maximum amount of passengers
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * REQUIRE(passengers >= 0, "Passenger amount can't be negative");
+     */
+    void setPassengers(int fPassengers);
+
+    /**
+     * Setter for the gate the plane's at
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * REQUIRE(id >= -1, "Gate id can't be less than -1");
+     */
+    void setGateID(int id);
+
+    /**
+     * Setter for the maximum amount of fuel (in 10.000 units)
+     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * REQUIRE(fuel > 0, "Fuel can't be less than 1");
+     */
+    void setFuel(int fuel);
+
+
+    /**
+     * Getters and setters for the fields of the class.
+     * REQUIRE(properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
+     *
+     */
     EPlaneSize getSize() const;
     void setSize(EPlaneSize size);
     EPlaneType getType() const;
@@ -162,11 +199,8 @@ public:
     EPlaneEngine getEngine() const;
     void setEngine(EPlaneEngine engine);
     int getAltitude() const;
-    void setAltitude(int altitude);
     int getGateID() const;
-    void setGateID(int id);
     int getPassengers() const;
-    void setPassengers(int fPassengers);
     const string &getNumber() const;
     void setNumber(const string &fNumber);
     const string &getCallsign() const;
@@ -175,7 +209,6 @@ public:
     void setModel(const string &fModel);
     EPlaneStatus getStatus() const;
     void setStatus(EPlaneStatus fStatus);
-    void setTimeRemaining(int time);
     int getTimeRemaining() const;
     void setPosition(const string&);
     const string &getPosition() const;
@@ -183,7 +216,6 @@ public:
     EPlaneRequest getRequest() const;
     Runway* getRunway() const;
     void setRunway(Runway*);
-    void setFuel(int fuel);
     int getFuel() const;
 
 };
