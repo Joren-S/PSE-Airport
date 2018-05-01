@@ -304,7 +304,7 @@ void ATC::doHeartbeat(Time curTime) {
             // IFR clearance granted.
             airplane->setRunway(dest);
             airplane->setRequest(kAccepted);
-            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
                                                       ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + airplane->getSquawk() + "."));
         }
     }
@@ -314,7 +314,7 @@ void ATC::doHeartbeat(Time curTime) {
 
         // Requesting pushback
         airplane->setRequest(kAccepted);
-        sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
+        sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
     }
 
     // Plane was pushed back.
@@ -323,7 +323,7 @@ void ATC::doHeartbeat(Time curTime) {
         // Requesting permission to taxi
         REQUIRE(getAirport()->getRunways().size() >= 1, "No runways in airport.");
         Runway *firstRW = getAirport()->getRunways().at(0);
-        sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
+        sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
         airplane->setRequest(kAccepted);
     }
 
@@ -335,7 +335,7 @@ void ATC::doHeartbeat(Time curTime) {
 
         // if at destination -> go to runway
         if (airplane->getPosition() == rw->getTaxiPoint()) {
-            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", taxi to runway " + rw->getName() + " via " + rw->getTaxiPoint() + "."));
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + rw->getName() + " via " + rw->getTaxiPoint() + "."));
             airplane->setRequest(kDenied);
         }
 
@@ -344,13 +344,13 @@ void ATC::doHeartbeat(Time curTime) {
 
             // if runway is free, plane can cross
             if (rw->isFree()) {
-                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", cleared to cross " + rw->getName() + "."));
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + rw->getName() + "."));
                 airplane->setRequest(kAccepted);
             }
 
             //if not, plane has to wait
             else {
-                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
                 airplane->setRequest(kDenied);
             }
         }
@@ -365,18 +365,18 @@ void ATC::doHeartbeat(Time curTime) {
             if (f3Occupied == false) {
 
                 // Permission to line-up and take-off
-                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
                 airplane->setRequest(kAcceptedImmediate);
             } else {
 
                 // Permission to line-up
-                sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
                 airplane->setRequest(kAccepted);
             }
         } else {
 
             // Permission denied, keep waiting.
-            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
             airplane->setRequest(kDenied);
         }
     }
@@ -390,13 +390,13 @@ void ATC::doHeartbeat(Time curTime) {
             // Permission granted, start take-off
             airplane->setRequest(kAccepted);
             string runwayName = getAirport()->getRunway(airplane->getPosition())->getName();
-            sendMessage(formatMessage(curTime, "ATC",
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(),
                                       airplane->getCallsign() + ", runway " + runwayName + " cleared for take-off."));
         }
         else {
 
             // Permission denied.
-            sendMessage(formatMessage(curTime, "ATC", airplane->getCallsign() + ", hold position."));
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
             airplane->setRequest(kDenied);
         }
     }
