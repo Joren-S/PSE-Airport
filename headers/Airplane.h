@@ -103,6 +103,11 @@ private:
      */
     Runway* fRunway;
 
+    /**
+     * Amount of fuel
+     */
+     int fFuel;
+
 public:
 
     /**
@@ -178,6 +183,8 @@ public:
     EPlaneRequest getRequest() const;
     Runway* getRunway() const;
     void setRunway(Runway*);
+    void setFuel(int fuel);
+    int getFuel() const;
 
 };
 

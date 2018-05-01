@@ -62,6 +62,11 @@ void Input::readAirplane(TiXmlElement *elem) {
             tmp->setNumber(elem->GetText());
         }
 
+        // Fuel
+        else if (strcmp(elem->Value(), "fuel") == 0) {
+            tmp->setFuel(atoi(elem->GetText()));
+        }
+
         // Callsign
         else if (strcmp(elem->Value(), "callsign") == 0) {
             tmp->setCallsign(elem->GetText());

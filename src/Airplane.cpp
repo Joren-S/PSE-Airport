@@ -200,3 +200,13 @@ void Airplane::setRunway(Runway* runway) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling Airplane getter/setter");
     fRunway = runway;
 }
+
+int Airplane::getFuel() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling Airplane getter/setter");
+    return fFuel;
+}
+
+void Airplane::setFuel(int fuel) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling Airplane getter/setter");
+    fFuel = fuel;
+}
