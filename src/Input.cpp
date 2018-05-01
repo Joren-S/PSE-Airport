@@ -42,6 +42,7 @@ void Input::read(const string &filename) {
 
 Input::Input() {
     fInitCheck = this;
+    ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
 }
 
 void Input::readAirplane(TiXmlElement *elem) {
@@ -474,6 +475,8 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem) {
 }
 
 void Input::addAirport(Airport *airport) {
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
+    REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
     // Initialize gateStack
     airport->initStack();
 
@@ -484,16 +487,21 @@ void Input::addAirport(Airport *airport) {
 }
 
 void Input::addRunway(Runway *runway) {
-    REQUIRE(runway->complete(), "Runway is not complete, can't be added.");
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
+    REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
     runway->getAirport()->addRunway(runway);
+    ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
 }
 
 void Input::addFlightplan(Flightplan *flightplan) {
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
+    REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
     flightplans.push_back(flightplan);
     ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
 }
 
 Airport *Input::findAirportByIATA(const string& iata) const {
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
     // Check all Airports and if the Airport matches the IATA, return this Airport.
     vector<Airport*>::const_iterator itr;
     for (itr = airports.begin(); itr < airports.end(); ++itr) {
@@ -506,10 +514,12 @@ Airport *Input::findAirportByIATA(const string& iata) const {
 }
 
 vector<Airport*> Input::getAirports() const {
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
     return Input::airports;
 }
 
 vector<Flightplan*> Input::getFlightplans() const {
+    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
     return flightplans;
 }
 

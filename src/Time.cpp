@@ -7,15 +7,16 @@
 
 #include "../headers/Time.h"
 
-using namespace std;
 
 Time::Time(int hour, int minute) {
+    fInitCheck = this;
     setHour(hour);
     setMinute(minute);
-    fInitCheck = this;
+    ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
 }
 
 string Time::formatted() const {
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling formatted");
     // Set up an output string stream
     ostringstream stream;
 
@@ -43,7 +44,8 @@ string Time::formatted() const {
 }
 
 void Time::advance(int minutes) {
-    REQUIRE(minutes >= 0, "Invalid value for minutes.");
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling advance");
+    REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
 
     // While there are minutes remaining
     while (minutes) {
@@ -61,20 +63,24 @@ void Time::advance(int minutes) {
 }
 
 void Time::setMinute(int minute) {
-    REQUIRE(minute < 60 && minute >= 0, "Invalid value for minute.");
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling setMinute");
+    REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
     fMinute = minute;
 }
 
 void Time::setHour(int hour) {
-    REQUIRE(hour < 24 && hour >= 0, "Invalid value for hour.");
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling setHour");
+    REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
     fHour = hour;
 }
 
 int Time::getHour() const {
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling getHour");
     return fHour;
 }
 
 int Time::getMinute() const {
+    REQUIRE(this->properlyInitialized(), "Time was't initialized when calling getMinute");
     return fMinute;
 }
 

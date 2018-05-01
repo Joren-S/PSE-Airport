@@ -11,6 +11,8 @@
 #include <string>
 #include <sstream>
 
+using namespace std;
+
 
 class Time {
 private:
@@ -20,7 +22,14 @@ private:
      */
     Time *fInitCheck;
 
+    /**
+     * Member indicating the minute
+     */
     int fMinute;
+
+    /**
+     * Member indicating the hour
+     */
     int fHour;
 
 public:
@@ -29,8 +38,9 @@ public:
      * Constructor, sets the time
      * Defaults to 12:00, which is the starting point of
      * the simulation
-     * REQUIRE: 0 <= hour < 24 &&
-     * 0 <= minute < 60
+     * REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
+     * REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
+     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Time(int hour = 12, int minute = 0);
 
@@ -41,34 +51,40 @@ public:
 
     /**
      * Return the time in a formatted style like such: "13:45"
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling formatted");
      */
-    std::string formatted() const;
+    string formatted() const;
 
     /**
      * Advances the time by an amount of minutes
-     * REQUIRE: minute >= 0
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling advance");
+     * REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
      */
     void advance(int minutes = 1);
 
     /**
      * Setter for the minute.
-     * REQUIRE: 0 <= minute < 60
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling setMinute");
+     * REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
      */
     void setMinute(int minute);
 
     /**
      * Getter for the minute
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling getMinute");
      */
     int getMinute() const;
 
     /**
      * Setter for the hour.
-     * REQUIRE: 0 <= hour < 24
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling setHour");
+     * REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
      */
     void setHour(int hour);
 
     /**
      * Getter for the hour
+     * REQUIRE(this->properlyInitialized(), "Time was't initialized when calling getHour");
      */
     int getHour() const;
 
