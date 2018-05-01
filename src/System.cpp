@@ -8,7 +8,15 @@ System::System(ostream& atc, Time end): fEndTime(end), fATC(new ATC(atc)) {
     fTime = Time();
     fAirport = NULL;
     fInitCheck = this;
-    ENSURE(this->properlyInitialized(), "System was not properly initialized.");
+    ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
+}
+
+System::System() {
+    fAirport = NULL;
+    fATC = NULL;
+    fTime = Time();
+    fInitCheck = this;
+    ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
 }
 
 bool System::properlyInitialized() const {
@@ -16,14 +24,14 @@ bool System::properlyInitialized() const {
 }
 
 void System::import(Input &input) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling import");
     fFlightplans = input.getFlightplans();
     fAirport = input.getAirports()[0];
     fATC->setAirport(fAirport);
 }
 
 void System::info(const string &filename) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
     REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     // Output file
@@ -83,6 +91,7 @@ void System::info(const string &filename) {
 
 
 void System::approach(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
     // Request has been accepted by fATC
     if (plane->getRequest() == kAccepted) {
         // Send message to fATC
@@ -120,6 +129,7 @@ void System::approach(Airplane *plane, ostream& log) {
 }
 
 void System::descend(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling descend");
     // Plane has landed
     if (plane->getAltitude() == 0) {
         // Log event
@@ -194,6 +204,7 @@ void System::descend(Airplane *plane, ostream& log) {
 }
 
 void System::circle(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
     // Log event
     log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " has circled at " << plane->getAltitude() << ".000ft." << endl;
 
@@ -214,6 +225,7 @@ void System::circle(Airplane *plane, ostream& log) {
 
 
 void System::taxiArrival(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling taxiArrival");
     // Arrived at gate
     if (plane->getPosition() == fAirport->getRunways()[0]->getTaxiPoint() and plane->getRequest() == kConfirmed) {
         // Log event
@@ -340,6 +352,7 @@ void System::taxiArrival(Airplane *plane, ostream& log) {
 }
 
 void System::crossArrival(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling crossArrival");
     // Get the runway the plane just crossed
     Runway* runway = fAirport->getNextRunway(plane);
 
@@ -360,6 +373,8 @@ void System::crossArrival(Airplane *plane, ostream& log) {
 }
 
 void System::deboard(Airplane *plane, ostream& log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling deboard");
+
     // Log event
     log << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers exited " <<
          plane->getCallsign() << " at gate " << plane->getGateID() << " of " << fAirport->getName() << endl;
@@ -372,7 +387,7 @@ void System::deboard(Airplane *plane, ostream& log) {
 }
 
 void System::land(Airplane *plane, ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
 
     // If time remaining is not 0, plane is still busy
     if (plane->getTimeRemaining() != 0) {
@@ -732,19 +747,8 @@ void System::takeoff(Airplane *plane, ostream& fLog) const {
 }
 
 
-
-
-/*
- * fATC in System needs to become an ATC class instead of an ostream
- * so not fATC << msg, but fATC->fStream << msg (or overloader)
- *
- * also: doHeartbeat at beginning of WHILE in RUN
- * same for decreaseTimeRemaining, NOT in land or takeoff, but at end of plane iteration
- * */
-
-
 void System::run(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
 
     while (!simulationFinished()) {
@@ -796,18 +800,18 @@ void System::run(ostream& log) {
 }
 
 bool System::simulationFinished() const {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling simulationFinished");
     return !(fTime < fEndTime or fTime == fEndTime);
 }
 
 
 Airport* System::getAirport() const {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getAirport");
     return System::fAirport;
 }
 
 vector<Flightplan*> System::getFlightplans() const {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightplans");
     return System::fFlightplans;
 }
 
@@ -825,9 +829,11 @@ System::~System() {
 
 
 void System::initializeATC(ostream &log) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
     fATC = new ATC(log);
 }
 
 void System::setEndTime(Time end) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
     fEndTime = end;
 }

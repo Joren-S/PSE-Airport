@@ -11,10 +11,6 @@ int main() {
     // Output file for atc
     ofstream atc(ATCFILENAME);
 
-    if (atc.fail()) {
-        cout << "huh";
-    }
-
     // Output file for logging
     ofstream log(LOGFILENAME);
 
