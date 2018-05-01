@@ -19,7 +19,9 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
-        test/init_test.cpp
+        test/init_test.cpp test/inputTests.cpp test/outputTests.cpp
+        test/domainTestsAirplane.cpp test/domainTestsAirport.cpp test/domainTestsATC.cpp test/domainTestsFlightplan.cpp
+        test/domainTestsRunway.cpp test/domainTestsSystem.cpp test/domainTestsTime.cpp
         src/Airplane.cpp src/Airport.cpp src/Runway.cpp src/System.cpp src/Input.cpp src/Flightplan.cpp src/Time.cpp src/ATC.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp
         test/TestUtils.cpp)

@@ -7,15 +7,15 @@
 #ifndef PROJECTVLIEGVELD_AIRPLANES_H
 #define PROJECTVLIEGVELD_AIRPLANES_H
 
-#include <string>
 
-// Libraries
+#include <string>
 #include "DesignByContract.h"
 
 using namespace std;
 
-// Forward declaration
-class Runway;
+
+class Runway; // Forward declaration
+
 
 // Enums for the Airplane class
 
@@ -31,8 +31,12 @@ enum EPlaneEngine { kPropeller, kJet, kDefaultEngine };
 enum EPlaneRequest { kPending, kAccepted, kDenied, kConfirmed, kAcceptedImmediate, kIdle };
 
 
+/**
+ * \brief: Class that represents an airplane in the simulation
+ */
 class Airplane {
 private:
+
     /**
      * Pointer to itself
      */
@@ -64,6 +68,11 @@ private:
     EPlaneType fType;
 
     /**
+     * Status of last request.
+     */
+    EPlaneRequest fRequest;
+
+    /**
      * Amount of passengers it can hold
      */
     int fPassengers;
@@ -87,24 +96,18 @@ private:
     /**
      * Indicates the taxipoint it's at right now.
      */
-    std::string fPosition;
+    string fPosition;
 
     /**
      * Indicates the runway on which the airplane lands/takes off
      */
     Runway* fRunway;
 
-    /**
-     * Status of last request.
-     */
-    EPlaneRequest fRequest;
-
 public:
 
     /**
      * Default constructor
-     * Set int values to -1, to check if field are initialized
-     * Set status to approaching
+     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Airplane();
 
@@ -115,27 +118,38 @@ public:
 
     /**
      * Increases the plane's altitude by a given amount
-     * ENSURE: altitude has been raised by the difference
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling increaseAltitude");
+     * REQUIRE(difference > 0, "Difference can't be negative");
+     * ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
      */
     void increaseAltitude(int difference = 1);
 
     /**
      * Decreases the plane's altitude by a given amount
-     * REQUIRE: new altitude can't be less than 0
-     * ENSURE: altitude has been decreased by the difference
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling decreaseAltitude");
+     * REQUIRE(difference > 0, "Difference can't be negative");
+     * REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
+     * ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
      */
     void decreaseAltitude(int difference = 1);
 
-
+    /**
+     * Decreases the time of the remaining operation by one.
+     * If there's no operation busy, it does nothing.
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling decreaseTimeRemaining");
+     */
     void decreaseTimeRemaining();
-
 
     /**
      * Checks if all the data members were initialized
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling Airplane::complete");
      */
     bool complete() const;
 
+
     // Getters and Setters
+    // REQUIRE(this->properlyInitialized) for all
+
     EPlaneSize getSize() const;
     void setSize(EPlaneSize size);
     EPlaneType getType() const;

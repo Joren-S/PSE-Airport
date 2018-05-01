@@ -1,14 +1,20 @@
 //============================================================================
-// Name        : init_test.cpp
+// Name        : domainTestsATC.cpp
 // Author      : Joren Servotte, Max Van Houcke
 // Description : Airport simulation, Project Software Engineering
 //============================================================================
 
-
+#include <gtest/gtest.h>
 #include "../headers/System.h"
 
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+// for each test function, set up the atc
+// constructor with argument necessary
+
+
+TEST(domainTestATC, DefaultConstructor) {
+    ofstream out("../test/testOutput/abc.txt");
+    ATC atc(out);
+
+    // do stuff
 }
