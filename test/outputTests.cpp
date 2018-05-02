@@ -15,9 +15,9 @@ TEST(outputTest, happyDay) {
     string filename = "../test/testOutput/happyDay" + ToString(counter) + ".xml";
 
     while (FileExists(filename)) {
-        string atcname = "../test/testOutput/happyDayATC" + ToString(counter) + ".txt";
-        string logname = "../test/testOutput/happyDayLog" + ToString(counter) + ".txt";
-        string infoname = "../test/testOutput/happyDayInfo" + ToString(counter) + ".txt";
+        string atcname = "../test/testOutput/happyDay" + ToString(counter) + "ATC.txt";
+        string logname = "../test/testOutput/happyDay" + ToString(counter) + "Log.txt";
+        string infoname = "../test/testOutput/happyDay" + ToString(counter) + "Info.txt";
         ofstream atc(atcname.c_str());
         ofstream log(logname.c_str());
         Input input;
@@ -31,9 +31,9 @@ TEST(outputTest, happyDay) {
         atc.close();
         log.close();
 
-        string expectedatc = "../test/testOutput/happyDayExpectedATC" + ToString(counter) + ".txt";
-        string expectedlog = "../test/testOutput/happyDayExpectedLog" + ToString(counter) + ".txt";
-        string expectedinfo = "../test/testOutput/happyDayExpectedInfo" + ToString(counter) + ".txt";
+        string expectedatc = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedATC.txt";
+        string expectedlog = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedLog.txt";
+        string expectedinfo = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedInfo.txt";
 
         EXPECT_TRUE(FileCompare(atcname, expectedatc));
         EXPECT_TRUE(FileCompare(logname, expectedlog));
