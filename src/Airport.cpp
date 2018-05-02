@@ -73,8 +73,8 @@ int Airport::getFreeGate() {
 
 void Airport::restoreGate(int id) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling restoreGate.");
-    REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
     REQUIRE(fGates > 0, "Airport has no gates.");
+    REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
 
     // Check if gate is already in fGateStack
     stack<int> copy = fGateStack;
@@ -218,22 +218,6 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
 
     // Write the result to our stream
     stream << impression.str();
-
-
-
-    /*
-     * template
-
-    11L | ====V=====
-    TPB |
-    11R | ==========
-    TPA |
-    Gates [ V ]
-
-
-     MAKE SURE TO CHANGE STREAM IN RUN FUNCTION
-     CURRENTLY COUT
-     */
 }
 
 // Getters en setters
