@@ -184,7 +184,6 @@ void Input::readAirplane(TiXmlElement *elem) {
 
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
-    cout << fieldCount << endl;
     if (fieldCount != -1) {
         cerr << "Missing field(s) for Airplane." << endl;
     }
