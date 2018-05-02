@@ -4,10 +4,8 @@
 // Description : Airport simulation, Project Software Engineering
 //============================================================================
 
-#include <iostream>
+
 #include "../headers/ATC.h"
-#include "../headers/Airplane.h"
-#include "../headers/Runway.h"
 
 // Constructor and initialise-check
 
@@ -48,16 +46,63 @@ void ATC::sendRequest(Time time, Airplane *source) {
 }
 
 string ATC::formatMessage(Time time, string source, string message) {
+    // Variables
     ostringstream result;
+    ostringstream natoBuffer;
+
+    // Setup nato map
+    map<string, string> nato;
+    nato.insert(make_pair("0", "zero"));
+    nato.insert(make_pair("1", "one"));
+    nato.insert(make_pair("2", "two"));
+    nato.insert(make_pair("3", "three"));
+    nato.insert(make_pair("4", "four"));
+    nato.insert(make_pair("5", "five"));
+    nato.insert(make_pair("6", "six"));
+    nato.insert(make_pair("7", "seven"));
+    nato.insert(make_pair("8", "eight"));
+    nato.insert(make_pair("9", "nine"));
+
+    // Iterate over every character in the message
+    for(string::iterator it = message.begin(); it != message.end(); ++it) {
+        string curChar(1, *it);
+
+        // if current char is a number
+        if (isdigit(*it)) {
+
+            // if number has a nato representation
+            if(nato.find(curChar) != nato.end()) {
+
+                // append nato to buffer
+                string numAsNato = nato.find(curChar)->second;
+                natoBuffer << numAsNato;
+
+                // if not at end of message
+                if ((it + 1) != message.end()) {
+                    string nextChar(1, *(it + 1));
+
+                    // check if next character is a space or special character.
+                    // if not, we add a space
+                    if (nextChar != " " and nextChar != "." and nextChar != ",") {
+                        natoBuffer << " ";
+                    }
+                }
+
+                // we continue since we don't want to append the number itself
+                continue;
+            }
+        }
+        natoBuffer << curChar;
+    }
 
     // Append the time and source
     result << "[" << time.formatted() << "]";
     result << "[" << source << "]" << endl;
 
     // Append the message
-    result << "$ " << message << endl;
+    result << "$ " << natoBuffer.str() << endl;
 
-    // return as string
+    // convert to string and return
     return result.str();
 }
 

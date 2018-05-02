@@ -7,9 +7,14 @@
 #ifndef PROJECTVLIEGVELD_ATC_H
 #define PROJECTVLIEGVELD_ATC_H
 
+#include <stdlib.h>
+#include <iostream>
 #include <queue>
 #include <set>
-#include <stdlib.h>
+#include <map>
+
+#include "Airplane.h"
+#include "Runway.h"
 #include "Time.h"
 #include "Airport.h"
 
