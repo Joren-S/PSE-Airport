@@ -185,7 +185,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        errorLog << "Missing field(s) for Airplane." << endl;
+        errorLog << "Duplicate or missing field(s) for Airplane." << endl;
     }
 
     if (flightplan != NULL) {
@@ -293,7 +293,7 @@ void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        errorLog << "Missing field(s) for Runway." << endl;
+        errorLog << "Duplicate or missing field(s) for Runway." << endl;
     }
 
     // Delete the object
@@ -408,7 +408,7 @@ void Input::readAirport(TiXmlElement *elem, ostream& errorLog) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        errorLog << "Missing field(s) for Airport." << endl;
+        errorLog << "Duplicate or missing field(s) for Airport." << endl;
     }
 
     // Delete the object
@@ -465,7 +465,7 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem, ostream& errorLog) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        errorLog << "Missing field(s) for Flightplan." << endl;
+        errorLog << "Duplicate or missing field(s) for Flightplan." << endl;
     }
 
     // Delete the object
