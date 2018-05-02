@@ -73,8 +73,7 @@ ATCRequest *ATC::getNextRequest() {
     ATCRequest *rqst = getQueue()->front();
     getQueue()->pop();
 
-    // Make sure our message was retrieved and popped correctly.
-    ENSURE(fQueue.front() != rqst, "Message wasn't removed from the queue.");
+    // Make sure our message was retrieved correctly.
     ENSURE(rqst != NULL, "Request popped from queue is NULL.");
 
     // Return our message.
