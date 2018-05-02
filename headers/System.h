@@ -153,6 +153,62 @@ public:
     void land(Airplane*, ostream& log);
 
     /**
+     * Ascends an airplane to 5000ft.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
+     */
+    void ascend(Airplane*, ostream& fLog);
+
+    /**
+     * Lets an airplane wait ON a runway before taking off.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling onRunway.");
+     */
+    void onRunway(Airplane*, ostream& fLog);
+
+    /**
+     * Lets an airplane wait AT a runway until instructions are given.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling atRunway");
+     */
+    void atRunway(Airplane*, ostream& fLog);
+
+    /**
+     * Performs a cross.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
+     */
+    void taxiDepartureCross(Airplane*, ostream& fLog);
+
+    /**
+     * Performs the next taxi-step.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep");
+     */
+    void taxiDepartureStep(Airplane*, ostream& fLog);
+
+    /**
+     * Lets an airplane wait before taxiing.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart");
+     */
+    void taxiDepartureStart(Airplane*, ostream& fLog);
+
+    /**
+     * Pushes an airplane back from the gate.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback");
+     */
+    void pushback(Airplane*, ostream& fLoglog);
+
+    /**
+     * Refuels the airplane and lets passengers board.
+     * Events are logged to the given ostream&.
+     * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare");
+     */
+    void prepare(Airplane*, ostream& fLog);
+
+    /**
      * Performs a takeoff of a plane on an airport
      * Logs the info to an output stream, defaulted to "cout".
      * REQUIRE: plane status is kGate &&
@@ -160,7 +216,7 @@ public:
      * at least one airport in the system
      * ENSURE: plane status is kFinished
      */
-    void takeoff(Airplane*, ostream& log) const;
+    void takeoff(Airplane*, ostream& log);
 
     /**
      * Getter for the airport in the simulation
