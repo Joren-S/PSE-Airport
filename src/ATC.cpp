@@ -81,9 +81,9 @@ string ATC::formatMessage(Time time, string source, string message) {
                 if ((it + 1) != message.end()) {
                     string nextChar(1, *(it + 1));
 
-                    // check if next character is a space
+                    // check if next character is a space or special character.
                     // if not, we add a space
-                    if (nextChar != " ") {
+                    if (nextChar != " " and nextChar != "." and nextChar != ",") {
                         natoBuffer << " ";
                     }
                 }
