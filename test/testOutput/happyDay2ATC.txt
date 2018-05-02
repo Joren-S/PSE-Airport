@@ -1,0 +1,26 @@
+[12:15][Cessna 842]
+$ Antwerp Tower, Cessna 842, arriving at Antwerp International Airport.
+[12:16][Antwerp Tower]
+$ Cessna 842, radar contact, descend and maintain five thousand feet, squawk 0.
+[12:17][Cessna 842]
+$ Descend and maintain five thousand feet, squawking 0, Cessna 842.
+[12:23][Antwerp Tower]
+$ Cessna 842, descend and maintain three thousand feet.
+[12:24][Cessna 842]
+$ Descend and maintain three thousand feet, Cessna 842.
+[12:27][Antwerp Tower]
+$ Cessna 842, cleared ILS approach runway 11L.
+[12:28][Cessna 842]
+$ Cleared ILS approach runway 11L, Cessna 842.
+[12:34][Cessna 842]
+$ Antwerp Tower, Cessna 842, runway 11L vacated.
+[12:35][Antwerp Tower]
+$ Cessna 842, taxi to holding point 11R via Bravo.
+[12:36][Cessna 842]
+$ Taxi to holding point 11R via Bravo, Cessna 842.
+[12:42][Cessna 842]
+$ Antwerp Tower, Cessna 842, holding short at 11R.
+[12:43][Antwerp Tower]
+$ Cessna 842, cleared to cross 11R taxi to gate 1 via Alpha, Cessna 842.
+[12:44][Cessna 842]
+$ Cleared to cross 11R, taxi to gate 1 via Alpha, Cessna 842.

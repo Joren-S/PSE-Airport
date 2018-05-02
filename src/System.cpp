@@ -873,7 +873,7 @@ void System::run(ostream& log, const string& impressionName) {
 
             land(airplane, log);
 
-//            takeoff(airplane, log);
+            takeoff(airplane, log);
 
             airplane->decreaseTimeRemaining();
         }
