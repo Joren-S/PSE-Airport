@@ -105,12 +105,12 @@ public:
     void setLength(int length);
     const string &getName() const;
     void setName(const string &fName);
-    Airport *getAirport() const;
-    void setAirport(Airport *fAirport);
     bool isFree() const;
     void setFree(bool free);
     string getTaxiPoint() const;
     void setTaxiPoint(const string&);
+    Airport *getAirport() const;
+    void setAirport(Airport *fAirport);
 
 };
 
