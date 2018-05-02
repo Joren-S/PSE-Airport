@@ -195,7 +195,7 @@ public:
     /**
      * Setter for the squawk code
      * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     *
+     * REQUIRE(squawk >= 0, "Squawk code can't be negative");
      */
     void setSquawk(int squawk);
 

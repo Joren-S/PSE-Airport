@@ -60,7 +60,7 @@ TEST_F(inputTest, XMLSyntaxErrors) {
     string fileName = "../test/testInput/inputSyntaxError" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
-        string errorFileName = "illegalSyntax" + ToString(fileCounter) + ".txt";
+        string errorFileName = "../test/testInput/illegalSyntax" + ToString(fileCounter) + ".txt";
         myfile.open(errorFileName.c_str());
 //        myfile.open("../test/testInput/error.txt");
         EXPECT_DEATH(input.read(fileName, myfile), "Couldn't open " + fileName + ".");

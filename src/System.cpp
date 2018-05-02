@@ -903,7 +903,10 @@ System::~System() {
     // Delete airport
     delete fAirport;
 
-    // Delete all flightplans
+    // Delete atc
+    delete fATC;
+
+    // Delete all flightplans, which in the destructor deletes the airplane
     vector<Flightplan*>::iterator flightplanItr;
     vector<Flightplan*> flightplans = getFlightplans();
     for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
