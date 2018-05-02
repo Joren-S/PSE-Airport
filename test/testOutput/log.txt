@@ -1,3 +1,7 @@
-[12:00][]
-$ Antwerp Tower, , arriving at Antwerp International Airport.
+[12:00][Cessna 842]
+$ Antwerp Tower, Cessna 842, arriving at Antwerp International Airport.
 
+[12:00][Cessna 842]
+$ Descend and maintain five thousand feet, squawking 1701999988, Cessna 842.
+
+[12:00] Cessna 842 is approaching Antwerp International Airport at 10.000ft.
