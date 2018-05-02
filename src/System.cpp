@@ -828,6 +828,7 @@ void System::run(ostream& log, const string& impressionName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
+
     while (!simulationFinished()) {
 
         // Each tick, we make sure our ATC handles requests.

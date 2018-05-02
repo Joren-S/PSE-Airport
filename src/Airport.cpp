@@ -180,21 +180,45 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
         vector<Flightplan*>::const_iterator j;
         for (j = plans.begin(); j != plans.end(); ++j) {
             Airplane *curPlane = (*j)->getAirplane();
-            if (curPlane->getPosition() == curTP) {
-                EPlaneStatus status = curPlane->getStatus();
 
-                // if plane is on runway
-                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture or (status == kDescending and curPlane->getAltitude() == 0)) {
-                    impression << "V====" << endl;
-                    planeFound = true;
-                }
-                else {
-                    planesAtTaxiPoint++;
-                }
+            // Plane is landing
+            if (curPlane->getPosition().empty() and curPlane->getAltitude() == 0 and curPlane->getStatus() == kDescending and curPlane->getRunway() == curRW) {
+                planeFound = true;
             }
+
+            // Plane is crossing when taxiing at arrival
+            else if (curPlane->getStatus() == kCrossingArrival and this->getNextRunway(curPlane) == curRW) {
+                planeFound = true;
+            }
+
+            // Plane just landed
+            else if (curPlane->getPosition().empty() and curPlane->getStatus() == kTaxiArrival and curPlane->getRunway() == curRW) {
+                planesAtTaxiPoint++;
+            }
+
+            // At taxipoint
+            else if (curPlane->getStatus() == kTaxiArrival and curPlane->getPosition() == curTP) {
+                planesAtTaxiPoint++;
+            }
+//
+//            if (curPlane->getPosition() == curTP) {
+//                EPlaneStatus status = curPlane->getStatus();
+//
+//                // if plane is on runway
+//                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture or (status == kDescending and curPlane->getAltitude() == 0)) {
+//                    impression << "V====" << endl;
+//                    planeFound = true;
+//                }
+//                else {
+//                    planesAtTaxiPoint++;
+//                }
+//            }
         }
         if (!planeFound) {
             impression << "=====" << endl;
+        }
+        else {
+            impression << "V====" << endl;
         }
 
         string planesattaxi (planesAtTaxiPoint, 'V');
@@ -207,7 +231,13 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
     for (j = plans.begin(); j != plans.end(); ++j) {
         Airplane *curPlane = (*j)->getAirplane();
         EPlaneStatus status = curPlane->getStatus();
-        if (status == kGate or status == kParked or status == kAirport or status == kPushback) {
+
+        // Landing
+        if (status == kDeboarding or status == kTechnicalCheck or status == kParked) {
+            planesAtGate++;
+        }
+
+        if (status == kGate or status == kAirport or status == kPushback) {
             planesAtGate++;
         }
     }

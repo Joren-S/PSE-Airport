@@ -63,6 +63,33 @@ string ATC::formatMessage(Time time, string source, string message) {
     nato.insert(make_pair("8", "eight"));
     nato.insert(make_pair("9", "nine"));
 
+    nato.insert(make_pair("a", "alfa"));
+    nato.insert(make_pair("b", "bravo"));
+    nato.insert(make_pair("c", "charlie"));
+    nato.insert(make_pair("d", "delta"));
+    nato.insert(make_pair("e", "echo"));
+    nato.insert(make_pair("f", "foxtrot"));
+    nato.insert(make_pair("g", "golf"));
+    nato.insert(make_pair("h", "hotel"));
+    nato.insert(make_pair("i", "india"));
+    nato.insert(make_pair("j", "juliett"));
+    nato.insert(make_pair("k", "kilo"));
+    nato.insert(make_pair("l", "lima"));
+    nato.insert(make_pair("m", "mike"));
+    nato.insert(make_pair("n", "november"));
+    nato.insert(make_pair("o", "oscar"));
+    nato.insert(make_pair("p", "papa"));
+    nato.insert(make_pair("q", "quebec"));
+    nato.insert(make_pair("r", "romeo"));
+    nato.insert(make_pair("s", "sierra"));
+    nato.insert(make_pair("t", "tango"));
+    nato.insert(make_pair("u", "uniform"));
+    nato.insert(make_pair("v", "victor"));
+    nato.insert(make_pair("w", "whiskey"));
+    nato.insert(make_pair("x", "x-ray"));
+    nato.insert(make_pair("y", "yankee"));
+    nato.insert(make_pair("z", "zulu"));
+
     // Iterate over every character in the message
     for(string::iterator it = message.begin(); it != message.end(); ++it) {
         string curChar(1, *it);
@@ -92,6 +119,17 @@ string ATC::formatMessage(Time time, string source, string message) {
                 continue;
             }
         }
+
+        else if (isalpha(*it)) {
+            if (it == message.begin() or isdigit(*(it - 1)) or *(it - 1) == '.' or *(it - 1) == ' ' or *(it - 1) == ',') {
+                if (it == message.end() - 1 or isdigit(*(it + 1)) or *(it + 1) == '.' or *(it + 1) == ' ' or *(it + 1) == ',') {
+                    string currentChar (1, tolower(*it));
+                    string letterAsNato = nato.find(currentChar)->second;
+                    natoBuffer << letterAsNato;
+                    continue;
+                }
+            }
+        }
         natoBuffer << curChar;
     }
 
@@ -118,8 +156,7 @@ ATCRequest *ATC::getNextRequest() {
     ATCRequest *rqst = getQueue()->front();
     getQueue()->pop();
 
-    // Make sure our message was retrieved and popped correctly.
-    ENSURE(fQueue.front() != rqst, "Message wasn't removed from the queue.");
+    // Make sure our message was retrieved correctly.
     ENSURE(rqst != NULL, "Request popped from queue is NULL.");
 
     // Return our message.

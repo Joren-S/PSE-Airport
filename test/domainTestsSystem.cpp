@@ -23,8 +23,12 @@ protected:
 
         // Get airplane
         airplane = system.getFlightplans()[0]->getAirplane();
+
+        // Get runway
+        runway = system.getAirport()->getRunways()[0];
     }
 
+    Runway* runway;
     ofstream out;
     Airplane* airplane;
     System system;
@@ -50,4 +54,80 @@ TEST_F(domainTestSystem, approach) {
     EXPECT_EQ(airplane->getRequest(), kIdle);
     EXPECT_EQ(airplane->getAltitude(), 10);
     EXPECT_EQ(airplane->getStatus(), kDescending);
+}
+
+TEST_F(domainTestSystem, descend) {
+    // Normal descend
+    airplane->setStatus(kDescending);
+    airplane->setAltitude(10);
+    system.descend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 9);
+    EXPECT_EQ(airplane->getStatus(), kDescending);
+
+    // Plane at 3000ft and can land
+    airplane->setRequest(kConfirmed);
+    airplane->setAltitude(3);
+    airplane->setRunway(runway);
+    system.descend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 2);
+    EXPECT_EQ(airplane->getStatus(), kDescending);
+
+    // Plane at 3000ft and has to circle
+    airplane->setRequest(kDenied);
+    airplane->setAltitude(3);
+    system.descend(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kCircling);
+    EXPECT_EQ(airplane->getAltitude(), 3);
+
+    // Plane has landed
+    airplane->setAltitude(0);
+    airplane->setStatus(kDescending);
+    system.descend(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kTaxiArrival);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+}
+
+TEST_F(domainTestSystem, circle) {
+    // Very simple function so very simple test
+    system.circle(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kDescending);
+}
+
+TEST_F(domainTestSystem, taxiArrival) {
+    // Arrived at gate
+    airplane->setPosition(runway->getTaxiPoint());
+    airplane->setRequest(kConfirmed);
+    system.taxiArrival(airplane, out);
+    EXPECT_TRUE(airplane->getPosition().empty());
+    EXPECT_EQ(airplane->getStatus(), kDeboarding);
+
+    // Arrived at taxipoint
+    airplane->setStatus(kTaxiArrival);
+    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setRequest(kConfirmed);
+    system.taxiArrival(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+
+    // Hasn't send a request yet for taxi instructions
+    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setRequest(kIdle);
+    system.taxiArrival(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+
+    // Request has been accepted, plane just landed
+    airplane->setRequest(kAccepted);
+    airplane->setPosition("");
+
+}
+
+TEST_F(domainTestSystem, crossArrival) {
+
+}
+
+TEST_F(domainTestSystem, deboard) {
+
+}
+
+TEST_F(domainTestSystem, technicalCheck) {
+
 }
