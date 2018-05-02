@@ -1,0 +1,26 @@
+<AIRPORT>
+	<name>Antwerp International Airport</name>
+	<iata>ANR</iata>
+	<callsign>Antwerp Tower</callsign>
+	<gates>10</gates>
+</AIRPORT>
+<AIRPLANE>
+	<number>N11842</number>
+	<callsign>Cessna 842</callsign>
+	<model>Cessna 340</model>
+	<type>private</type>
+	<engine>propeller</engine>
+	<size>small</size>
+	<passengers>8</passengers>
+	<status>approaching</status>
+</AIRPLANE>
+<AIRPLANE>
+	<number>BAW466</number>
+	<callsign>Speedbird 466</callsign>
+	<model>Boeing 747</model>
+	<type>airline</type>
+	<engine>jet</engine>
+	<size>large</size>
+	<passengers>400</passengers>
+	<status>gate</status>
+</AIRPLANE>
