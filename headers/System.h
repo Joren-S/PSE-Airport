@@ -199,7 +199,7 @@ public:
      * Events are logged to the given ostream&.
      * REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback");
      */
-    void pushback(Airplane*, ostream& fLoglog);
+    void pushback(Airplane*, ostream& fLog);
 
     /**
      * Refuels the airplane and lets passengers board.
