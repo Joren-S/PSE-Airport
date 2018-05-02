@@ -15,7 +15,7 @@ ATC::ATC(ostream& stream): fStream(stream) {
     fInitCheck = this;
     f3Occupied = false;
     f5Occupied = false;
-    ENSURE(properlyInitialized(), "ATC was not properly initialized.");
+    ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
 }
 
 bool ATC::properlyInitialized() const {
@@ -26,19 +26,19 @@ bool ATC::properlyInitialized() const {
 // Functions
 
 void ATC::sendMessage(const string &message) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
     fStream << message << endl;
 }
 
 int ATC::getQueueSize() const {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
     int size = fQueue.size();
     ENSURE(size >= 0, "Queue has a negative size.");
     return size;
 }
 
 void ATC::sendRequest(Time time, Airplane *source) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendRequest.");
     REQUIRE(source != NULL, "Source is NULL.");
     ATCRequest *rqst = new ATCRequest(time, source);
 
@@ -61,7 +61,7 @@ string ATC::formatMessage(Time time, string source, string message) {
 }
 
 ATCRequest *ATC::getNextRequest() {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
 
     // If queue is empty, return NULL.
     if (getQueueSize() == 0) {
@@ -82,7 +82,7 @@ ATCRequest *ATC::getNextRequest() {
 
 
 void ATC::doHeartbeat(Time curTime) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
 
     // Fetch the next request in the queue
     ATCRequest* request = getNextRequest();
@@ -312,8 +312,10 @@ void ATC::doHeartbeat(Time curTime) {
             // IFR clearance granted.
             airplane->setRunway(dest);
             airplane->setRequest(kAccepted);
+            stringstream sqwk;
+            sqwk << airplane->getSquawk();
             sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
-                                                      ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + airplane->getSquawk() + "."));
+                                                      ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + sqwk.str() + "."));
         }
     }
 
@@ -413,59 +415,8 @@ void ATC::doHeartbeat(Time curTime) {
     airplane->setTimeRemaining(1);
 }
 
-
-// Getters and setters
-queue<ATCRequest *> *ATC::getQueue() {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    return &fQueue;
-}
-
-void ATC::setLastActive(Time time) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    fLastActive = time;
-    ENSURE(fLastActive == time, "Field wasn't set properly");
-}
-
-Time ATC::getLastActive() const {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    return fLastActive;
-}
-
-Airport* ATC::getAirport() const {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    return fAirport;
-}
-
-void ATC::setAirport(Airport *airport) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    fAirport = airport;
-    ENSURE(fAirport == airport, "Field wasn't set properly");
-}
-
-bool ATC::get3occupied() const {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    return f3Occupied;
-}
-
-void ATC::set3occupied(bool occupied) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    f3Occupied = occupied;
-    ENSURE(f3Occupied == occupied, "Field wasn't set properly");
-}
-
-bool ATC::get5occupied() const {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    return f5Occupied;
-}
-
-void ATC::set5occupied(bool occupied) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
-    f5Occupied = occupied;
-    ENSURE(f5Occupied == occupied, "Field wasn't set properly");
-}
-
 int ATC::getSquawk(Airplane *airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized.");
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
     // Keep going until a code is found
     while (true) {
         // Set squawk to -1
@@ -503,4 +454,54 @@ int ATC::getSquawk(Airplane *airplane) {
             return squawk;
         }
     }
+}
+
+// Getters and setters
+queue<ATCRequest *> *ATC::getQueue() {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    return &fQueue;
+}
+
+void ATC::setLastActive(Time time) {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    fLastActive = time;
+    ENSURE(fLastActive == time, "Field wasn't set properly");
+}
+
+Time ATC::getLastActive() const {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    return fLastActive;
+}
+
+Airport* ATC::getAirport() const {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    return fAirport;
+}
+
+void ATC::setAirport(Airport *airport) {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    fAirport = airport;
+    ENSURE(fAirport == airport, "Field wasn't set properly");
+}
+
+bool ATC::get3occupied() const {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    return f3Occupied;
+}
+
+void ATC::set3occupied(bool occupied) {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    f3Occupied = occupied;
+    ENSURE(f3Occupied == occupied, "Field wasn't set properly");
+}
+
+bool ATC::get5occupied() const {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    return f5Occupied;
+}
+
+void ATC::set5occupied(bool occupied) {
+    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    f5Occupied = occupied;
+    ENSURE(f5Occupied == occupied, "Field wasn't set properly");
 }

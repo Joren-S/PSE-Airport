@@ -11,24 +11,24 @@
 Airport::Airport() {
     fGates = -1;
     fInitCheck = this;
-    ENSURE(properlyInitialized(), "Airport wasn't properly initialized.");
+    ENSURE(properlyInitialized(), "Airport wasn't properly initialized after constructing.");
 }
 
 bool Airport::complete() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling complete.");
     return !(fName.empty() or fCallsign.empty() or
              fIata.empty() or fGates == -1);
 }
 
 size_t Airport::amountOfRunways() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling amountOfRunways.");
 
     // Return the size of the vector containing all runways.
     return fRunways.size();
 }
 
 Runway* Airport::getFreeRunway(Airplane *plane) const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeRunway.");
     REQUIRE(plane != NULL, "Plane object does not exist.");
 
     // Iterate over all runways
@@ -46,7 +46,7 @@ Runway* Airport::getFreeRunway(Airplane *plane) const {
 }
 
 void Airport::initStack() {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initStack.");
     REQUIRE(fGateStack.empty(), "Can't initialize gate stack, already in use.");
 
     // Initialize the stack for our gates
@@ -57,7 +57,7 @@ void Airport::initStack() {
 }
 
 int Airport::getFreeGate() {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeGate.");
     REQUIRE(!fGateStack.empty(), "Can't get free gate: no gate in stack.");
     REQUIRE(fGates > 0, "Airport has no gates.");
 
@@ -73,7 +73,7 @@ int Airport::getFreeGate() {
 }
 
 void Airport::restoreGate(int id) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling restoreGate.");
     REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
     REQUIRE(fGates > 0, "Airport has no gates.");
 
@@ -94,7 +94,7 @@ void Airport::restoreGate(int id) {
 }
 
 void Airport::addRunway(Runway *runway) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling addRunway.");
     REQUIRE(runway != NULL, "Runway cannot be NULL.");
 
     // Iterate over all runways
@@ -116,7 +116,7 @@ void Airport::addRunway(Runway *runway) {
 }
 
 Runway* Airport::getRunway(const string &taxipoint) const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getRunway.");
 
     // Iterate over all runways
     vector<Runway*>::const_iterator itr;
@@ -133,7 +133,7 @@ Runway* Airport::getRunway(const string &taxipoint) const {
 }
 
 Runway* Airport::getNextRunway(Airplane *airplane) const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getNextRunway.");
     REQUIRE(airplane != NULL, "Airplane cannot be NULL.");
 
     // Iterate over all runways
@@ -161,52 +161,52 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
 // Getters en setters
 
 const string &Airport::getName() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fName;
 }
 
 void Airport::setName(const string &name) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fName = name;
     ENSURE(fName == name, "Field wasn't set properly");
 }
 
 const string &Airport::getIata() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fIata;
 }
 
 void Airport::setIata(const string &iata) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fIata = iata;
     ENSURE(fIata == iata, "Field wasn't set properly");
 }
 
 const string &Airport::getCallsign() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fCallsign;
 }
 
 void Airport::setCallsign(const string &callsign) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fCallsign = callsign;
     ENSURE(fCallsign == callsign, "Field wasn't set properly");
 }
 
 int Airport::getGates() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fGates;
 }
 
 void Airport::setGates(int gates) {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
-    REQUIRE(fGates >= 0, "Number of gates cannot be negative!");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
+    REQUIRE(gates >= 0, "Number of gates cannot be negative!");
     fGates = gates;
     ENSURE(fGates == gates, "Field wasn't set properly");
 }
 
 vector<Runway*> Airport::getRunways() const {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fRunways;
 }
 

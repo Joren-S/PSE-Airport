@@ -45,7 +45,7 @@ public:
 
     /**
      * Default constructor
-     * ENSURE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * ENSURE(properlyInitialized(), "Airport wasn't properly initialized after constructing");
      */
     Airport();
 
@@ -57,14 +57,14 @@ public:
 
     /**
      * Initializes the gateStack
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initStack.");
      * REQUIRE(fGateStack.empty(), "Can't initialize gate stack, already in use.");
      */
     void initStack();
 
     /**
      * Returns the ID of a free gate
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeGate.");
      * REQUIRE(!fGateStack.empty(), "Can't get free gate: no gate in stack.");
      * REQUIRE(fGates > 0, "Airport has no gates.");
      * ENSURE(id <= fGates && id > 0, "Gate has an invalid ID.");
@@ -75,7 +75,7 @@ public:
 
     /**
      * Restores a gate, making it available for use again.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling restoreGate.");
      * REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
      * REQUIRE(fGates > 0, "Airport has no gates.");
      * ENSURE(fGateStack.top() == id, "Gate was not properly added to stack");
@@ -85,14 +85,14 @@ public:
 
     /**
      * Searches the runway with the given taxipoint.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getRunway.");
      * @return: Pointer to the found runway, NULL if nothing is found.
      */
     Runway* getRunway(const string&) const;
 
     /**
      * Gets the next runway (for taxiing) based on what the airplane is doing.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getNextRunway.");
      * REQUIRE(airplane != NULL, "Airplane cannot be NULL.");
      * @param airplane: Airplane that is taxiing.
      * @return: Pointer to the found runway, NULL if nothing is found.
@@ -101,7 +101,7 @@ public:
 
     /**
      * Adds a runway to the airport.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling addRunway.");
      * REQUIRE(runway != NULL, "Runway cannot be NULL.");
      * ENSURE(!present, "Runway is already in system.");
      * ENSURE(fRunways.back() == runway, "Runway was not properly added to the system.");
@@ -111,7 +111,7 @@ public:
 
     /**
      * Looks for a runway that is free and is suitable for a given airplane.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeRunway.");
      * REQUIRE(plane != NULL, "Plane object does not exist.");
      * @param plane: Plane that needs the runway.
      * @return: Pointer to runway, NULL if nothing is found.
@@ -119,20 +119,22 @@ public:
     Runway* getFreeRunway(Airplane* plane) const;
 
     /**
-     * Return the amount of runways the airport has
+     * Return the amount of runways the airport has.
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling amountOfRunways.");
+     * @return: Amount of runways.
      */
     size_t amountOfRunways() const;
 
     /**
      * Checks if all the data members were initialized
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling complete.");
      * @return: Boolean indicating if everything was initialized.
      */
     bool complete() const;
 
     /**
      * Set the amount of gates in the airport.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
      * REQUIRE(fGates >= 0, "Number of gates cannot be negative!");
      * ENSURE(fGates == gates, "Field wasn't set properly");
      * @param fGates: Amount of gates.
@@ -141,7 +143,7 @@ public:
 
     /**
      * Getters and setters for the fields of the class.
-     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized.");
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
      *
      * Setters:
      * ENSURE(fField == value, "Field wasn't set properly");
