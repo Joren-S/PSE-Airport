@@ -13,8 +13,8 @@
 
 
 TEST(domainTestATC, DefaultConstructor) {
-    ofstream out("../test/testOutput/abc.txt");
-    ATC atc(out);
+//    ofstream out("../test/testOutput/abc.txt");
+//    ATC atc(out, true);
 
     // do stuff
 }

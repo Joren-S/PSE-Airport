@@ -158,7 +158,7 @@ void Input::readAirplane(TiXmlElement *elem) {
 
             // Set gate and altitude of plane
             if (flightplan->getArrival() > flightplan->getDeparture()) {
-                tmp->setStatus(kAirport);
+                tmp->setStatus(kParked);
                 tmp->setGateID(airports[0]->getFreeGate());
             }
 
@@ -465,7 +465,7 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        cerr << "Missing field(s) for Airport." << endl;
+        cerr << "Missing field(s) for Flightplan." << endl;
     }
 
     // Delete the object

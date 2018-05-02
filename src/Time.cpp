@@ -101,5 +101,5 @@ bool Time::operator<(const Time& time) const {
 }
 
 bool Time::properlyInitialized() const {
-    return fInitCheck == this;
+    return true;
 }

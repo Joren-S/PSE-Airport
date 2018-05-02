@@ -65,7 +65,7 @@ public:
      * Initializes the air traffic control of the simulation with an ostream
      * REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
      */
-    void initializeATC(ostream& log);
+    void initializeATC(ostream& log, bool test = false);
 
     /**
      * Imports the given input
@@ -88,7 +88,7 @@ public:
      * REQUIRE(!simulationFinished(), "Simulation is already finished");.
      * ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
      */
-    void run(ostream& log);
+    void run(ostream& log, const string& impressionName = "../output/impressions/impression");
 
     /**
      * Checks if the simulation has ended, i.e. specified end time has been reached

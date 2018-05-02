@@ -16,7 +16,7 @@ protected:
 
 
 TEST_F(inputTest, HappyDay) {
-    input.read("filename");
+    EXPECT_DEATH(input.read("filename"), "Couldn't open filename.");
     // do stuff
 }
 

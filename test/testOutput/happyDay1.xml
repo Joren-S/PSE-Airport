@@ -7,7 +7,7 @@
 <RUNWAY>
 	<name>11R</name>
 	<airport>ANR</airport>
-	<type>grass</type>
+	<type>asphalt</type>
 	<length>1510</length>
 	<TAXIROUTE>
 		<taxipoint>Alpha</taxipoint>
@@ -16,7 +16,7 @@
 <RUNWAY>
 	<name>11L</name>
 	<airport>ANR</airport>
-	<type>asphalt</type>
+	<type>grass</type>
 	<length>1010</length>
 	<TAXIROUTE>
 		<taxipoint>Alpha</taxipoint>
@@ -24,19 +24,6 @@
 		<taxipoint>Bravo</taxipoint>
 	</TAXIROUTE>
 </RUNWAY>
-<!--<RUNWAY>-->
-	<!--<name>12B</name>-->
-	<!--<airport>ANR</airport>-->
-	<!--<type>asphalt</type>-->
-	<!--<length>1010</length>-->
-	<!--<TAXIROUTE>-->
-		<!--<taxipoint>Alpha</taxipoint>-->
-		<!--<crossing>11R</crossing>-->
-		<!--<taxipoint>Bravo</taxipoint>-->
-		<!--<crossing>11L</crossing>-->
-		<!--<taxipoint>Charlie</taxipoint>-->
-	<!--</TAXIROUTE>-->
-<!--</RUNWAY>-->
 <AIRPLANE>
 	<number>N11842</number>
 	<callsign>Cessna 842</callsign>
@@ -46,28 +33,10 @@
 	<size>small</size>
 	<fuel>10</fuel>
 	<passengers>8</passengers>
-	<fuel>10000</fuel>
 	<FLIGHTPLAN>
 		<destination>LCY</destination>
 		<departure>30</departure>
 		<arrival>15</arrival>
 		<interval>1</interval>
-	</FLIGHTPLAN>
-</AIRPLANE>
-<AIRPLANE>
-	<number>BAW466</number>
-	<callsign>Speedbird 466</callsign>
-	<model>Boeing 747</model>
-	<type>airline</type>
-	<engine>jet</engine>
-	<size>large</size>
-	<fuel>50</fuel>
-	<passengers>400</passengers>
-	<fuel>40000</fuel>
-	<FLIGHTPLAN>
-		<destination>JFK</destination>
-		<departure>10</departure>
-		<arrival>30</arrival>
-		<interval>2</interval>
 	</FLIGHTPLAN>
 </AIRPLANE>

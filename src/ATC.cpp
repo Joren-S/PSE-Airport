@@ -11,10 +11,11 @@
 
 // Constructor and initialise-check
 
-ATC::ATC(ostream& stream): fStream(stream) {
+ATC::ATC(ostream& stream, bool test): fStream(stream) {
     fInitCheck = this;
     f3Occupied = false;
     f5Occupied = false;
+    fTest = test;
     ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
 }
 
@@ -312,6 +313,7 @@ void ATC::doHeartbeat(Time curTime) {
             // IFR clearance granted.
             airplane->setRunway(dest);
             airplane->setRequest(kAccepted);
+            airplane->setSquawk(getSquawk(airplane));
             stringstream sqwk;
             sqwk << airplane->getSquawk();
             sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
@@ -415,8 +417,15 @@ void ATC::doHeartbeat(Time curTime) {
     airplane->setTimeRemaining(1);
 }
 
+
 int ATC::getSquawk(Airplane *airplane) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
+    srand(time(NULL));
+
+    if (fTest) {
+        return 0;
+    }
+
     // Keep going until a code is found
     while (true) {
         // Set squawk to -1

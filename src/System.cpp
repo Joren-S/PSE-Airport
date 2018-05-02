@@ -6,8 +6,7 @@
 
 #include "../headers/System.h"
 
-System::System(ostream& atc, Time end): fEndTime(end), fATC(new ATC(atc)) {
-    fTime = Time();
+System::System(ostream& atc, Time end): fTime(Time()), fEndTime(end), fATC(new ATC(atc, false)) {
     fAirport = NULL;
     fInitCheck = this;
     ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
@@ -303,7 +302,7 @@ void System::taxiArrival(Airplane *plane, ostream& log) {
             }
             else {
                 Runway* next = fAirport->getNextRunway(plane);
-                message = "Taxi to holding point " + next->getName() + " via " + plane->getPosition() + "," + plane->getCallsign() + ".";
+                message = "Taxi to holding point " + next->getName() + " via " + plane->getPosition() + ", " + plane->getCallsign() + ".";
             }
 
             // Send the message
@@ -826,7 +825,7 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
 }
 
 
-void System::run(ostream& log) {
+void System::run(ostream& log, const string& impressionName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
@@ -836,8 +835,12 @@ void System::run(ostream& log) {
         // Each tick, we make sure our ATC handles requests.
         fATC->doHeartbeat(fTime);
 
+        // Set up ostream for impression
+        string name = impressionName + fTime.formatted();
+        ofstream impression(name.c_str());
+
         // Each tick, we draw a graphical impression of the airport.
-        getAirport()->drawImpression(fTime, cout);
+        getAirport()->drawImpression(fTime, impression);
 
 
         // Get flightplans and set up iterator
@@ -870,7 +873,7 @@ void System::run(ostream& log) {
 
             land(airplane, log);
 
-            takeoff(airplane, log);
+//            takeoff(airplane, log);
 
             airplane->decreaseTimeRemaining();
         }
@@ -911,9 +914,9 @@ System::~System() {
 }
 
 
-void System::initializeATC(ostream &log) {
+void System::initializeATC(ostream &log, bool test) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
-    fATC = new ATC(log);
+    fATC = new ATC(log, test);
 }
 
 void System::setEndTime(Time end) {

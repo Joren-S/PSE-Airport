@@ -72,6 +72,12 @@ private:
      * The set of used squawk codes
      */
     set<int> fUsedCodes;
+    
+    /**
+     * Bool indicating if tests are running
+     * Gives back 0 for all squawk codes
+     */
+    bool fTest;
 
 public:
 
@@ -80,7 +86,7 @@ public:
      * ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
      * @param stream: ostream to write to.
      */
-    ATC(ostream& stream);
+    ATC(ostream& stream, bool test);
 
     /**
      * Checks if the object is properly initialized

@@ -14,8 +14,7 @@ Flightplan::Flightplan(): fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterv
 bool Flightplan::complete() const {
     REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling complete");
     return !(fDeparture == -1 or fArrival == -1 or
-            fAirplane == NULL or fInterval == -1 or
-            fDestination.empty());
+            fInterval == -1 or fDestination.empty());
 }
 
 const string &Flightplan::getDestination() const {
