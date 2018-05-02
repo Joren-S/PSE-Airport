@@ -25,18 +25,27 @@ protected:
 
         // Import info
         system.import(input);
+
+        // Get airplane
+        airplane = system.getFlightplans()[0]->getAirplane();
+
+        // Open a file for logging
+        out.open("../test/testOutput/log.txt");
     }
 
+    virtual void TearDown() {
+        // Close file
+        out.close();
+    }
+
+    ofstream out;
+    Airplane* airplane;
     System system;
 
 };
 
 TEST_F(domainTestSystem, approach) {
-    Airplane* airplane = new Airplane;
     airplane->setStatus(kApproaching);
-
-    ofstream out("../test/testOutput/log.txt");
-
     system.approach(airplane, out);
 
 }
