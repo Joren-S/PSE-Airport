@@ -63,11 +63,6 @@ void Input::readAirplane(TiXmlElement *elem) {
             tmp->setNumber(elem->GetText());
         }
 
-        // Fuel
-        else if (strcmp(elem->Value(), "fuel") == 0) {
-            tmp->setFuel(atoi(elem->GetText()));
-        }
-
         // Callsign
         else if (strcmp(elem->Value(), "callsign") == 0) {
             tmp->setCallsign(elem->GetText());
@@ -76,11 +71,6 @@ void Input::readAirplane(TiXmlElement *elem) {
         // Model
         else if (strcmp(elem->Value(), "model") == 0) {
             tmp->setModel(elem->GetText());
-        }
-
-        // Passengers
-        else if (strcmp(elem->Value(), "passengers") == 0) {
-            tmp->setPassengers(atoi(elem->GetText()));
         }
 
         // Type
@@ -137,6 +127,16 @@ void Input::readAirplane(TiXmlElement *elem) {
             }
         }
 
+        // Passengers
+        else if (strcmp(elem->Value(), "passengers") == 0) {
+            tmp->setPassengers(atoi(elem->GetText()));
+        }
+
+        // Fuel
+        else if (strcmp(elem->Value(), "fuel") == 0) {
+            tmp->setFuel(atoi(elem->GetText()));
+        }
+
         // Flightplan
         else if (strcmp(elem->Value(), "FLIGHTPLAN") == 0) {
             // Check if there already was a flightplan
@@ -184,6 +184,7 @@ void Input::readAirplane(TiXmlElement *elem) {
 
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
+    cout << fieldCount << endl;
     if (fieldCount != -1) {
         cerr << "Missing field(s) for Airplane." << endl;
     }
