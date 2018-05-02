@@ -12,31 +12,42 @@ class domainTestSystem: public ::testing::Test {
 protected:
 
     virtual void SetUp() {
-
         // Read input
         Input input;
         input.read("../test/testInput/happyDay.xml");
 
-        // Output file for atc
-        ofstream atc("../test/testOutput/atc.txt");
-
-        // Initialize system
-        system.initializeATC(atc);
+        system.initializeATC(out);
 
         // Import info
         system.import(input);
+
+        // Get airplane
+        airplane = system.getFlightplans()[0]->getAirplane();
     }
 
+    ofstream out;
+    Airplane* airplane;
     System system;
 
 };
 
 TEST_F(domainTestSystem, approach) {
-    Airplane* airplane = new Airplane;
+    // Plane approaches and hasn't send a request to atc
     airplane->setStatus(kApproaching);
-
-    ofstream out("../test/testOutput/log.txt");
-
+    airplane->setRequest(kIdle);
     system.approach(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kApproaching);
 
+    // Plane approaches and atc hasn't responded yet
+    system.approach(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kApproaching);
+
+    // Plane approaches and atc has accepted request
+    airplane->setRequest(kAccepted);
+    system.approach(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getAltitude(), 10);
+    EXPECT_EQ(airplane->getStatus(), kDescending);
 }
