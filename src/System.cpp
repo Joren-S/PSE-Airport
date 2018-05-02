@@ -612,47 +612,47 @@ void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
     // If taxiing
     else {
 
+        // Check if plane already has permission to start crossing
+        if (request == kAccepted) {
+            // response
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Cleared to cross " + cur_rw->getName() + ", taxi to holding point " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
+            plane->setStatus(kCrossingDeparture);
+            plane->setRequest(kIdle);
+            next_rw->setFree(false);
+            plane->setTimeRemaining(1); // crossing
+            return;
+        }
+
         // If at destination
-        if (tp == plane->getRunway()->getTaxiPoint()) {
-            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Taxi to runway " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
+        if (request == kConfirmed) {
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Taxi to runway " + next_rw->getName() + " via " +
+                                                                  next_rw->getTaxiPoint() + ", " + planeCS + "."));
             plane->setStatus(kWaitingForDeparture);
+            plane->setRequest(kIdle);
+            return;
         }
 
-        // if not: cross current runway
-        else {
-
-            // Check if plane already has permission to start crossing
-            if (request == kAccepted) {
-                // response
-                fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Cleared to cross " + cur_rw->getName() + ", taxi to holding point " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
-                plane->setStatus(kCrossingDeparture);
-                plane->setRequest(kIdle);
-                next_rw->setFree(false);
-                plane->setTimeRemaining(1); // crossing
-                return;
-            }
-
-            if (request == kDenied) {
-                fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Holding position, " + planeCS + "."));
-                plane->setTimeRemaining(1); // wait
-                return;
-            }
-
-            // If plane hasn't sent a request yet, or the previous request was denied and plane waited.
-            else if (request == kIdle) {
-
-                // Send new request to ATC, which takes 1 minute, and we change the status of the request
-                fATC->sendRequest(fTime, plane);
-                fATC->sendMessage(fATC->formatMessage(fTime, planeCS, portCS + ", " + planeCS + ", holding short at " + cur_rw->getName() + "."));
-                plane->setTimeRemaining(1);
-                plane->setRequest(kPending);
-                return;
-            }
-
-            // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
-            else return;
-
+        // not allowed to cross
+        if (request == kDenied) {
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Holding position, " + planeCS + "."));
+            plane->setTimeRemaining(1); // wait
+            plane->setRequest(kIdle);
+            return;
         }
+
+        // If plane hasn't sent a request yet, or the previous request was denied and plane waited.
+        else if (request == kIdle) {
+
+            // Send new request to ATC, which takes 1 minute, and we change the status of the request
+            fATC->sendRequest(fTime, plane);
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, portCS + ", " + planeCS + ", holding short at " + cur_rw->getName() + "."));
+            plane->setTimeRemaining(1);
+            plane->setRequest(kPending);
+            return;
+        }
+
+        // If plane hasn't recieved an answer yet (= status is kPending): keep waiting
+        else return;
     }
 }
 
@@ -663,7 +663,6 @@ void System::taxiDepartureCross(Airplane *plane, ostream &fLog) {
     getAirport()->getRunway(plane->getPosition())->setFree(true);
 
     // Set new position and status
-    plane->setPosition(getAirport()->getNextRunway(plane)->getTaxiPoint());
     plane->setStatus(kTaxiDeparture);
     return;
 }
@@ -774,6 +773,7 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
     REQUIRE(this->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(plane != NULL, "Plane object does not exist.");
 
+    cout << " ";
     // if plane is still busy, we do nothing
     if (plane->getTimeRemaining() == 0) {
 
@@ -826,7 +826,6 @@ void System::run(ostream& log, const string& impressionName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
-
     while (!simulationFinished()) {
 
         // Each tick, we make sure our ATC handles requests.
@@ -837,7 +836,7 @@ void System::run(ostream& log, const string& impressionName) {
         ofstream impression(name.c_str());
 
         // Each tick, we draw a graphical impression of the airport.
-        getAirport()->drawImpression(fTime, impression);
+        getAirport()->drawImpression(fTime, impression, getFlightplans());
 
 
         // Get flightplans and set up iterator

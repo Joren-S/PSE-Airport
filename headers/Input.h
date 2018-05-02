@@ -141,4 +141,10 @@ public:
      */
     vector<Flightplan*> getFlightplans() const;
 
+    /**
+     * Checks if a given string is a valid unsigned int
+     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling isNumber");
+     */
+    static bool isNumber(const string&);
+
 };

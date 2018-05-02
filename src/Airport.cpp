@@ -157,7 +157,7 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     return NULL;
 }
 
-void Airport::drawImpression(Time time, ostream &stream) {
+void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> plans) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
 
     stringstream impression;
@@ -171,15 +171,50 @@ void Airport::drawImpression(Time time, ostream &stream) {
         Runway *curRW = *i;
         string curTP = curRW->getTaxiPoint();
 
-        // SOMEHOW GET ALL AIRPLANES, ITERATE OVER THEM FOR THEIR LOCATION
-        // -> Via flightplans, but they're in the system object, not the airport object
-        // -> Via ???
+        // begin of line
+        impression << curRW->getName() << " | =====";
 
-        impression << curRW->getName() << " | ==========" << endl;
-        impression << "TP" << curTP.at(0) << " |" << endl;
+        // Iterate over flightplans
+        bool planeFound = false;
+        int planesAtTaxiPoint = 0;
+        vector<Flightplan*>::const_iterator j;
+        for (j = plans.begin(); j != plans.end(); ++j) {
+            Airplane *curPlane = (*j)->getAirplane();
+            if (curPlane->getPosition() == curRW->getTaxiPoint()) {
+                EPlaneStatus status = curPlane->getStatus();
+
+                // if plane is on runway
+                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture) {
+                    impression << "V====" << endl;
+                    planeFound = true;
+                }
+                else {
+                    planesAtTaxiPoint++;
+                }
+            }
+        }
+        if (!planeFound) {
+            impression << "=====" << endl;
+        }
+
+        string planesattaxi (planesAtTaxiPoint, 'V');
+        impression << "TP" << curTP.at(0) << " | " << planesattaxi << endl;
     }
-    // same for the gates
-    impression << "Gates [ " << getGates() << "]" << endl;
+
+    // Count the planes at the gates
+    int planesAtGate = 0;
+    vector<Flightplan*>::const_iterator j;
+    for (j = plans.begin(); j != plans.end(); ++j) {
+        Airplane *curPlane = (*j)->getAirplane();
+        EPlaneStatus status = curPlane->getStatus();
+        if (status == kGate or status == kParked or status == kAirport or status == kPushback) {
+            planesAtGate++;
+        }
+    }
+
+    // Write result to impression
+    string planesatgate (planesAtGate, 'V');
+    impression << "Gates [ " << planesatgate << " ]" << endl;
 
     // Write the result to our stream
     stream << impression.str();

@@ -10,6 +10,10 @@ void Input::read(const string &filename, ostream& errorLog) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
     string error = "Couldn't open " + filename + ".";
+    if (!xml.LoadFile(filename.c_str())) {
+        errorLog << xml.ErrorDesc() << endl;
+        xml.Clear();
+    }
     REQUIRE(xml.LoadFile(filename.c_str()), error.c_str());
 
     // We iterate over all root elements.
@@ -129,11 +133,21 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
 
         // Passengers
         else if (strcmp(elem->Value(), "passengers") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Passenger field is an invalid value" << endl;
+                break;
+            }
             tmp->setPassengers(atoi(elem->GetText()));
         }
 
         // Fuel
         else if (strcmp(elem->Value(), "fuel") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Fuel field is an invalid value" << endl;
+                break;
+            }
             tmp->setFuel(atoi(elem->GetText()));
         }
 
@@ -249,6 +263,11 @@ void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
 
         // Length
         else if (strcmp(elem->Value(), "length") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Length field is an invalid value" << endl;
+                break;
+            }
             tmp->setLength(atoi(elem->GetText()));
         }
 
@@ -385,6 +404,11 @@ void Input::readAirport(TiXmlElement *elem, ostream& errorLog) {
 
         // Gates
         else if (strcmp(elem->Value(), "gates") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Gates field is an invalid value" << endl;
+                break;
+            }
             tmp->setGates(atoi(elem->GetText()));
         }
 
@@ -432,16 +456,31 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem, ostream& errorLog) {
 
         // Departure
         else if (strcmp(elem->Value(), "departure") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Departure field is an invalid value" << endl;
+                break;
+            }
             tmp->setDeparture(atoi(elem->GetText()));
         }
 
         // Arrival
         else if (strcmp(elem->Value(), "arrival") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Arrival field is an invalid value" << endl;
+                break;
+            }
             tmp->setArrival(atoi(elem->GetText()));
         }
 
         // Interval
         else if (strcmp(elem->Value(), "interval") == 0) {
+            if (!isNumber(elem->GetText())) {
+                fieldCount = -1;
+                errorLog << "Interval field is an invalid value" << endl;
+                break;
+            }
             tmp->setInterval(atoi(elem->GetText()));
         }
 
@@ -525,4 +564,14 @@ vector<Flightplan*> Input::getFlightplans() const {
 
 bool Input::properlyInitialized() const {
     return fInitCheck == this;
+}
+
+bool Input::isNumber(const string &input) {
+    string::const_iterator it;
+    for (it = input.begin(); it != input.end(); ++it) {
+        if (!isdigit(*it)) {
+            return false;
+        }
+    }
+    return true;
 }

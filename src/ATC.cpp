@@ -55,7 +55,7 @@ string ATC::formatMessage(Time time, string source, string message) {
     result << "[" << source << "]" << endl;
 
     // Append the message
-    result << "$ " << message;
+    result << "$ " << message << endl;
 
     // return as string
     return result.str();
@@ -74,7 +74,7 @@ ATCRequest *ATC::getNextRequest() {
     getQueue()->pop();
 
     // Make sure our message was retrieved and popped correctly.
-    ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
+    ENSURE(fQueue.front() != rqst, "Message wasn't removed from the queue.");
     ENSURE(rqst != NULL, "Request popped from queue is NULL.");
 
     // Return our message.
@@ -116,7 +116,6 @@ void ATC::doHeartbeat(Time curTime) {
         // Send message to plane
         string message = airplane->getCallsign() + ", radar contact, descend and maintain five thousand feet, squawk " + stream.str() + ".";
         fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
-
     }
 
     // Plane is descending, process request
@@ -343,21 +342,22 @@ void ATC::doHeartbeat(Time curTime) {
     else if (status == kTaxiDeparture) {
 
         // Requesting taxi instructions
-        Runway *rw = airplane->getRunway();
+        Runway *dest = getAirport()->getRunway(airplane->getPosition());
 
         // if at destination -> go to runway
-        if (airplane->getPosition() == rw->getTaxiPoint()) {
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + rw->getName() + " via " + rw->getTaxiPoint() + "."));
-            airplane->setRequest(kDenied);
+        if (airplane->getPosition() == dest->getTaxiPoint()) {
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + dest->getName() + " via " + dest->getTaxiPoint() + "."));
+            airplane->setRequest(kConfirmed);
         }
 
         // if not at destination
         else {
-
+            Runway *next = getAirport()->getNextRunway(airplane);
             // if runway is free, plane can cross
-            if (rw->isFree()) {
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + rw->getName() + "."));
+            if (next->isFree()) {
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + next->getName() + "."));
                 airplane->setRequest(kAccepted);
+                airplane->setPosition(next->getTaxiPoint());
             }
 
             //if not, plane has to wait

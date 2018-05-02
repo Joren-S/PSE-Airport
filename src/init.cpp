@@ -11,6 +11,7 @@
 #define LOGFILENAME     "../output/log.txt"
 
 int main() {
+
     // Read input
     Input input;
     input.read(INPUTFILENAME);

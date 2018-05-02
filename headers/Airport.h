@@ -15,6 +15,7 @@
 #include "DesignByContract.h"
 #include "Runway.h"
 #include "Time.h"
+#include "Flightplan.h"
 
 using namespace std;
 
@@ -142,7 +143,7 @@ public:
      * @param time: time of the impression.
      * @param stream: ostream to write the impression to.
      */
-    void drawImpression(Time time, ostream& stream);
+    void drawImpression(Time time, ostream& stream, vector<Flightplan*> plans);
 
     /**
      * Set the amount of gates in the airport.

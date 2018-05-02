@@ -1,43 +1,29 @@
 Joren
 -----
-Adding requires, ensures, documentation, properlyInitialized and testing:
-Airport
-ATC
-Runway
-
-Fuel inlezen en gebruiken takeoff
-
-Input testing: failures
-
 Output testing
-
-Grafische impressie
-
-Note:
-eerste runway
-
-Documentation system
+domain Testing
+Airport
+Runway
+System -> takeoff, import
+ATC > splitsen + tests zoals system
+Flightplans for inputfiles {failures}
+->opnieuw genererem
+nato alphabet (numbers in full)
 
 
 Max
 -----
-Adding requires, ensures, documentation, properlyInitialized and testing:
+Domain testing for
 Airplane
-Input
 Flightplan
 Time
-
+System -> landing, simulationFinished
+ATC > splitsen + tests zoals system
 Input testing: happy day
-
 Output testing
-
-Squawk
-
-Documentation system
+Squawk testing
 
 EXTRAS:
+Impression
 Graphics engine
-Checking if a number in input is a number and not a string
-using namespace std; only in cpp files (better coding style)
 doxygen documentation
-nato alphabet (numbers in full)
