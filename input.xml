@@ -45,6 +45,7 @@
 	<engine>jet</engine>
 	<size>small</size>
 	<passengers>8</passengers>
+	<fuel>10000</fuel>
 	<FLIGHTPLAN>
 		<destination>LCY</destination>
 		<departure>30</departure>
@@ -60,6 +61,7 @@
 	<engine>jet</engine>
 	<size>large</size>
 	<passengers>400</passengers>
+	<fuel>40000</fuel>
 	<FLIGHTPLAN>
 		<destination>JFK</destination>
 		<departure>10</departure>
