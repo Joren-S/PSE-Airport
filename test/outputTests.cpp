@@ -11,6 +11,7 @@
 
 
 TEST(outputTest, happyDay) {
+    ASSERT_TRUE(DirectoryExists("../test/testOutput"));
     int counter = 1;
     string filename = "../test/testOutput/happyDay" + ToString(counter) + ".xml";
 
