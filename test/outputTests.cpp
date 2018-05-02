@@ -8,16 +8,9 @@
 #include "../headers/System.h"
 #include "../headers/TestUtils.h"
 
-class outputTest: public ::testing::Test {
-protected:
-
-    System system;
-
-};
 
 
-
-TEST_F(outputTest, happyDay) {
+TEST(outputTest, happyDay) {
     int counter = 1;
     string filename = "../test/testOutput/happyDay" + ToString(counter) + ".xml";
 
@@ -29,9 +22,10 @@ TEST_F(outputTest, happyDay) {
         ofstream log(logname.c_str());
         Input input;
         input.read(filename);
+        System system;
         system.initializeATC(atc, true);
         system.import(input);
-        system.setEndTime(18);
+        system.setEndTime(14);
         system.run(log);
         system.info(infoname);
         atc.close();
