@@ -130,43 +130,6 @@ string ATC::formatMessage(Time time, string source, string message) {
                 }
             }
         }
-//        if (it == message.end() - 1) {
-//            if (it == message.begin()) {
-//                string currentChar (1, tolower(*it));
-//                string letterAsNato = nato.find(currentChar)->second;
-//                natoBuffer << letterAsNato;
-//                continue;
-//            }
-//            char previous = *(it - 1);
-//            if (previous == ' ' or previous == '.' or previous == ',') {
-//                string currentChar (1, tolower(*it));
-//                string letterAsNato = nato.find(currentChar)->second;
-//                natoBuffer << letterAsNato;
-//                continue;
-//            }
-//        }
-//        else if (it == message.begin()) {
-//            char next = *(it + 1);
-//            if (next == '.' or next == ' ' or next == ',') {
-//                string currentChar (1, tolower(*it));
-//                string letterAsNato = nato.find(currentChar)->second;
-//                natoBuffer << letterAsNato;
-//                continue;
-//            }
-//        }
-//        else {
-//            char previous = *(it - 1);
-//            char next = *(it + 1);
-//            if ((next == '.' or next == ' ' or next == ',') and (previous == ' ' or previous == '.' or previous == ',')) {
-//                string currentChar (1, tolower(*it));
-//                string letterAsNato = nato.find(currentChar)->second;
-//                natoBuffer << letterAsNato;
-//                continue;
-//            }
-//        }
-
-
-
         natoBuffer << curChar;
     }
 
