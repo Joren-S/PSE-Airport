@@ -17,8 +17,13 @@ protected:
 
 
 TEST_F(inputTest, HappyDay) {
-    EXPECT_DEATH(input.read("filename"), "Couldn't open filename.");
-    // do stuff
+    ASSERT_TRUE(FileExists("../test/testInput/happyDay"));
+    input.read("../test/testInput/happyDay");
+    vector<Flightplan*> flightplans = input.getFlightplans();
+    Airport* airport = input.getAirports()[0];
+    ASSERT_TRUE(airport != NULL);
+
+    vector<Runway*> runways = airport->getRunways();
 }
 
 TEST_F(inputTest, legalInput) {
