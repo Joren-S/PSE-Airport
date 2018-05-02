@@ -9,8 +9,12 @@
 
 #include <string>
 #include <stack>
+#include <vector>
+#include <sstream>
+
 #include "DesignByContract.h"
 #include "Runway.h"
+#include "Time.h"
 
 using namespace std;
 
@@ -131,6 +135,14 @@ public:
      * @return: Boolean indicating if everything was initialized.
      */
     bool complete() const;
+
+    /**
+     * Generates a graphical impression for the current state of the airport.
+     * REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
+     * @param time: time of the impression.
+     * @param stream: ostream to write the impression to.
+     */
+    void drawImpression(Time time, ostream& stream);
 
     /**
      * Set the amount of gates in the airport.

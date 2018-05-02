@@ -836,6 +836,9 @@ void System::run(ostream& log) {
         // Each tick, we make sure our ATC handles requests.
         fATC->doHeartbeat(fTime);
 
+        // Each tick, we draw a graphical impression of the airport.
+        getAirport()->drawImpression(fTime, cout);
+
 
         // Get flightplans and set up iterator
         vector<Flightplan*>::iterator flightplanItr;

@@ -4,7 +4,6 @@
 // Description : Airport simulation, Project Software Engineering
 //============================================================================
 
-#include <vector>
 #include "../headers/Airport.h"
 
 
@@ -156,6 +155,50 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     }
 
     return NULL;
+}
+
+void Airport::drawImpression(Time time, ostream &stream) {
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
+
+    stringstream impression;
+
+    // We begin with a timestamp
+    impression << "[" << time.formatted() << "]" << endl;
+
+    // Iterate over all runways
+    vector<Runway*>::const_iterator i;
+    for (i = fRunways.begin(); i != fRunways.end(); ++i) {
+        Runway *curRW = *i;
+        string curTP = curRW->getTaxiPoint();
+
+        // SOMEHOW GET ALL AIRPLANES, ITERATE OVER THEM FOR THEIR LOCATION
+        // -> Via flightplans, but they're in the system object, not the airport object
+        // -> Via ???
+
+        impression << curRW->getName() << " | ==========" << endl;
+        impression << "TP" << curTP.at(0) << " |" << endl;
+    }
+    // same for the gates
+    impression << "Gates [ " << getGates() << "]" << endl;
+
+    // Write the result to our stream
+    stream << impression.str();
+
+
+
+    /*
+     * template
+
+    11L | ====V=====
+    TPB |
+    11R | ==========
+    TPA |
+    Gates [ V ]
+
+
+     MAKE SURE TO CHANGE STREAM IN RUN FUNCTION
+     CURRENTLY COUT
+     */
 }
 
 // Getters en setters
