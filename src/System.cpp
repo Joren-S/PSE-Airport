@@ -236,6 +236,8 @@ void System::taxiArrival(Airplane *plane, ostream& log) {
         // Log event
         log << "[" << fTime.formatted() << "] " << plane->getCallsign() << " is standing at Gate " << plane->getGateID() << endl;
 
+        plane->setPosition("");
+
         // Set time remaining for deboarding
         plane->setTimeRemaining(int(ceil(plane->getPassengers() / 2.0)));
 
@@ -748,7 +750,7 @@ void System::onRunway(Airplane *plane, ostream &fLog) {
 
 void System::ascend(Airplane *plane, ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
-
+    plane->setPosition("");
     // If plane is at a height < 5000 ft
     if (plane->getAltitude() < 5) {
 

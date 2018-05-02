@@ -166,8 +166,8 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
     impression << "[" << time.formatted() << "]" << endl;
 
     // Iterate over all runways
-    vector<Runway*>::const_iterator i;
-    for (i = fRunways.begin(); i != fRunways.end(); ++i) {
+    vector<Runway*>::const_reverse_iterator i;
+    for (i = fRunways.rbegin(); i != fRunways.rend(); ++i) {
         Runway *curRW = *i;
         string curTP = curRW->getTaxiPoint();
 
@@ -180,11 +180,11 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
         vector<Flightplan*>::const_iterator j;
         for (j = plans.begin(); j != plans.end(); ++j) {
             Airplane *curPlane = (*j)->getAirplane();
-            if (curPlane->getPosition() == curRW->getTaxiPoint()) {
+            if (curPlane->getPosition() == curTP) {
                 EPlaneStatus status = curPlane->getStatus();
 
                 // if plane is on runway
-                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture) {
+                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture or (status == kDescending and curPlane->getAltitude() == 0)) {
                     impression << "V====" << endl;
                     planeFound = true;
                 }
