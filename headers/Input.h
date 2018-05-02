@@ -50,17 +50,17 @@ private:
     /**
      * Reads an airport from a given xml element
      */
-    void readAirport(TiXmlElement *elem);
+    void readAirport(TiXmlElement *elem, ostream& errorLog = cerr);
 
     /**
      * Reads a runway from a given xml element
      */
-    void readRunway(TiXmlElement *elem);
+    void readRunway(TiXmlElement *elem, ostream& errorLog = cerr);
 
     /**
      * Reads an airplane from a given xml element
      */
-    void readAirplane(TiXmlElement *elem);
+    void readAirplane(TiXmlElement *elem, ostream& errorLog = cerr);
 
     /**
      * Reads a taxiroute and return the name of the
@@ -68,14 +68,14 @@ private:
      * When returning the empty string, taxiroute
      * was not valid.
      */
-    string readTaxiroute(TiXmlElement *elem, Airport*);
+    string readTaxiroute(TiXmlElement *elem, Airport*, ostream& errorLog = cerr);
 
     /**
      * Reads a flightplan from a given xml element
      * Returns a pointer to the flightplan, so when there is an error in
      * reading it or the associated airplane, we can do cleanup
      */
-    Flightplan* readFlightplan(TiXmlElement *elem);
+    Flightplan* readFlightplan(TiXmlElement *elem, ostream& errorLog = cerr);
 
 public:
 
@@ -95,7 +95,7 @@ public:
      * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling read");
      * @param filename: name of the file with input
      */
-    void read(const string& filename);
+    void read(const string& filename, ostream& errorLog = cerr);
 
     /**
      * Adds an airport to the simulation

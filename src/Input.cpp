@@ -6,7 +6,7 @@
 
 #include "../headers/Input.h"
 
-void Input::read(const string &filename) {
+void Input::read(const string &filename, ostream& errorLog) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
     string error = "Couldn't open " + filename + ".";
@@ -17,22 +17,22 @@ void Input::read(const string &filename) {
 
         // Airports
         if (strcmp(root->Value(), "AIRPORT") == 0) {
-            readAirport(root->FirstChildElement());
+            readAirport(root->FirstChildElement(), errorLog);
         }
 
         // Runways
         else if (strcmp(root->Value(), "RUNWAY") == 0) {
-            readRunway(root->FirstChildElement());
+            readRunway(root->FirstChildElement(), errorLog);
         }
 
         // Airplanes
         else if (strcmp(root->Value(), "AIRPLANE") == 0) {
-            readAirplane(root->FirstChildElement());
+            readAirplane(root->FirstChildElement(), errorLog);
         }
 
         // Invalid element
         else {
-            cerr << "Did not recognize element: " << root->Value() << endl;
+            errorLog << "Did not recognize element: " << root->Value() << endl;
         }
     }
 
@@ -45,7 +45,7 @@ Input::Input() {
     ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
 }
 
-void Input::readAirplane(TiXmlElement *elem) {
+void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -88,7 +88,7 @@ void Input::readAirplane(TiXmlElement *elem) {
                 tmp->setType(kEmergency);
             }
             else {
-                cerr << "Invalid data for Airplane type" << endl;
+                errorLog << "Invalid data for Airplane type" << endl;
                 fieldCount = -1;
                 break;
             }
@@ -103,7 +103,7 @@ void Input::readAirplane(TiXmlElement *elem) {
                 tmp->setEngine(kJet);
             }
             else {
-                cerr << "Invalid data for Airplane engine." << endl;
+                errorLog << "Invalid data for Airplane engine." << endl;
                 fieldCount = -1;
                 break;
             }
@@ -121,7 +121,7 @@ void Input::readAirplane(TiXmlElement *elem) {
                 tmp->setSize(kLarge);
             }
             else {
-                cerr << "Invalid data for Airplane size." << endl;
+                errorLog << "Invalid data for Airplane size." << endl;
                 fieldCount = -1;
                 break;
             }
@@ -142,7 +142,7 @@ void Input::readAirplane(TiXmlElement *elem) {
             // Check if there already was a flightplan
             if (flightplan != NULL) {
                 fieldCount = -1;
-                cerr << "Didn't add airplane because of multiple flightplans." << endl;
+                errorLog << "Didn't add airplane because of multiple flightplans." << endl;
                 break;
             }
 
@@ -152,7 +152,7 @@ void Input::readAirplane(TiXmlElement *elem) {
             // Flightplan is NULL when there was an error
             if (flightplan == NULL) {
                 fieldCount = -1;
-                cerr << "Didn't add airplane because of invalid flightplan." << endl;
+                errorLog << "Didn't add airplane because of invalid flightplan." << endl;
                 break;
             }
 
@@ -168,7 +168,7 @@ void Input::readAirplane(TiXmlElement *elem) {
 
         // Invalid field
         else {
-            cerr << "Invalid field: " << elem->Value() << endl;
+            errorLog << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
             break;
         }
@@ -184,9 +184,8 @@ void Input::readAirplane(TiXmlElement *elem) {
 
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
-    cout << fieldCount << endl;
     if (fieldCount != -1) {
-        cerr << "Missing field(s) for Airplane." << endl;
+        errorLog << "Missing field(s) for Airplane." << endl;
     }
 
     if (flightplan != NULL) {
@@ -203,7 +202,7 @@ void Input::readAirplane(TiXmlElement *elem) {
     }
 }
 
-void Input::readRunway(TiXmlElement *elem) {
+void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -225,7 +224,7 @@ void Input::readRunway(TiXmlElement *elem) {
 
             // No airport found
             if (airport == NULL) {
-                cerr << "Did not find airport with iata: " << elem->GetText() << endl;
+                errorLog << "Did not find airport with iata: " << elem->GetText() << endl;
                 fieldCount = -1;
                 break;
             }
@@ -243,7 +242,7 @@ void Input::readRunway(TiXmlElement *elem) {
                 tmp->setType(kAsphalt);
             }
             else {
-                cerr << "Invalid data for Runway status." << endl;
+                errorLog << "Invalid data for Runway status." << endl;
                 fieldCount = -1;
             }
         }
@@ -257,7 +256,7 @@ void Input::readRunway(TiXmlElement *elem) {
         else if (strcmp(elem->Value(), "TAXIROUTE") == 0) {
             //
             if (tmp->getAirport() == NULL) {
-                cerr << "Can't check taxiroute if runway doesn't specify airport first." << endl;
+                errorLog << "Can't check taxiroute if runway doesn't specify airport first." << endl;
                 fieldCount = -1;
                 break;
             }
@@ -276,7 +275,7 @@ void Input::readRunway(TiXmlElement *elem) {
 
         // Invalid field
         else {
-            cerr << "Invalid field: " << elem->Value() << endl;
+            errorLog << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
             break;
         }
@@ -294,14 +293,14 @@ void Input::readRunway(TiXmlElement *elem) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        cerr << "Missing field(s) for Runway." << endl;
+        errorLog << "Missing field(s) for Runway." << endl;
     }
 
     // Delete the object
     delete tmp;
 }
 
-string Input::readTaxiroute(TiXmlElement *elem, Airport* airport) {
+string Input::readTaxiroute(TiXmlElement *elem, Airport* airport, ostream& errorLog) {
     string returnstr;
     string error = "Inconsistent taxiroute data, runway will not be added.";
     bool taxipoint = true;
@@ -322,7 +321,7 @@ string Input::readTaxiroute(TiXmlElement *elem, Airport* airport) {
             }
 
             else if (strcmp(runways[index]->getTaxiPoint().c_str(), elem->GetText()) != 0) {
-                cerr << error << endl;
+                errorLog << error << endl;
                 return "";
             }
         }
@@ -331,20 +330,20 @@ string Input::readTaxiroute(TiXmlElement *elem, Airport* airport) {
         else if (!taxipoint and isCrossing) {
 
             if (index >= runways.size()) {
-                cerr << error << endl;
+                errorLog << error << endl;
                 return "";
             }
 
             bool correctCrossing = strcmp(runways[index]->getName().c_str(), elem->GetText()) == 0;
 
             if (!correctCrossing) {
-                cerr << error << endl;
+                errorLog << error << endl;
                 return "";
             }
         }
 
         else {
-            cerr << error << endl;
+            errorLog << error << endl;
             return "";
         }
 
@@ -359,7 +358,7 @@ string Input::readTaxiroute(TiXmlElement *elem, Airport* airport) {
     return returnstr;
 }
 
-void Input::readAirport(TiXmlElement *elem) {
+void Input::readAirport(TiXmlElement *elem, ostream& errorLog) {
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -391,7 +390,7 @@ void Input::readAirport(TiXmlElement *elem) {
 
         // Invalid field
         else {
-            cerr << "Invalid field: " << elem->Value() << endl;
+            errorLog << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
             break;
         }
@@ -409,14 +408,14 @@ void Input::readAirport(TiXmlElement *elem) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        cerr << "Missing field(s) for Airport." << endl;
+        errorLog << "Missing field(s) for Airport." << endl;
     }
 
     // Delete the object
     delete tmp;
 }
 
-Flightplan* Input::readFlightplan(TiXmlElement *elem) {
+Flightplan* Input::readFlightplan(TiXmlElement *elem, ostream& errorLog) {
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -448,7 +447,7 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem) {
 
         // Invalid field
         else {
-            cerr << "Invalid field: " << elem->Value() << endl;
+            errorLog << "Invalid field: " << elem->Value() << endl;
             fieldCount = -1;
             break;
         }
@@ -466,7 +465,7 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem) {
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        cerr << "Missing field(s) for Flightplan." << endl;
+        errorLog << "Missing field(s) for Flightplan." << endl;
     }
 
     // Delete the object
