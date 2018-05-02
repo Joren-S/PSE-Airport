@@ -487,6 +487,8 @@ void System::prepare(Airplane *plane, ostream& fLog) {
         // set status to kGate (= fully ready to start takeoff sequence) and return
         plane->setStatus(kGate);
 
+        // set request status to idle, since current request is finished.
+        plane->setRequest(kIdle);
         return;
     }
 
@@ -776,11 +778,6 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
     if (plane->getTimeRemaining() == 0) {
 
         EPlaneStatus status = plane->getStatus();
-
-        // if plane has an "invalid" status, we do nothing
-        if (status == kApproaching or status == kDescending or status == kTaxiArrival or status == kAway) {
-            return;
-        }
 
         // if plane is at airport, but not yet refueled and boarded
         if (status == kAirport) {
