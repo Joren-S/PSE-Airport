@@ -775,7 +775,6 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
     REQUIRE(this->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(plane != NULL, "Plane object does not exist.");
 
-    cout << " ";
     // if plane is still busy, we do nothing
     if (plane->getTimeRemaining() == 0) {
 
