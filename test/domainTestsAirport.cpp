@@ -36,10 +36,11 @@ TEST_F(domainTestAirport, happyDay) {
     plane.setSize(kLarge);
 
     // 1st runway
-    runway.setName("RW1");
-    runway.setTaxiPoint("Alpha");
-    runway.setType(kGrass);
-    runway.setLength(20000);
+    Runway* rw2 = new Runway();
+    rw2->setName("RW1");
+    rw2->setTaxiPoint("Alpha");
+    rw2->setType(kGrass);
+    rw2->setLength(20000);
 
     // 2nd runway
     Runway *rw = new Runway();
@@ -65,11 +66,11 @@ TEST_F(domainTestAirport, happyDay) {
     EXPECT_TRUE(airport.amountOfRunways() == 0);
 
     // 1 runway in airport
-    airport.addRunway(&runway);
+    airport.addRunway(rw2);
     EXPECT_TRUE(airport.amountOfRunways() == 1);
 
     // test for finding runways by taxipoint
-    EXPECT_EQ(airport.getRunway("Alpha"), &runway);
+    EXPECT_EQ(airport.getRunway("Alpha"), rw2);
     EXPECT_TRUE(airport.getRunway("Gibberish") == NULL);
 
     // plane is not taxiing
@@ -93,7 +94,8 @@ TEST_F(domainTestAirport, happyDay) {
     rw->setType(kAsphalt);
     EXPECT_EQ(airport.getFreeRunway(&plane), rw);
 
-    delete rw;
+
+//    delete  rw;
 }
 
 TEST_F(domainTestAirport, complete) {
@@ -125,12 +127,14 @@ TEST_F(domainTestAirport, fieldManipulation) {
     airport.setGates(10);
     EXPECT_EQ(airport.getGates(), 10);
 
-    runway.setName("RW1");
-    runway.setTaxiPoint("Alpha");
-    airport.addRunway(&runway);
+    Runway* runway1 = new Runway();
+
+    runway1->setName("RW1");
+    runway1->setTaxiPoint("Alpha");
+    airport.addRunway(runway1);
     vector<Runway*> rws = airport.getRunways();
     EXPECT_TRUE(rws.size() == 1);
-    EXPECT_EQ(rws.at(0), &runway);
+    EXPECT_EQ(rws.at(0), runway1);
 }
 
 
@@ -163,8 +167,9 @@ TEST_F(domainTestAirport, ContractViolations) {
     runway.setName("RW1");
     runway.setTaxiPoint("Alpha");
     EXPECT_DEATH(airport.addRunway(NULL), "Runway cannot be NULL.");
-    airport.addRunway(&runway);
-    EXPECT_DEATH(airport.addRunway(&runway), "Runway is already in system.");
+    Runway* runway1 = new Runway();
+    airport.addRunway(runway1);
+    EXPECT_DEATH(airport.addRunway(runway1), "Runway is already in system.");
 
     // getNextRunway
     EXPECT_DEATH(airport.getNextRunway(NULL), "Airplane cannot be NULL.");

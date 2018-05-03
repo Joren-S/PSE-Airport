@@ -32,7 +32,7 @@ $ Taxi to holding point one one romeo via Bravo, Cessna eight four two.
 $ Antwerp Tower, Cessna eight four two, holding short at one one romeo.
 
 [12:43][Antwerp Tower]
-$ Cessna eight four two, cleared to cross one one romeo taxi to gate one via Alpha, Cessna eight four two.
+$ Cessna eight four two, cleared to cross one one romeo, taxi to gate one via Alpha, Cessna eight four two.
 
 [12:44][Cessna 842]
 $ Cleared to cross one one romeo, taxi to gate one via Alpha, Cessna eight four two.
