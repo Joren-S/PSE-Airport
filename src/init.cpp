@@ -5,7 +5,7 @@
 //============================================================================
 
 #include "../headers/System.h"
-#define ENDTIME         Time(14)
+#define ENDTIME         Time(16)
 #define INPUTFILENAME   "../input.xml"
 #define ATCFILENAME     "../output/ATC.txt"
 #define LOGFILENAME     "../output/log.txt"
