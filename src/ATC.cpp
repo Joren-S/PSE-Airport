@@ -385,10 +385,10 @@ void ATC::doHeartbeat(Time curTime) {
         // Requesting IFR clearance.
         Runway *dest = getAirport()->getFreeRunway(airplane);
         if (dest == NULL) {
-
             // IFR clearance denied
             airplane->setRunway(NULL);
             airplane->setRequest(kDenied);
+            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", no free runway, hold position."));
         } else {
 
             // IFR clearance granted.
@@ -414,7 +414,6 @@ void ATC::doHeartbeat(Time curTime) {
     else if (status == kPushback) {
 
         // Requesting permission to taxi
-        REQUIRE(getAirport()->getRunways().size() >= 1, "No runways in airport.");
         Runway *firstRW = getAirport()->getRunways().at(0);
         sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
         airplane->setRequest(kAccepted);
@@ -424,22 +423,21 @@ void ATC::doHeartbeat(Time curTime) {
     else if (status == kTaxiDeparture) {
 
         // Requesting taxi instructions
-        Runway *dest = getAirport()->getRunway(airplane->getPosition());
+        Runway *curRw = getAirport()->getRunway(airplane->getPosition());
+        Runway *dest = airplane->getRunway();
 
         // if at destination -> go to runway
-        if (airplane->getPosition() == dest->getTaxiPoint()) {
+        if (dest->getTaxiPoint() == curRw->getTaxiPoint()) {
             sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + dest->getName() + " via " + dest->getTaxiPoint() + "."));
             airplane->setRequest(kConfirmed);
         }
 
         // if not at destination
         else {
-            Runway *next = getAirport()->getNextRunway(airplane);
             // if runway is free, plane can cross
-            if (next->isFree()) {
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + next->getName() + "."));
+            if (curRw->isFree()) {
+                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + curRw->getName() + "."));
                 airplane->setRequest(kAccepted);
-                airplane->setPosition(next->getTaxiPoint());
             }
 
             //if not, plane has to wait

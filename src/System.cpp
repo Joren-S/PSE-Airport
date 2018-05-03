@@ -482,9 +482,16 @@ void System::prepare(Airplane *plane, ostream& fLog) {
         plane->setTimeRemaining(int(ceil(plane->getPassengers() / 2.0)) + int(ceil(plane->getFuel() / 10000.0)));
 
         // log
-        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " has been refueled" << endl;
-        fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers boarded " << plane->getModel() << " at Gate " << plane->getGateID() << " of " << getAirport()->getName() << endl;
-        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is standing at Gate" << plane->getGateID() << endl;
+        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is being refueled" << endl;
+        if (plane->getPassengers() == 1) {
+            fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passenger is boarding "
+                 << plane->getModel() << " at Gate " << plane->getGateID() << " of " << getAirport()->getName() << endl;
+        }
+        else if (plane->getPassengers() > 1) {
+            fLog << "[" << fTime.formatted() << "] " << plane->getPassengers() << " passengers are boarding "
+                 << plane->getModel() << " at Gate " << plane->getGateID() << " of " << getAirport()->getName() << endl;
+        }
+        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is standing at Gate " << plane->getGateID() << endl;
 
         // set status to kGate (= fully ready to start takeoff sequence) and return
         plane->setStatus(kGate);
@@ -563,13 +570,15 @@ void System::pushback(Airplane *plane, ostream &fLog) {
 
 void System::taxiDepartureStart(Airplane *plane, ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart.");
+    REQUIRE(getAirport()->amountOfRunways() >= 1, "No runways in airport.");
     EPlaneRequest request = plane->getRequest();
     string planeCS = plane->getCallsign();
 
     // Check if plane already has permission to start taxiing
     if (request == kAccepted) {
 
-        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " is taxiing to runway " << getAirport()->getRunway(plane->getRunway()->getTaxiPoint())->getName() << endl;
+        Runway *firstRW = getAirport()->getRunways().at(0);
+        fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " has started taxiing to runway " << firstRW->getName() << endl;
 
         plane->setPosition("");
         plane->setStatus(kTaxiDeparture);
@@ -594,6 +603,7 @@ void System::taxiDepartureStart(Airplane *plane, ostream &fLog) {
 
 void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep.");
+    REQUIRE(getAirport()->getRunways().size() > 0, "There are no runways in the airport.");
     EPlaneRequest request = plane->getRequest();
     string tp = plane->getPosition();
     Runway *cur_rw = getAirport()->getRunway(tp);
@@ -605,8 +615,8 @@ void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
     if (tp.empty()) {
 
         // go to first taxipoint
-        REQUIRE(getAirport()->getRunways().size() > 0, "There are no runways in the airport.");
-        plane->setPosition(getAirport()->getRunways().at(0)->getTaxiPoint());
+        Runway *firstRW = getAirport()->getRunways().at(0);
+        plane->setPosition(firstRW->getTaxiPoint());
         plane->setTimeRemaining(5);
         return;
     }
@@ -620,17 +630,20 @@ void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
             fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Cleared to cross " + cur_rw->getName() + ", taxi to holding point " + next_rw->getName() + " via " + next_rw->getTaxiPoint() + ", " + planeCS + "."));
             plane->setStatus(kCrossingDeparture);
             plane->setRequest(kIdle);
-            next_rw->setFree(false);
             plane->setTimeRemaining(1); // crossing
+            cur_rw->setFree(false);
             return;
         }
 
         // If at destination
         if (request == kConfirmed) {
-            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Taxi to runway " + next_rw->getName() + " via " +
-                                                                  next_rw->getTaxiPoint() + ", " + planeCS + "."));
+
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Taxi to runway " + plane->getRunway()->getName() + " via " +
+                                                                  plane->getRunway()->getTaxiPoint() + ", " + planeCS + "."));
+
             plane->setStatus(kWaitingForDeparture);
             plane->setRequest(kIdle);
+
             return;
         }
 
@@ -661,10 +674,23 @@ void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
 void System::taxiDepartureCross(Airplane *plane, ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
 
-    // Set runway that was crossed to free
-    getAirport()->getRunway(plane->getPosition())->setFree(true);
+    Runway *next_rw = getAirport()->getNextRunway(plane);
+    Runway *cur_rw = getAirport()->getRunway(plane->getPosition());
 
-    // Set new position and status
+    // done crossing, set it to free
+    cur_rw->setFree(true);
+
+    // fLog
+    fLog << "[" << fTime.formatted() << "] " << plane->getModel() << " crossed " << cur_rw->getName() << "." << endl;
+
+    // Taxi to next holding point
+    plane->setTimeRemaining(5);
+    Time tTime(fTime.getHour(), fTime.getMinute());
+    tTime.advance(5);
+    fLog << "[" << tTime.formatted() << "] " << plane->getModel() << " has taxied to holding point at " << next_rw->getTaxiPoint() << "." << endl;
+
+    // set fields
+    plane->setPosition(next_rw->getTaxiPoint());
     plane->setStatus(kTaxiDeparture);
     return;
 }
@@ -846,7 +872,7 @@ void System::run(ostream& log, const string& impressionName) {
         vector<Flightplan*>::iterator flightplanItr;
 
         // Get flightplans
-        vector<Flightplan *> flightplans = getFlightplans();
+        vector<Flightplan*> flightplans = getFlightplans();
 
         // Loop over flightplans
         for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {

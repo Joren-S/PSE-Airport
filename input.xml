@@ -17,7 +17,7 @@
 	<name>11L</name>
 	<airport>ANR</airport>
 	<type>asphalt</type>
-	<length>1010</length>
+	<length>3210</length>
 	<TAXIROUTE>
 		<taxipoint>Alpha</taxipoint>
 		<crossing>11R</crossing>
@@ -61,7 +61,7 @@
 	<engine>jet</engine>
 	<size>large</size>
 	<fuel>50000</fuel>
-	<passengers>400</passengers>
+	<passengers>10</passengers>
 	<FLIGHTPLAN>
 		<destination>JFK</destination>
 		<departure>10</departure>
