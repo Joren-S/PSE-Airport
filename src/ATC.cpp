@@ -568,7 +568,7 @@ void ATC::processTaxiInstruction(Airplane* airplane, Time time) {
 
     // if at destination -> go to runway
     if (dest->getTaxiPoint() == curRw->getTaxiPoint()) {
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + dest->getName() + " via " + dest->getTaxiPoint() + "."));
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
         airplane->setRequest(kConfirmed);
     }
 

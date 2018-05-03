@@ -638,8 +638,7 @@ void System::taxiDepartureStep(Airplane *plane, ostream &fLog) {
         // If at destination
         if (request == kConfirmed) {
 
-            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Taxi to runway " + plane->getRunway()->getName() + " via " +
-                                                                  plane->getRunway()->getTaxiPoint() + ", " + planeCS + "."));
+            fATC->sendMessage(fATC->formatMessage(fTime, planeCS, "Holding position, " + planeCS + "."));
 
             plane->setStatus(kWaitingForDeparture);
             plane->setRequest(kIdle);
