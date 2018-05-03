@@ -70,6 +70,58 @@ TEST_F(domainTestAirplane, complete) {
     EXPECT_TRUE(airplane.complete());
 }
 
+TEST_F(domainTestAirplane, fieldManipulation) {
+    airplane.setPosition("Alpha");
+    EXPECT_EQ(airplane.getPosition(), "Alpha");
+
+    airplane.setType(kMilitary);
+    EXPECT_EQ(airplane.getType(), kMilitary);
+
+    airplane.setSquawk(12345);
+    EXPECT_EQ(airplane.getSquawk(), 12345);
+
+    airplane.setRequest(kAcceptedImmediate);
+    EXPECT_EQ(airplane.getRequest(), kAcceptedImmediate);
+
+    airplane.setSize(kSmall);
+    EXPECT_EQ(airplane.getSize(), kSmall);
+
+    airplane.setEngine(kPropeller);
+    EXPECT_EQ(airplane.getEngine(), kPropeller);
+
+    airplane.setStatus(kAway);
+    EXPECT_EQ(airplane.getStatus(), kAway);
+
+    airplane.setCallsign("PlaneCS");
+    EXPECT_EQ(airplane.getCallsign(), "PlaneCS");
+
+    airplane.setTimeRemaining(50);
+    EXPECT_EQ(airplane.getTimeRemaining(), 50);
+
+    airplane.setAltitude(100);
+    EXPECT_EQ(airplane.getAltitude(), 100);
+
+    airplane.setFuel(50000);
+    EXPECT_EQ(airplane.getFuel(), 50000);
+
+    airplane.setGateID(5);
+    EXPECT_EQ(airplane.getGateID(), 5);
+
+    airplane.setModel("F16");
+    EXPECT_EQ(airplane.getModel(), "F16");
+
+    airplane.setNumber("16");
+    EXPECT_EQ(airplane.getNumber(), "16");
+
+    airplane.setPassengers(2);
+    EXPECT_EQ(airplane.getPassengers(), 2);
+
+    Runway *rw = new Runway();
+    airplane.setRunway(rw);
+    EXPECT_TRUE(airplane.getRunway() == rw);
+    delete rw;
+}
+
 TEST_F(domainTestAirplane, ContractViolations) {
     EXPECT_DEATH(airplane.decreaseAltitude(-3), "Difference can't be negative");
     EXPECT_DEATH(airplane.increaseAltitude(-2), "Difference can't be negative");
