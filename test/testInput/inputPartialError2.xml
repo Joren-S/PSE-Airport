@@ -24,7 +24,13 @@
 	<engine>propeller</engine>
 	<size>small</size>
 	<passengers>8</passengers>
-	<status>approaching</status>
+	<fuel>3000</fuel>
+	<FLIGHTPLAN>
+		<destination>LCY</destination>
+		<departure>30</departure>
+		<arrival>15</arrival>
+		<interval>1</interval>
+	</FLIGHTPLAN>
 </AIRPLANE>
 <AIRPLANE>
 	<number>BAW466</number>
@@ -33,8 +39,14 @@
 	<type>airline</type>
 	<engine>jet</engine>
 	<size>large</size>
-	<passengers>400</passengers>
-	<status>gate</status>
+	<passengers>20</passengers>
+	<fuel>10000</fuel>
+	<FLIGHTPLAN>
+		<destination>JFK</destination>
+		<departure>10</departure>
+		<arrival>30</arrival>
+		<interval>2</interval>
+	</FLIGHTPLAN>
 </AIRPLANE>
 <PARKINGLOT>
 	<spots>5000</spots>
