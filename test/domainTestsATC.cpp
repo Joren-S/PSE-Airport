@@ -175,3 +175,140 @@ TEST_F(domainTestATC, squawk) {
     squawk = atc->getSquawk(airplane);
     EXPECT_TRUE(squawk < 6778 and squawk > 5999);
 }
+
+TEST_F(domainTestATC, processIFRClearance) {
+    airplane->setStatus(kAirport);
+
+    // large jet
+    airplane->setType(kAirline);
+    airplane->setEngine(kJet);
+    airplane->setSize(kLarge);
+    airplane->setSquawk(0);
+
+    // no runway available
+    airplane->setRequest(kPending);
+    runway->setType(kGrass);
+    runway->setLength(100);
+    atc->processIFRClearance(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+    EXPECT_TRUE(airplane->getRunway() == NULL);
+
+    // runway availble
+    airplane->setRequest(kPending);
+    runway->setType(kAsphalt);
+    runway->setLength(10000);
+    atc->processIFRClearance(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+    EXPECT_TRUE(airplane->getRunway() != NULL);
+}
+
+TEST_F(domainTestATC, processPushback) {
+    // simple function.
+    airplane->setStatus(kGate);
+    airplane->setRequest(kPending);
+    atc->processPushback(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+}
+
+TEST_F(domainTestATC, processTaxiInitialise) {
+    // simple function.
+    airplane->setStatus(kPushback);
+    airplane->setRequest(kPending);
+    atc->processTaxiInitialise(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+}
+
+TEST_F(domainTestATC, processTaxiInstruction) {
+    airplane->setStatus(kTaxiDeparture);
+    airplane->setRequest(kPending);
+    airplane->setPosition("Alpha");
+    airplane->setType(kAirline);
+
+    // create a valid runway (all planes can land on asphalt with l=10k)
+    runway->setType(kAsphalt);
+    runway->setLength(10000);
+    runway->setTaxiPoint("Alpha");
+
+    // create a second runway
+    Runway *rw = new Runway;
+    rw->setType(kAsphalt);
+    rw->setLength(1000);
+    airplane->setRunway(rw);
+
+    // at destination
+    rw->setTaxiPoint("Alpha");
+    atc->processTaxiInstruction(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kConfirmed);
+
+    // not at destination, can cross
+    rw->setTaxiPoint("Bravo");
+    runway->setFree(true);
+    atc->processTaxiInstruction(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+
+    // not at destination, can't cross
+    rw->setTaxiPoint("Bravo");
+    runway->setFree(false);
+    atc->processTaxiInstruction(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+
+    delete rw;
+}
+
+TEST_F(domainTestATC, processTakeOff) {
+    airplane->setStatus(kWaitingForDeparture);
+    airplane->setRequest(kPending);
+    airplane->setType(kAirline);
+
+    // create a valid runway (all planes can land on asphalt with l=10k)
+    runway->setType(kAsphalt);
+    runway->setLength(10000);
+    runway->setTaxiPoint("Alpha");
+    airplane->setRunway(runway);
+
+    // runway is free and 3000ft is free: line up and take off
+    runway->setFree(true);
+    atc->set3occupied(false);
+    atc->processTakeOff(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAcceptedImmediate);
+
+    // runway is free and 3000ft is not free: line up and wait
+    runway->setFree(true);
+    atc->set3occupied(true);
+    atc->processTakeOff(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+
+    // runway is not free and 3000ft is not free: wait
+    runway->setFree(false);
+    atc->set3occupied(false);
+    atc->processTakeOff(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+
+    // runway is not free and 3000ft is free: wait
+    runway->setFree(false);
+    atc->set3occupied(true);
+    atc->processTakeOff(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+}
+
+TEST_F(domainTestATC, processTakeOffRunway) {
+    airplane->setStatus(kDeparture);
+    airplane->setRequest(kPending);
+    airplane->setType(kAirline);
+
+    runway->setType(kAsphalt);
+    runway->setLength(10000);
+    runway->setTaxiPoint("Alpha");
+    airplane->setRunway(runway);
+    airplane->setPosition("Alpha");
+
+    // 3000 ft is free: take off
+    atc->set3occupied(false);
+    atc->processTakeOffRunway(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+
+    // 3000 ft is not free: wait
+    atc->set3occupied(true);
+    atc->processTakeOffRunway(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+}
