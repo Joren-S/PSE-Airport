@@ -79,6 +79,8 @@ TEST_F(domainTestRunway, complete) {
     runway.setTaxiPoint("Alpha");
 
     EXPECT_TRUE(runway.complete());
+
+    delete runway.getAirport();
 }
 
 TEST_F(domainTestRunway, fieldManipulation) {

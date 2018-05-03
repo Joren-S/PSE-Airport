@@ -1,5 +1,3 @@
 Duplicate or missing field(s) for Airport.
-Duplicate or missing field(s) for Runway.
-Duplicate or missing field(s) for Runway.
-Invalid field: status
-Invalid field: status
+Duplicate or missing field(s) for Airplane.
+Duplicate or missing field(s) for Airplane.

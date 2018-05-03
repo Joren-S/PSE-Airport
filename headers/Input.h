@@ -59,6 +59,7 @@ private:
 
     /**
      * Reads an airplane from a given xml element
+     * \n REQUIRE(!airports.empty(), "No airport in simulation");
      */
     void readAirplane(TiXmlElement *elem, ostream& errorLog = cerr);
 

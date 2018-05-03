@@ -50,6 +50,7 @@ Input::Input() {
 }
 
 void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
+    REQUIRE(!airports.empty(), "No airport in simulation");
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -280,7 +281,7 @@ void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
                 break;
             }
             // Read the taxiroute
-            string taxipoint = readTaxiroute(elem->FirstChildElement(), tmp->getAirport());
+            string taxipoint = readTaxiroute(elem->FirstChildElement(), tmp->getAirport(), errorLog);
 
             // Not valid
             if (taxipoint.empty()) {

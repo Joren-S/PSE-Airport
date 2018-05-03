@@ -1,5 +1,3 @@
 Invalid data for Runway status.
 Duplicate or missing field(s) for Runway.
-Duplicate or missing field(s) for Runway.
-Invalid field: status
-Invalid field: status
+Inconsistent taxiroute data, runway will not be added.

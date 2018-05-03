@@ -2,7 +2,7 @@
 	<name>Antwerp International Airport</name>
 	<iata>ANR</iata>
 	<callsign>Antwerp Tower</callsign>
-	<gates>10</gates>
+	<gates>-3</gates>
 </AIRPORT>
 <RUNWAY>
 	<name>11R</name>
@@ -11,7 +11,16 @@
 	<length>1510</length>
 	<TAXIROUTE>
 		<taxipoint>Alpha</taxipoint>
-		<crossing>11L</crossing>
+	</TAXIROUTE>
+</RUNWAY>
+<RUNWAY>
+	<name>11L</name>
+	<airport>ANR</airport>
+	<type>grass</type>
+	<length>1010</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+		<crossing>11R</crossing>
 		<taxipoint>Bravo</taxipoint>
 	</TAXIROUTE>
 </RUNWAY>

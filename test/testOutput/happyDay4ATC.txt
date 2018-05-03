@@ -1,0 +1,51 @@
+[12:10][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, requesting IFR clearancy.
+
+[12:11][Antwerp Tower]
+$ Speedbird four six six, Antwerp Tower, cleared to one one lima, maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk zero.
+
+[12:12][Speedbird 466]
+$ Cleared to one one lima, initial altitude five thousand, expecting one zero zero in ten, squawking zero, Speedbird four six six.
+
+[12:22][Speedbird 466]
+$ Speedbird four six six, Speedbird four six six at gate one, requesting pushback.
+
+[12:23][Antwerp Tower]
+$ Speedbird four six six, Antwerp Tower, pushback approved.
+
+[12:24][Speedbird 466]
+$ Pushback approved, Speedbird four six six.
+
+[12:27][Speedbird 466]
+$ Speedbird four six six is ready to taxi.
+
+[12:28][Antwerp Tower]
+$ Speedbird four six six, taxi to holding point one one romeo via Alpha.
+
+[12:35][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, holding short at one one romeo.
+
+[12:36][Antwerp Tower]
+$ Speedbird four six six, cleared to cross one one romeo.
+
+[12:37][Speedbird 466]
+$ Cleared to cross one one romeo, taxi to holding point one one lima via Bravo, Speedbird four six six.
+
+[12:43][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, holding short at one one lima.
+
+[12:44][Antwerp Tower]
+$ Speedbird four six six, taxi to runway one one lima via Bravo.
+
+[12:45][Speedbird 466]
+$ Taxi to runway one one lima via Bravo, Speedbird four six six.
+
+[12:46][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, holding short at one one lima.
+
+[12:47][Antwerp Tower]
+$ Speedbird four six six, runway one one lima cleared for take-off.
+
+[12:48][Speedbird 466]
+$ Runway one one lima cleared for take-off, Speedbird four six six.
+

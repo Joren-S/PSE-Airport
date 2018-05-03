@@ -122,6 +122,11 @@ TEST_F(inputTest, XMLSyntaxErrors) {
     }
 }
 
+TEST_F(inputTest, illegalAirport) {
+    ASSERT_TRUE(FileExists("../test/testInput/inputAirportError.xml"));
+    ofstream myfile ("../test/testInput/airportError.txt");
+    EXPECT_DEATH(input.read("../test/testInput/inputAirportError.xml", myfile), "No airport in simulation");
+}
 
 TEST_F(inputTest, illegalElement) {
     ASSERT_TRUE(DirectoryExists("../test/testInput"));
@@ -135,7 +140,12 @@ TEST_F(inputTest, illegalElement) {
 
         myfile.open(errorFileName.c_str());
 
-        input.read(fileName, myfile);
+        if (fileCounter == 15) {
+            cout << "this";
+        }
+
+        Input in;
+        in.read(fileName, myfile);
         myfile.close();
 
 //        string errorFileName = "illegalError" + ToString(fileCounter) + ".txt";

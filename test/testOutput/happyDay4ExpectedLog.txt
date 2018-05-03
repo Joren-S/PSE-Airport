@@ -1,0 +1,13 @@
+[12:12] Boeing 747 is being refueled
+[12:12] 10 passengers are boarding Boeing 747 at Gate 1 of Antwerp International Airport
+[12:12] Boeing 747 is standing at Gate 1
+[12:24] Boeing 747 is being pushed back
+[12:29] Boeing 747 has started taxiing to runway 11R
+[12:38] Boeing 747 crossed 11R.
+[12:43] Boeing 747 has taxied to holding point at Bravo.
+[12:49] Boeing 747 ascended to 1.000 ft.
+[12:50] Boeing 747 ascended to 2.000 ft.
+[12:51] Boeing 747 ascended to 3.000 ft.
+[12:52] Boeing 747 ascended to 4.000 ft.
+[12:53] Boeing 747 ascended to 5.000 ft.
+[12:54] Boeing 747 has left Antwerp International Airport

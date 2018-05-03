@@ -26,9 +26,6 @@ Output testing
 TODO:
 contracts landing/atc
 test impression
-test simulationFinished
-test getter/setter
-atc test getter/setter
 newline requires en ensures
 
 Finish Input and output testing
