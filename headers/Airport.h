@@ -55,6 +55,11 @@ public:
     Airport();
 
     /**
+     * Destructor
+     */
+    ~Airport();
+
+    /**
      * Checks if the object is properly initialized
      * @return: Boolean indicating if properly initialized or not.
      */

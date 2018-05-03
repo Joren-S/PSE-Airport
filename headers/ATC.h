@@ -94,6 +94,11 @@ public:
     ATC(ostream& stream, bool test);
 
     /**
+     * Destructor
+     */
+    ~ATC();
+
+    /**
      * Checks if the object is properly initialized
      * @return: Boolean indicating if properly initialized or not.
      */
