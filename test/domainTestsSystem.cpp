@@ -406,3 +406,10 @@ TEST_F(domainTestSystem, prepare) {
     EXPECT_EQ(airplane->getRequest(), kIdle);
     EXPECT_EQ(airplane->getStatus(), kGate);
 }
+
+TEST_F(domainTestSystem, fieldManipulation) {
+    Time time = Time(12, 0);
+    system.setEndTime(time);
+    EXPECT_EQ(system.getTime().getHour(), 12);
+    EXPECT_EQ(system.getTime().getMinute(), 0);
+}
