@@ -109,23 +109,35 @@ TEST_F(inputTest, XMLSyntaxErrors) {
     string fileName = "../test/testInput/inputSyntaxError" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
-        string errorFileName = "../test/testInput/illegalSyntax" + ToString(fileCounter) + ".txt";
-        myfile.open(errorFileName.c_str());
-//        myfile.open("../test/testInput/error.txt");
+
         EXPECT_DEATH(input.read(fileName, myfile), "Couldn't open " + fileName + ".");
         myfile.close();
 
-//        string errorFileName = "illegalSyntax" + ToString(fileCounter) + ".txt";
-//        EXPECT_TRUE(FileCompare("../test/testInput/error.txt", errorFileName));
         fileCounter++;
         fileName = "../test/testInput/inputSyntaxError" + ToString(fileCounter) + ".xml";
     }
 }
 
 TEST_F(inputTest, illegalAirport) {
-    ASSERT_TRUE(FileExists("../test/testInput/inputAirportError.xml"));
-    ofstream myfile ("../test/testInput/airportError.txt");
-    EXPECT_DEATH(input.read("../test/testInput/inputAirportError.xml", myfile), "No airport in simulation");
+    ASSERT_TRUE(DirectoryExists("../test/testInput"));
+
+    ofstream myfile;
+    int fileCounter = 1;
+    string fileName = "../test/testInput/inputAirportError" + ToString(fileCounter) + ".xml";
+
+    while (FileExists (fileName)) {
+        string errorFileName = "../test/testInput/airportError" + ToString(fileCounter) + ".txt";
+
+        myfile.open("../test/testInput/error.txt");
+
+        Input in;
+        EXPECT_DEATH(input.read(fileName, myfile), "No airport in simulation");
+
+        myfile.close();
+
+        fileCounter++;
+        fileName = "../test/testInput/inputAirportError" + ToString(fileCounter) + ".xml";
+    }
 }
 
 TEST_F(inputTest, illegalElement) {
@@ -138,18 +150,13 @@ TEST_F(inputTest, illegalElement) {
     while (FileExists (fileName)) {
         string errorFileName = "../test/testInput/illegalError" + ToString(fileCounter) + ".txt";
 
-        myfile.open(errorFileName.c_str());
-
-        if (fileCounter == 15) {
-            cout << "this";
-        }
+        myfile.open("../test/testInput/error.txt");
 
         Input in;
         in.read(fileName, myfile);
         myfile.close();
 
-//        string errorFileName = "illegalError" + ToString(fileCounter) + ".txt";
-//        EXPECT_TRUE(FileCompare("../test/testInput/error.txt", errorFileName));
+        EXPECT_TRUE(FileCompare("../test/testInput/error.txt", errorFileName));
 
         fileCounter++;
         fileName = "../test/testInput/inputPartialError" + ToString(fileCounter) + ".xml";

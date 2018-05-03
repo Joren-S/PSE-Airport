@@ -1,3 +1,1 @@
-Duplicate or missing field(s) for Airport.
-Duplicate or missing field(s) for Airplane.
-Duplicate or missing field(s) for Airplane.
+Inconsistent taxiroute data, runway will not be added.

@@ -35,10 +35,10 @@ $ Cleared to cross one one romeo, taxi to holding point one one lima via Bravo, 
 $ Antwerp Tower, Speedbird four six six, holding short at one one lima.
 
 [12:44][Antwerp Tower]
-$ Speedbird four six six, taxi to runway one one lima via Bravo.
+$ Speedbird four six six, hold position.
 
 [12:45][Speedbird 466]
-$ Taxi to runway one one lima via Bravo, Speedbird four six six.
+$ Holding position, Speedbird four six six.
 
 [12:46][Speedbird 466]
 $ Antwerp Tower, Speedbird four six six, holding short at one one lima.

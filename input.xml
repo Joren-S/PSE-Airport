@@ -1,3 +1,74 @@
+<!--<AIRPORT>-->
+	<!--<name>Antwerp International Airport</name>-->
+	<!--<iata>ANR</iata>-->
+	<!--<callsign>Antwerp Tower</callsign>-->
+	<!--<gates>10</gates>-->
+<!--</AIRPORT>-->
+<!--<RUNWAY>-->
+	<!--<name>11R</name>-->
+	<!--<airport>ANR</airport>-->
+	<!--<type>grass</type>-->
+	<!--<length>1510</length>-->
+	<!--<TAXIROUTE>-->
+		<!--<taxipoint>Alpha</taxipoint>-->
+	<!--</TAXIROUTE>-->
+<!--</RUNWAY>-->
+<!--<RUNWAY>-->
+	<!--<name>11L</name>-->
+	<!--<airport>ANR</airport>-->
+	<!--<type>asphalt</type>-->
+	<!--<length>3210</length>-->
+	<!--<TAXIROUTE>-->
+		<!--<taxipoint>Alpha</taxipoint>-->
+		<!--<crossing>11R</crossing>-->
+		<!--<taxipoint>Bravo</taxipoint>-->
+	<!--</TAXIROUTE>-->
+<!--</RUNWAY>-->
+<!--&lt;!&ndash;<RUNWAY>&ndash;&gt;-->
+	<!--&lt;!&ndash;<name>12B</name>&ndash;&gt;-->
+	<!--&lt;!&ndash;<airport>ANR</airport>&ndash;&gt;-->
+	<!--&lt;!&ndash;<type>asphalt</type>&ndash;&gt;-->
+	<!--&lt;!&ndash;<length>1010</length>&ndash;&gt;-->
+	<!--&lt;!&ndash;<TAXIROUTE>&ndash;&gt;-->
+		<!--&lt;!&ndash;<taxipoint>Alpha</taxipoint>&ndash;&gt;-->
+		<!--&lt;!&ndash;<crossing>11R</crossing>&ndash;&gt;-->
+		<!--&lt;!&ndash;<taxipoint>Bravo</taxipoint>&ndash;&gt;-->
+		<!--&lt;!&ndash;<crossing>11L</crossing>&ndash;&gt;-->
+		<!--&lt;!&ndash;<taxipoint>Charlie</taxipoint>&ndash;&gt;-->
+	<!--&lt;!&ndash;</TAXIROUTE>&ndash;&gt;-->
+<!--&lt;!&ndash;</RUNWAY>&ndash;&gt;-->
+<!--&lt;!&ndash;<AIRPLANE>&ndash;&gt;-->
+	<!--&lt;!&ndash;<number>N11842</number>&ndash;&gt;-->
+	<!--&lt;!&ndash;<callsign>Cessna 842</callsign>&ndash;&gt;-->
+	<!--&lt;!&ndash;<model>Cessna 340</model>&ndash;&gt;-->
+	<!--&lt;!&ndash;<type>private</type>&ndash;&gt;-->
+	<!--&lt;!&ndash;<engine>jet</engine>&ndash;&gt;-->
+	<!--&lt;!&ndash;<size>small</size>&ndash;&gt;-->
+	<!--&lt;!&ndash;<fuel>10000</fuel>&ndash;&gt;-->
+	<!--&lt;!&ndash;<passengers>8</passengers>&ndash;&gt;-->
+	<!--&lt;!&ndash;<FLIGHTPLAN>&ndash;&gt;-->
+		<!--&lt;!&ndash;<destination>LCY</destination>&ndash;&gt;-->
+		<!--&lt;!&ndash;<departure>30</departure>&ndash;&gt;-->
+		<!--&lt;!&ndash;<arrival>15</arrival>&ndash;&gt;-->
+		<!--&lt;!&ndash;<interval>1</interval>&ndash;&gt;-->
+	<!--&lt;!&ndash;</FLIGHTPLAN>&ndash;&gt;-->
+<!--&lt;!&ndash;</AIRPLANE>&ndash;&gt;-->
+<!--<AIRPLANE>-->
+	<!--<number>BAW466</number>-->
+	<!--<callsign>Speedbird 466</callsign>-->
+	<!--<model>Boeing 747</model>-->
+	<!--<type>airline</type>-->
+	<!--<engine>jet</engine>-->
+	<!--<size>large</size>-->
+	<!--<fuel>50000</fuel>-->
+	<!--<passengers>10</passengers>-->
+	<!--<FLIGHTPLAN>-->
+		<!--<destination>JFK</destination>-->
+		<!--<departure>10</departure>-->
+		<!--<arrival>30</arrival>-->
+		<!--<interval>2</interval>-->
+	<!--</FLIGHTPLAN>-->
+<!--</AIRPLANE>-->
 <AIRPORT>
 	<name>Antwerp International Airport</name>
 	<iata>ANR</iata>
@@ -5,67 +76,28 @@
 	<gates>10</gates>
 </AIRPORT>
 <RUNWAY>
-	<name>11R</name>
-	<airport>ANR</airport>
-	<type>grass</type>
-	<length>1510</length>
-	<TAXIROUTE>
-		<taxipoint>Alpha</taxipoint>
-	</TAXIROUTE>
+<name>11L</name>
+<airport>ANR</airport>
+<type>asphalt</type>
+<length>3210</length>
+<TAXIROUTE>
+	<taxipoint>Alpha</taxipoint>
+</TAXIROUTE>
 </RUNWAY>
-<RUNWAY>
-	<name>11L</name>
-	<airport>ANR</airport>
-	<type>asphalt</type>
-	<length>3210</length>
-	<TAXIROUTE>
-		<taxipoint>Alpha</taxipoint>
-		<crossing>11R</crossing>
-		<taxipoint>Bravo</taxipoint>
-	</TAXIROUTE>
-</RUNWAY>
-<!--<RUNWAY>-->
-	<!--<name>12B</name>-->
-	<!--<airport>ANR</airport>-->
-	<!--<type>asphalt</type>-->
-	<!--<length>1010</length>-->
-	<!--<TAXIROUTE>-->
-		<!--<taxipoint>Alpha</taxipoint>-->
-		<!--<crossing>11R</crossing>-->
-		<!--<taxipoint>Bravo</taxipoint>-->
-		<!--<crossing>11L</crossing>-->
-		<!--<taxipoint>Charlie</taxipoint>-->
-	<!--</TAXIROUTE>-->
-<!--</RUNWAY>-->
 <AIRPLANE>
-	<number>N11842</number>
-	<callsign>Cessna 842</callsign>
-	<model>Cessna 340</model>
-	<type>private</type>
-	<engine>jet</engine>
-	<size>small</size>
-	<fuel>10000</fuel>
-	<passengers>8</passengers>
-	<FLIGHTPLAN>
-		<destination>LCY</destination>
-		<departure>30</departure>
-		<arrival>15</arrival>
-		<interval>1</interval>
-	</FLIGHTPLAN>
+<number>BAW466</number>
+<callsign>Speedbird 466</callsign>
+<model>Boeing 747</model>
+<type>airline</type>
+<engine>jet</engine>
+<size>large</size>
+<fuel>50000</fuel>
+<passengers>10</passengers>
+<FLIGHTPLAN>
+	<destination>JFK</destination>
+	<departure>10</departure>
+	<arrival>30</arrival>
+	<interval>2</interval>
+</FLIGHTPLAN>
 </AIRPLANE>
-<AIRPLANE>
-	<number>BAW466</number>
-	<callsign>Speedbird 466</callsign>
-	<model>Boeing 747</model>
-	<type>airline</type>
-	<engine>jet</engine>
-	<size>large</size>
-	<fuel>50000</fuel>
-	<passengers>10</passengers>
-	<FLIGHTPLAN>
-		<destination>JFK</destination>
-		<departure>10</departure>
-		<arrival>30</arrival>
-		<interval>2</interval>
-	</FLIGHTPLAN>
-</AIRPLANE>
+

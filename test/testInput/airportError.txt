@@ -1,3 +1,0 @@
-Gates field is an invalid value
-Did not find airport with iata: ANR
-Did not find airport with iata: ANR
