@@ -173,6 +173,48 @@ public:
     void processTaxiArrival(Airplane* airplane, Time time);
 
     /**
+     * Processes a request for IFR clearance.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processIFRClearance(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for pushback.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processPushback(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request to start taxiing.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processTaxiInitialise(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for a taxi instruction.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processTaxiInstruction(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for takeoff when waiting at runway.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processTakeOff(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for takeoff when waiting on runway.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processTakeOffRunway(Airplane* airplane, Time time);
+
+    /**
      * Write a message to the ATC stream.
      * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
      * @param message: Message that needs to be send.

@@ -4,7 +4,7 @@ Joren
         domain Testing
 DONE        Airport
 DONE        Runway
-            System -> takeoff, import
+DONE        System -> takeoff, import
             ATC > splitsen + tests zoals system
 DONE    Flightplans for inputfiles {failures}
             ->opnieuw genererem

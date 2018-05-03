@@ -163,7 +163,6 @@ ATCRequest *ATC::getNextRequest() {
     return rqst;
 }
 
-
 void ATC::doHeartbeat(Time curTime) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
 
@@ -202,116 +201,32 @@ void ATC::doHeartbeat(Time curTime) {
 
     // First stage : Not refueled and not boarded.
     else if (status == kAirport) {
-
-        // Requesting IFR clearance.
-        Runway *dest = getAirport()->getFreeRunway(airplane);
-        if (dest == NULL) {
-            // IFR clearance denied
-            airplane->setRunway(NULL);
-            airplane->setRequest(kDenied);
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", no free runway, hold position."));
-        } else {
-
-            // IFR clearance granted.
-            airplane->setRunway(dest);
-            airplane->setRequest(kAccepted);
-            airplane->setSquawk(getSquawk(airplane));
-            stringstream sqwk;
-            sqwk << airplane->getSquawk();
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
-                                                      ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + sqwk.str() + "."));
-        }
+        processIFRClearance(airplane, curTime);
     }
 
     // Plane was refueled and boared.
     else if (status == kGate) {
-
-        // Requesting pushback
-        airplane->setRequest(kAccepted);
-        sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
+        processPushback(airplane, curTime);
     }
 
     // Plane was pushed back.
     else if (status == kPushback) {
-
-        // Requesting permission to taxi
-        Runway *firstRW = getAirport()->getRunways().at(0);
-        sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
-        airplane->setRequest(kAccepted);
+        processTaxiInitialise(airplane, curTime);
     }
 
     // Plane started taxiing.
     else if (status == kTaxiDeparture) {
-
-        // Requesting taxi instructions
-        Runway *curRw = getAirport()->getRunway(airplane->getPosition());
-        Runway *dest = airplane->getRunway();
-
-        // if at destination -> go to runway
-        if (dest->getTaxiPoint() == curRw->getTaxiPoint()) {
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + dest->getName() + " via " + dest->getTaxiPoint() + "."));
-            airplane->setRequest(kConfirmed);
-        }
-
-        // if not at destination
-        else {
-            // if runway is free, plane can cross
-            if (curRw->isFree()) {
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + curRw->getName() + "."));
-                airplane->setRequest(kAccepted);
-            }
-
-            //if not, plane has to wait
-            else {
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
-                airplane->setRequest(kDenied);
-            }
-        }
+        processTaxiInstruction(airplane, curTime);
     }
 
     // Plane is waiting AT runway
     else if (status == kWaitingForDeparture) {
-
-        // Requesting permission to take-off.
-        Runway *curRW = airplane->getRunway();
-        if (curRW->isFree()) {
-            if (f3Occupied == false) {
-
-                // Permission to line-up and take-off
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
-                airplane->setRequest(kAcceptedImmediate);
-            } else {
-
-                // Permission to line-up
-                sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
-                airplane->setRequest(kAccepted);
-            }
-        } else {
-
-            // Permission denied, keep waiting.
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
-            airplane->setRequest(kDenied);
-        }
+        processTakeOff(airplane, curTime);
     }
 
     // Plane is waiting ON runway
     else if (status == kDeparture) {
-
-        // Requesting permission to start taking off
-        if (f3Occupied == false) {
-
-            // Permission granted, start take-off
-            airplane->setRequest(kAccepted);
-            string runwayName = getAirport()->getRunway(airplane->getPosition())->getName();
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(),
-                                      airplane->getCallsign() + ", runway " + runwayName + " cleared for take-off."));
-        }
-        else {
-
-            // Permission denied.
-            sendMessage(formatMessage(curTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
-            airplane->setRequest(kDenied);
-        }
+        processTakeOffRunway(airplane, curTime);
     }
 
     // Delete request
@@ -607,6 +522,110 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
         else {
             airplane->setRequest(kDenied);
         }
+    }
+}
+
+void ATC::processIFRClearance(Airplane* airplane, Time time) {
+    // Requesting IFR clearance.
+    Runway *dest = getAirport()->getFreeRunway(airplane);
+    if (dest == NULL) {
+        // IFR clearance denied
+        airplane->setRunway(NULL);
+        airplane->setRequest(kDenied);
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", no free runway, hold position."));
+    } else {
+
+        // IFR clearance granted.
+        airplane->setRunway(dest);
+        airplane->setRequest(kAccepted);
+        airplane->setSquawk(getSquawk(airplane));
+        stringstream sqwk;
+        sqwk << airplane->getSquawk();
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
+                                                                        ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + sqwk.str() + "."));
+    }
+}
+
+void ATC::processPushback(Airplane* airplane, Time time) {
+
+    // Requesting pushback
+    airplane->setRequest(kAccepted);
+    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
+}
+
+void ATC::processTaxiInitialise(Airplane* airplane, Time time) {
+
+    // Requesting permission to taxi
+    Runway *firstRW = getAirport()->getRunways().at(0);
+    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
+    airplane->setRequest(kAccepted);
+}
+
+void ATC::processTaxiInstruction(Airplane* airplane, Time time) {
+    // Requesting taxi instructions
+    Runway *curRw = getAirport()->getRunway(airplane->getPosition());
+    Runway *dest = airplane->getRunway();
+
+    // if at destination -> go to runway
+    if (dest->getTaxiPoint() == curRw->getTaxiPoint()) {
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to runway " + dest->getName() + " via " + dest->getTaxiPoint() + "."));
+        airplane->setRequest(kConfirmed);
+    }
+
+        // if not at destination
+    else {
+        // if runway is free, plane can cross
+        if (curRw->isFree()) {
+            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + curRw->getName() + "."));
+            airplane->setRequest(kAccepted);
+        }
+
+            //if not, plane has to wait
+        else {
+            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+            airplane->setRequest(kDenied);
+        }
+    }
+}
+
+void ATC::processTakeOff(Airplane* airplane, Time time) {
+    // Requesting permission to take-off.
+    Runway *curRW = airplane->getRunway();
+    if (curRW->isFree()) {
+        if (f3Occupied == false) {
+
+            // Permission to line-up and take-off
+            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
+            airplane->setRequest(kAcceptedImmediate);
+        } else {
+
+            // Permission to line-up
+            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
+            airplane->setRequest(kAccepted);
+        }
+    } else {
+
+        // Permission denied, keep waiting.
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+        airplane->setRequest(kDenied);
+    }
+};
+
+void ATC::processTakeOffRunway(Airplane* airplane, Time time) {
+    // Requesting permission to start taking off
+    if (f3Occupied == false) {
+
+        // Permission granted, start take-off
+        airplane->setRequest(kAccepted);
+        string runwayName = getAirport()->getRunway(airplane->getPosition())->getName();
+        sendMessage(formatMessage(time, getAirport()->getCallsign(),
+                                  airplane->getCallsign() + ", runway " + runwayName + " cleared for take-off."));
+    }
+    else {
+
+        // Permission denied.
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+        airplane->setRequest(kDenied);
     }
 }
 
