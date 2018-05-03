@@ -85,22 +85,25 @@ TEST_F(domainTestRunway, fieldManipulation) {
     Airport *ap = new Airport();
 
     runway.setType(kGrass);
-    EXPECT_TRUE(runway.getType() == kGrass);
+    EXPECT_EQ(runway.getType(), kGrass);
 
     runway.setLength(1000);
-    EXPECT_TRUE(runway.getLength() == 1000);
+    EXPECT_EQ(runway.getLength(), 1000);
 
     runway.setName("RW1");
-    EXPECT_TRUE(runway.getName() == "RW1");
+    EXPECT_EQ(runway.getName(), "RW1");
 
     runway.setFree(true);
     EXPECT_TRUE(runway.isFree());
 
+    runway.setFree(false);
+    EXPECT_FALSE(runway.isFree());
+
     runway.setTaxiPoint("Alpha");
-    EXPECT_TRUE(runway.getTaxiPoint() == "Alpha");
+    EXPECT_EQ(runway.getTaxiPoint(), "Alpha");
 
     runway.setAirport(ap);
-    EXPECT_TRUE(runway.getAirport() == ap);
+    EXPECT_EQ(runway.getAirport(), ap);
 
     delete ap;
 }

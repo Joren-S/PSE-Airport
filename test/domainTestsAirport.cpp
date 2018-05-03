@@ -18,7 +18,7 @@ protected:
 
 TEST_F(domainTestAirport, DefaultConstructor) {
     EXPECT_TRUE(airport.properlyInitialized());
-    EXPECT_TRUE(airport.getGates() == -1);
+    EXPECT_EQ(airport.getGates(), -1);
 }
 
 TEST_F(domainTestAirport, happyDay) {
@@ -51,15 +51,15 @@ TEST_F(domainTestAirport, happyDay) {
     // test for occupying/restoring gates.
     airport.initStack();
     for (int i = 1; i <= 10; i++) {
-        EXPECT_TRUE(airport.getFreeGate() == i);
+        EXPECT_EQ(airport.getFreeGate(), i);
     }
     for (int i = 10; i > 0; i--) {
         airport.restoreGate(i);
     }
-    EXPECT_TRUE(airport.getFreeGate() == 1);
-    EXPECT_TRUE(airport.getFreeGate() == 2);
+    EXPECT_EQ(airport.getFreeGate(), 1);
+    EXPECT_EQ(airport.getFreeGate(), 2);
     airport.restoreGate(1);
-    EXPECT_TRUE(airport.getFreeGate() == 1);
+    EXPECT_EQ(airport.getFreeGate(), 1);
 
 
     EXPECT_TRUE(airport.amountOfRunways() == 0);
@@ -69,7 +69,7 @@ TEST_F(domainTestAirport, happyDay) {
     EXPECT_TRUE(airport.amountOfRunways() == 1);
 
     // test for finding runways by taxipoint
-    EXPECT_TRUE(airport.getRunway("Alpha") == &runway);
+    EXPECT_EQ(airport.getRunway("Alpha"), &runway);
     EXPECT_TRUE(airport.getRunway("Gibberish") == NULL);
 
     // plane is not taxiing
@@ -84,14 +84,14 @@ TEST_F(domainTestAirport, happyDay) {
     EXPECT_TRUE(airport.amountOfRunways() == 2);
 
     // plane is taxiing and there is a next runway.
-    EXPECT_TRUE(airport.getNextRunway(&plane) == rw);
+    EXPECT_EQ(airport.getNextRunway(&plane), rw);
 
     // get free runway, but no valid runway for large jets
     EXPECT_TRUE(airport.getFreeRunway(&plane) == NULL);
 
     // alter rw so it's a valid runway.
     rw->setType(kAsphalt);
-    EXPECT_TRUE(airport.getFreeRunway(&plane) == rw);
+    EXPECT_EQ(airport.getFreeRunway(&plane), rw);
 
     delete rw;
 }
@@ -114,23 +114,23 @@ TEST_F(domainTestAirport, complete) {
 
 TEST_F(domainTestAirport, fieldManipulation) {
     airport.setName("Antwerp Airport");
-    EXPECT_TRUE(airport.getName() == "Antwerp Airport");
+    EXPECT_EQ(airport.getName(), "Antwerp Airport");
 
     airport.setCallsign("Antwerp Tower");
-    EXPECT_TRUE(airport.getCallsign() == "Antwerp Tower");
+    EXPECT_EQ(airport.getCallsign(), "Antwerp Tower");
 
     airport.setIata("ANR");
-    EXPECT_TRUE(airport.getIata() == "ANR");
+    EXPECT_EQ(airport.getIata(), "ANR");
 
     airport.setGates(10);
-    EXPECT_TRUE(airport.getGates() == 10);
+    EXPECT_EQ(airport.getGates(), 10);
 
     runway.setName("RW1");
     runway.setTaxiPoint("Alpha");
     airport.addRunway(&runway);
     vector<Runway*> rws = airport.getRunways();
     EXPECT_TRUE(rws.size() == 1);
-    EXPECT_TRUE(rws.at(0) == &runway);
+    EXPECT_EQ(rws.at(0), &runway);
 }
 
 
