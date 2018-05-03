@@ -144,6 +144,30 @@ public:
     void doHeartbeat(Time time);
 
     /**
+     * Processes a request for approach.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processApproach(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for descend.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processDescend(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for taxiing at arrival.
+     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiArrival.");
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processTaxiArrival(Airplane* airplane, Time time);
+
+    /**
      * Write a message to the ATC stream.
      * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
      * @param message: Message that needs to be send.
