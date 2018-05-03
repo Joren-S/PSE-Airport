@@ -167,3 +167,13 @@ TEST_F(domainTestSystem, technicalCheck) {
     EXPECT_EQ(airplane->getStatus(), kParked);
     EXPECT_EQ(airplane->getRequest(), kIdle);
 }
+
+TEST_F(domainTestSystem, simulationFinished) {
+    Time end(13, 34);
+    system.setEndTime(end);
+    EXPECT_FALSE(system.simulationFinished());
+
+    Time end2 (11);
+    system.setEndTime(end2);
+    EXPECT_TRUE(system.simulationFinished());
+}

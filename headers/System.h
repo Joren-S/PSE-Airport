@@ -236,6 +236,12 @@ public:
      */
     ATC* getATC() const;
 
+    /**
+     * Getter for the current time
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+     */
+    Time getTime() const;
+
 private:
 
     /**

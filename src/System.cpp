@@ -955,3 +955,8 @@ ATC* System::getATC() const {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
     return fATC;
 }
+
+Time System::getTime() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+    return fTime;
+}

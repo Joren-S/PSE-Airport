@@ -17,7 +17,7 @@ protected:
         
         // Initialize atc
         out.open("../test/testOutput/atc.txt");
-        system.initializeATC(out, true);
+        system.initializeATC(out);
 
         // Import info
         system.import(input);
@@ -52,8 +52,6 @@ TEST_F(domainTestATC, processApproach) {
     // Very simple function so very simple test
     atc->processApproach(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kAccepted);
-    // Squawk is set to 0 when testing in atc
-    EXPECT_EQ(airplane->getSquawk(), 0);
 }
 
 TEST_F(domainTestATC, processDescend) {
@@ -134,4 +132,46 @@ TEST_F(domainTestATC, processTaxiArrival) {
     runway->setFree(false);
     atc->processTaxiArrival(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kDenied);
+}
+
+TEST_F(domainTestATC, squawk) {
+    int squawk;
+    airplane->setType(kPrivate);
+    airplane->setSize(kSmall);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 778 and squawk > 0);
+
+    airplane->setSize(kMedium);
+    airplane->setEngine(kJet);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 1778 and squawk > 999);
+
+    airplane->setType(kAirline);
+    airplane->setEngine(kPropeller);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 2778 and squawk > 1999);
+
+    airplane->setEngine(kJet);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 3778 and squawk > 2999);
+
+    airplane->setSize(kLarge);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 4778 and squawk > 3999);
+
+    airplane->setType(kMilitary);
+    airplane->setSize(kSmall);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 5778 and squawk > 4999);
+
+    airplane->setSize(kLarge);
+    airplane->setEngine(kPropeller);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 5778 and squawk > 4999);
+
+    airplane->setType(kEmergency);
+    airplane->setSize(kSmall);
+    airplane->setEngine(kPropeller);
+    squawk = atc->getSquawk(airplane);
+    EXPECT_TRUE(squawk < 6778 and squawk > 5999);
 }
