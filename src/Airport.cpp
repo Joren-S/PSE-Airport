@@ -301,8 +301,16 @@ vector<Runway*> Airport::getRunways() const {
     return fRunways;
 }
 
+Airport::~Airport() {
+    vector<Runway*>::const_iterator itr;
+    for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
+        delete *itr;
+    }
+}
+
 // Initialisation check
 
 bool Airport::properlyInitialized() const {
     return fInitCheck == this;
 }
+

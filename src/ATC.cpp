@@ -316,6 +316,9 @@ void ATC::doHeartbeat(Time curTime) {
         }
     }
 
+    // Delete request
+    delete request;
+
     // Let the plane wait a minute, message has to be sent
     airplane->setTimeRemaining(1);
 }
@@ -606,5 +609,13 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
         else {
             airplane->setRequest(kDenied);
         }
+    }
+}
+
+ATC::~ATC() {
+    while (!fQueue.empty()) {
+        ATCRequest* request = fQueue.front();
+        delete request;
+        fQueue.pop();
     }
 }
