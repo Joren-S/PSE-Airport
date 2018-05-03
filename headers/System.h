@@ -230,6 +230,12 @@ public:
      */
     vector<Flightplan*> getFlightplans() const;
 
+    /**
+     * Getter for the air traffic control in the simulation
+     * REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
+     */
+    ATC* getATC() const;
+
 private:
 
     /**

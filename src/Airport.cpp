@@ -65,7 +65,6 @@ int Airport::getFreeGate() {
     fGateStack.pop();
 
     ENSURE(id <= fGates && id > 0, "Gate has an invalid ID.");
-    ENSURE(fGateStack.top() != id, "Gate wasn't properly popped from the stack.");
 
     // Return the popped gate ID.
     return id;

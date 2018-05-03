@@ -97,9 +97,11 @@ TEST_F(domainTestSystem, taxiArrival) {
     // Arrived at gate
     airplane->setPosition(runway->getTaxiPoint());
     airplane->setRequest(kConfirmed);
+    airplane->setPassengers(7);
     system.taxiArrival(airplane, out);
     EXPECT_TRUE(airplane->getPosition().empty());
     EXPECT_EQ(airplane->getStatus(), kDeboarding);
+    EXPECT_EQ(airplane->getTimeRemaining(), 4);
 
     // Arrived at taxipoint
     airplane->setStatus(kTaxiArrival);
@@ -117,17 +119,51 @@ TEST_F(domainTestSystem, taxiArrival) {
     // Request has been accepted, plane just landed
     airplane->setRequest(kAccepted);
     airplane->setPosition("");
+    airplane->setRunway(runway);
+    system.taxiArrival(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kTaxiArrival);
+    EXPECT_EQ(airplane->getPosition(), airplane->getRunway()->getTaxiPoint());
+    EXPECT_EQ(airplane->getRequest(), kConfirmed);
+    EXPECT_EQ(airplane->getTimeRemaining(), 5);
 
+    // Request has been accepted, plane crosses a runway
+    airplane->setRequest(kAccepted);
+    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    system.taxiArrival(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kCrossingArrival);
+    EXPECT_EQ(airplane->getRequest(), kConfirmed);
 }
 
 TEST_F(domainTestSystem, crossArrival) {
-
+    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setStatus(kTaxiArrival);
+    system.crossArrival(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kTaxiArrival);
+    EXPECT_TRUE(runway->isFree());
+    EXPECT_EQ(airplane->getPosition(), runway->getTaxiPoint());
+    EXPECT_EQ(airplane->getTimeRemaining(), 5);
 }
 
 TEST_F(domainTestSystem, deboard) {
+    airplane->setSize(kSmall);
+    system.deboard(airplane, out);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
 
+    airplane->setSize(kMedium);
+    system.deboard(airplane, out);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+
+    airplane->setSize(kLarge);
+    system.deboard(airplane, out);
+    EXPECT_EQ(airplane->getTimeRemaining(), 3);
+
+    EXPECT_EQ(airplane->getStatus(), kTechnicalCheck);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
 }
 
 TEST_F(domainTestSystem, technicalCheck) {
-
+    // Very simple function so very simple test
+    system.technicalCheck(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kParked);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
 }

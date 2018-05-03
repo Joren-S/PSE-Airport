@@ -801,7 +801,6 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
     REQUIRE(this->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(plane != NULL, "Plane object does not exist.");
 
-    cout << " ";
     // if plane is still busy, we do nothing
     if (plane->getTimeRemaining() == 0) {
 
@@ -950,4 +949,9 @@ void System::initializeATC(ostream &log, bool test) {
 void System::setEndTime(Time end) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
     fEndTime = end;
+}
+
+ATC* System::getATC() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
+    return fATC;
 }
