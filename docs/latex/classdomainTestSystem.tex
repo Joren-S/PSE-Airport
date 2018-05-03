@@ -1,0 +1,87 @@
+\hypertarget{classdomainTestSystem}{}\section{domain\+Test\+System Class Reference}
+\label{classdomainTestSystem}\index{domain\+Test\+System@{domain\+Test\+System}}
+
+
+Inheritance diagram for domain\+Test\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classdomainTestSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for domain\+Test\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classdomainTestSystem__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classdomainTestSystem_a66847562361560bb020f4c9b19d009eb}{Set\+Up} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRunway}{Runway} $\ast$ \hyperlink{classdomainTestSystem_aff348e2b0204535147979a4af0f1953d}{runway}
+\item 
+ofstream \hyperlink{classdomainTestSystem_a63655622f1037160f95d7466a594859d}{out}
+\item 
+\hyperlink{classAirplane}{Airplane} $\ast$ \hyperlink{classdomainTestSystem_a835a6facfcfab2d120dae14195d3ed96}{airplane}
+\item 
+\hyperlink{classSystem}{System} \hyperlink{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{system}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{domain\+Test\+System@{domain\+Test\+System}!Set\+Up@{Set\+Up}}
+\index{Set\+Up@{Set\+Up}!domain\+Test\+System@{domain\+Test\+System}}
+\subsubsection[{\texorpdfstring{Set\+Up()}{SetUp()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void domain\+Test\+System\+::\+Set\+Up (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}\hypertarget{classdomainTestSystem_a66847562361560bb020f4c9b19d009eb}{}\label{classdomainTestSystem_a66847562361560bb020f4c9b19d009eb}
+
+\begin{DoxyCode}
+13                          \{
+14         \textcolor{comment}{// Read input}
+15         \hyperlink{classInput}{Input} input;
+16         input.\hyperlink{classInput_abb78078475f91c654db63c392aefbf51}{read}(\textcolor{stringliteral}{"../test/testInput/happyDay.xml"});
+17 
+18         \hyperlink{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{system}.\hyperlink{classSystem_a5e9a3f6b8d3d5cb99c041bfcaace9683}{initializeATC}(\hyperlink{classdomainTestSystem_a63655622f1037160f95d7466a594859d}{out});
+19 
+20         \textcolor{comment}{// Import info}
+21         \hyperlink{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{system}.\hyperlink{classSystem_ad1f1022247d9556d0ce4061bb68572cc}{import}(input);
+22 
+23         \textcolor{comment}{// Get airplane}
+24         \hyperlink{classdomainTestSystem_a835a6facfcfab2d120dae14195d3ed96}{airplane} = \hyperlink{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{system}.\hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{getFlightplans}()[0]->getAirplane();
+25 
+26         \textcolor{comment}{// Get runway}
+27         \hyperlink{classdomainTestSystem_aff348e2b0204535147979a4af0f1953d}{runway} = \hyperlink{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{system}.\hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}()[0];
+28     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{domain\+Test\+System@{domain\+Test\+System}!airplane@{airplane}}
+\index{airplane@{airplane}!domain\+Test\+System@{domain\+Test\+System}}
+\subsubsection[{\texorpdfstring{airplane}{airplane}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Airplane}$\ast$ domain\+Test\+System\+::airplane\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classdomainTestSystem_a835a6facfcfab2d120dae14195d3ed96}{}\label{classdomainTestSystem_a835a6facfcfab2d120dae14195d3ed96}
+\index{domain\+Test\+System@{domain\+Test\+System}!out@{out}}
+\index{out@{out}!domain\+Test\+System@{domain\+Test\+System}}
+\subsubsection[{\texorpdfstring{out}{out}}]{\setlength{\rightskip}{0pt plus 5cm}ofstream domain\+Test\+System\+::out\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classdomainTestSystem_a63655622f1037160f95d7466a594859d}{}\label{classdomainTestSystem_a63655622f1037160f95d7466a594859d}
+\index{domain\+Test\+System@{domain\+Test\+System}!runway@{runway}}
+\index{runway@{runway}!domain\+Test\+System@{domain\+Test\+System}}
+\subsubsection[{\texorpdfstring{runway}{runway}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway}$\ast$ domain\+Test\+System\+::runway\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classdomainTestSystem_aff348e2b0204535147979a4af0f1953d}{}\label{classdomainTestSystem_aff348e2b0204535147979a4af0f1953d}
+\index{domain\+Test\+System@{domain\+Test\+System}!system@{system}}
+\index{system@{system}!domain\+Test\+System@{domain\+Test\+System}}
+\subsubsection[{\texorpdfstring{system}{system}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf System} domain\+Test\+System\+::system\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}{}\label{classdomainTestSystem_a56da545e95cc6b6606ec94857adc14eb}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/\hyperlink{domainTestsSystem_8cpp}{domain\+Tests\+System.\+cpp}\end{DoxyCompactItemize}

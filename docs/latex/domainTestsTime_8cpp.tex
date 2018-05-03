@@ -1,0 +1,108 @@
+\hypertarget{domainTestsTime_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Time.cpp File Reference}
+\label{domainTestsTime_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Time.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Time.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+Time.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsTime_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestTime}{domain\+Test\+Time}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsTime_8cpp_a24c9e57ddd25458951841ae95db891f5}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestTime}{domain\+Test\+Time}, constructor)
+\item 
+\hyperlink{domainTestsTime_8cpp_a48e852814e1ecdd5384bc723111e2b2a}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestTime}{domain\+Test\+Time}, happy\+Day)
+\item 
+\hyperlink{domainTestsTime_8cpp_ade963d2ccb4d1efa781d80c48834bf58}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestTime}{domain\+Test\+Time}, operators)
+\item 
+\hyperlink{domainTestsTime_8cpp_a5580511f775d571d196fee04583e9506}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestTime}{domain\+Test\+Time}, contract\+Violations)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Time, constructor)}{TEST_F(domainTestTime, constructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Time}}]{, }
+\item[{constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsTime_8cpp_a24c9e57ddd25458951841ae95db891f5}{}\label{domainTestsTime_8cpp_a24c9e57ddd25458951841ae95db891f5}
+
+\begin{DoxyCode}
+19                                     \{
+20     EXPECT\_EQ(time.getHour(), 12);
+21     EXPECT\_EQ(time.getMinute(), 0);
+22 
+23     \hyperlink{classTime}{Time} time1(14);
+24     EXPECT\_EQ(time1.getMinute(), 0);
+25     EXPECT\_EQ(time1.getHour(), 14);
+26 
+27     \hyperlink{classTime}{Time} time2(15, 48);
+28     EXPECT\_EQ(time2.getMinute(), 48);
+29     EXPECT\_EQ(time2.getHour(), 15);
+30 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Time, happy\+Day)}{TEST_F(domainTestTime, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Time}}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsTime_8cpp_a48e852814e1ecdd5384bc723111e2b2a}{}\label{domainTestsTime_8cpp_a48e852814e1ecdd5384bc723111e2b2a}
+
+\begin{DoxyCode}
+32                                  \{
+33     time.advance(30);
+34     EXPECT\_EQ(time.getHour(), 12);
+35     EXPECT\_EQ(time.getMinute(), 30);
+36 
+37     time.advance(35);
+38     EXPECT\_EQ(time.getHour(), 13);
+39     EXPECT\_EQ(time.getMinute(), 5);
+40 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Time, operators)}{TEST_F(domainTestTime, operators)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Time}}]{, }
+\item[{operators}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsTime_8cpp_ade963d2ccb4d1efa781d80c48834bf58}{}\label{domainTestsTime_8cpp_ade963d2ccb4d1efa781d80c48834bf58}
+
+\begin{DoxyCode}
+42                                   \{
+43     EXPECT\_TRUE(\hyperlink{classTime}{Time}(15, 15) == \hyperlink{classTime}{Time}(15, 15));
+44     EXPECT\_FALSE(\hyperlink{classTime}{Time}(15, 15) == \hyperlink{classTime}{Time}(14, 15));
+45     EXPECT\_TRUE(\hyperlink{classTime}{Time}(13, 17) < \hyperlink{classTime}{Time}(14, 18));
+46     EXPECT\_FALSE(\hyperlink{classTime}{Time}(13, 17) < \hyperlink{classTime}{Time}(13, 16));
+47 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Time.\+cpp@{domain\+Tests\+Time.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Time, contract\+Violations)}{TEST_F(domainTestTime, contractViolations)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Time}}]{, }
+\item[{contract\+Violations}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsTime_8cpp_a5580511f775d571d196fee04583e9506}{}\label{domainTestsTime_8cpp_a5580511f775d571d196fee04583e9506}
+
+\begin{DoxyCode}
+49                                            \{
+50     EXPECT\_DEATH(time.setMinute(-1), \textcolor{stringliteral}{"Minute has to be between 0 and 60"});
+51     EXPECT\_DEATH(time.setMinute(78), \textcolor{stringliteral}{"Minute has to be between 0 and 60"});
+52     EXPECT\_DEATH(time.setHour(25), \textcolor{stringliteral}{"Hour has to be between 0 and 24"});
+53     EXPECT\_DEATH(time.setHour(-1), \textcolor{stringliteral}{"Hour has to be between 0 and 24"});
+54     EXPECT\_DEATH(time.advance(-1), \textcolor{stringliteral}{"Advancing by a negative amount of minutes is not possible"});
+55 \}\end{DoxyCode}

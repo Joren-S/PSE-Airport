@@ -1,0 +1,66 @@
+\hypertarget{outputTests_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/output\+Tests.cpp File Reference}
+\label{outputTests_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/output\+Tests.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/output\+Tests.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../headers/\+Test\+Utils.\+h\char`\"{}}\\*
+Include dependency graph for output\+Tests.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{outputTests_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{outputTests_8cpp_a742d5d2c0280de52c20524b4507bf428}{T\+E\+ST} (output\+Test, happy\+Day)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{output\+Tests.\+cpp@{output\+Tests.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!output\+Tests.\+cpp@{output\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(output\+Test, happy\+Day)}{TEST(outputTest, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{output\+Test}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{outputTests_8cpp_a742d5d2c0280de52c20524b4507bf428}{}\label{outputTests_8cpp_a742d5d2c0280de52c20524b4507bf428}
+
+\begin{DoxyCode}
+13                            \{
+14     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{DirectoryExists}(\textcolor{stringliteral}{"../test/testOutput"}));
+15     \textcolor{keywordtype}{int} counter = 1;
+16     \textcolor{keywordtype}{string} filename = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{".xml"};
+17 
+18     \textcolor{keywordflow}{while} (\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists}(filename)) \{
+19         \textcolor{keywordtype}{string} atcname = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"ATC.txt"};
+20         \textcolor{keywordtype}{string} logname = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"Log.txt"};
+21         \textcolor{keywordtype}{string} infoname = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"Info.txt"};
+22         ofstream atc(atcname.c\_str());
+23         ofstream log(logname.c\_str());
+24         \hyperlink{classInput}{Input} input;
+25         input.\hyperlink{classInput_abb78078475f91c654db63c392aefbf51}{read}(filename);
+26         \hyperlink{classSystem}{System} system;
+27         system.\hyperlink{classSystem_a5e9a3f6b8d3d5cb99c041bfcaace9683}{initializeATC}(atc, \textcolor{keyword}{true});
+28         system.\hyperlink{classSystem_ad1f1022247d9556d0ce4061bb68572cc}{import}(input);
+29         system.\hyperlink{classSystem_adccb3f18f20203bcce0b2064f6c07cda}{setEndTime}(14);
+30         system.\hyperlink{classSystem_ae6323968b33e7a955d612b52c9c1cff7}{run}(log);
+31         system.\hyperlink{classSystem_ac8c74374e12e2c1b763bf73a1e1e8b24}{info}(infoname);
+32         atc.close();
+33         log.close();
+34 
+35         \textcolor{keywordtype}{string} expectedatc = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"ExpectedATC.txt"};
+36         \textcolor{keywordtype}{string} expectedlog = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"ExpectedLog.txt"};
+37         \textcolor{keywordtype}{string} expectedinfo = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{"ExpectedInfo.txt
+      "};
+38 
+39         EXPECT\_TRUE(\hyperlink{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{FileCompare}(atcname, expectedatc));
+40         EXPECT\_TRUE(\hyperlink{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{FileCompare}(logname, expectedlog));
+41         EXPECT\_TRUE(\hyperlink{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{FileCompare}(infoname, expectedinfo));
+42 
+43         counter++;
+44         filename = \textcolor{stringliteral}{"../test/testOutput/happyDay"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(counter) + \textcolor{stringliteral}{".xml"};
+45     \}
+46 \}\end{DoxyCode}

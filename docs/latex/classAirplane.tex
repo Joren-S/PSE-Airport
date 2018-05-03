@@ -1,0 +1,722 @@
+\hypertarget{classAirplane}{}\section{Airplane Class Reference}
+\label{classAirplane}\index{Airplane@{Airplane}}
+
+
+\+: Class that represents an airplane in the simulation  
+
+
+
+
+{\ttfamily \#include $<$Airplane.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAirplane_afccae36e3013e038d51504cea1a98219}{Airplane} ()
+\item 
+bool \hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized} () const 
+\item 
+void \hyperlink{classAirplane_a5a1735c5e75f857a4de0a473c5e26ffe}{increase\+Altitude} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} difference=1)
+\item 
+void \hyperlink{classAirplane_aed1d8b816a7140ba82223901fa7bb1d5}{decrease\+Altitude} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} difference=1)
+\item 
+void \hyperlink{classAirplane_ac97a6ca10328e33558f682e0b45e5a60}{decrease\+Time\+Remaining} ()
+\item 
+bool \hyperlink{classAirplane_a44a6eac9309f6218c7e0c0332f25ee51}{complete} () const 
+\item 
+void \hyperlink{classAirplane_a60ea276094957364060f7b22bb6e549d}{set\+Altitude} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} altitude)
+\item 
+void \hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{set\+Time\+Remaining} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} time)
+\item 
+void \hyperlink{classAirplane_a1f8bcb214c96664d15d8c4d82c3f613a}{set\+Passengers} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} f\+Passengers)
+\item 
+void \hyperlink{classAirplane_aed585c73c9dd5065bd1f8b55236260a0}{set\+Gate\+ID} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} id)
+\item 
+void \hyperlink{classAirplane_a13aeed597173ecae5951cb9bdaf22474}{set\+Fuel} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} fuel)
+\item 
+void \hyperlink{classAirplane_ac9106f1b9f793b2a17bb605f514e0fcf}{set\+Squawk} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} squawk)
+\item 
+\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{E\+Plane\+Size} \hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{get\+Size} () const 
+\item 
+void \hyperlink{classAirplane_ab88c4d346a27430d4812f37c717c26d3}{set\+Size} (\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{E\+Plane\+Size} size)
+\item 
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9}{E\+Plane\+Type} \hyperlink{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{get\+Type} () const 
+\item 
+void \hyperlink{classAirplane_acaf1e610b7b45804e1ae27408fd9f40f}{set\+Type} (\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9}{E\+Plane\+Type} type)
+\item 
+\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}{E\+Plane\+Engine} \hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{get\+Engine} () const 
+\item 
+void \hyperlink{classAirplane_a9df8583afc31aad36bf893db5fc37dbd}{set\+Engine} (\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}{E\+Plane\+Engine} engine)
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{get\+Altitude} () const 
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{get\+Gate\+ID} () const 
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{get\+Passengers} () const 
+\item 
+const string \& \hyperlink{classAirplane_a2341fbcce9704ffdb81f7638ab74c0cb}{get\+Number} () const 
+\item 
+void \hyperlink{classAirplane_ae9eddf3e39a40dca935be7bbfd9d6f1d}{set\+Number} (const string \&f\+Number)
+\item 
+const string \& \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{get\+Callsign} () const 
+\item 
+void \hyperlink{classAirplane_a2b9b2ea3c51f0d1be91e1ffb7543f03d}{set\+Callsign} (const string \&f\+Callsign)
+\item 
+const string \& \hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{get\+Model} () const 
+\item 
+void \hyperlink{classAirplane_a79639d54a99b5d1fc33c8e97ee091fe8}{set\+Model} (const string \&f\+Model)
+\item 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{E\+Plane\+Status} \hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{get\+Status} () const 
+\item 
+void \hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{set\+Status} (\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{E\+Plane\+Status} f\+Status)
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_a39233c86a764ac1051ce4b4460a9a684}{get\+Time\+Remaining} () const 
+\item 
+void \hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{set\+Position} (const string \&)
+\item 
+const string \& \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{get\+Position} () const 
+\item 
+void \hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{set\+Request} (\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{E\+Plane\+Request})
+\item 
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{E\+Plane\+Request} \hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{get\+Request} () const 
+\item 
+\hyperlink{classRunway}{Runway} $\ast$ \hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{get\+Runway} () const 
+\item 
+void \hyperlink{classAirplane_a81fe42b8f9310edae12abb6e5f3ae9ac}{set\+Runway} (\hyperlink{classRunway}{Runway} $\ast$)
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_a23170e5f55fa9fc6822be06615f028db}{get\+Fuel} () const 
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirplane_a88f0199d7eae4d1f24b14802047549ea}{get\+Squawk} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Class that represents an airplane in the simulation 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Airplane@{Airplane}!Airplane@{Airplane}}
+\index{Airplane@{Airplane}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{Airplane()}{Airplane()}}]{\setlength{\rightskip}{0pt plus 5cm}Airplane\+::\+Airplane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_afccae36e3013e038d51504cea1a98219}{}\label{classAirplane_afccae36e3013e038d51504cea1a98219}
+Default constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); 
+\begin{DoxyCode}
+11                    \{
+12     fPassengers = -1;
+13     fFuel = -1;
+14     fAltitude = 0;
+15     fTimeRemaining = 0;
+16     fRunway = NULL;
+17     fRequest = \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle};
+18     fGateID = -1;
+19     fStatus = \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway};
+20     fEngine = \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{kDefaultEngine};
+21     fType = \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{kDefaultType};
+22     fSize = \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{kDefaultSize};
+23 
+24     fInitCheck = \textcolor{keyword}{this};
+25     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"constructor must end in properlyInitialized
+       state"});
+26 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{Airplane@{Airplane}!complete@{complete}}
+\index{complete@{complete}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{complete() const }{complete() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Airplane\+::complete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a44a6eac9309f6218c7e0c0332f25ee51}{}\label{classAirplane_a44a6eac9309f6218c7e0c0332f25ee51}
+Checks if all the data members were initialized ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane\+::complete\char`\"{}); 
+\begin{DoxyCode}
+32                               \{
+33     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane::complete"});
+34     \textcolor{keywordflow}{return} !(fEngine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{kDefaultEngine} or fType == \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{kDefaultType} or fFuel == -1
+35              or fSize == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{kDefaultSize} or fPassengers == -1 or
+36             fModel.empty() or fCallsign.empty() or fNumber.empty());
+37 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!decrease\+Altitude@{decrease\+Altitude}}
+\index{decrease\+Altitude@{decrease\+Altitude}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{decrease\+Altitude(int difference=1)}{decreaseAltitude(int difference=1)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::decrease\+Altitude (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{difference = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_aed1d8b816a7140ba82223901fa7bb1d5}{}\label{classAirplane_aed1d8b816a7140ba82223901fa7bb1d5}
+Decreases the plane\textquotesingle{}s altitude by a given amount ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling decrease\+Altitude\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(difference $>$ 0, \char`\"{}\+Difference can\textquotesingle{}t be negative\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(f\+Altitude -\/ difference $>$= 0, \char`\"{}\+New altitude can\textquotesingle{}t be less than 0!\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(f\+Altitude == old\+Altitude -\/ difference, \char`\"{}\+Altitude hasn\textquotesingle{}t been decreased correctly.\char`\"{}); 
+\begin{DoxyCode}
+39                                               \{
+40     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       decreaseAltitude"});
+41     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(difference > 0, \textcolor{stringliteral}{"Difference can't be negative"});
+42     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fAltitude - difference >= 0, \textcolor{stringliteral}{"New altitude can't be less than 0!"});
+43     \textcolor{keywordtype}{int} oldAltitude = Airplane::fAltitude;
+44     Airplane::fAltitude -= difference;
+45     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fAltitude == oldAltitude - difference, \textcolor{stringliteral}{"Altitude hasn't been decreased correctly."});
+46 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!decrease\+Time\+Remaining@{decrease\+Time\+Remaining}}
+\index{decrease\+Time\+Remaining@{decrease\+Time\+Remaining}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{decrease\+Time\+Remaining()}{decreaseTimeRemaining()}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::decrease\+Time\+Remaining (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_ac97a6ca10328e33558f682e0b45e5a60}{}\label{classAirplane_ac97a6ca10328e33558f682e0b45e5a60}
+Decreases the time of the remaining operation by one. If there\textquotesingle{}s no operation busy, it does nothing. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling decrease\+Time\+Remaining\char`\"{}); 
+\begin{DoxyCode}
+172                                      \{
+173     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       decreaseTimeRemaining"});
+174     \textcolor{keywordflow}{if} (fTimeRemaining > 0) \{
+175         fTimeRemaining--;
+176     \}
+177 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Altitude@{get\+Altitude}}
+\index{get\+Altitude@{get\+Altitude}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Altitude() const }{getAltitude() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Altitude (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_ad2550909ab563f7df850f79f23c3a308}{}\label{classAirplane_ad2550909ab563f7df850f79f23c3a308}
+
+\begin{DoxyCode}
+88                                 \{
+89     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+90     \textcolor{keywordflow}{return} fAltitude;
+91 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Callsign@{get\+Callsign}}
+\index{get\+Callsign@{get\+Callsign}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Callsign() const }{getCallsign() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airplane\+::get\+Callsign (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{}\label{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}
+
+\begin{DoxyCode}
+120                                           \{
+121     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+122     \textcolor{keywordflow}{return} fCallsign;
+123 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Engine@{get\+Engine}}
+\index{get\+Engine@{get\+Engine}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Engine() const }{getEngine() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Plane\+Engine} Airplane\+::get\+Engine (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{}\label{classAirplane_a7c594903638696b53c2dd823fe33ecf2}
+
+\begin{DoxyCode}
+78                                        \{
+79     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+80     \textcolor{keywordflow}{return} fEngine;
+81 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Fuel@{get\+Fuel}}
+\index{get\+Fuel@{get\+Fuel}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Fuel() const }{getFuel() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Fuel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a23170e5f55fa9fc6822be06615f028db}{}\label{classAirplane_a23170e5f55fa9fc6822be06615f028db}
+
+\begin{DoxyCode}
+209                             \{
+210     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+211     \textcolor{keywordflow}{return} fFuel;
+212 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Gate\+ID@{get\+Gate\+ID}}
+\index{get\+Gate\+ID@{get\+Gate\+ID}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Gate\+I\+D() const }{getGateID() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Gate\+ID (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_acab03ea6ec6df824368bf9851316e140}{}\label{classAirplane_acab03ea6ec6df824368bf9851316e140}
+
+\begin{DoxyCode}
+150                               \{
+151     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+152     \textcolor{keywordflow}{return} Airplane::fGateID;
+153 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Model@{get\+Model}}
+\index{get\+Model@{get\+Model}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Model() const }{getModel() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airplane\+::get\+Model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{}\label{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}
+
+\begin{DoxyCode}
+130                                        \{
+131     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+132     \textcolor{keywordflow}{return} fModel;
+133 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Number@{get\+Number}}
+\index{get\+Number@{get\+Number}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Number() const }{getNumber() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airplane\+::get\+Number (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a2341fbcce9704ffdb81f7638ab74c0cb}{}\label{classAirplane_a2341fbcce9704ffdb81f7638ab74c0cb}
+
+\begin{DoxyCode}
+110                                         \{
+111     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+112     \textcolor{keywordflow}{return} fNumber;
+113 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Passengers@{get\+Passengers}}
+\index{get\+Passengers@{get\+Passengers}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Passengers() const }{getPassengers() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Passengers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{}\label{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}
+
+\begin{DoxyCode}
+99                                   \{
+100     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+101     \textcolor{keywordflow}{return} fPassengers;
+102 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Position() const }{getPosition() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airplane\+::get\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{}\label{classAirplane_ab4fa66c0adb05725a51524265f8c520c}
+
+\begin{DoxyCode}
+179                                           \{
+180     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+181     \textcolor{keywordflow}{return} fPosition;
+182 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Request@{get\+Request}}
+\index{get\+Request@{get\+Request}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Request() const }{getRequest() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Plane\+Request} Airplane\+::get\+Request (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_afe210aea9002a8975234a78350158c46}{}\label{classAirplane_afe210aea9002a8975234a78350158c46}
+
+\begin{DoxyCode}
+189                                          \{
+190     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+191     \textcolor{keywordflow}{return} fRequest;
+192 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Runway@{get\+Runway}}
+\index{get\+Runway@{get\+Runway}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Runway() const }{getRunway() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway} $\ast$ Airplane\+::get\+Runway (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{}\label{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}
+
+\begin{DoxyCode}
+199                                   \{
+200     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+201     \textcolor{keywordflow}{return} fRunway;
+202 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Size() const }{getSize() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Plane\+Size} Airplane\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a0160009a553a9bf339892ba4c3803830}{}\label{classAirplane_a0160009a553a9bf339892ba4c3803830}
+Getters and setters for the fields of the class. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane wasn\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); 
+\begin{DoxyCode}
+58                                    \{
+59     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+60     \textcolor{keywordflow}{return} fSize;
+61 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Squawk@{get\+Squawk}}
+\index{get\+Squawk@{get\+Squawk}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Squawk() const }{getSquawk() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Squawk (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a88f0199d7eae4d1f24b14802047549ea}{}\label{classAirplane_a88f0199d7eae4d1f24b14802047549ea}
+
+\begin{DoxyCode}
+226                               \{
+227     \textcolor{keywordflow}{return} fSquawk;
+228 \}\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Status@{get\+Status}}
+\index{get\+Status@{get\+Status}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Status() const }{getStatus() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Plane\+Status} Airplane\+::get\+Status (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a40bbb3024a476115700977c60bae2705}{}\label{classAirplane_a40bbb3024a476115700977c60bae2705}
+
+\begin{DoxyCode}
+140                                        \{
+141     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+142     \textcolor{keywordflow}{return} fStatus;
+143 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Time\+Remaining@{get\+Time\+Remaining}}
+\index{get\+Time\+Remaining@{get\+Time\+Remaining}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Time\+Remaining() const }{getTimeRemaining() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airplane\+::get\+Time\+Remaining (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a39233c86a764ac1051ce4b4460a9a684}{}\label{classAirplane_a39233c86a764ac1051ce4b4460a9a684}
+
+\begin{DoxyCode}
+161                                      \{
+162     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+163     \textcolor{keywordflow}{return} fTimeRemaining;
+164 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{get\+Type() const }{getType() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Plane\+Type} Airplane\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{}\label{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}
+
+\begin{DoxyCode}
+68                                    \{
+69     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+70     \textcolor{keywordflow}{return} fType;
+71 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!increase\+Altitude@{increase\+Altitude}}
+\index{increase\+Altitude@{increase\+Altitude}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{increase\+Altitude(int difference=1)}{increaseAltitude(int difference=1)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::increase\+Altitude (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{difference = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a5a1735c5e75f857a4de0a473c5e26ffe}{}\label{classAirplane_a5a1735c5e75f857a4de0a473c5e26ffe}
+Increases the plane\textquotesingle{}s altitude by a given amount ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling increase\+Altitude\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(difference $>$ 0, \char`\"{}\+Difference can\textquotesingle{}t be negative\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(f\+Altitude == old\+Altitude + difference, \char`\"{}\+Altitude hasn\textquotesingle{}t been increased correctly.\char`\"{}); 
+\begin{DoxyCode}
+48                                               \{
+49     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       increaseAltitude"});
+50     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(difference > 0, \textcolor{stringliteral}{"Difference can't be negative"});
+51     \textcolor{keywordtype}{int} oldAltitude = Airplane::fAltitude;
+52     Airplane::fAltitude += difference;
+53     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fAltitude == oldAltitude + difference, \textcolor{stringliteral}{"Altitude hasn't been increased correctly."});
+54 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Airplane\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classAirplane_aa58418c017671c7b5de17c81a4172971}{}\label{classAirplane_aa58418c017671c7b5de17c81a4172971}
+Checks if the object is properly initialized 
+\begin{DoxyCode}
+28                                          \{
+29     \textcolor{keywordflow}{return} \textcolor{keyword}{this} == fInitCheck;
+30 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Altitude@{set\+Altitude}}
+\index{set\+Altitude@{set\+Altitude}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Altitude(int altitude)}{setAltitude(int altitude)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Altitude (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{altitude}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a60ea276094957364060f7b22bb6e549d}{}\label{classAirplane_a60ea276094957364060f7b22bb6e549d}
+Setter for the altitude ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(altitude $>$= 0, \char`\"{}\+Altitude can\textquotesingle{}t be negative\char`\"{}); 
+\begin{DoxyCode}
+93                                        \{
+94     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+95     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(altitude >= 0, \textcolor{stringliteral}{"Altitude can't be negative"});
+96     fAltitude = altitude;
+97 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Callsign@{set\+Callsign}}
+\index{set\+Callsign@{set\+Callsign}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Callsign(const string \&f\+Callsign)}{setCallsign(const string &fCallsign)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Callsign (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{f\+Callsign}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a2b9b2ea3c51f0d1be91e1ffb7543f03d}{}\label{classAirplane_a2b9b2ea3c51f0d1be91e1ffb7543f03d}
+
+\begin{DoxyCode}
+125                                                   \{
+126     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+127     Airplane::fCallsign = fCallsign;
+128 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Engine@{set\+Engine}}
+\index{set\+Engine@{set\+Engine}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Engine(\+E\+Plane\+Engine engine)}{setEngine(EPlaneEngine engine)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Engine (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Plane\+Engine}}]{engine}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a9df8583afc31aad36bf893db5fc37dbd}{}\label{classAirplane_a9df8583afc31aad36bf893db5fc37dbd}
+
+\begin{DoxyCode}
+83                                             \{
+84     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+85     fEngine = engine;
+86 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Fuel@{set\+Fuel}}
+\index{set\+Fuel@{set\+Fuel}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Fuel(int fuel)}{setFuel(int fuel)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Fuel (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{fuel}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a13aeed597173ecae5951cb9bdaf22474}{}\label{classAirplane_a13aeed597173ecae5951cb9bdaf22474}
+Setter for the maximum amount of fuel (in 10.\+000 units) ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(fuel $>$ 0, \char`\"{}\+Fuel can\textquotesingle{}t be less than 1\char`\"{}); 
+\begin{DoxyCode}
+214                                \{
+215     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+216     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fuel > 0, \textcolor{stringliteral}{"Fuel can't be less than 1"});
+217     fFuel = fuel;
+218 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Gate\+ID@{set\+Gate\+ID}}
+\index{set\+Gate\+ID@{set\+Gate\+ID}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Gate\+I\+D(int id)}{setGateID(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Gate\+ID (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_aed585c73c9dd5065bd1f8b55236260a0}{}\label{classAirplane_aed585c73c9dd5065bd1f8b55236260a0}
+Setter for the gate the plane\textquotesingle{}s at ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(id $>$= -\/1, \char`\"{}\+Gate id can\textquotesingle{}t be less than -\/1\char`\"{}); 
+\begin{DoxyCode}
+155                                \{
+156     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+157     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\textcolor{keywordtype}{id} >= -1, \textcolor{stringliteral}{"Gate id can't be less than -1"});
+158     Airplane::fGateID = id;
+159 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Model@{set\+Model}}
+\index{set\+Model@{set\+Model}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Model(const string \&f\+Model)}{setModel(const string &fModel)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Model (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{f\+Model}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a79639d54a99b5d1fc33c8e97ee091fe8}{}\label{classAirplane_a79639d54a99b5d1fc33c8e97ee091fe8}
+
+\begin{DoxyCode}
+135                                             \{
+136     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+137     Airplane::fModel = fModel;
+138 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Number@{set\+Number}}
+\index{set\+Number@{set\+Number}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Number(const string \&f\+Number)}{setNumber(const string &fNumber)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Number (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{f\+Number}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_ae9eddf3e39a40dca935be7bbfd9d6f1d}{}\label{classAirplane_ae9eddf3e39a40dca935be7bbfd9d6f1d}
+
+\begin{DoxyCode}
+115                                               \{
+116     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+117     Airplane::fNumber = fNumber;
+118 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Passengers@{set\+Passengers}}
+\index{set\+Passengers@{set\+Passengers}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Passengers(int f\+Passengers)}{setPassengers(int fPassengers)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Passengers (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{f\+Passengers}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a1f8bcb214c96664d15d8c4d82c3f613a}{}\label{classAirplane_a1f8bcb214c96664d15d8c4d82c3f613a}
+Setter for the maximum amount of passengers ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(passengers $>$= 0, \char`\"{}\+Passenger amount can\textquotesingle{}t be negative\char`\"{}); 
+\begin{DoxyCode}
+104                                            \{
+105     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+106     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(passengers >= 0, \textcolor{stringliteral}{"Passenger amount can't be negative"});
+107     Airplane::fPassengers = passengers;
+108 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Position(const string \&)}{setPosition(const string &)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a656e916c30af73584f781e7e2e28e78a}{}\label{classAirplane_a656e916c30af73584f781e7e2e28e78a}
+
+\begin{DoxyCode}
+184                                                  \{
+185     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+186     fPosition = \hyperlink{happyDay4ATC_8txt_adfd9ba164d3d89874d56c97b672d9b6c}{position};
+187 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Request@{set\+Request}}
+\index{set\+Request@{set\+Request}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Request(\+E\+Plane\+Request)}{setRequest(EPlaneRequest)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Request (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Plane\+Request}}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_affcc5325670824881ccc1524223aa209}{}\label{classAirplane_affcc5325670824881ccc1524223aa209}
+
+\begin{DoxyCode}
+194                                                \{
+195     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+196     fRequest = request;
+197 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Runway@{set\+Runway}}
+\index{set\+Runway@{set\+Runway}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Runway(\+Runway $\ast$)}{setRunway(Runway *)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Runway (
+\begin{DoxyParamCaption}
+\item[{{\bf Runway} $\ast$}]{runway}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a81fe42b8f9310edae12abb6e5f3ae9ac}{}\label{classAirplane_a81fe42b8f9310edae12abb6e5f3ae9ac}
+
+\begin{DoxyCode}
+204                                        \{
+205     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+206     fRunway = runway;
+207 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Size@{set\+Size}}
+\index{set\+Size@{set\+Size}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Size(\+E\+Plane\+Size size)}{setSize(EPlaneSize size)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Plane\+Size}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_ab88c4d346a27430d4812f37c717c26d3}{}\label{classAirplane_ab88c4d346a27430d4812f37c717c26d3}
+
+\begin{DoxyCode}
+63                                       \{
+64     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+65     fSize = size;
+66 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Squawk@{set\+Squawk}}
+\index{set\+Squawk@{set\+Squawk}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Squawk(int squawk)}{setSquawk(int squawk)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Squawk (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{squawk}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_ac9106f1b9f793b2a17bb605f514e0fcf}{}\label{classAirplane_ac9106f1b9f793b2a17bb605f514e0fcf}
+Setter for the squawk code ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(squawk $>$= 0, \char`\"{}\+Squawk code can\textquotesingle{}t be negative\char`\"{}); 
+\begin{DoxyCode}
+220                                    \{
+221     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+222     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(squawk >= 0, \textcolor{stringliteral}{"Squawk code can't be negative"});
+223     fSquawk = squawk;
+224 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Status@{set\+Status}}
+\index{set\+Status@{set\+Status}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Status(\+E\+Plane\+Status f\+Status)}{setStatus(EPlaneStatus fStatus)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Status (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Plane\+Status}}]{f\+Status}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a23934fb97d8fab12d4dc790cee673747}{}\label{classAirplane_a23934fb97d8fab12d4dc790cee673747}
+
+\begin{DoxyCode}
+145                                              \{
+146     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+147     Airplane::fStatus = fStatus;
+148 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Time\+Remaining@{set\+Time\+Remaining}}
+\index{set\+Time\+Remaining@{set\+Time\+Remaining}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Time\+Remaining(int time)}{setTimeRemaining(int time)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Time\+Remaining (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{time}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_a43e7b856df001168956ed6d115943ec9}{}\label{classAirplane_a43e7b856df001168956ed6d115943ec9}
+Setter for the time remaining on the operation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properly\+Initialized()}, \char`\"{}\+Airplane was\textquotesingle{}t initialized when calling Airplane getter/setter\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(time $>$= 0, \char`\"{}\+Time remaining can\textquotesingle{}t be negative\char`\"{}); 
+\begin{DoxyCode}
+166                                         \{
+167     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+168     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(time >= 0, \textcolor{stringliteral}{"Time remaining can't be negative"});
+169     fTimeRemaining = time;
+170 \}
+\end{DoxyCode}
+\index{Airplane@{Airplane}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Airplane@{Airplane}}
+\subsubsection[{\texorpdfstring{set\+Type(\+E\+Plane\+Type type)}{setType(EPlaneType type)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airplane\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Plane\+Type}}]{type}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirplane_acaf1e610b7b45804e1ae27408fd9f40f}{}\label{classAirplane_acaf1e610b7b45804e1ae27408fd9f40f}
+
+\begin{DoxyCode}
+73                                       \{
+74     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classAirplane_aa58418c017671c7b5de17c81a4172971}{properlyInitialized}(), \textcolor{stringliteral}{"Airplane was't initialized when calling
+       Airplane getter/setter"});
+75     fType = type;
+76 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{Airplane_8h}{Airplane.\+h}\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{Airplane_8cpp}{Airplane.\+cpp}\end{DoxyCompactItemize}

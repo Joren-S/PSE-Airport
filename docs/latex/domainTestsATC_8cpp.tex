@@ -1,0 +1,453 @@
+\hypertarget{domainTestsATC_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+A\+TC.cpp File Reference}
+\label{domainTestsATC_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+A\+T\+C.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+A\+T\+C.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+A\+T\+C.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsATC_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsATC_8cpp_a22b01e923fa0a13ab2c97f95067f4083}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, Default\+Constructor)
+\item 
+\hyperlink{domainTestsATC_8cpp_a94c416f25004a7267632ec1b00a8c6a8}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Approach)
+\item 
+\hyperlink{domainTestsATC_8cpp_a9ee41a51f7248fdd8d8efd1806746dcb}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Descend)
+\item 
+\hyperlink{domainTestsATC_8cpp_a6ae540d701432e12bbd2fbbdee26015a}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Taxi\+Arrival)
+\item 
+\hyperlink{domainTestsATC_8cpp_a8d23d98af5b78a7d2e7b60ce09ac98f7}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, squawk)
+\item 
+\hyperlink{domainTestsATC_8cpp_a22ea0ccadadefa37cffe0777b49b4aad}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+I\+F\+R\+Clearance)
+\item 
+\hyperlink{domainTestsATC_8cpp_a231048c55926e435ae090f99a46d2772}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Pushback)
+\item 
+\hyperlink{domainTestsATC_8cpp_a526acccb90282b6de3ea3b557affc3ff}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Taxi\+Initialise)
+\item 
+\hyperlink{domainTestsATC_8cpp_aeb48628ede2ece8f6e2c1dcc6d7eafc5}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Taxi\+Instruction)
+\item 
+\hyperlink{domainTestsATC_8cpp_a82a8b53418efed228525552db6e4b930}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Take\+Off)
+\item 
+\hyperlink{domainTestsATC_8cpp_a4580a998856b74e405e2f59f8d9fe00a}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, process\+Take\+Off\+Runway)
+\item 
+\hyperlink{domainTestsATC_8cpp_af29b48ced03a3902949ee9fade7d28e4}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestATC}{domain\+Test\+A\+TC}, field\+Manipulation)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, Default\+Constructor)}{TEST_F(domainTestATC, DefaultConstructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{Default\+Constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a22b01e923fa0a13ab2c97f95067f4083}{}\label{domainTestsATC_8cpp_a22b01e923fa0a13ab2c97f95067f4083}
+
+\begin{DoxyCode}
+45                                           \{
+46     EXPECT\_TRUE(atc->properlyInitialized());
+47     EXPECT\_FALSE(atc->get3occupied());
+48     EXPECT\_FALSE(atc->get5occupied());
+49 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Approach)}{TEST_F(domainTestATC, processApproach)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Approach}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a94c416f25004a7267632ec1b00a8c6a8}{}\label{domainTestsATC_8cpp_a94c416f25004a7267632ec1b00a8c6a8}
+
+\begin{DoxyCode}
+51                                        \{
+52     \textcolor{comment}{// Very simple function so very simple test}
+53     atc->processApproach(airplane, \hyperlink{classTime}{Time}());
+54     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+55 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Descend)}{TEST_F(domainTestATC, processDescend)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Descend}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a9ee41a51f7248fdd8d8efd1806746dcb}{}\label{domainTestsATC_8cpp_a9ee41a51f7248fdd8d8efd1806746dcb}
+
+\begin{DoxyCode}
+57                                       \{
+58     \textcolor{comment}{// All clear, can descend}
+59     airplane->setAltitude(5);
+60     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+61     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+62 
+63     \textcolor{comment}{// Has to circle because of circling at 3.000ft}
+64     airplane->setAltitude(5);
+65     atc->set3occupied(\textcolor{keyword}{true});
+66     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+67     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+68     EXPECT\_TRUE(atc->get5occupied());
+69 
+70     \textcolor{comment}{// Can descend, but 5000ft is occupied}
+71     airplane->setAltitude(5);
+72     atc->set3occupied(\textcolor{keyword}{false});
+73     atc->set5occupied(\textcolor{keyword}{true});
+74     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+75     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+76     EXPECT\_TRUE(atc->get5occupied());
+77     EXPECT\_FALSE(atc->get3occupied());
+78 
+79     \textcolor{comment}{// Can descend, but only because circling is going at 5000ft, 3000ft is also occupied}
+80     atc->set5occupied(\textcolor{keyword}{true});
+81     atc->set3occupied(\textcolor{keyword}{true});
+82     airplane->setAltitude(5);
+83     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+84     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+85     EXPECT\_TRUE(atc->get5occupied());
+86     EXPECT\_TRUE(atc->get3occupied());
+87 
+88     \textcolor{comment}{// Can land, all clear}
+89     airplane->setAltitude(3);
+90     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+91     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+92     EXPECT\_EQ(airplane->getRunway(), runway);
+93     EXPECT\_FALSE(runway->isFree());
+94 
+95     \textcolor{comment}{// Can't land, runway is not free}
+96     atc->set3occupied(\textcolor{keyword}{false});
+97     atc->set5occupied(\textcolor{keyword}{false});
+98     atc->processDescend(airplane, \hyperlink{classTime}{Time}());
+99     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+100 
+101     \textcolor{comment}{// Can't land, runway is not free and a plane is already circling}
+102     atc->set3occupied(\textcolor{keyword}{true});
+103     EXPECT\_DEATH(atc->processDescend(airplane, \hyperlink{classTime}{Time}()), \textcolor{stringliteral}{"Exceeded capacity"});
+104 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Taxi\+Arrival)}{TEST_F(domainTestATC, processTaxiArrival)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Taxi\+Arrival}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a6ae540d701432e12bbd2fbbdee26015a}{}\label{domainTestsATC_8cpp_a6ae540d701432e12bbd2fbbdee26015a}
+
+\begin{DoxyCode}
+106                                           \{
+107     \textcolor{comment}{// Just landed on first runway}
+108     airplane->setPosition(\textcolor{stringliteral}{""});
+109     airplane->setRunway(runway);
+110     atc->processTaxiArrival(airplane, \hyperlink{classTime}{Time}());
+111     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+112     EXPECT\_TRUE(airplane->getGateID() != -1);
+113     EXPECT\_TRUE(airplane->getPosition().empty());
+114 
+115     \textcolor{comment}{// Landed on another runway}
+116     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival});
+117     airplane->setRunway(system.getAirport()->getRunways()[1]);
+118     airplane->setGateID(-1);
+119     atc->processTaxiArrival(airplane, \hyperlink{classTime}{Time}());
+120     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+121     EXPECT\_EQ(airplane->getGateID(), -1);
+122 
+123     \textcolor{comment}{// Airplane can cross runway, it's free}
+124     airplane->setRunway(system.getAirport()->getRunways()[1]);
+125     airplane->setPosition(airplane->getRunway()->getTaxiPoint());
+126     runway->setFree(\textcolor{keyword}{true});
+127     atc->processTaxiArrival(airplane, \hyperlink{classTime}{Time}());
+128     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+129 
+130 
+131     \textcolor{comment}{// Airplane can't cross runway, it's in use}
+132     runway->setFree(\textcolor{keyword}{false});
+133     atc->processTaxiArrival(airplane, \hyperlink{classTime}{Time}());
+134     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+135 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, squawk)}{TEST_F(domainTestATC, squawk)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{squawk}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a8d23d98af5b78a7d2e7b60ce09ac98f7}{}\label{domainTestsATC_8cpp_a8d23d98af5b78a7d2e7b60ce09ac98f7}
+
+\begin{DoxyCode}
+137                               \{
+138     \textcolor{keywordtype}{int} squawk;
+139     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{kPrivate});
+140     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+141     squawk = atc->getSquawk(airplane);
+142     EXPECT\_TRUE(squawk < 778 and squawk > 0);
+143 
+144     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium});
+145     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+146     squawk = atc->getSquawk(airplane);
+147     EXPECT\_TRUE(squawk < 1778 and squawk > 999);
+148 
+149     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+150     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+151     squawk = atc->getSquawk(airplane);
+152     EXPECT\_TRUE(squawk < 2778 and squawk > 1999);
+153 
+154     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+155     squawk = atc->getSquawk(airplane);
+156     EXPECT\_TRUE(squawk < 3778 and squawk > 2999);
+157 
+158     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge});
+159     squawk = atc->getSquawk(airplane);
+160     EXPECT\_TRUE(squawk < 4778 and squawk > 3999);
+161 
+162     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{kMilitary});
+163     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+164     squawk = atc->getSquawk(airplane);
+165     EXPECT\_TRUE(squawk < 5778 and squawk > 4999);
+166 
+167     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge});
+168     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+169     squawk = atc->getSquawk(airplane);
+170     EXPECT\_TRUE(squawk < 5778 and squawk > 4999);
+171 
+172     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}{kEmergency});
+173     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+174     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+175     squawk = atc->getSquawk(airplane);
+176     EXPECT\_TRUE(squawk < 6778 and squawk > 5999);
+177 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+I\+F\+R\+Clearance)}{TEST_F(domainTestATC, processIFRClearance)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+I\+F\+R\+Clearance}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a22ea0ccadadefa37cffe0777b49b4aad}{}\label{domainTestsATC_8cpp_a22ea0ccadadefa37cffe0777b49b4aad}
+
+\begin{DoxyCode}
+179                                            \{
+180     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{kAirport});
+181 
+182     \textcolor{comment}{// large jet}
+183     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+184     airplane->setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+185     airplane->setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge});
+186     airplane->setSquawk(0);
+187 
+188     \textcolor{comment}{// no runway available}
+189     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+190     runway->setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+191     runway->setLength(100);
+192     atc->processIFRClearance(airplane, \hyperlink{classTime}{Time}());
+193     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+194     EXPECT\_TRUE(airplane->getRunway() == NULL);
+195 
+196     \textcolor{comment}{// runway availble}
+197     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+198     runway->setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+199     runway->setLength(10000);
+200     atc->processIFRClearance(airplane, \hyperlink{classTime}{Time}());
+201     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+202     EXPECT\_TRUE(airplane->getRunway() != NULL);
+203 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Pushback)}{TEST_F(domainTestATC, processPushback)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Pushback}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a231048c55926e435ae090f99a46d2772}{}\label{domainTestsATC_8cpp_a231048c55926e435ae090f99a46d2772}
+
+\begin{DoxyCode}
+205                                        \{
+206     \textcolor{comment}{// simple function.}
+207     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{kGate});
+208     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+209     atc->processPushback(airplane, \hyperlink{classTime}{Time}());
+210     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+211 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Taxi\+Initialise)}{TEST_F(domainTestATC, processTaxiInitialise)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Taxi\+Initialise}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a526acccb90282b6de3ea3b557affc3ff}{}\label{domainTestsATC_8cpp_a526acccb90282b6de3ea3b557affc3ff}
+
+\begin{DoxyCode}
+213                                              \{
+214     \textcolor{comment}{// simple function.}
+215     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{kPushback});
+216     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+217     atc->processTaxiInitialise(airplane, \hyperlink{classTime}{Time}());
+218     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+219 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Taxi\+Instruction)}{TEST_F(domainTestATC, processTaxiInstruction)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Taxi\+Instruction}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_aeb48628ede2ece8f6e2c1dcc6d7eafc5}{}\label{domainTestsATC_8cpp_aeb48628ede2ece8f6e2c1dcc6d7eafc5}
+
+\begin{DoxyCode}
+221                                               \{
+222     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture});
+223     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+224     airplane->setPosition(\textcolor{stringliteral}{"Alpha"});
+225     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+226 
+227     \textcolor{comment}{// create a valid runway (all planes can land on asphalt with l=10k)}
+228     runway->setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+229     runway->setLength(10000);
+230     runway->setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+231 
+232     \textcolor{comment}{// create a second runway}
+233     \hyperlink{classRunway}{Runway} *rw = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway};
+234     rw->\hyperlink{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{setType}(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+235     rw->\hyperlink{classRunway_af32954dc4688acd3a91114d200c6df9e}{setLength}(1000);
+236     airplane->setRunway(rw);
+237 
+238     \textcolor{comment}{// at destination}
+239     rw->\hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{setTaxiPoint}(\textcolor{stringliteral}{"Alpha"});
+240     atc->processTaxiInstruction(airplane, \hyperlink{classTime}{Time}());
+241     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed});
+242 
+243     \textcolor{comment}{// not at destination, can cross}
+244     rw->\hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{setTaxiPoint}(\textcolor{stringliteral}{"Bravo"});
+245     runway->setFree(\textcolor{keyword}{true});
+246     atc->processTaxiInstruction(airplane, \hyperlink{classTime}{Time}());
+247     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+248 
+249     \textcolor{comment}{// not at destination, can't cross}
+250     rw->\hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{setTaxiPoint}(\textcolor{stringliteral}{"Bravo"});
+251     runway->setFree(\textcolor{keyword}{false});
+252     atc->processTaxiInstruction(airplane, \hyperlink{classTime}{Time}());
+253     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+254 
+255     \textcolor{keyword}{delete} rw;
+256 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Take\+Off)}{TEST_F(domainTestATC, processTakeOff)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Take\+Off}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a82a8b53418efed228525552db6e4b930}{}\label{domainTestsATC_8cpp_a82a8b53418efed228525552db6e4b930}
+
+\begin{DoxyCode}
+258                                       \{
+259     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{kWaitingForDeparture});
+260     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+261     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+262 
+263     \textcolor{comment}{// create a valid runway (all planes can land on asphalt with l=10k)}
+264     runway->setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+265     runway->setLength(10000);
+266     runway->setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+267     airplane->setRunway(runway);
+268 
+269     \textcolor{comment}{// runway is free and 3000ft is free: line up and take off}
+270     runway->setFree(\textcolor{keyword}{true});
+271     atc->set3occupied(\textcolor{keyword}{false});
+272     atc->processTakeOff(airplane, \hyperlink{classTime}{Time}());
+273     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{kAcceptedImmediate});
+274 
+275     \textcolor{comment}{// runway is free and 3000ft is not free: line up and wait}
+276     runway->setFree(\textcolor{keyword}{true});
+277     atc->set3occupied(\textcolor{keyword}{true});
+278     atc->processTakeOff(airplane, \hyperlink{classTime}{Time}());
+279     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+280 
+281     \textcolor{comment}{// runway is not free and 3000ft is not free: wait}
+282     runway->setFree(\textcolor{keyword}{false});
+283     atc->set3occupied(\textcolor{keyword}{false});
+284     atc->processTakeOff(airplane, \hyperlink{classTime}{Time}());
+285     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+286 
+287     \textcolor{comment}{// runway is not free and 3000ft is free: wait}
+288     runway->setFree(\textcolor{keyword}{false});
+289     atc->set3occupied(\textcolor{keyword}{true});
+290     atc->processTakeOff(airplane, \hyperlink{classTime}{Time}());
+291     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+292 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, process\+Take\+Off\+Runway)}{TEST_F(domainTestATC, processTakeOffRunway)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{process\+Take\+Off\+Runway}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_a4580a998856b74e405e2f59f8d9fe00a}{}\label{domainTestsATC_8cpp_a4580a998856b74e405e2f59f8d9fe00a}
+
+\begin{DoxyCode}
+294                                             \{
+295     airplane->setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{kDeparture});
+296     airplane->setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+297     airplane->setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+298 
+299     runway->setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+300     runway->setLength(10000);
+301     runway->setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+302     airplane->setRunway(runway);
+303     airplane->setPosition(\textcolor{stringliteral}{"Alpha"});
+304 
+305     \textcolor{comment}{// 3000 ft is free: take off}
+306     atc->set3occupied(\textcolor{keyword}{false});
+307     atc->processTakeOffRunway(airplane, \hyperlink{classTime}{Time}());
+308     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted});
+309 
+310     \textcolor{comment}{// 3000 ft is not free: wait}
+311     atc->set3occupied(\textcolor{keyword}{true});
+312     atc->processTakeOffRunway(airplane, \hyperlink{classTime}{Time}());
+313     EXPECT\_EQ(airplane->getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied});
+314 \}
+\end{DoxyCode}
+\index{domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+A\+T\+C.\+cpp@{domain\+Tests\+A\+T\+C.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+A\+T\+C, field\+Manipulation)}{TEST_F(domainTestATC, fieldManipulation)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+A\+TC}}]{, }
+\item[{field\+Manipulation}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsATC_8cpp_af29b48ced03a3902949ee9fade7d28e4}{}\label{domainTestsATC_8cpp_af29b48ced03a3902949ee9fade7d28e4}
+
+\begin{DoxyCode}
+316                                          \{
+317     atc->set3occupied(\textcolor{keyword}{true});
+318     EXPECT\_EQ(atc->get3occupied(), \textcolor{keyword}{true});
+319 
+320     atc->set5occupied(\textcolor{keyword}{true});
+321     EXPECT\_EQ(atc->get5occupied(), \textcolor{keyword}{true});
+322 
+323     \hyperlink{classTime}{Time} time = \hyperlink{classTime}{Time}(12, 0);
+324     atc->setLastActive(time);
+325     EXPECT\_EQ(atc->getLastActive().getHour(), 12);
+326     EXPECT\_EQ(atc->getLastActive().getMinute(), 0);
+327 
+328     atc->setAirport(NULL);
+329     EXPECT\_TRUE(atc->getAirport() == NULL);
+330 \}\end{DoxyCode}

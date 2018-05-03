@@ -1,0 +1,205 @@
+\hypertarget{domainTestsAirplane_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airplane.cpp File Reference}
+\label{domainTestsAirplane_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airplane.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airplane.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+Airplane.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsAirplane_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsAirplane_8cpp_aa93140b2c83e0e4d3a18ae62ff57aaef}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}, Default\+Constructor)
+\item 
+\hyperlink{domainTestsAirplane_8cpp_a3dfdc7b8d679f7c2bcc73a91c552fd02}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}, happy\+Day)
+\item 
+\hyperlink{domainTestsAirplane_8cpp_aef4e0168d0dc2a0b82682644c9a69b1f}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}, complete)
+\item 
+\hyperlink{domainTestsAirplane_8cpp_a9f94fe2152afdb1a2d97662ce0d07841}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}, field\+Manipulation)
+\item 
+\hyperlink{domainTestsAirplane_8cpp_af659e5c5dd5dbae55663829b11f2b166}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirplane}{domain\+Test\+Airplane}, Contract\+Violations)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airplane, Default\+Constructor)}{TEST_F(domainTestAirplane, DefaultConstructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airplane}}]{, }
+\item[{Default\+Constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirplane_8cpp_aa93140b2c83e0e4d3a18ae62ff57aaef}{}\label{domainTestsAirplane_8cpp_aa93140b2c83e0e4d3a18ae62ff57aaef}
+
+\begin{DoxyCode}
+19                                                \{
+20     EXPECT\_TRUE(airplane.properlyInitialized());
+21     EXPECT\_EQ(airplane.getPassengers(), -1);
+22     EXPECT\_EQ(airplane.getFuel(), -1);
+23     EXPECT\_EQ(airplane.getAltitude(), 0);
+24     EXPECT\_EQ(airplane.getTimeRemaining(), 0);
+25     EXPECT\_TRUE(airplane.getRunway() == NULL);
+26     EXPECT\_EQ(airplane.getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+27     EXPECT\_EQ(airplane.getGateID(), -1);
+28     EXPECT\_EQ(airplane.getStatus(), \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway});
+29     EXPECT\_EQ(airplane.getEngine(), \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{kDefaultEngine});
+30     EXPECT\_EQ(airplane.getType(), \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{kDefaultType});
+31     EXPECT\_EQ(airplane.getSize(), \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{kDefaultSize});
+32 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airplane, happy\+Day)}{TEST_F(domainTestAirplane, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airplane}}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirplane_8cpp_a3dfdc7b8d679f7c2bcc73a91c552fd02}{}\label{domainTestsAirplane_8cpp_a3dfdc7b8d679f7c2bcc73a91c552fd02}
+
+\begin{DoxyCode}
+34                                      \{
+35     airplane.increaseAltitude(3);
+36     EXPECT\_EQ(airplane.getAltitude(), 3);
+37     airplane.increaseAltitude(2);
+38     EXPECT\_EQ(airplane.getAltitude(), 5);
+39     airplane.decreaseAltitude(5);
+40     EXPECT\_EQ(airplane.getAltitude(), 0);
+41 
+42     airplane.decreaseTimeRemaining();
+43     EXPECT\_EQ(airplane.getTimeRemaining(), 0);
+44 
+45     airplane.setTimeRemaining(1);
+46     airplane.decreaseTimeRemaining();
+47     EXPECT\_EQ(airplane.getTimeRemaining(), 0);
+48     airplane.decreaseTimeRemaining();
+49     EXPECT\_EQ(airplane.getTimeRemaining(), 0);
+50 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airplane, complete)}{TEST_F(domainTestAirplane, complete)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airplane}}]{, }
+\item[{complete}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirplane_8cpp_aef4e0168d0dc2a0b82682644c9a69b1f}{}\label{domainTestsAirplane_8cpp_aef4e0168d0dc2a0b82682644c9a69b1f}
+
+\begin{DoxyCode}
+52                                      \{
+53     EXPECT\_FALSE(airplane.complete());
+54     airplane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+55     EXPECT\_FALSE(airplane.complete());
+56     airplane.setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline});
+57     EXPECT\_FALSE(airplane.complete());
+58     airplane.setFuel(1);
+59     EXPECT\_FALSE(airplane.complete());
+60     airplane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+61     EXPECT\_FALSE(airplane.complete());
+62     airplane.setPassengers(1);
+63     EXPECT\_FALSE(airplane.complete());
+64     airplane.setModel(\textcolor{stringliteral}{"test"});
+65     EXPECT\_FALSE(airplane.complete());
+66     airplane.setCallsign(\textcolor{stringliteral}{"test"});
+67     EXPECT\_FALSE(airplane.complete());
+68     airplane.setNumber(\textcolor{stringliteral}{"test"});
+69 
+70     EXPECT\_TRUE(airplane.complete());
+71 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airplane, field\+Manipulation)}{TEST_F(domainTestAirplane, fieldManipulation)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airplane}}]{, }
+\item[{field\+Manipulation}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirplane_8cpp_a9f94fe2152afdb1a2d97662ce0d07841}{}\label{domainTestsAirplane_8cpp_a9f94fe2152afdb1a2d97662ce0d07841}
+
+\begin{DoxyCode}
+73                                               \{
+74     airplane.setPosition(\textcolor{stringliteral}{"Alpha"});
+75     EXPECT\_EQ(airplane.getPosition(), \textcolor{stringliteral}{"Alpha"});
+76 
+77     airplane.setType(\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{kMilitary});
+78     EXPECT\_EQ(airplane.getType(), \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{kMilitary});
+79 
+80     airplane.setSquawk(12345);
+81     EXPECT\_EQ(airplane.getSquawk(), 12345);
+82 
+83     airplane.setRequest(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{kAcceptedImmediate});
+84     EXPECT\_EQ(airplane.getRequest(), \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{kAcceptedImmediate});
+85 
+86     airplane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+87     EXPECT\_EQ(airplane.getSize(), \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+88 
+89     airplane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+90     EXPECT\_EQ(airplane.getEngine(), \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+91 
+92     airplane.setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway});
+93     EXPECT\_EQ(airplane.getStatus(), \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway});
+94 
+95     airplane.setCallsign(\textcolor{stringliteral}{"PlaneCS"});
+96     EXPECT\_EQ(airplane.getCallsign(), \textcolor{stringliteral}{"PlaneCS"});
+97 
+98     airplane.setTimeRemaining(50);
+99     EXPECT\_EQ(airplane.getTimeRemaining(), 50);
+100 
+101     airplane.setAltitude(100);
+102     EXPECT\_EQ(airplane.getAltitude(), 100);
+103 
+104     airplane.setFuel(50000);
+105     EXPECT\_EQ(airplane.getFuel(), 50000);
+106 
+107     airplane.setGateID(5);
+108     EXPECT\_EQ(airplane.getGateID(), 5);
+109 
+110     airplane.setModel(\textcolor{stringliteral}{"F16"});
+111     EXPECT\_EQ(airplane.getModel(), \textcolor{stringliteral}{"F16"});
+112 
+113     airplane.setNumber(\textcolor{stringliteral}{"16"});
+114     EXPECT\_EQ(airplane.getNumber(), \textcolor{stringliteral}{"16"});
+115 
+116     airplane.setPassengers(2);
+117     EXPECT\_EQ(airplane.getPassengers(), 2);
+118 
+119     \hyperlink{classRunway}{Runway} *rw = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway}();
+120     airplane.setRunway(rw);
+121     EXPECT\_TRUE(airplane.getRunway() == rw);
+122     \textcolor{keyword}{delete} rw;
+123 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airplane.\+cpp@{domain\+Tests\+Airplane.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airplane, Contract\+Violations)}{TEST_F(domainTestAirplane, ContractViolations)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airplane}}]{, }
+\item[{Contract\+Violations}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirplane_8cpp_af659e5c5dd5dbae55663829b11f2b166}{}\label{domainTestsAirplane_8cpp_af659e5c5dd5dbae55663829b11f2b166}
+
+\begin{DoxyCode}
+125                                                \{
+126     EXPECT\_DEATH(airplane.decreaseAltitude(-3), \textcolor{stringliteral}{"Difference can't be negative"});
+127     EXPECT\_DEATH(airplane.increaseAltitude(-2), \textcolor{stringliteral}{"Difference can't be negative"});
+128 
+129     \textcolor{comment}{// Set altitude to 1 and try to decrease by 2}
+130     airplane.setAltitude(1);
+131     EXPECT\_DEATH(airplane.decreaseAltitude(2), \textcolor{stringliteral}{"New altitude can't be less than 0!"});
+132 
+133     EXPECT\_DEATH(airplane.setAltitude(-3), \textcolor{stringliteral}{"Altitude can't be negative"});
+134     EXPECT\_DEATH(airplane.setTimeRemaining(-5), \textcolor{stringliteral}{"Time remaining can't be negative"});
+135     EXPECT\_DEATH(airplane.setPassengers(-4), \textcolor{stringliteral}{"Passenger amount can't be negative"});
+136     EXPECT\_DEATH(airplane.setGateID(-3), \textcolor{stringliteral}{"Gate id can't be less than -1"});
+137     EXPECT\_DEATH(airplane.setFuel(0), \textcolor{stringliteral}{"Fuel can't be less than 1"});
+138     EXPECT\_DEATH(airplane.setFuel(-3), \textcolor{stringliteral}{"Fuel can't be less than 1"});
+139     EXPECT\_DEATH(airplane.setSquawk(-4), \textcolor{stringliteral}{"Squawk code can't be negative"});
+140 \}\end{DoxyCode}

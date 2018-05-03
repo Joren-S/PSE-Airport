@@ -1,0 +1,1479 @@
+\hypertarget{classSystem}{}\section{System Class Reference}
+\label{classSystem}\index{System@{System}}
+
+
+\+: Main class, controls the simulation  
+
+
+
+
+{\ttfamily \#include $<$System.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSystem_a91b8a63b48be9eeedb59c23c884e6ec1}{System} (ostream \&atc, \hyperlink{classTime}{Time} end)
+\item 
+\hyperlink{classSystem_ae317936c9bcf1374d61745572e0f2f8a}{System} ()
+\item 
+\hyperlink{classSystem_a3be70bb338e3f062f821173fd15680d0}{$\sim$\+System} ()
+\item 
+bool \hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized} () const 
+\item 
+void \hyperlink{classSystem_adccb3f18f20203bcce0b2064f6c07cda}{set\+End\+Time} (\hyperlink{classTime}{Time} end)
+\item 
+void \hyperlink{classSystem_a5e9a3f6b8d3d5cb99c041bfcaace9683}{initialize\+A\+TC} (ostream \&log, bool test=false)
+\item 
+void \hyperlink{classSystem_ad1f1022247d9556d0ce4061bb68572cc}{import} (\hyperlink{classInput}{Input} \&)
+\item 
+void \hyperlink{classSystem_ac8c74374e12e2c1b763bf73a1e1e8b24}{info} (const string \&filename=\char`\"{}../output/info.\+txt\char`\"{})
+\item 
+void \hyperlink{classSystem_ae6323968b33e7a955d612b52c9c1cff7}{run} (ostream \&log, const string \&impression\+Name=\char`\"{}../output/impressions/impression\char`\"{})
+\item 
+bool \hyperlink{classSystem_abae43adfa434ace30ef85c69a7842289}{simulation\+Finished} () const 
+\item 
+void \hyperlink{classSystem_a928c7d35bae07db74b8c3187239455da}{approach} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_a748d0e1f37ed54f658f1caf3cc9972e9}{descend} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_ad9eb38b77b90b0c42e18ee11d4e3b5f5}{circle} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_a317a2279de25d632c07d864e36bd6b23}{taxi\+Arrival} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_a26b7e33c42eaafd089f44cc37057e733}{cross\+Arrival} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_ac9dbb8cb01b11e26732429ecfb15229a}{deboard} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_a557889a54b170fa287156d2e7c7069dc}{technical\+Check} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_a3524fb6d3f3065ec97a2c12ca521476e}{land} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+void \hyperlink{classSystem_abbd3230d357f0b897ff4d4f02774b93e}{ascend} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_a0c208fdb58a50616cbb8a4dddff428a4}{on\+Runway} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_a22dbdbc5b3de80899f08d76fb5afee41}{at\+Runway} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_acfbbb087336c9be6c5d3bff48bf990c0}{taxi\+Departure\+Cross} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_a90a664dab1f135035f77bb630e5336d0}{taxi\+Departure\+Step} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_ad00d2b047b6b3a93681b37045c4f2142}{taxi\+Departure\+Start} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_aaf7ec97fc1f23a7aa506fd44581e0f48}{pushback} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_a74fc45ac036c70cc5afe021429aa5878}{prepare} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&f\+Log)
+\item 
+void \hyperlink{classSystem_aa395eb0490483d7c8e99e9787d6d595b}{takeoff} (\hyperlink{classAirplane}{Airplane} $\ast$, ostream \&log)
+\item 
+\hyperlink{classAirport}{Airport} $\ast$ \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{get\+Airport} () const 
+\item 
+vector$<$ \hyperlink{classFlightplan}{Flightplan} $\ast$ $>$ \hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{get\+Flightplans} () const 
+\item 
+\hyperlink{classATC}{A\+TC} $\ast$ \hyperlink{classSystem_aae418c2545087b63188f4a4ffb2e9d15}{get\+A\+TC} () const 
+\item 
+\hyperlink{classTime}{Time} \hyperlink{classSystem_aa288ee48df2b2d72446cc446c3929418}{get\+Time} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Main class, controls the simulation 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\subsubsection[{\texorpdfstring{System(ostream \&atc, Time end)}{System(ostream &atc, Time end)}}]{\setlength{\rightskip}{0pt plus 5cm}System\+::\+System (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{atc, }
+\item[{{\bf Time}}]{end}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a91b8a63b48be9eeedb59c23c884e6ec1}{}\label{classSystem_a91b8a63b48be9eeedb59c23c884e6ec1}
+Constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); 
+\begin{DoxyCode}
+9                                     : fTime(\hyperlink{classTime}{Time}()), fEndTime(end), fATC(\textcolor{keyword}{new} 
+      \hyperlink{classATC}{ATC}(atc, \textcolor{keyword}{false})) \{
+10     fAirport = NULL;
+11     fInitCheck = \textcolor{keyword}{this};
+12     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"constructor must end in properlyInitialized
+       state"});
+13 \}
+\end{DoxyCode}
+\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\subsubsection[{\texorpdfstring{System()}{System()}}]{\setlength{\rightskip}{0pt plus 5cm}System\+::\+System (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ae317936c9bcf1374d61745572e0f2f8a}{}\label{classSystem_ae317936c9bcf1374d61745572e0f2f8a}
+Default constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); 
+\begin{DoxyCode}
+15                \{
+16     fAirport = NULL;
+17     fATC = NULL;
+18     fTime = \hyperlink{classTime}{Time}();
+19     fInitCheck = \textcolor{keyword}{this};
+20     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"constructor must end in properlyInitialized
+       state"});
+21 \}
+\end{DoxyCode}
+\index{System@{System}!````~System@{$\sim$\+System}}
+\index{````~System@{$\sim$\+System}!System@{System}}
+\subsubsection[{\texorpdfstring{$\sim$\+System()}{~System()}}]{\setlength{\rightskip}{0pt plus 5cm}System\+::$\sim$\+System (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a3be70bb338e3f062f821173fd15680d0}{}\label{classSystem_a3be70bb338e3f062f821173fd15680d0}
+Destructor 
+\begin{DoxyCode}
+927                 \{
+928     \textcolor{comment}{// Delete airport}
+929     \textcolor{keyword}{delete} fAirport;
+930 
+931     \textcolor{comment}{// Delete atc}
+932     \textcolor{keyword}{delete} fATC;
+933 
+934     \textcolor{comment}{// Delete all flightplans, which in the destructor deletes the airplane}
+935     vector<Flightplan*>::iterator flightplanItr;
+936     vector<Flightplan*> flightplans = \hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{getFlightplans}();
+937     \textcolor{keywordflow}{for} (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) \{
+938         \textcolor{keyword}{delete} *flightplanItr;
+939     \}
+940 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{System@{System}!approach@{approach}}
+\index{approach@{approach}!System@{System}}
+\subsubsection[{\texorpdfstring{approach(\+Airplane $\ast$, ostream \&log)}{approach(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::approach (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a928c7d35bae07db74b8c3187239455da}{}\label{classSystem_a928c7d35bae07db74b8c3187239455da}
+Performs the approach of a given plane. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling approach\char`\"{}); 
+\begin{DoxyCode}
+94                                                    \{
+95     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       approach"});
+96     \textcolor{comment}{// Request has been accepted by fATC}
+97     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+98         \textcolor{comment}{// Convert int to string}
+99         stringstream stream;
+100         stream << plane->\hyperlink{classAirplane_a88f0199d7eae4d1f24b14802047549ea}{getSquawk}();
+101 
+102         \textcolor{comment}{// Send message to fATC}
+103         \textcolor{keywordtype}{string} message = \textcolor{stringliteral}{"Descend and maintain five thousand feet, squawking "} + stream.str() + \textcolor{stringliteral}{", "} + 
+      plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+104         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+105 
+106         \textcolor{comment}{// Set the altitude of the plane}
+107         plane->\hyperlink{classAirplane_a60ea276094957364060f7b22bb6e549d}{setAltitude}(10);
+108 
+109         \textcolor{comment}{// Set status to descending}
+110         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{kDescending});
+111 
+112         \textcolor{comment}{// Set time remaining for first descend}
+113         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(plane->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == 
+      \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}? 1:2);
+114 
+115         \textcolor{comment}{// Log}
+116         log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" is
+       approaching "} << fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << \textcolor{stringliteral}{" at "} << plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() << \textcolor{stringliteral}{".000ft."} << endl;
+117 
+118         \textcolor{comment}{// Set request to idle}
+119         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+120     \}
+121 
+122     \textcolor{comment}{// Send a request if not yet done}
+123     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle}) \{
+124         \textcolor{comment}{// Send message to fATC}
+125         \textcolor{keywordtype}{string} message = fAirport->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}() + \textcolor{stringliteral}{", "} + plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{", arriving at "} + fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() + \textcolor{stringliteral}{"."};
+126         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+127 
+128         \textcolor{comment}{// Send the request}
+129         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+130 
+131         \textcolor{comment}{// Set request to pending}
+132         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+133     \}
+134 \}
+\end{DoxyCode}
+\index{System@{System}!ascend@{ascend}}
+\index{ascend@{ascend}!System@{System}}
+\subsubsection[{\texorpdfstring{ascend(\+Airplane $\ast$, ostream \&f\+Log)}{ascend(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::ascend (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_abbd3230d357f0b897ff4d4f02774b93e}{}\label{classSystem_abbd3230d357f0b897ff4d4f02774b93e}
+Ascends an airplane to 5000ft. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling ascend.\char`\"{}); 
+\begin{DoxyCode}
+776                                                   \{
+777     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling ascend."});
+778     plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(\textcolor{stringliteral}{""});
+779     \textcolor{comment}{// If plane is at a height < 5000 ft}
+780     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() < 5) \{
+781 
+782         \textcolor{comment}{// Ascend 1000 ft}
+783         plane->\hyperlink{classAirplane_a5a1735c5e75f857a4de0a473c5e26ffe}{increaseAltitude}(1);
+784         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(plane->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == 
+      \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}? 2 : 1);
+785         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" ascended to "} <
+      < plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() << \textcolor{stringliteral}{".000 ft."} << endl;
+786     \}
+787 
+788     \textcolor{comment}{// plane is at a 5000 ft or higher}
+789     \textcolor{keywordflow}{else} \{
+790 
+791         \textcolor{comment}{// plane is finished, left airport}
+792         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" has left "} << 
+      \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << endl;
+793         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway});
+794     \}
+795     \textcolor{keywordflow}{return};
+796 \}
+\end{DoxyCode}
+\index{System@{System}!at\+Runway@{at\+Runway}}
+\index{at\+Runway@{at\+Runway}!System@{System}}
+\subsubsection[{\texorpdfstring{at\+Runway(\+Airplane $\ast$, ostream \&f\+Log)}{atRunway(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::at\+Runway (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a22dbdbc5b3de80899f08d76fb5afee41}{}\label{classSystem_a22dbdbc5b3de80899f08d76fb5afee41}
+Lets an airplane wait AT a runway until instructions are given. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling at\+Runway\char`\"{}); 
+\begin{DoxyCode}
+697                                                     \{
+698     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling atRunway"});
+699     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+700     \hyperlink{classRunway}{Runway} *dest = plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}();
+701     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+702     \textcolor{keywordtype}{string} portCS = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}();
+703 
+704     \textcolor{comment}{// Check if plane already has permission to go on runway and start taking off}
+705     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{kAcceptedImmediate}) \{
+706         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{kAscending});
+707         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+708         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1); \textcolor{comment}{// line up}
+709         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Runway "} + dest->
+      \hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" cleared for take-off, "} + planeCS + \textcolor{stringliteral}{"."}));
+710         \textcolor{keywordflow}{return};
+711     \}
+712 
+713     \textcolor{comment}{// Check if plane already has permission to go on runway and wait}
+714     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+715         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{kDeparture});
+716         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+717         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1); \textcolor{comment}{// line up}
+718         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Lining up runway "} +
+       dest->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" and wait, "} + planeCS + \textcolor{stringliteral}{"."}));
+719         \textcolor{keywordflow}{return};
+720     \}
+721 
+722     \textcolor{comment}{// plane has to wait}
+723     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+724         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+725         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+726         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Holding position, "} 
+      + planeCS + \textcolor{stringliteral}{"."}));
+727         \textcolor{keywordflow}{return};
+728     \}
+729 
+730     \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied and plane has waited}
+731     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle}) \{
+732 
+733         \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+734         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+735         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, portCS + \textcolor{stringliteral}{", "} + 
+      planeCS + \textcolor{stringliteral}{", holding short at "} + dest->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{"."}));
+736         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+737         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+738         \textcolor{keywordflow}{return};
+739     \}
+740 
+741     \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+742     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+743 \}
+\end{DoxyCode}
+\index{System@{System}!circle@{circle}}
+\index{circle@{circle}!System@{System}}
+\subsubsection[{\texorpdfstring{circle(\+Airplane $\ast$, ostream \&log)}{circle(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::circle (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ad9eb38b77b90b0c42e18ee11d4e3b5f5}{}\label{classSystem_ad9eb38b77b90b0c42e18ee11d4e3b5f5}
+Performs the circling of a given plane. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling circle\char`\"{}); 
+\begin{DoxyCode}
+211                                                  \{
+212     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       circle"});
+213     \textcolor{comment}{// Log event}
+214     log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" has circled at
+       "} << plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() << \textcolor{stringliteral}{".000ft."} << endl;
+215 
+216     \textcolor{comment}{// Make the altitude available again for circling}
+217     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 3) \{
+218         fATC->\hyperlink{classATC_a701c3c84fafe9709a6e565674b79e6e6}{set3occupied}(\textcolor{keyword}{false});
+219     \}
+220     \textcolor{keywordflow}{else} \{
+221         fATC->\hyperlink{classATC_a701c3c84fafe9709a6e565674b79e6e6}{set3occupied}(\textcolor{keyword}{false});
+222     \}
+223 
+224     \textcolor{comment}{// Send a new request to descend}
+225     fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+226 
+227     \textcolor{comment}{// Set status to descending}
+228     plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{kDescending});
+229 \}
+\end{DoxyCode}
+\index{System@{System}!cross\+Arrival@{cross\+Arrival}}
+\index{cross\+Arrival@{cross\+Arrival}!System@{System}}
+\subsubsection[{\texorpdfstring{cross\+Arrival(\+Airplane $\ast$, ostream \&log)}{crossArrival(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::cross\+Arrival (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a26b7e33c42eaafd089f44cc37057e733}{}\label{classSystem_a26b7e33c42eaafd089f44cc37057e733}
+Crosses a runway Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling cross\+Arrival\char`\"{}); 
+\begin{DoxyCode}
+361                                                        \{
+362     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       crossArrival"});
+363     \textcolor{comment}{// Get the runway the plane just crossed}
+364     \hyperlink{classRunway}{Runway}* runway = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+365 
+366     \textcolor{comment}{// Log event}
+367     log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" crossed "} << 
+      runway->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << \textcolor{stringliteral}{"."} << endl;
+368 
+369     \textcolor{comment}{// Make runway available again}
+370     runway->\hyperlink{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{setFree}(\textcolor{keyword}{true});
+371 
+372     \textcolor{comment}{// Set time remaining}
+373     plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(5);
+374 
+375     \textcolor{comment}{// Change position}
+376     plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(runway->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}());
+377 
+378     \textcolor{comment}{// Chane status back to taxiing}
+379     plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival});
+380 \}
+\end{DoxyCode}
+\index{System@{System}!deboard@{deboard}}
+\index{deboard@{deboard}!System@{System}}
+\subsubsection[{\texorpdfstring{deboard(\+Airplane $\ast$, ostream \&log)}{deboard(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::deboard (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ac9dbb8cb01b11e26732429ecfb15229a}{}\label{classSystem_ac9dbb8cb01b11e26732429ecfb15229a}
+Performs the deboarding of a given plane. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling deboard\char`\"{}); 
+\begin{DoxyCode}
+382                                                   \{
+383     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       deboard"});
+384 
+385     \textcolor{comment}{// Log event}
+386     log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() << \textcolor{stringliteral}{" passengers
+       exited "} <<
+387          plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" at gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << \textcolor{stringliteral}{" of "} << 
+      fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << endl;
+388 
+389 
+390     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall}) \{
+391         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+392     \}
+393     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium}) \{
+394         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(2);
+395     \}
+396     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge}) \{
+397         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(3);
+398     \}
+399 
+400     \textcolor{comment}{// Change status}
+401     plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{kTechnicalCheck});
+402 
+403     \textcolor{comment}{// Set request status to idle}
+404     plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+405 \}
+\end{DoxyCode}
+\index{System@{System}!descend@{descend}}
+\index{descend@{descend}!System@{System}}
+\subsubsection[{\texorpdfstring{descend(\+Airplane $\ast$, ostream \&log)}{descend(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::descend (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a748d0e1f37ed54f658f1caf3cc9972e9}{}\label{classSystem_a748d0e1f37ed54f658f1caf3cc9972e9}
+Performs the descend of a given plane. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling descend\char`\"{}); 
+\begin{DoxyCode}
+136                                                   \{
+137     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       descend"});
+138     \textcolor{comment}{// Plane has landed}
+139     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 0) \{
+140         \textcolor{comment}{// Log event}
+141         log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" has landed
+       at "} << fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << \textcolor{stringliteral}{" on runway "} << plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->
+      \hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << endl;
+142 
+143         \textcolor{comment}{// Set runway to available}
+144         plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->\hyperlink{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{setFree}(\textcolor{keyword}{true});
+145 
+146         \textcolor{comment}{// Change status}
+147         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival});
+148 
+149         \textcolor{comment}{// Set request to idle}
+150         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+151 
+152         \textcolor{keywordflow}{return};
+153     \}
+154 
+155     \textcolor{comment}{// Plane is descending}
+156     \textcolor{keywordflow}{if} ((plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() != 5 and plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() != 3) or plane->
+      \hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed}) \{
+157         \textcolor{comment}{// Decrease the altitude}
+158         plane->\hyperlink{classAirplane_aed1d8b816a7140ba82223901fa7bb1d5}{decreaseAltitude}();
+159 
+160         \textcolor{comment}{// If plane is at one of the key altitudes, send a request to atc}
+161         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 5 or plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 3) \{
+162             fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+163         \}
+164 
+165         \textcolor{comment}{// If altitude is 0, the plane has started landing}
+166         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 0) \{
+167             log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" is landing at "} << fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << \textcolor{stringliteral}{" on runway "} << plane->
+      \hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << endl;
+168             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(2);
+169         \}
+170 
+171         \textcolor{comment}{// Normal descend}
+172         \textcolor{keywordflow}{else} \{
+173             log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" descended to "} << plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() << \textcolor{stringliteral}{".000ft."} << endl;
+174             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(plane->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == 
+      \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet} ? 1 : 2);
+175         \}
+176 
+177         \textcolor{keywordflow}{return};
+178     \}
+179 
+180     \textcolor{comment}{// Request has been accepted by ATC}
+181     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+182         \textcolor{comment}{// Pick the right message for the altitude}
+183         \textcolor{keywordtype}{string} message;
+184         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 5) message = \textcolor{stringliteral}{"Descend and maintain three thousand feet, "} + 
+      plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+185         \textcolor{keywordflow}{else} message = \textcolor{stringliteral}{"Cleared ILS approach runway "} + plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->
+      \hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{", "} + plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+186 
+187         \textcolor{comment}{// Send message to fATC}
+188         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+189 
+190         \textcolor{comment}{// Set time remaining for descend}
+191         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(plane->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == 
+      \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}? 1:2);
+192 
+193         \textcolor{comment}{// Set status to confirmed}
+194         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed});
+195     \}
+196 
+197     \textcolor{comment}{// Request has been denied by ATC}
+198     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+199         \textcolor{comment}{// Send message to ATC}
+200         \textcolor{keywordtype}{string} message = \textcolor{stringliteral}{"Holding south on the one eighty radial, "} + plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+201         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+202 
+203         \textcolor{comment}{// Set time remaining}
+204         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(3);
+205 
+206         \textcolor{comment}{// Set status to circling}
+207         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}{kCircling});
+208     \}
+209 \}
+\end{DoxyCode}
+\index{System@{System}!get\+Airport@{get\+Airport}}
+\index{get\+Airport@{get\+Airport}!System@{System}}
+\subsubsection[{\texorpdfstring{get\+Airport() const }{getAirport() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Airport} $\ast$ System\+::get\+Airport (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{}\label{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}
+Getter for the airport in the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling get\+Airport\char`\"{}); 
+\begin{DoxyCode}
+917                                   \{
+918     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       getAirport"});
+919     \textcolor{keywordflow}{return} System::fAirport;
+920 \}
+\end{DoxyCode}
+\index{System@{System}!get\+A\+TC@{get\+A\+TC}}
+\index{get\+A\+TC@{get\+A\+TC}!System@{System}}
+\subsubsection[{\texorpdfstring{get\+A\+T\+C() const }{getATC() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+TC} $\ast$ System\+::get\+A\+TC (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_aae418c2545087b63188f4a4ffb2e9d15}{}\label{classSystem_aae418c2545087b63188f4a4ffb2e9d15}
+Getter for the air traffic control in the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling get\+A\+T\+C\char`\"{}); 
+\begin{DoxyCode}
+953                           \{
+954     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       getATC"});
+955     \textcolor{keywordflow}{return} fATC;
+956 \}
+\end{DoxyCode}
+\index{System@{System}!get\+Flightplans@{get\+Flightplans}}
+\index{get\+Flightplans@{get\+Flightplans}!System@{System}}
+\subsubsection[{\texorpdfstring{get\+Flightplans() const }{getFlightplans() const }}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Flightplan} $\ast$ $>$ System\+::get\+Flightplans (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_a14a06028897516eb4df651220e70ce8f}{}\label{classSystem_a14a06028897516eb4df651220e70ce8f}
+Getter for the flightplans in the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, "\hyperlink{classSystem}{System} was\textquotesingle{}t initialized when calling get\+Flightplans); 
+\begin{DoxyCode}
+922                                                  \{
+923     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       getFlightplans"});
+924     \textcolor{keywordflow}{return} System::fFlightplans;
+925 \}
+\end{DoxyCode}
+\index{System@{System}!get\+Time@{get\+Time}}
+\index{get\+Time@{get\+Time}!System@{System}}
+\subsubsection[{\texorpdfstring{get\+Time() const }{getTime() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} System\+::get\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_aa288ee48df2b2d72446cc446c3929418}{}\label{classSystem_aa288ee48df2b2d72446cc446c3929418}
+Getter for the current time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling get\+Time\char`\"{}); 
+\begin{DoxyCode}
+958                            \{
+959     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       getTime"});
+960     \textcolor{keywordflow}{return} fTime;
+961 \}\end{DoxyCode}
+\index{System@{System}!import@{import}}
+\index{import@{import}!System@{System}}
+\subsubsection[{\texorpdfstring{import(\+Input \&)}{import(Input &)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::import (
+\begin{DoxyParamCaption}
+\item[{{\bf Input} \&}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ad1f1022247d9556d0ce4061bb68572cc}{}\label{classSystem_ad1f1022247d9556d0ce4061bb68572cc}
+Imports the given input ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling import\char`\"{}); 
+\begin{DoxyCode}
+27                                 \{
+28     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       import"});
+29     fFlightplans = input.\hyperlink{classInput_af03591fafa66902f7f4050b37e6b428e}{getFlightplans}();
+30     fAirport = input.\hyperlink{classInput_aa1f634b15684092240be80cb17dd28ec}{getAirports}()[0];
+31     fATC->\hyperlink{classATC_add8d36b90b6a765fd0c3a03fe3ea6df0}{setAirport}(fAirport);
+32 \}
+\end{DoxyCode}
+\index{System@{System}!info@{info}}
+\index{info@{info}!System@{System}}
+\subsubsection[{\texorpdfstring{info(const string \&filename=""../output/info.\+txt"")}{info(const string &filename="../output/info.txt")}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::info (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{filename = {\ttfamily \char`\"{}../output/info.txt\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ac8c74374e12e2c1b763bf73a1e1e8b24}{}\label{classSystem_ac8c74374e12e2c1b763bf73a1e1e8b24}
+Logs information of the airports and airplanes to a text file ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling info\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(f\+Airport != N\+U\+LL, \char`\"{}\+No airport in the simulation\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em filename} & name of the to be generated txt file, default to \char`\"{}../output/info.\+txt\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+34                                         \{
+35     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       info"});
+36     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fAirport != NULL, \textcolor{stringliteral}{"No airport in the simulation"});
+37 
+38     \textcolor{comment}{// Output file}
+39     ofstream out(filename.c\_str());
+40 
+41     \textcolor{comment}{// Log airport info}
+42     out << \textcolor{stringliteral}{"Airport: "} << fAirport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << \textcolor{stringliteral}{" ("} << fAirport->
+      \hyperlink{classAirport_a4550198ddc92d3583a0f3c31278189b2}{getIata}() << \textcolor{stringliteral}{")\(\backslash\)n"};
+43     out << \textcolor{stringliteral}{" -> gates: "} << fAirport->\hyperlink{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}{getGates}() << endl;
+44     out << \textcolor{stringliteral}{" -> runways: "} << fAirport->\hyperlink{classAirport_a587d39bfd3934a70f94b42f40fe72245}{amountOfRunways}() << endl;
+45     out << endl;
+46 
+47     \textcolor{comment}{// Set up iterator}
+48     vector<Flightplan *>::iterator itr\_air;
+49 
+50     \textcolor{comment}{// Get flightplans}
+51     vector<Flightplan *> flightplans = \hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{getFlightplans}();
+52 
+53     \textcolor{comment}{// Loop over all of them}
+54     \textcolor{keywordflow}{for} (itr\_air = flightplans.begin(); itr\_air < flightplans.end(); ++itr\_air) \{
+55         \textcolor{comment}{// Get airplane}
+56         \hyperlink{classAirplane}{Airplane}* cur\_ap = (*itr\_air)->getAirplane();
+57 
+58         \textcolor{comment}{// Log information}
+59         out << \textcolor{stringliteral}{"Airplane: "} << cur\_ap->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" ("} << cur\_ap->
+      \hyperlink{classAirplane_a2341fbcce9704ffdb81f7638ab74c0cb}{getNumber}() << \textcolor{stringliteral}{")\(\backslash\)n"};
+60         out << \textcolor{stringliteral}{" -> model: "} << cur\_ap->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << endl;
+61         out << \textcolor{stringliteral}{" -> type: "};
+62         \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{getType}() == \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{kPrivate}) \{
+63             out << \textcolor{stringliteral}{"private"};
+64         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{getType}() == \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline}) \{
+65             out << \textcolor{stringliteral}{"airline"};
+66         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{getType}() == \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{kMilitary}) \{
+67             out << \textcolor{stringliteral}{"military"};
+68         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a6ba13e6c94762127b5b87238f9fbb037}{getType}() == \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}{kEmergency}) \{
+69             out << \textcolor{stringliteral}{"emergency"};
+70         \}
+71         out << endl << \textcolor{stringliteral}{" -> engine: "};
+72         \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}) \{
+73             out << \textcolor{stringliteral}{"jet"};
+74         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}() == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}) \{
+75             out << \textcolor{stringliteral}{"propeller"};
+76         \}
+77         out << endl << \textcolor{stringliteral}{" -> size: "};
+78         \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall}) \{
+79             out << \textcolor{stringliteral}{"small"};
+80         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium}) \{
+81             out << \textcolor{stringliteral}{"medium"};
+82         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}() == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge}) \{
+83             out << \textcolor{stringliteral}{"large"};
+84         \}
+85         out << endl << \textcolor{stringliteral}{" -> passengers: "} << cur\_ap->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() << endl;
+86         out << endl;
+87     \}
+88 
+89     \textcolor{comment}{// Close file}
+90     out.close();
+91 \}
+\end{DoxyCode}
+\index{System@{System}!initialize\+A\+TC@{initialize\+A\+TC}}
+\index{initialize\+A\+TC@{initialize\+A\+TC}!System@{System}}
+\subsubsection[{\texorpdfstring{initialize\+A\+T\+C(ostream \&log, bool test=false)}{initializeATC(ostream &log, bool test=false)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::initialize\+A\+TC (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{log, }
+\item[{bool}]{test = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a5e9a3f6b8d3d5cb99c041bfcaace9683}{}\label{classSystem_a5e9a3f6b8d3d5cb99c041bfcaace9683}
+Initializes the air traffic control of the simulation with an ostream ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling initialize\+A\+T\+C\char`\"{}); 
+\begin{DoxyCode}
+943                                                   \{
+944     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       initializeATC"});
+945     fATC = \textcolor{keyword}{new} \hyperlink{classATC}{ATC}(log, test);
+946 \}
+\end{DoxyCode}
+\index{System@{System}!land@{land}}
+\index{land@{land}!System@{System}}
+\subsubsection[{\texorpdfstring{land(\+Airplane $\ast$, ostream \&log)}{land(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::land (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a3524fb6d3f3065ec97a2c12ca521476e}{}\label{classSystem_a3524fb6d3f3065ec97a2c12ca521476e}
+Lands an airplane on the airport of the simulation. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling land\char`\"{}); 
+\begin{DoxyCode}
+420                                                \{
+421     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       land"});
+422 
+423     \textcolor{comment}{// If time remaining is not 0, plane is still busy}
+424     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a39233c86a764ac1051ce4b4460a9a684}{getTimeRemaining}() != 0) \{
+425         \textcolor{keywordflow}{return};
+426     \}
+427 
+428     \textcolor{comment}{// Plane is approaching}
+429     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}{kApproaching}) \{
+430         \hyperlink{classSystem_a928c7d35bae07db74b8c3187239455da}{approach}(plane, log);
+431     \}
+432 
+433     \textcolor{comment}{// Plane is descending}
+434     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{kDescending}) \{
+435         \hyperlink{classSystem_a748d0e1f37ed54f658f1caf3cc9972e9}{descend}(plane, log);
+436     \}
+437 
+438     \textcolor{comment}{// Plane is circling}
+439     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}{kCircling}) \{
+440         \hyperlink{classSystem_ad9eb38b77b90b0c42e18ee11d4e3b5f5}{circle}(plane, log);
+441     \}
+442 
+443     \textcolor{comment}{// Plane is taxiing}
+444     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival}) \{
+445         \hyperlink{classSystem_a317a2279de25d632c07d864e36bd6b23}{taxiArrival}(plane, log);
+446     \}
+447 
+448     \textcolor{comment}{// Plane is crossing a runway}
+449     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival}) \{
+450         \hyperlink{classSystem_a26b7e33c42eaafd089f44cc37057e733}{crossArrival}(plane, log);
+451     \}
+452 
+453     \textcolor{comment}{// Plane is deboarding}
+454     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{kDeboarding}) \{
+455         \hyperlink{classSystem_ac9dbb8cb01b11e26732429ecfb15229a}{deboard}(plane, log);
+456     \}
+457 
+458     \textcolor{comment}{// Plane is having a technical check}
+459     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{kTechnicalCheck}) \{
+460         \hyperlink{classSystem_a557889a54b170fa287156d2e7c7069dc}{technicalCheck}(plane, log);
+461     \}
+462 \}
+\end{DoxyCode}
+\index{System@{System}!on\+Runway@{on\+Runway}}
+\index{on\+Runway@{on\+Runway}!System@{System}}
+\subsubsection[{\texorpdfstring{on\+Runway(\+Airplane $\ast$, ostream \&f\+Log)}{onRunway(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::on\+Runway (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a0c208fdb58a50616cbb8a4dddff428a4}{}\label{classSystem_a0c208fdb58a50616cbb8a4dddff428a4}
+Lets an airplane wait ON a runway before taking off. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling on\+Runway.\char`\"{}); 
+\begin{DoxyCode}
+745                                                     \{
+746     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling onRunway."});
+747     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+748     \hyperlink{classRunway}{Runway} *dest = plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}();
+749     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+750 
+751     \textcolor{comment}{// Check if plane already has permission to take off}
+752     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+753         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{kAscending});
+754         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+755         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Runway "} + dest->
+      \hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" cleared for take-off, "} + planeCS + \textcolor{stringliteral}{"."}));
+756 
+757         \textcolor{comment}{// log}
+758         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" is taking off
+       at "} << \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << \textcolor{stringliteral}{" on runway "} << dest->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << endl;
+759     \}
+760 
+761     \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied}
+762     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle} or request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+763 
+764         \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+765         \textcolor{comment}{// no message is needed since in this scenario (waiting on runway) the ATC will contact first.}
+766         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+767         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+768         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+769         \textcolor{keywordflow}{return};
+770     \}
+771 
+772     \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+773     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+774 \}
+\end{DoxyCode}
+\index{System@{System}!prepare@{prepare}}
+\index{prepare@{prepare}!System@{System}}
+\subsubsection[{\texorpdfstring{prepare(\+Airplane $\ast$, ostream \&f\+Log)}{prepare(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::prepare (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a74fc45ac036c70cc5afe021429aa5878}{}\label{classSystem_a74fc45ac036c70cc5afe021429aa5878}
+Refuels the airplane and lets passengers board. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling prepare\char`\"{}); 
+\begin{DoxyCode}
+468                                                    \{
+469     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling prepare."});
+470     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+471     \hyperlink{classRunway}{Runway} *dest = plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}();
+472     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+473 
+474     \textcolor{comment}{// Check if plane already has IFR clearancy}
+475     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+476         \textcolor{comment}{// response}
+477         stringstream stream;
+478         stream << plane->\hyperlink{classAirplane_a88f0199d7eae4d1f24b14802047549ea}{getSquawk}();
+479         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Cleared to "} + dest
+      ->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{", initial altitude five thousand, expecting one zero zero in ten, squawking "} + stream.
+      str() + \textcolor{stringliteral}{", "} + planeCS + \textcolor{stringliteral}{"."}));
+480 
+481         \textcolor{comment}{// If so, we refuel and let passengers board}
+482         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(\textcolor{keywordtype}{int}(ceil(plane->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() / 2.0)) + \textcolor{keywordtype}{int}(
+      ceil(plane->\hyperlink{classAirplane_a23170e5f55fa9fc6822be06615f028db}{getFuel}() / 10000.0)));
+483 
+484         \textcolor{comment}{// log}
+485         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" is being
+       refueled"} << endl;
+486         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() == 1) \{
+487             fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->
+      \hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() << \textcolor{stringliteral}{" passenger is boarding "}
+488                  << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" at Gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << \textcolor{stringliteral}{" of "} << 
+      \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << endl;
+489         \}
+490         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() > 1) \{
+491             fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->
+      \hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() << \textcolor{stringliteral}{" passengers are boarding "}
+492                  << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" at Gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << \textcolor{stringliteral}{" of "} << 
+      \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}() << endl;
+493         \}
+494         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" is standing at
+       Gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << endl;
+495 
+496         \textcolor{comment}{// set status to kGate (= fully ready to start takeoff sequence) and return}
+497         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{kGate});
+498 
+499         \textcolor{comment}{// set request status to idle, since current request is finished.}
+500         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+501         \textcolor{keywordflow}{return};
+502     \}
+503 
+504     \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied}
+505     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle} or request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+506 
+507         \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+508         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+509         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, 
+      \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->getCallsign() + \textcolor{stringliteral}{", "} + planeCS + \textcolor{stringliteral}{", requesting IFR clearancy."}));
+510 
+511         \textcolor{comment}{// Advance}
+512         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+513         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+514         \textcolor{keywordflow}{return};
+515     \}
+516 
+517     \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+518     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+519 \}
+\end{DoxyCode}
+\index{System@{System}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!System@{System}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool System\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{}\label{classSystem_af3eece83ba2d92a4a6b6c186d427c556}
+Checks if the object is properly initialized 
+\begin{DoxyCode}
+23                                        \{
+24     \textcolor{keywordflow}{return} fInitCheck == \textcolor{keyword}{this};
+25 \}
+\end{DoxyCode}
+\index{System@{System}!pushback@{pushback}}
+\index{pushback@{pushback}!System@{System}}
+\subsubsection[{\texorpdfstring{pushback(\+Airplane $\ast$, ostream \&f\+Log)}{pushback(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::pushback (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_aaf7ec97fc1f23a7aa506fd44581e0f48}{}\label{classSystem_aaf7ec97fc1f23a7aa506fd44581e0f48}
+Pushes an airplane back from the gate. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling pushback\char`\"{}); 
+\begin{DoxyCode}
+521                                                     \{
+522     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling pushback."});
+523     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+524     \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{EPlaneSize} size = plane->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}();
+525     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+526 
+527     \textcolor{comment}{// Check if plane already has permission to start pushback}
+528     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+529         \textcolor{comment}{// response}
+530         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Pushback approved, "}
+       + planeCS + \textcolor{stringliteral}{"."}));
+531 
+532         \textcolor{comment}{// log}
+533         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" is being pushed
+       back"} << endl;
+534 
+535         \textcolor{comment}{// If so, we start the pushback and "forget" the previous request (kIdle)}
+536         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{kPushback});
+537         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+538 
+539         \textcolor{comment}{// Depending on the size, pushing back takes longer or shorter}
+540         \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall}) \{
+541             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+542         \}
+543         \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium}) \{
+544             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(2);
+545         \}
+546         \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge}) \{
+547             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(3);
+548         \}
+549         \textcolor{keywordflow}{return};
+550     \}
+551 
+552     \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied}
+553     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle} or request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+554 
+555         \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+556         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+557 
+558         stringstream ss;
+559         ss << planeCS << \textcolor{stringliteral}{", "} << planeCS << \textcolor{stringliteral}{" at gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << \textcolor{stringliteral}{", requesting
+       pushback."};
+560 
+561         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, ss.str()));
+562         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+563         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+564         \textcolor{keywordflow}{return};
+565     \}
+566 
+567     \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+568     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+569 \}
+\end{DoxyCode}
+\index{System@{System}!run@{run}}
+\index{run@{run}!System@{System}}
+\subsubsection[{\texorpdfstring{run(ostream \&log, const string \&impression\+Name=""../output/impressions/impression"")}{run(ostream &log, const string &impressionName="../output/impressions/impression")}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::run (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{log, }
+\item[{const string \&}]{impression\+Name = {\ttfamily \char`\"{}../output/impressions/impression\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ae6323968b33e7a955d612b52c9c1cff7}{}\label{classSystem_ae6323968b33e7a955d612b52c9c1cff7}
+Runs the complete simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling run\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(f\+Airport != N\+U\+LL, \char`\"{}\+No airport in the simulation.\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(!simulation\+Finished(), \char`\"{}\+Simulation is already finished\char`\"{});. ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classSystem_abae43adfa434ace30ef85c69a7842289}{simulation\+Finished()}, \char`\"{}\+Simulation is not finished yet, error occured\char`\"{}); 
+\begin{DoxyCode}
+851                                                            \{
+852     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       run"});
+853     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fAirport != NULL, \textcolor{stringliteral}{"No airport in the simulation."});
+854     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(!\hyperlink{classSystem_abae43adfa434ace30ef85c69a7842289}{simulationFinished}(), \textcolor{stringliteral}{"Simulation is already finished"});
+855 
+856     \textcolor{keywordflow}{while} (!\hyperlink{classSystem_abae43adfa434ace30ef85c69a7842289}{simulationFinished}()) \{
+857 
+858         \textcolor{comment}{// Each tick, we make sure our ATC handles requests.}
+859         fATC->\hyperlink{classATC_af85d95048677c52f411d25c910e999ef}{doHeartbeat}(fTime);
+860 
+861         \textcolor{comment}{// Set up ostream for impression}
+862         \textcolor{keywordtype}{string} name = impressionName + fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}();
+863         ofstream impression(name.c\_str());
+864 
+865         \textcolor{comment}{// Each tick, we draw a graphical impression of the airport.}
+866         \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a6bc9b678b5f9f0c9f2d9c179436766ef}{drawImpression}(fTime, impression, 
+      \hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{getFlightplans}());
+867 
+868 
+869         \textcolor{comment}{// Get flightplans and set up iterator}
+870         vector<Flightplan*>::iterator flightplanItr;
+871 
+872         \textcolor{comment}{// Get flightplans}
+873         vector<Flightplan*> flightplans = \hyperlink{classSystem_a14a06028897516eb4df651220e70ce8f}{getFlightplans}();
+874 
+875         \textcolor{comment}{// Loop over flightplans}
+876         \textcolor{keywordflow}{for} (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) \{
+877 
+878             \textcolor{comment}{// Change airplane status according to flightplan}
+879             \textcolor{comment}{// Get flightplan}
+880             \hyperlink{classFlightplan}{Flightplan}* flightplan = *flightplanItr;
+881 
+882             \textcolor{comment}{// Get the event at this time}
+883             \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8}{EEvent} \textcolor{keyword}{event} = flightplan->\hyperlink{classFlightplan_a2b7410b0bcabb84db2164b4163dfddb4}{getEvent}(fTime);
+884 
+885             \textcolor{comment}{// Get the airplane}
+886             \hyperlink{classAirplane}{Airplane}* airplane = flightplan->\hyperlink{classFlightplan_a8406fbb2f98685fba170063acde0fdd7}{getAirplane}();
+887 
+888             \textcolor{keywordflow}{if} (airplane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway} and \textcolor{keyword}{event} == \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8aeaa0025051cf36faa589b5da72a153c4}{kLand}) \{
+889                 airplane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}{kApproaching});
+890             \}
+891 
+892             \textcolor{comment}{// Plane has to be at airport to takeoff}
+893             \textcolor{keywordflow}{if} (airplane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{kParked} and \textcolor{keyword}{event} == 
+      \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a81c03ffd159b67afc7df0ffab6a9297f}{kTakeoff}) \{
+894                 airplane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{kAirport});
+895             \}
+896 
+897             \hyperlink{classSystem_a3524fb6d3f3065ec97a2c12ca521476e}{land}(airplane, log);
+898 
+899             \hyperlink{classSystem_aa395eb0490483d7c8e99e9787d6d595b}{takeoff}(airplane, log);
+900 
+901             airplane->\hyperlink{classAirplane_ac97a6ca10328e33558f682e0b45e5a60}{decreaseTimeRemaining}();
+902         \}
+903 
+904         \textcolor{comment}{// Advance time}
+905         fTime.\hyperlink{classTime_a41c94422f10c95daab849b9c20afdeba}{advance}();
+906     \}
+907 
+908     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classSystem_abae43adfa434ace30ef85c69a7842289}{simulationFinished}(), \textcolor{stringliteral}{"Simulation is not finished yet, error occured"});
+909 \}
+\end{DoxyCode}
+\index{System@{System}!set\+End\+Time@{set\+End\+Time}}
+\index{set\+End\+Time@{set\+End\+Time}!System@{System}}
+\subsubsection[{\texorpdfstring{set\+End\+Time(\+Time end)}{setEndTime(Time end)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+End\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf Time}}]{end}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_adccb3f18f20203bcce0b2064f6c07cda}{}\label{classSystem_adccb3f18f20203bcce0b2064f6c07cda}
+Sets the end time of the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling set\+End\+Time\char`\"{}); 
+\begin{DoxyCode}
+948                                 \{
+949     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       setEndTime"});
+950     fEndTime = end;
+951 \}
+\end{DoxyCode}
+\index{System@{System}!simulation\+Finished@{simulation\+Finished}}
+\index{simulation\+Finished@{simulation\+Finished}!System@{System}}
+\subsubsection[{\texorpdfstring{simulation\+Finished() const }{simulationFinished() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool System\+::simulation\+Finished (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classSystem_abae43adfa434ace30ef85c69a7842289}{}\label{classSystem_abae43adfa434ace30ef85c69a7842289}
+Checks if the simulation has ended, i.\+e. specified end time has been reached ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling simulation\+Finished\char`\"{}); 
+\begin{DoxyCode}
+911                                       \{
+912     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       simulationFinished"});
+913     \textcolor{keywordflow}{return} !(fTime < fEndTime or fTime == fEndTime);
+914 \}
+\end{DoxyCode}
+\index{System@{System}!takeoff@{takeoff}}
+\index{takeoff@{takeoff}!System@{System}}
+\subsubsection[{\texorpdfstring{takeoff(\+Airplane $\ast$, ostream \&log)}{takeoff(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::takeoff (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_aa395eb0490483d7c8e99e9787d6d595b}{}\label{classSystem_aa395eb0490483d7c8e99e9787d6d595b}
+Performs a takeoff of a plane on an airport Logs the info to an output stream, defaulted to \char`\"{}cout\char`\"{}. ~\newline
+ R\+E\+Q\+U\+I\+RE\+: plane status is k\+Gate \&\& a runway at target airport is available \&\& at least one airport in the system ~\newline
+ E\+N\+S\+U\+RE\+: plane status is k\+Finished 
+\begin{DoxyCode}
+798                                                    \{
+799     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized."});
+800     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}() != NULL, \textcolor{stringliteral}{"No airport in the simulation."});
+801     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(plane != NULL, \textcolor{stringliteral}{"Plane object does not exist."});
+802 
+803     \textcolor{comment}{// if plane is still busy, we do nothing}
+804     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_a39233c86a764ac1051ce4b4460a9a684}{getTimeRemaining}() == 0) \{
+805 
+806         \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{EPlaneStatus} status = plane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}();
+807 
+808         \textcolor{comment}{// if plane is at airport, but not yet refueled and boarded}
+809         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{kAirport}) \{
+810             \hyperlink{classSystem_a74fc45ac036c70cc5afe021429aa5878}{prepare}(plane, fLog);
+811         \}
+812 
+813         \textcolor{comment}{// plane is done refueling and boarding}
+814         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{kGate}) \{
+815             \hyperlink{classSystem_aaf7ec97fc1f23a7aa506fd44581e0f48}{pushback}(plane, fLog);
+816         \}
+817 
+818         \textcolor{comment}{// plane is done pushing back}
+819         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{kPushback}) \{
+820             \hyperlink{classSystem_ad00d2b047b6b3a93681b37045c4f2142}{taxiDepartureStart}(plane, fLog);
+821         \}
+822 
+823         \textcolor{comment}{// plane is at a taxipoint}
+824         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture}) \{
+825             \hyperlink{classSystem_a90a664dab1f135035f77bb630e5336d0}{taxiDepartureStep}(plane, fLog);
+826         \}
+827 
+828         \textcolor{comment}{// plane is done crossing runway}
+829         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{kCrossingDeparture}) \{
+830             \hyperlink{classSystem_acfbbb087336c9be6c5d3bff48bf990c0}{taxiDepartureCross}(plane, fLog);
+831         \}
+832 
+833         \textcolor{comment}{// Plane is done taxiing and is waiting at runway}
+834         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{kWaitingForDeparture}) \{
+835             \hyperlink{classSystem_a22dbdbc5b3de80899f08d76fb5afee41}{atRunway}(plane, fLog);
+836         \}
+837 
+838         \textcolor{comment}{// Plane is waiting on runway}
+839         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{kDeparture}) \{
+840             \hyperlink{classSystem_a0c208fdb58a50616cbb8a4dddff428a4}{onRunway}(plane, fLog);
+841         \}
+842 
+843         \textcolor{comment}{// Plane is taking off}
+844         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{kAscending}) \{
+845             \hyperlink{classSystem_abbd3230d357f0b897ff4d4f02774b93e}{ascend}(plane, fLog);
+846         \}
+847     \}
+848 \}
+\end{DoxyCode}
+\index{System@{System}!taxi\+Arrival@{taxi\+Arrival}}
+\index{taxi\+Arrival@{taxi\+Arrival}!System@{System}}
+\subsubsection[{\texorpdfstring{taxi\+Arrival(\+Airplane $\ast$, ostream \&log)}{taxiArrival(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::taxi\+Arrival (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a317a2279de25d632c07d864e36bd6b23}{}\label{classSystem_a317a2279de25d632c07d864e36bd6b23}
+Performs the taxiing upon arrival of a given plane. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling taxi\+Arrival\char`\"{}); 
+\begin{DoxyCode}
+232                                                       \{
+233     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       taxiArrival"});
+234     \textcolor{comment}{// Arrived at gate}
+235     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == fAirport->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}()[0]->getTaxiPoint() and plane->
+      \hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed}) \{
+236         \textcolor{comment}{// Log event}
+237         log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" is
+       standing at Gate "} << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}() << endl;
+238 
+239         plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(\textcolor{stringliteral}{""});
+240 
+241         \textcolor{comment}{// Set time remaining for deboarding}
+242         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(\textcolor{keywordtype}{int}(ceil(plane->\hyperlink{classAirplane_acd0cbb46d1c8a17a5eb4f5ab679f2dcb}{getPassengers}() / 2.0)));
+243 
+244         \textcolor{comment}{// Change status to at airport}
+245         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{kDeboarding});
+246     \}
+247 
+248     \textcolor{comment}{// Arrived at taxipoint}
+249     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed}) \{
+250         \textcolor{comment}{// Get runway}
+251         \hyperlink{classRunway}{Runway}* runway = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+252 
+253         \textcolor{comment}{// Log event}
+254         log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" has taxied
+       to holding point at "} << runway->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << endl;
+255 
+256         \textcolor{comment}{// Set request to idle}
+257         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+258 
+259         \textcolor{keywordflow}{return};
+260     \}
+261 
+262     \textcolor{comment}{// Send a request}
+263     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle}) \{
+264         \textcolor{comment}{// Declare message to be sent to ATC}
+265         \textcolor{keywordtype}{string} message;
+266 
+267         \textcolor{comment}{// Define it according to the position of the plane}
+268         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}().empty()) \{
+269             message = fAirport->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}() + \textcolor{stringliteral}{", "} + plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{", runway "} + plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" vacated."};
+270         \}
+271         \textcolor{keywordflow}{else} \{
+272             \hyperlink{classRunway}{Runway}* runway = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+273             message = fAirport->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}() + \textcolor{stringliteral}{", "} + plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{", holding short at "} + runway->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{"."};
+274         \}
+275 
+276         \textcolor{comment}{// Send the request and message}
+277         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+278         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+279 
+280         \textcolor{comment}{// Set request to pending}
+281         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+282 
+283         \textcolor{keywordflow}{return};
+284     \}
+285 
+286     \textcolor{comment}{// Request has been accepted by ATC}
+287     \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}() == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+288 
+289         \textcolor{comment}{// Plane just arrived}
+290         \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}().empty()) \{
+291 
+292             \textcolor{comment}{// Change position}
+293             plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(plane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->
+      \hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}());
+294 
+295             \textcolor{comment}{// Declare message to be sent to ATC}
+296             \textcolor{keywordtype}{string} message;
+297 
+298             \textcolor{comment}{// Define it according to the position of the plane}
+299             \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == fAirport->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}()[0]->getTaxiPoint()) \{
+300                 \textcolor{comment}{// Convert int to string with stream}
+301                 stringstream stream;
+302                 stream << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}();
+303                 message = \textcolor{stringliteral}{"Taxi to gate "} + stream.str() + \textcolor{stringliteral}{" via "} + plane->
+      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() + \textcolor{stringliteral}{", "} + plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+304             \}
+305             \textcolor{keywordflow}{else} \{
+306                 \hyperlink{classRunway}{Runway}* next = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+307                 message = \textcolor{stringliteral}{"Taxi to holding point "} + next->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" via "} + plane->
+      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() + \textcolor{stringliteral}{", "} + plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+308             \}
+309 
+310             \textcolor{comment}{// Send the message}
+311             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+312 
+313             \textcolor{comment}{// Change status to taxi arrival}
+314             plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival});
+315 
+316             \textcolor{comment}{// Set time remaining}
+317             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(5);
+318         \}
+319 
+320         \textcolor{comment}{// Plane is about to cross last runway}
+321         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == fAirport->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}()[1]->getTaxiPoint()) \{
+322             \textcolor{comment}{// Get next runway}
+323             \hyperlink{classRunway}{Runway}* next = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+324 
+325             \textcolor{comment}{// Convert int to string}
+326             stringstream stream;
+327             stream << plane->\hyperlink{classAirplane_acab03ea6ec6df824368bf9851316e140}{getGateID}();
+328 
+329             \textcolor{comment}{// Send message to fATC}
+330             \textcolor{keywordtype}{string} message = \textcolor{stringliteral}{"Cleared to cross "} + next->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{", taxi to gate "} + stream.str(
+      ) + \textcolor{stringliteral}{" via "} + next->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() + \textcolor{stringliteral}{", "} + plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+331             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+332 
+333             \textcolor{comment}{// Set plane status to crossing}
+334             plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival});
+335         \}
+336 
+337         \textcolor{comment}{// Plane crosses a runway}
+338         \textcolor{keywordflow}{else} \{
+339             \textcolor{comment}{// Get next runway}
+340             \hyperlink{classRunway}{Runway}* next = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+341 
+342             \textcolor{comment}{// Temporarily set airplane position to next taxipoint to retrieve the runway after the next
+       one}
+343             \textcolor{keywordtype}{string} original = plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}();
+344             plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(next->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}());
+345             \hyperlink{classRunway}{Runway}* afterNext = fAirport->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+346             plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(original);
+347 
+348             \textcolor{comment}{// Send message to fATC}
+349             \textcolor{keywordtype}{string} message = \textcolor{stringliteral}{"Cleared to cross "} + next->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{", taxi to holding point "} + 
+      afterNext->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" via "} + next->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() + \textcolor{stringliteral}{", "} + plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() + \textcolor{stringliteral}{"."};
+350             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{ATC::formatMessage}(fTime, plane->
+      \hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}(), message));
+351 
+352             \textcolor{comment}{// Set plane status to crossing}
+353             plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival});
+354         \}
+355 
+356         \textcolor{comment}{// Set request to confirmed}
+357         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed});
+358     \}
+359 \}
+\end{DoxyCode}
+\index{System@{System}!taxi\+Departure\+Cross@{taxi\+Departure\+Cross}}
+\index{taxi\+Departure\+Cross@{taxi\+Departure\+Cross}!System@{System}}
+\subsubsection[{\texorpdfstring{taxi\+Departure\+Cross(\+Airplane $\ast$, ostream \&f\+Log)}{taxiDepartureCross(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::taxi\+Departure\+Cross (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_acfbbb087336c9be6c5d3bff48bf990c0}{}\label{classSystem_acfbbb087336c9be6c5d3bff48bf990c0}
+Performs a cross. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling taxi\+Departure\+Cross\char`\"{}); 
+\begin{DoxyCode}
+673                                                               \{
+674     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling taxiDepartureCross"});
+675 
+676     \hyperlink{classRunway}{Runway} *next\_rw = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+677     \hyperlink{classRunway}{Runway} *cur\_rw = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a15405cc39a7a397466fff1d54cc738d1}{getRunway}(plane->
+      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}());
+678 
+679     \textcolor{comment}{// done crossing, set it to free}
+680     cur\_rw->\hyperlink{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{setFree}(\textcolor{keyword}{true});
+681 
+682     \textcolor{comment}{// fLog}
+683     fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" crossed "} << cur\_rw
+      ->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << \textcolor{stringliteral}{"."} << endl;
+684 
+685     \textcolor{comment}{// Taxi to next holding point}
+686     plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(5);
+687     \hyperlink{classTime}{Time} tTime(fTime.\hyperlink{classTime_a4e9d93c2aaaac84b0a49f44184968860}{getHour}(), fTime.\hyperlink{classTime_a6ccac73be7aacc12410cea6b3d216357}{getMinute}());
+688     tTime.\hyperlink{classTime_a41c94422f10c95daab849b9c20afdeba}{advance}(5);
+689     fLog << \textcolor{stringliteral}{"["} << tTime.formatted() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" has taxied to holding point
+       at "} << next\_rw->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() << \textcolor{stringliteral}{"."} << endl;
+690 
+691     \textcolor{comment}{// set fields}
+692     plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(next\_rw->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}());
+693     plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture});
+694     \textcolor{keywordflow}{return};
+695 \}
+\end{DoxyCode}
+\index{System@{System}!taxi\+Departure\+Start@{taxi\+Departure\+Start}}
+\index{taxi\+Departure\+Start@{taxi\+Departure\+Start}!System@{System}}
+\subsubsection[{\texorpdfstring{taxi\+Departure\+Start(\+Airplane $\ast$, ostream \&f\+Log)}{taxiDepartureStart(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::taxi\+Departure\+Start (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_ad00d2b047b6b3a93681b37045c4f2142}{}\label{classSystem_ad00d2b047b6b3a93681b37045c4f2142}
+Lets an airplane wait before taxiing. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling taxi\+Departure\+Start\char`\"{}); 
+\begin{DoxyCode}
+571                                                               \{
+572     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling taxiDepartureStart."});
+573     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->amountOfRunways() >= 1, \textcolor{stringliteral}{"No runways in airport."});
+574     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+575     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+576 
+577     \textcolor{comment}{// Check if plane already has permission to start taxiing}
+578     \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+579 
+580         \hyperlink{classRunway}{Runway} *firstRW = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}().at(0);
+581         fLog << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_ab3086ab630a7e427df70c7b45f11dd82}{getModel}() << \textcolor{stringliteral}{" has started
+       taxiing to runway "} << firstRW->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << endl;
+582 
+583         plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(\textcolor{stringliteral}{""});
+584         plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture});
+585         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+586     \}
+587 
+588         \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied}
+589     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle} or request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+590 
+591         \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+592         fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+593         fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, planeCS + \textcolor{stringliteral}{" is ready
+       to taxi."}));
+594 
+595         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+596         plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+597         \textcolor{keywordflow}{return};
+598     \}
+599 
+600         \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+601     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+602 \}
+\end{DoxyCode}
+\index{System@{System}!taxi\+Departure\+Step@{taxi\+Departure\+Step}}
+\index{taxi\+Departure\+Step@{taxi\+Departure\+Step}!System@{System}}
+\subsubsection[{\texorpdfstring{taxi\+Departure\+Step(\+Airplane $\ast$, ostream \&f\+Log)}{taxiDepartureStep(Airplane *, ostream &fLog)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::taxi\+Departure\+Step (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{f\+Log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a90a664dab1f135035f77bb630e5336d0}{}\label{classSystem_a90a664dab1f135035f77bb630e5336d0}
+Performs the next taxi-\/step. Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was not properly initialized when calling taxi\+Departure\+Step\char`\"{}); 
+\begin{DoxyCode}
+604                                                              \{
+605     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was not properly initialized
+       when calling taxiDepartureStep."});
+606     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->getRunways().size() > 0, \textcolor{stringliteral}{"There are no runways in the airport."})
+      ;
+607     \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{EPlaneRequest} request = plane->\hyperlink{classAirplane_afe210aea9002a8975234a78350158c46}{getRequest}();
+608     \textcolor{keywordtype}{string} tp = plane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}();
+609     \hyperlink{classRunway}{Runway} *cur\_rw = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a15405cc39a7a397466fff1d54cc738d1}{getRunway}(tp);
+610     \hyperlink{classRunway}{Runway} *next\_rw = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(plane);
+611     \textcolor{keywordtype}{string} planeCS = plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}();
+612     \textcolor{keywordtype}{string} portCS = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}();
+613 
+614     \textcolor{comment}{// If at start of taxi-procedure / gate after pushback}
+615     \textcolor{keywordflow}{if} (tp.empty()) \{
+616 
+617         \textcolor{comment}{// go to first taxipoint}
+618         \hyperlink{classRunway}{Runway} *firstRW = \hyperlink{classSystem_a8cd2a9b13cdbcf30f801e46cf8284800}{getAirport}()->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}().at(0);
+619         plane->\hyperlink{classAirplane_a656e916c30af73584f781e7e2e28e78a}{setPosition}(firstRW->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}());
+620         plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(5);
+621         \textcolor{keywordflow}{return};
+622     \}
+623 
+624     \textcolor{comment}{// If taxiing}
+625     \textcolor{keywordflow}{else} \{
+626 
+627         \textcolor{comment}{// Check if plane already has permission to start crossing}
+628         \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}) \{
+629             \textcolor{comment}{// response}
+630             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Cleared to cross
+       "} + cur\_rw->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{", taxi to holding point "} + next\_rw->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{" via "} + next\_rw->
+      \hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() + \textcolor{stringliteral}{", "} + planeCS + \textcolor{stringliteral}{"."}));
+631             plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{kCrossingDeparture});
+632             plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+633             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1); \textcolor{comment}{// crossing}
+634             cur\_rw->\hyperlink{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{setFree}(\textcolor{keyword}{false});
+635             \textcolor{keywordflow}{return};
+636         \}
+637 
+638         \textcolor{comment}{// If at destination}
+639         \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed}) \{
+640 
+641             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Holding
+       position, "} + planeCS + \textcolor{stringliteral}{"."}));
+642 
+643             plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{kWaitingForDeparture});
+644             plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+645 
+646             \textcolor{keywordflow}{return};
+647         \}
+648 
+649         \textcolor{comment}{// not allowed to cross}
+650         \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}) \{
+651             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, \textcolor{stringliteral}{"Holding
+       position, "} + planeCS + \textcolor{stringliteral}{"."}));
+652             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1); \textcolor{comment}{// wait}
+653             plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+654             \textcolor{keywordflow}{return};
+655         \}
+656 
+657         \textcolor{comment}{// If plane hasn't sent a request yet, or the previous request was denied and plane waited.}
+658         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (request == \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle}) \{
+659 
+660             \textcolor{comment}{// Send new request to ATC, which takes 1 minute, and we change the status of the request}
+661             fATC->\hyperlink{classATC_aaabbddfb988289b786b18ba8f50510f2}{sendRequest}(fTime, plane);
+662             fATC->\hyperlink{classATC_aa78b32354d28f3f2eac0143df617283b}{sendMessage}(fATC->\hyperlink{classATC_a2fca67fc154c7d8a6c14198697653059}{formatMessage}(fTime, planeCS, portCS + \textcolor{stringliteral}{", "} + 
+      planeCS + \textcolor{stringliteral}{", holding short at "} + cur\_rw->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() + \textcolor{stringliteral}{"."}));
+663             plane->\hyperlink{classAirplane_a43e7b856df001168956ed6d115943ec9}{setTimeRemaining}(1);
+664             plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending});
+665             \textcolor{keywordflow}{return};
+666         \}
+667 
+668         \textcolor{comment}{// If plane hasn't recieved an answer yet (= status is kPending): keep waiting}
+669         \textcolor{keywordflow}{else} \textcolor{keywordflow}{return};
+670     \}
+671 \}
+\end{DoxyCode}
+\index{System@{System}!technical\+Check@{technical\+Check}}
+\index{technical\+Check@{technical\+Check}!System@{System}}
+\subsubsection[{\texorpdfstring{technical\+Check(\+Airplane $\ast$, ostream \&log)}{technicalCheck(Airplane *, ostream &log)}}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::technical\+Check (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane, }
+\item[{ostream \&}]{log}
+\end{DoxyParamCaption}
+)}\hypertarget{classSystem_a557889a54b170fa287156d2e7c7069dc}{}\label{classSystem_a557889a54b170fa287156d2e7c7069dc}
+Performs the technical check of the plane Events are logged to the given ostream\&. ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properly\+Initialized()}, \char`\"{}\+System was\textquotesingle{}t initialized when calling technical\+Check\char`\"{}); 
+\begin{DoxyCode}
+407                                                          \{
+408     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classSystem_af3eece83ba2d92a4a6b6c186d427c556}{properlyInitialized}(), \textcolor{stringliteral}{"System was't initialized when calling
+       technicalCheck"});
+409 
+410     \textcolor{comment}{// Log event}
+411     log << \textcolor{stringliteral}{"["} << fTime.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"] "} << plane->\hyperlink{classAirplane_a6a62bd06d28789336c5ce1543d9391f1}{getCallsign}() << \textcolor{stringliteral}{" has been
+       checked for technical malfunctions"} << endl;
+412 
+413     \textcolor{comment}{// Change status}
+414     plane->\hyperlink{classAirplane_a23934fb97d8fab12d4dc790cee673747}{setStatus}(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{kParked});
+415 
+416     \textcolor{comment}{// Set request status to idle}
+417     plane->\hyperlink{classAirplane_affcc5325670824881ccc1524223aa209}{setRequest}(\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle});
+418 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{System_8h}{System.\+h}\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{System_8cpp}{System.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,246 @@
+\hypertarget{domainTestsAirport_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airport.cpp File Reference}
+\label{domainTestsAirport_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airport.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Airport.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+Airport.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsAirport_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestAirport}{domain\+Test\+Airport}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsAirport_8cpp_a0ca5fe4adfab28ce60e024af8510d1ce}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirport}{domain\+Test\+Airport}, Default\+Constructor)
+\item 
+\hyperlink{domainTestsAirport_8cpp_a9ea10725fbea65a52a01b32729df3742}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirport}{domain\+Test\+Airport}, happy\+Day)
+\item 
+\hyperlink{domainTestsAirport_8cpp_a4a216dc0e2ecab434737e3692eb68d89}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirport}{domain\+Test\+Airport}, complete)
+\item 
+\hyperlink{domainTestsAirport_8cpp_a1e8a9b34f2eb2099b550ceb0480c0a49}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirport}{domain\+Test\+Airport}, field\+Manipulation)
+\item 
+\hyperlink{domainTestsAirport_8cpp_a115e9730fcd9a3be6df548dae0ceeec8}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestAirport}{domain\+Test\+Airport}, Contract\+Violations)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airport, Default\+Constructor)}{TEST_F(domainTestAirport, DefaultConstructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airport}}]{, }
+\item[{Default\+Constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirport_8cpp_a0ca5fe4adfab28ce60e024af8510d1ce}{}\label{domainTestsAirport_8cpp_a0ca5fe4adfab28ce60e024af8510d1ce}
+
+\begin{DoxyCode}
+19                                               \{
+20     EXPECT\_TRUE(airport.properlyInitialized());
+21     EXPECT\_EQ(airport.getGates(), -1);
+22 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airport, happy\+Day)}{TEST_F(domainTestAirport, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airport}}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirport_8cpp_a9ea10725fbea65a52a01b32729df3742}{}\label{domainTestsAirport_8cpp_a9ea10725fbea65a52a01b32729df3742}
+
+\begin{DoxyCode}
+24                                     \{
+25     \textcolor{comment}{// init airport}
+26     EXPECT\_FALSE(airport.complete());
+27     airport.setName(\textcolor{stringliteral}{"Antwerp Airport"});
+28     airport.setCallsign(\textcolor{stringliteral}{"Antwerp Tower"});
+29     airport.setIata(\textcolor{stringliteral}{"ANR"});
+30     airport.setGates(10);
+31     EXPECT\_TRUE(airport.complete());
+32 
+33     \textcolor{comment}{// plane}
+34     plane.setPosition(\textcolor{stringliteral}{"Alpha"});
+35     plane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+36     plane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge});
+37 
+38     \textcolor{comment}{// 1st runway}
+39     \hyperlink{classRunway}{Runway}* rw2 = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway}();
+40     rw2->\hyperlink{classRunway_ae346a0e299a7cbea186ad6ab25a46ae0}{setName}(\textcolor{stringliteral}{"RW1"});
+41     rw2->\hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{setTaxiPoint}(\textcolor{stringliteral}{"Alpha"});
+42     rw2->\hyperlink{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{setType}(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+43     rw2->\hyperlink{classRunway_af32954dc4688acd3a91114d200c6df9e}{setLength}(20000);
+44 
+45     \textcolor{comment}{// 2nd runway}
+46     \hyperlink{classRunway}{Runway} *rw = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway}();
+47     rw->\hyperlink{classRunway_ae346a0e299a7cbea186ad6ab25a46ae0}{setName}(\textcolor{stringliteral}{"RW2"});
+48     rw->\hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{setTaxiPoint}(\textcolor{stringliteral}{"Bravo"});
+49     rw->\hyperlink{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{setType}(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+50     rw->\hyperlink{classRunway_af32954dc4688acd3a91114d200c6df9e}{setLength}(20000);
+51 
+52     \textcolor{comment}{// test for occupying/restoring gates.}
+53     airport.initStack();
+54     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= 10; i++) \{
+55         EXPECT\_EQ(airport.getFreeGate(), i);
+56     \}
+57     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 10; i > 0; i--) \{
+58         airport.restoreGate(i);
+59     \}
+60     EXPECT\_EQ(airport.getFreeGate(), 1);
+61     EXPECT\_EQ(airport.getFreeGate(), 2);
+62     airport.restoreGate(1);
+63     EXPECT\_EQ(airport.getFreeGate(), 1);
+64 
+65 
+66     EXPECT\_TRUE(airport.amountOfRunways() == 0);
+67 
+68     \textcolor{comment}{// 1 runway in airport}
+69     airport.addRunway(rw2);
+70     EXPECT\_TRUE(airport.amountOfRunways() == 1);
+71 
+72     \textcolor{comment}{// test for finding runways by taxipoint}
+73     EXPECT\_EQ(airport.getRunway(\textcolor{stringliteral}{"Alpha"}), rw2);
+74     EXPECT\_TRUE(airport.getRunway(\textcolor{stringliteral}{"Gibberish"}) == NULL);
+75 
+76     \textcolor{comment}{// plane is not taxiing}
+77     EXPECT\_TRUE(airport.getNextRunway(&plane) == NULL);
+78 
+79     \textcolor{comment}{// plane is taxiing, but no next runway found}
+80     plane.setStatus(\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture});
+81     EXPECT\_TRUE(airport.getNextRunway(&plane) == NULL);
+82 
+83     \textcolor{comment}{// 2 runways in system}
+84     airport.addRunway(rw);
+85     EXPECT\_TRUE(airport.amountOfRunways() == 2);
+86 
+87     \textcolor{comment}{// plane is taxiing and there is a next runway.}
+88     EXPECT\_EQ(airport.getNextRunway(&plane), rw);
+89 
+90     \textcolor{comment}{// get free runway, but no valid runway for large jets}
+91     EXPECT\_TRUE(airport.getFreeRunway(&plane) == NULL);
+92 
+93     \textcolor{comment}{// alter rw so it's a valid runway.}
+94     rw->\hyperlink{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{setType}(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+95     EXPECT\_EQ(airport.getFreeRunway(&plane), rw);
+96 
+97 
+98 \textcolor{comment}{//    delete  rw;}
+99 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airport, complete)}{TEST_F(domainTestAirport, complete)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airport}}]{, }
+\item[{complete}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirport_8cpp_a4a216dc0e2ecab434737e3692eb68d89}{}\label{domainTestsAirport_8cpp_a4a216dc0e2ecab434737e3692eb68d89}
+
+\begin{DoxyCode}
+101                                     \{
+102     EXPECT\_FALSE(airport.complete());
+103     airport.setName(\textcolor{stringliteral}{"Antwerp Airport"});
+104 
+105     EXPECT\_FALSE(airport.complete());
+106     airport.setCallsign(\textcolor{stringliteral}{"Antwerp Tower"});
+107 
+108     EXPECT\_FALSE(airport.complete());
+109     airport.setIata(\textcolor{stringliteral}{"ANR"});
+110 
+111     EXPECT\_FALSE(airport.complete());
+112     airport.setGates(10);
+113 
+114     EXPECT\_TRUE(airport.complete());
+115 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airport, field\+Manipulation)}{TEST_F(domainTestAirport, fieldManipulation)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airport}}]{, }
+\item[{field\+Manipulation}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirport_8cpp_a1e8a9b34f2eb2099b550ceb0480c0a49}{}\label{domainTestsAirport_8cpp_a1e8a9b34f2eb2099b550ceb0480c0a49}
+
+\begin{DoxyCode}
+117                                              \{
+118     airport.setName(\textcolor{stringliteral}{"Antwerp Airport"});
+119     EXPECT\_EQ(airport.getName(), \textcolor{stringliteral}{"Antwerp Airport"});
+120 
+121     airport.setCallsign(\textcolor{stringliteral}{"Antwerp Tower"});
+122     EXPECT\_EQ(airport.getCallsign(), \textcolor{stringliteral}{"Antwerp Tower"});
+123 
+124     airport.setIata(\textcolor{stringliteral}{"ANR"});
+125     EXPECT\_EQ(airport.getIata(), \textcolor{stringliteral}{"ANR"});
+126 
+127     airport.setGates(10);
+128     EXPECT\_EQ(airport.getGates(), 10);
+129 
+130     \hyperlink{classRunway}{Runway}* runway1 = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway}();
+131 
+132     runway1->setName(\textcolor{stringliteral}{"RW1"});
+133     runway1->setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+134     airport.addRunway(runway1);
+135     vector<Runway*> rws = airport.getRunways();
+136     EXPECT\_TRUE(rws.size() == 1);
+137     EXPECT\_EQ(rws.at(0), runway1);
+138 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Airport.\+cpp@{domain\+Tests\+Airport.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Airport, Contract\+Violations)}{TEST_F(domainTestAirport, ContractViolations)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Airport}}]{, }
+\item[{Contract\+Violations}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsAirport_8cpp_a115e9730fcd9a3be6df548dae0ceeec8}{}\label{domainTestsAirport_8cpp_a115e9730fcd9a3be6df548dae0ceeec8}
+
+\begin{DoxyCode}
+141                                               \{
+142     \textcolor{comment}{// getFreeGate}
+143     airport.setGates(10);
+144     EXPECT\_DEATH(airport.getFreeGate(), \textcolor{stringliteral}{"Can't get free gate: no gate in stack."});
+145     airport.initStack();
+146 
+147     \textcolor{comment}{// initStack}
+148     EXPECT\_DEATH(airport.initStack(), \textcolor{stringliteral}{"Can't initialize gate stack, already in use."});
+149 
+150     \textcolor{comment}{// getFreeGate continued}
+151     airport.setGates(0);
+152     EXPECT\_DEATH(airport.getFreeGate(), \textcolor{stringliteral}{"Airport has no gates."});
+153     airport.setGates(1);
+154     airport.getFreeGate();
+155     EXPECT\_DEATH(airport.getFreeGate(), \textcolor{stringliteral}{"Gate has an invalid ID."});
+156 
+157 
+158     \textcolor{comment}{// restoreGate}
+159     airport.setGates(0);
+160     EXPECT\_DEATH(airport.restoreGate(11), \textcolor{stringliteral}{"Airport has no gates."});
+161     airport.setGates(10);
+162     EXPECT\_DEATH(airport.restoreGate(11), \textcolor{stringliteral}{"Gate ID is invalid."});
+163     EXPECT\_DEATH(airport.restoreGate(0), \textcolor{stringliteral}{"Gate ID is invalid."});
+164     EXPECT\_DEATH(airport.restoreGate(-1), \textcolor{stringliteral}{"Gate ID is invalid."});
+165 
+166     \textcolor{comment}{// addRunway}
+167     runway.setName(\textcolor{stringliteral}{"RW1"});
+168     runway.setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+169     EXPECT\_DEATH(airport.addRunway(NULL), \textcolor{stringliteral}{"Runway cannot be NULL."});
+170     \hyperlink{classRunway}{Runway}* runway1 = \textcolor{keyword}{new} \hyperlink{classRunway}{Runway}();
+171     airport.addRunway(runway1);
+172     EXPECT\_DEATH(airport.addRunway(runway1), \textcolor{stringliteral}{"Runway is already in system."});
+173 
+174     \textcolor{comment}{// getNextRunway}
+175     EXPECT\_DEATH(airport.getNextRunway(NULL), \textcolor{stringliteral}{"Airplane cannot be NULL."});
+176 
+177     \textcolor{comment}{// setGates}
+178     EXPECT\_DEATH(airport.setGates(-1), \textcolor{stringliteral}{"Number of gates cannot be negative!"});
+179 
+180     \textcolor{comment}{// getFreeRunway}
+181     EXPECT\_DEATH(airport.getFreeRunway(NULL), \textcolor{stringliteral}{"Plane object does not exist."});
+182 \}\end{DoxyCode}

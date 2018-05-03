@@ -1,0 +1,285 @@
+\hypertarget{classInput}{}\section{Input Class Reference}
+\label{classInput}\index{Input@{Input}}
+
+
+\+: Class that reads input for the simulation  
+
+
+
+
+{\ttfamily \#include $<$Input.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classInput_abae3f379d3f157cf42dc857309832dba}{Input} ()
+\item 
+bool \hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized} () const 
+\item 
+void \hyperlink{classInput_abb78078475f91c654db63c392aefbf51}{read} (const string \&filename, ostream \&error\+Log=cerr)
+\item 
+void \hyperlink{classInput_adf2ec48d79d704c139f9a2ab295f8d21}{add\+Airport} (\hyperlink{classAirport}{Airport} $\ast$airport)
+\item 
+void \hyperlink{classInput_a047b280ecbd65bf8be570aba4f07f440}{add\+Runway} (\hyperlink{classRunway}{Runway} $\ast$runway)
+\item 
+void \hyperlink{classInput_af6a650235d15f760ec8764645ce19bc9}{add\+Flightplan} (\hyperlink{classFlightplan}{Flightplan} $\ast$flightplan)
+\item 
+\hyperlink{classAirport}{Airport} $\ast$ \hyperlink{classInput_a554acd227613a3b7ac86bce4d41060c7}{find\+Airport\+By\+I\+A\+TA} (const string \&iata) const 
+\item 
+vector$<$ \hyperlink{classAirport}{Airport} $\ast$ $>$ \hyperlink{classInput_aa1f634b15684092240be80cb17dd28ec}{get\+Airports} () const 
+\item 
+vector$<$ \hyperlink{classFlightplan}{Flightplan} $\ast$ $>$ \hyperlink{classInput_af03591fafa66902f7f4050b37e6b428e}{get\+Flightplans} () const 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classInput_a07fca98c3279dbcb8d49afa59bd9ad7f}{is\+Number} (const string \&)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Class that reads input for the simulation 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Input@{Input}!Input@{Input}}
+\index{Input@{Input}!Input@{Input}}
+\subsubsection[{\texorpdfstring{Input()}{Input()}}]{\setlength{\rightskip}{0pt plus 5cm}Input\+::\+Input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInput_abae3f379d3f157cf42dc857309832dba}{}\label{classInput_abae3f379d3f157cf42dc857309832dba}
+Default constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); 
+\begin{DoxyCode}
+47              \{
+48     fInitCheck = \textcolor{keyword}{this};
+49     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"constructor must end in properlyInitialized
+       state"});
+50 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{Input@{Input}!add\+Airport@{add\+Airport}}
+\index{add\+Airport@{add\+Airport}!Input@{Input}}
+\subsubsection[{\texorpdfstring{add\+Airport(\+Airport $\ast$airport)}{addAirport(Airport *airport)}}]{\setlength{\rightskip}{0pt plus 5cm}void Input\+::add\+Airport (
+\begin{DoxyParamCaption}
+\item[{{\bf Airport} $\ast$}]{airport}
+\end{DoxyParamCaption}
+)}\hypertarget{classInput_adf2ec48d79d704c139f9a2ab295f8d21}{}\label{classInput_adf2ec48d79d704c139f9a2ab295f8d21}
+Adds an airport to the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling add\+Airport\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(airport-\/$>$complete(), \char`\"{}\+Airport has to be completely initialized to add it to the simulation\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(airports.\+back() == airport, \char`\"{}\+Airplane was not added to simulation.\char`\"{}); 
+\begin{DoxyCode}
+517                                        \{
+518     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       addAirport"});
+519     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(airport->\hyperlink{classAirport_a76819017f88f563183bd16a0b4da4e40}{complete}(), \textcolor{stringliteral}{"Airport has to be completely initialized to add it to the
+       simulation"});
+520     \textcolor{comment}{// Initialize gateStack}
+521     airport->\hyperlink{classAirport_a2a4915cb5db8ff9a992c262af3f333cb}{initStack}();
+522 
+523     \textcolor{comment}{// Add to vec}
+524     airports.push\_back(airport);
+525 
+526     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(airports.back() == airport, \textcolor{stringliteral}{"Airplane was not added to simulation."});
+527 \}
+\end{DoxyCode}
+\index{Input@{Input}!add\+Flightplan@{add\+Flightplan}}
+\index{add\+Flightplan@{add\+Flightplan}!Input@{Input}}
+\subsubsection[{\texorpdfstring{add\+Flightplan(\+Flightplan $\ast$flightplan)}{addFlightplan(Flightplan *flightplan)}}]{\setlength{\rightskip}{0pt plus 5cm}void Input\+::add\+Flightplan (
+\begin{DoxyParamCaption}
+\item[{{\bf Flightplan} $\ast$}]{flightplan}
+\end{DoxyParamCaption}
+)}\hypertarget{classInput_af6a650235d15f760ec8764645ce19bc9}{}\label{classInput_af6a650235d15f760ec8764645ce19bc9}
+Adds a flightplan to the simulation with the given specifications ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling add\+Flightplan\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(flightplan-\/$>$complete(), \char`\"{}\+Flightplan has to be completely initialized to add it to the simulation\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(flightplans.\+back() == flightplan, \char`\"{}\+Flightplan was not added to simulation.\char`\"{}); 
+\begin{DoxyCode}
+536                                                 \{
+537     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       addFlightplan"});
+538     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(flightplan->\hyperlink{classFlightplan_a07f564cb5e5cdbad4abb2098f7941597}{complete}(), \textcolor{stringliteral}{"Flightplan has to be completely initialized to add it
+       to the simulation"});
+539     flightplans.push\_back(flightplan);
+540     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(flightplans.back() == flightplan, \textcolor{stringliteral}{"Flightplan was not added to simulation."});
+541 \}
+\end{DoxyCode}
+\index{Input@{Input}!add\+Runway@{add\+Runway}}
+\index{add\+Runway@{add\+Runway}!Input@{Input}}
+\subsubsection[{\texorpdfstring{add\+Runway(\+Runway $\ast$runway)}{addRunway(Runway *runway)}}]{\setlength{\rightskip}{0pt plus 5cm}void Input\+::add\+Runway (
+\begin{DoxyParamCaption}
+\item[{{\bf Runway} $\ast$}]{runway}
+\end{DoxyParamCaption}
+)}\hypertarget{classInput_a047b280ecbd65bf8be570aba4f07f440}{}\label{classInput_a047b280ecbd65bf8be570aba4f07f440}
+Adds a runway to the simulation with the given specifications ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling add\+Runway\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(runway-\/$>$complete(), \char`\"{}\+Runway has to be completely initialized to add it to the simulation\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(runway-\/$>$get\+Airport()-\/$>$get\+Runways().back() == runway, \char`\"{}\+Runway was not added to the airport\char`\"{}); 
+\begin{DoxyCode}
+529                                     \{
+530     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       addRunway"});
+531     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(runway->\hyperlink{classRunway_a3f905e251e1c7941690cf89c1fabd04c}{complete}(), \textcolor{stringliteral}{"Runway has to be completely initialized to add it to the
+       simulation"});
+532     runway->\hyperlink{classRunway_a8a16d41a8c65a85e433d96faafb5de06}{getAirport}()->\hyperlink{classAirport_a346e81f1bbb8b9eb9a0eee341d947fc1}{addRunway}(runway);
+533     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(runway->\hyperlink{classRunway_a8a16d41a8c65a85e433d96faafb5de06}{getAirport}()->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}().back() == runway, \textcolor{stringliteral}{"Runway was not
+       added to the airport"});
+534 \}
+\end{DoxyCode}
+\index{Input@{Input}!find\+Airport\+By\+I\+A\+TA@{find\+Airport\+By\+I\+A\+TA}}
+\index{find\+Airport\+By\+I\+A\+TA@{find\+Airport\+By\+I\+A\+TA}!Input@{Input}}
+\subsubsection[{\texorpdfstring{find\+Airport\+By\+I\+A\+T\+A(const string \&iata) const }{findAirportByIATA(const string &iata) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Airport} $\ast$ Input\+::find\+Airport\+By\+I\+A\+TA (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{iata}
+\end{DoxyParamCaption}
+) const}\hypertarget{classInput_a554acd227613a3b7ac86bce4d41060c7}{}\label{classInput_a554acd227613a3b7ac86bce4d41060c7}
+Finds an airport with a specific I\+A\+TA ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling find\+Airport\+By\+I\+A\+T\+A\char`\"{}); 
+\begin{DoxyCode}
+543                                                           \{
+544     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       findAirportByIATA"});
+545     \textcolor{comment}{// Check all Airports and if the Airport matches the IATA, return this Airport.}
+546     vector<Airport*>::const\_iterator itr;
+547     \textcolor{keywordflow}{for} (itr = airports.begin(); itr < airports.end(); ++itr) \{
+548         \hyperlink{classAirport}{Airport}* cur\_ap = *itr;
+549         \textcolor{keywordflow}{if} (cur\_ap->\hyperlink{classAirport_a4550198ddc92d3583a0f3c31278189b2}{getIata}() == iata) \{
+550             \textcolor{keywordflow}{return} cur\_ap;
+551         \}
+552     \}
+553     \textcolor{keywordflow}{return} NULL;
+554 \}
+\end{DoxyCode}
+\index{Input@{Input}!get\+Airports@{get\+Airports}}
+\index{get\+Airports@{get\+Airports}!Input@{Input}}
+\subsubsection[{\texorpdfstring{get\+Airports() const }{getAirports() const }}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Airport} $\ast$ $>$ Input\+::get\+Airports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classInput_aa1f634b15684092240be80cb17dd28ec}{}\label{classInput_aa1f634b15684092240be80cb17dd28ec}
+Getter for the airports in the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling get\+Airports\char`\"{}); \begin{DoxyReturn}{Returns}
+vec of all airports 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+556                                           \{
+557     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       getAirports"});
+558     \textcolor{keywordflow}{return} Input::airports;
+559 \}
+\end{DoxyCode}
+\index{Input@{Input}!get\+Flightplans@{get\+Flightplans}}
+\index{get\+Flightplans@{get\+Flightplans}!Input@{Input}}
+\subsubsection[{\texorpdfstring{get\+Flightplans() const }{getFlightplans() const }}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Flightplan} $\ast$ $>$ Input\+::get\+Flightplans (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classInput_af03591fafa66902f7f4050b37e6b428e}{}\label{classInput_af03591fafa66902f7f4050b37e6b428e}
+Getter for the flightplans in the simulation ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling get\+Flightplans\char`\"{}); \begin{DoxyReturn}{Returns}
+vec of all flightplans 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+561                                                 \{
+562     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properlyInitialized}(), \textcolor{stringliteral}{"Input was't initialized when calling
+       getFlightplans"});
+563     \textcolor{keywordflow}{return} flightplans;
+564 \}
+\end{DoxyCode}
+\index{Input@{Input}!is\+Number@{is\+Number}}
+\index{is\+Number@{is\+Number}!Input@{Input}}
+\subsubsection[{\texorpdfstring{is\+Number(const string \&)}{isNumber(const string &)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Input\+::is\+Number (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{input}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classInput_a07fca98c3279dbcb8d49afa59bd9ad7f}{}\label{classInput_a07fca98c3279dbcb8d49afa59bd9ad7f}
+Checks if a given string is a valid unsigned int ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling is\+Number\char`\"{}); 
+\begin{DoxyCode}
+570                                         \{
+571     string::const\_iterator it;
+572     \textcolor{keywordflow}{for} (it = input.begin(); it != input.end(); ++it) \{
+573         \textcolor{keywordflow}{if} (!isdigit(*it)) \{
+574             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+575         \}
+576     \}
+577     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+578 \}\end{DoxyCode}
+\index{Input@{Input}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Input@{Input}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Input\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{}\label{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}
+Checks if the object is properly initialized 
+\begin{DoxyCode}
+566                                       \{
+567     \textcolor{keywordflow}{return} fInitCheck == \textcolor{keyword}{this};
+568 \}
+\end{DoxyCode}
+\index{Input@{Input}!read@{read}}
+\index{read@{read}!Input@{Input}}
+\subsubsection[{\texorpdfstring{read(const string \&filename, ostream \&error\+Log=cerr)}{read(const string &filename, ostream &errorLog=cerr)}}]{\setlength{\rightskip}{0pt plus 5cm}void Input\+::read (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{filename, }
+\item[{ostream \&}]{error\+Log = {\ttfamily cerr}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInput_abb78078475f91c654db63c392aefbf51}{}\label{classInput_abb78078475f91c654db63c392aefbf51}
+Reads the given file and stores the information ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classInput_a42a0d1fd763cb2814cefe27b144ae0bb}{properly\+Initialized()}, \char`\"{}\+Input was\textquotesingle{}t initialized when calling read\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em filename} & name of the file with input \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+9                                                           \{
+10     \textcolor{comment}{// Load xml file, program will end if failed}
+11     TiXmlDocument xml;
+12     \textcolor{keywordtype}{string} error = \textcolor{stringliteral}{"Couldn't open "} + filename + \textcolor{stringliteral}{"."};
+13     \textcolor{keywordflow}{if} (!xml.LoadFile(filename.c\_str())) \{
+14         errorLog << xml.ErrorDesc() << endl;
+15         xml.Clear();
+16     \}
+17     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(xml.LoadFile(filename.c\_str()), error.c\_str());
+18 
+19     \textcolor{comment}{// We iterate over all root elements.}
+20     \textcolor{keywordflow}{for} (TiXmlElement *root = xml.FirstChildElement(); root != NULL; root = root->NextSiblingElement()) \{
+21 
+22         \textcolor{comment}{// Airports}
+23         \textcolor{keywordflow}{if} (strcmp(root->Value(), \textcolor{stringliteral}{"AIRPORT"}) == 0) \{
+24             readAirport(root->FirstChildElement(), errorLog);
+25         \}
+26 
+27         \textcolor{comment}{// Runways}
+28         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(root->Value(), \textcolor{stringliteral}{"RUNWAY"}) == 0) \{
+29             readRunway(root->FirstChildElement(), errorLog);
+30         \}
+31 
+32         \textcolor{comment}{// Airplanes}
+33         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(root->Value(), \textcolor{stringliteral}{"AIRPLANE"}) == 0) \{
+34             readAirplane(root->FirstChildElement(), errorLog);
+35         \}
+36 
+37         \textcolor{comment}{// Invalid element}
+38         \textcolor{keywordflow}{else} \{
+39             errorLog << \textcolor{stringliteral}{"Did not recognize element: "} << root->Value() << endl;
+40         \}
+41     \}
+42 
+43     \textcolor{comment}{// We are finished with our XML file, so we clear it.}
+44     xml.Clear();
+45 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{Input_8h}{Input.\+h}\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{Input_8cpp}{Input.\+cpp}\end{DoxyCompactItemize}

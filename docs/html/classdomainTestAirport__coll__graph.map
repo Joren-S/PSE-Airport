@@ -1,0 +1,5 @@
+<map id="domainTestAirport" name="domainTestAirport">
+<area shape="rect" id="node3" href="$classRunway.html" title="Runway" alt="" coords="78,5,149,32"/>
+<area shape="rect" id="node4" href="$classAirport.html" title="Airport" alt="" coords="173,5,233,32"/>
+<area shape="rect" id="node5" href="$classAirplane.html" title=": Class that represents an airplane in the simulation " alt="" coords="257,5,327,32"/>
+</map>

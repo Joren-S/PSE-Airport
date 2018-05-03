@@ -1,0 +1,242 @@
+\hypertarget{inputTests_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/input\+Tests.cpp File Reference}
+\label{inputTests_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/input\+Tests.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/input\+Tests.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../headers/\+Test\+Utils.\+h\char`\"{}}\\*
+Include dependency graph for input\+Tests.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{inputTests_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classinputTest}{input\+Test}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{inputTests_8cpp_aa8ebd734152159af3c92b4ec75d47450}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, Happy\+Day)
+\item 
+\hyperlink{inputTests_8cpp_a9b03ca3732e9d4f3c834838da9d7f717}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, legal\+Input)
+\item 
+\hyperlink{inputTests_8cpp_a2338ca366031b158f7456448da2b7c66}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, nonexistent\+File)
+\item 
+\hyperlink{inputTests_8cpp_ad5dac42126b17df6e2d2b1920e0e33e0}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, X\+M\+L\+Syntax\+Errors)
+\item 
+\hyperlink{inputTests_8cpp_a569d511a8cf6dc747a7fc453ce9cd7f9}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, illegal\+Airport)
+\item 
+\hyperlink{inputTests_8cpp_ab5671cde3a1d271a21ca903205d100fe}{T\+E\+S\+T\+\_\+F} (\hyperlink{classinputTest}{input\+Test}, illegal\+Element)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, Happy\+Day)}{TEST_F(inputTest, HappyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{Happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_aa8ebd734152159af3c92b4ec75d47450}{}\label{inputTests_8cpp_aa8ebd734152159af3c92b4ec75d47450}
+
+\begin{DoxyCode}
+19                             \{
+20     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists}(\textcolor{stringliteral}{"../test/testInput/happyDay.xml"}));
+21     input.read(\textcolor{stringliteral}{"../test/testInput/happyDay.xml"});
+22 
+23     vector<Flightplan*> flightplans = input.getFlightplans();
+24     EXPECT\_EQ(flightplans.size(), size\_t(1));
+25 
+26     vector<Airport*> airports = input.getAirports();
+27     EXPECT\_EQ(airports.size(), size\_t(1));
+28 
+29     \hyperlink{classFlightplan}{Flightplan}* flightplan = flightplans[0];
+30     EXPECT\_TRUE(flightplan != NULL);
+31 
+32     \hyperlink{classAirport}{Airport}* airport = input.getAirports()[0];
+33     EXPECT\_TRUE(airport != NULL);
+34 
+35     vector<Runway*> runways = airport->\hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}();
+36     EXPECT\_EQ(runways.size(), size\_t(2));
+37 
+38     \textcolor{comment}{// Airport}
+39     EXPECT\_EQ(airport->\hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{getName}(), \textcolor{stringliteral}{"Antwerp International Airport"});
+40     EXPECT\_EQ(airport->\hyperlink{classAirport_a4550198ddc92d3583a0f3c31278189b2}{getIata}(), \textcolor{stringliteral}{"ANR"});
+41     EXPECT\_EQ(airport->\hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{getCallsign}(), \textcolor{stringliteral}{"Antwerp Tower"});
+42     EXPECT\_EQ(airport->\hyperlink{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}{getGates}(), 10);
+43 
+44     \textcolor{comment}{// Runways}
+45     \hyperlink{classRunway}{Runway}* runway1 = runways[0];
+46     EXPECT\_EQ(runway1->getName(), \textcolor{stringliteral}{"11R"});
+47     EXPECT\_EQ(runway1->getAirport(), airport);
+48     EXPECT\_EQ(runway1->getType(), \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+49     EXPECT\_EQ(runway1->getLength(), 1510);
+50     EXPECT\_EQ(runway1->getTaxiPoint(), \textcolor{stringliteral}{"Alpha"});
+51 
+52     \hyperlink{classRunway}{Runway}* runway2 = runways[1];
+53     EXPECT\_EQ(runway2->getName(), \textcolor{stringliteral}{"11L"});
+54     EXPECT\_EQ(runway2->getAirport(), airport);
+55     EXPECT\_EQ(runway2->getType(), \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+56     EXPECT\_EQ(runway2->getLength(), 1010);
+57     EXPECT\_EQ(runway2->getTaxiPoint(), \textcolor{stringliteral}{"Bravo"});
+58 
+59     \textcolor{comment}{// Flightplan}
+60     EXPECT\_EQ(flightplan->getDestination(), \textcolor{stringliteral}{"LCY"});
+61     EXPECT\_EQ(flightplan->getDeparture(), 30);
+62     EXPECT\_EQ(flightplan->getArrival(), 15);
+63     EXPECT\_EQ(flightplan->getInterval(), 3);
+64 
+65     \hyperlink{classAirplane}{Airplane}* airplane = flightplan->getAirplane();
+66     EXPECT\_TRUE(airplane != NULL);
+67 
+68     EXPECT\_EQ(airplane->getNumber(), \textcolor{stringliteral}{"N11842"});
+69     EXPECT\_EQ(airplane->getCallsign(), \textcolor{stringliteral}{"Cessna 842"});
+70     EXPECT\_EQ(airplane->getModel(), \textcolor{stringliteral}{"Cessna 340"});
+71     EXPECT\_EQ(airplane->getType(), \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{kPrivate});
+72     EXPECT\_EQ(airplane->getEngine(), \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+73     EXPECT\_EQ(airplane->getSize(), \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+74     EXPECT\_EQ(airplane->getFuel(), 10);
+75     EXPECT\_EQ(airplane->getPassengers(), 8);
+76 \}
+\end{DoxyCode}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, legal\+Input)}{TEST_F(inputTest, legalInput)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{legal\+Input}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_a9b03ca3732e9d4f3c834838da9d7f717}{}\label{inputTests_8cpp_a9b03ca3732e9d4f3c834838da9d7f717}
+
+\begin{DoxyCode}
+78                               \{
+79     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{DirectoryExists}(\textcolor{stringliteral}{"../test/testInput"}));
+80 
+81     ofstream myfile;
+82     \textcolor{keywordtype}{int} fileCounter = 1;
+83     \textcolor{keywordtype}{string} fileName = \textcolor{stringliteral}{"../test/testInput/legalInput"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+84 
+85     \textcolor{keywordflow}{while} (\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists} (fileName)) \{
+86         myfile.open(\textcolor{stringliteral}{"../test/testInput/error.txt"});
+87         input.read(fileName, myfile);
+88         myfile.close();
+89 
+90         EXPECT\_TRUE(\hyperlink{TestUtils_8h_a535fe54abcba82699a3d58fc7c04fce7}{FileIsEmpty}(\textcolor{stringliteral}{"../test/testInput/error.txt"}));
+91 
+92         fileCounter = fileCounter + 1;
+93         fileName = \textcolor{stringliteral}{"../test/testInput/legalInput"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+94     \}
+95 \}
+\end{DoxyCode}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, nonexistent\+File)}{TEST_F(inputTest, nonexistentFile)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{nonexistent\+File}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_a2338ca366031b158f7456448da2b7c66}{}\label{inputTests_8cpp_a2338ca366031b158f7456448da2b7c66}
+
+\begin{DoxyCode}
+97                                    \{
+98     ASSERT\_DEATH(input.read(\textcolor{stringliteral}{"nonexistent1"}), \textcolor{stringliteral}{"Couldn't open nonexistent1."});
+99     ASSERT\_DEATH(input.read(\textcolor{stringliteral}{"nonexistent2"}), \textcolor{stringliteral}{"Couldn't open nonexistent2."});
+100     ASSERT\_DEATH(input.read(\textcolor{stringliteral}{"nonexistent3"}), \textcolor{stringliteral}{"Couldn't open nonexistent3."});
+101 \}
+\end{DoxyCode}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, X\+M\+L\+Syntax\+Errors)}{TEST_F(inputTest, XMLSyntaxErrors)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{X\+M\+L\+Syntax\+Errors}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_ad5dac42126b17df6e2d2b1920e0e33e0}{}\label{inputTests_8cpp_ad5dac42126b17df6e2d2b1920e0e33e0}
+
+\begin{DoxyCode}
+104                                    \{
+105     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{DirectoryExists}(\textcolor{stringliteral}{"../test/testInput"}));
+106 
+107     ofstream myfile;
+108     \textcolor{keywordtype}{int} fileCounter = 1;
+109     \textcolor{keywordtype}{string} fileName = \textcolor{stringliteral}{"../test/testInput/inputSyntaxError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+110 
+111     \textcolor{keywordflow}{while} (\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists} (fileName)) \{
+112 
+113         EXPECT\_DEATH(input.read(fileName, myfile), \textcolor{stringliteral}{"Couldn't open "} + fileName + \textcolor{stringliteral}{"."});
+114         myfile.close();
+115 
+116         fileCounter++;
+117         fileName = \textcolor{stringliteral}{"../test/testInput/inputSyntaxError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+118     \}
+119 \}
+\end{DoxyCode}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, illegal\+Airport)}{TEST_F(inputTest, illegalAirport)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{illegal\+Airport}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_a569d511a8cf6dc747a7fc453ce9cd7f9}{}\label{inputTests_8cpp_a569d511a8cf6dc747a7fc453ce9cd7f9}
+
+\begin{DoxyCode}
+121                                   \{
+122     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{DirectoryExists}(\textcolor{stringliteral}{"../test/testInput"}));
+123 
+124     ofstream myfile;
+125     \textcolor{keywordtype}{int} fileCounter = 1;
+126     \textcolor{keywordtype}{string} fileName = \textcolor{stringliteral}{"../test/testInput/inputAirportError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+127 
+128     \textcolor{keywordflow}{while} (\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists} (fileName)) \{
+129         \textcolor{keywordtype}{string} errorFileName = \textcolor{stringliteral}{"../test/testInput/airportError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".txt"};
+130 
+131         myfile.open(\textcolor{stringliteral}{"../test/testInput/error.txt"});
+132 
+133         \hyperlink{classInput}{Input} in;
+134         EXPECT\_DEATH(input.read(fileName, myfile), \textcolor{stringliteral}{"No airport in simulation"});
+135 
+136         myfile.close();
+137 
+138         fileCounter++;
+139         fileName = \textcolor{stringliteral}{"../test/testInput/inputAirportError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+140     \}
+141 \}
+\end{DoxyCode}
+\index{input\+Tests.\+cpp@{input\+Tests.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!input\+Tests.\+cpp@{input\+Tests.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(input\+Test, illegal\+Element)}{TEST_F(inputTest, illegalElement)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf input\+Test}}]{, }
+\item[{illegal\+Element}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{inputTests_8cpp_ab5671cde3a1d271a21ca903205d100fe}{}\label{inputTests_8cpp_ab5671cde3a1d271a21ca903205d100fe}
+
+\begin{DoxyCode}
+143                                   \{
+144     ASSERT\_TRUE(\hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{DirectoryExists}(\textcolor{stringliteral}{"../test/testInput"}));
+145 
+146     ofstream myfile;
+147     \textcolor{keywordtype}{int} fileCounter = 1;
+148     \textcolor{keywordtype}{string} fileName = \textcolor{stringliteral}{"../test/testInput/inputPartialError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+149 
+150     \textcolor{keywordflow}{while} (\hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{FileExists} (fileName)) \{
+151         \textcolor{keywordtype}{string} errorFileName = \textcolor{stringliteral}{"../test/testInput/illegalError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".txt"};
+152 
+153         myfile.open(\textcolor{stringliteral}{"../test/testInput/error.txt"});
+154 
+155         \hyperlink{classInput}{Input} in;
+156         in.\hyperlink{classInput_abb78078475f91c654db63c392aefbf51}{read}(fileName, myfile);
+157         myfile.close();
+158 
+159         EXPECT\_TRUE(\hyperlink{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{FileCompare}(\textcolor{stringliteral}{"../test/testInput/error.txt"}, errorFileName));
+160 
+161         fileCounter++;
+162         fileName = \textcolor{stringliteral}{"../test/testInput/inputPartialError"} + \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{ToString}(fileCounter) + \textcolor{stringliteral}{".xml"};
+163     \}
+164 \}
+\end{DoxyCode}

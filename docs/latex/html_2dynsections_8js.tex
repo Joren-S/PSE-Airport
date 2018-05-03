@@ -1,0 +1,154 @@
+\hypertarget{html_2dynsections_8js}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/dynsections.js File Reference}
+\label{html_2dynsections_8js}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/dynsections.\+js@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/dynsections.\+js}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{html_2dynsections_8js_a1922c462474df7dfd18741c961d59a25}{toggle\+Visibility} (link\+Obj)
+\item 
+function \hyperlink{html_2dynsections_8js_a8f7493ad859d4fbf2523917511ee7177}{update\+Stripes} ()
+\item 
+function \hyperlink{html_2dynsections_8js_a19f577cc1ba571396a85bb1f48bf4df2}{toggle\+Level} (level)
+\item 
+function \hyperlink{html_2dynsections_8js_af244da4527af2d845dca04f5656376cd}{toggle\+Folder} (id)
+\item 
+function \hyperlink{html_2dynsections_8js_ac057b640b17ff32af11ced151c9305b4}{toggle\+Inherit} (id)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{html/dynsections.\+js@{html/dynsections.\+js}!toggle\+Folder@{toggle\+Folder}}
+\index{toggle\+Folder@{toggle\+Folder}!html/dynsections.\+js@{html/dynsections.\+js}}
+\subsubsection[{\texorpdfstring{toggle\+Folder(id)}{toggleFolder(id)}}]{\setlength{\rightskip}{0pt plus 5cm}function toggle\+Folder (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2dynsections_8js_af244da4527af2d845dca04f5656376cd}{}\label{html_2dynsections_8js_af244da4527af2d845dca04f5656376cd}
+
+\begin{DoxyCode}
+50 \{
+51   \textcolor{comment}{// the clicked row}
+52   var currentRow = $(\textcolor{stringliteral}{'#row\_'}+id);
+53 
+54   \textcolor{comment}{// all rows after the clicked row}
+55   var rows = currentRow.nextAll(\textcolor{stringliteral}{"tr"});
+56 
+57   var re = \textcolor{keyword}{new} RegExp(\textcolor{stringliteral}{'^row\_'}+\textcolor{keywordtype}{id}+\textcolor{stringliteral}{'\(\backslash\)\(\backslash\)d+\_$'}, \textcolor{stringliteral}{"i"}); \textcolor{comment}{//only one sub}
+58 
+59   \textcolor{comment}{// only match elements AFTER this one (can't hide elements before)}
+60   var childRows = rows.filter(\textcolor{keyword}{function}() \{ \textcolor{keywordflow}{return} this.\textcolor{keywordtype}{id}.match(re); \});
+61 
+62   \textcolor{comment}{// first row is visible we are HIDING}
+63   \textcolor{keywordflow}{if} (childRows.filter(\textcolor{stringliteral}{':first'}).is(\textcolor{stringliteral}{':visible'})===\textcolor{keyword}{true}) \{
+64     \textcolor{comment}{// replace down arrow by right arrow for current row}
+65     var currentRowSpans = currentRow.find(\textcolor{stringliteral}{"span"});
+66     currentRowSpans.filter(\textcolor{stringliteral}{".iconfopen"}).removeClass(\textcolor{stringliteral}{"iconfopen"}).addClass(\textcolor{stringliteral}{"iconfclosed"});
+67     currentRowSpans.filter(\textcolor{stringliteral}{".arrow"}).html(\textcolor{stringliteral}{'&#9658;'});
+68     rows.filter(\textcolor{stringliteral}{"[id^=row\_"}+\textcolor{keywordtype}{id}+\textcolor{stringliteral}{"]"}).hide(); \textcolor{comment}{// hide all children}
+69   \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{// we are SHOWING}
+70     \textcolor{comment}{// replace right arrow by down arrow for current row}
+71     var currentRowSpans = currentRow.find(\textcolor{stringliteral}{"span"});
+72     currentRowSpans.filter(\textcolor{stringliteral}{".iconfclosed"}).removeClass(\textcolor{stringliteral}{"iconfclosed"}).addClass(\textcolor{stringliteral}{"iconfopen"});
+73     currentRowSpans.filter(\textcolor{stringliteral}{".arrow"}).html(\textcolor{stringliteral}{'&#9660;'});
+74     \textcolor{comment}{// replace down arrows by right arrows for child rows}
+75     var childRowsSpans = childRows.find(\textcolor{stringliteral}{"span"});
+76     childRowsSpans.filter(\textcolor{stringliteral}{".iconfopen"}).removeClass(\textcolor{stringliteral}{"iconfopen"}).addClass(\textcolor{stringliteral}{"iconfclosed"});
+77     childRowsSpans.filter(\textcolor{stringliteral}{".arrow"}).html(\textcolor{stringliteral}{'&#9658;'});
+78     childRows.show(); \textcolor{comment}{//show all children}
+79   \}
+80   \hyperlink{docs_2html_2dynsections_8js_a8f7493ad859d4fbf2523917511ee7177}{updateStripes}();
+81 \}
+\end{DoxyCode}
+\index{html/dynsections.\+js@{html/dynsections.\+js}!toggle\+Inherit@{toggle\+Inherit}}
+\index{toggle\+Inherit@{toggle\+Inherit}!html/dynsections.\+js@{html/dynsections.\+js}}
+\subsubsection[{\texorpdfstring{toggle\+Inherit(id)}{toggleInherit(id)}}]{\setlength{\rightskip}{0pt plus 5cm}function toggle\+Inherit (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2dynsections_8js_ac057b640b17ff32af11ced151c9305b4}{}\label{html_2dynsections_8js_ac057b640b17ff32af11ced151c9305b4}
+
+\begin{DoxyCode}
+85 \{
+86   var rows = $(\textcolor{stringliteral}{'tr.inherit.'}+id);
+87   var img = $(\textcolor{stringliteral}{'tr.inherit\_header.'}+\textcolor{keywordtype}{id}+\textcolor{stringliteral}{' img'});
+88   var src = $(img).attr(\textcolor{stringliteral}{'src'});
+89   \textcolor{keywordflow}{if} (rows.filter(\textcolor{stringliteral}{':first'}).is(\textcolor{stringliteral}{':visible'})===\textcolor{keyword}{true}) \{
+90     rows.css(\textcolor{stringliteral}{'display'},\textcolor{stringliteral}{'none'});
+91     $(img).attr(\textcolor{stringliteral}{'src'},src.substring(0,src.length-8)+\textcolor{stringliteral}{'closed.png'});
+92   \} \textcolor{keywordflow}{else} \{
+93     rows.css(\textcolor{stringliteral}{'display'},\textcolor{stringliteral}{'table-row'}); \textcolor{comment}{// using show() causes jump in firefox}
+94     $(img).attr(\textcolor{stringliteral}{'src'},src.substring(0,src.length-10)+\textcolor{stringliteral}{'open.png'});
+95   \}
+96 \}
+\end{DoxyCode}
+\index{html/dynsections.\+js@{html/dynsections.\+js}!toggle\+Level@{toggle\+Level}}
+\index{toggle\+Level@{toggle\+Level}!html/dynsections.\+js@{html/dynsections.\+js}}
+\subsubsection[{\texorpdfstring{toggle\+Level(level)}{toggleLevel(level)}}]{\setlength{\rightskip}{0pt plus 5cm}function toggle\+Level (
+\begin{DoxyParamCaption}
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2dynsections_8js_a19f577cc1ba571396a85bb1f48bf4df2}{}\label{html_2dynsections_8js_a19f577cc1ba571396a85bb1f48bf4df2}
+
+\begin{DoxyCode}
+29 \{
+30   $(\textcolor{stringliteral}{'table.directory tr'}).\hyperlink{docs_2html_2jquery_8js_a871ff39db627c54c710a3e9909b8234c}{each}(\textcolor{keyword}{function}() \{
+31     var l = this.\textcolor{keywordtype}{id}.split(\textcolor{charliteral}{'\_'}).length-1;
+32     var i = $(\textcolor{stringliteral}{'#img'}+this.\textcolor{keywordtype}{id}.substring(3));
+33     var a = $(\textcolor{stringliteral}{'#arr'}+this.\textcolor{keywordtype}{id}.substring(3));
+34     \textcolor{keywordflow}{if} (l<level+1) \{
+35       i.removeClass(\textcolor{stringliteral}{'iconfopen iconfclosed'}).addClass(\textcolor{stringliteral}{'iconfopen'});
+36       a.html(\textcolor{stringliteral}{'&#9660;'});
+37       $(\textcolor{keyword}{this}).show();
+38     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (l==level+1) \{
+39       i.removeClass(\textcolor{stringliteral}{'iconfclosed iconfopen'}).addClass(\textcolor{stringliteral}{'iconfclosed'});
+40       a.html(\textcolor{stringliteral}{'&#9658;'});
+41       $(\textcolor{keyword}{this}).show();
+42     \} \textcolor{keywordflow}{else} \{
+43       $(\textcolor{keyword}{this}).hide();
+44     \}
+45   \});
+46   \hyperlink{docs_2html_2dynsections_8js_a8f7493ad859d4fbf2523917511ee7177}{updateStripes}();
+47 \}
+\end{DoxyCode}
+\index{html/dynsections.\+js@{html/dynsections.\+js}!toggle\+Visibility@{toggle\+Visibility}}
+\index{toggle\+Visibility@{toggle\+Visibility}!html/dynsections.\+js@{html/dynsections.\+js}}
+\subsubsection[{\texorpdfstring{toggle\+Visibility(link\+Obj)}{toggleVisibility(linkObj)}}]{\setlength{\rightskip}{0pt plus 5cm}function toggle\+Visibility (
+\begin{DoxyParamCaption}
+\item[{}]{link\+Obj}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2dynsections_8js_a1922c462474df7dfd18741c961d59a25}{}\label{html_2dynsections_8js_a1922c462474df7dfd18741c961d59a25}
+
+\begin{DoxyCode}
+2 \{
+3  var base = $(linkObj).attr(\textcolor{stringliteral}{'id'});
+4  var summary = $(\textcolor{charliteral}{'#'}+base+\textcolor{stringliteral}{'-summary'});
+5  var content = $(\textcolor{charliteral}{'#'}+base+\textcolor{stringliteral}{'-content'});
+6  var trigger = $(\textcolor{charliteral}{'#'}+base+\textcolor{stringliteral}{'-trigger'});
+7  var src=$(trigger).attr(\textcolor{stringliteral}{'src'});
+8  \textcolor{keywordflow}{if} (content.is(\textcolor{stringliteral}{':visible'})===\textcolor{keyword}{true}) \{
+9    content.hide();
+10    summary.show();
+11    $(linkObj).addClass(\textcolor{stringliteral}{'closed'}).removeClass(\textcolor{stringliteral}{'opened'});
+12    $(trigger).attr(\textcolor{stringliteral}{'src'},src.substring(0,src.length-8)+\textcolor{stringliteral}{'closed.png'});
+13  \} \textcolor{keywordflow}{else} \{
+14    content.show();
+15    summary.hide();
+16    $(linkObj).removeClass(\textcolor{stringliteral}{'closed'}).addClass(\textcolor{stringliteral}{'opened'});
+17    $(trigger).attr(\textcolor{stringliteral}{'src'},src.substring(0,src.length-10)+\textcolor{stringliteral}{'open.png'});
+18  \} 
+19  \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+20 \}
+\end{DoxyCode}
+\index{html/dynsections.\+js@{html/dynsections.\+js}!update\+Stripes@{update\+Stripes}}
+\index{update\+Stripes@{update\+Stripes}!html/dynsections.\+js@{html/dynsections.\+js}}
+\subsubsection[{\texorpdfstring{update\+Stripes()}{updateStripes()}}]{\setlength{\rightskip}{0pt plus 5cm}function update\+Stripes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2dynsections_8js_a8f7493ad859d4fbf2523917511ee7177}{}\label{html_2dynsections_8js_a8f7493ad859d4fbf2523917511ee7177}
+
+\begin{DoxyCode}
+23 \{
+24   $(\textcolor{stringliteral}{'table.directory tr'}).
+25        removeClass(\textcolor{stringliteral}{'even'}).filter(\textcolor{stringliteral}{':visible:even'}).addClass(\textcolor{stringliteral}{'even'});
+26 \}
+\end{DoxyCode}

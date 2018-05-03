@@ -1,0 +1,384 @@
+\hypertarget{classRunway}{}\section{Runway Class Reference}
+\label{classRunway}\index{Runway@{Runway}}
+
+
+{\ttfamily \#include $<$Runway.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRunway_a75b9355b4953bd430f7c6ea0a18b465a}{Runway} ()
+\item 
+bool \hyperlink{classRunway_a3f905e251e1c7941690cf89c1fabd04c}{complete} () const 
+\item 
+bool \hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properly\+Initialized} () const 
+\item 
+bool \hyperlink{classRunway_a54aa6c5f9054cc5d16c10257c641f997}{valid\+For\+Airplane} (\hyperlink{classAirplane}{Airplane} $\ast$plane) const 
+\item 
+\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2}{E\+Runway\+Type} \hyperlink{classRunway_a6d936a840916f8a5fe01551622cf6c46}{get\+Type} () const 
+\item 
+void \hyperlink{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{set\+Type} (\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2}{E\+Runway\+Type} type)
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classRunway_ab22377036fde6582fa86441e73ad69d2}{get\+Length} () const 
+\item 
+void \hyperlink{classRunway_af32954dc4688acd3a91114d200c6df9e}{set\+Length} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} length)
+\item 
+const string \& \hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{get\+Name} () const 
+\item 
+void \hyperlink{classRunway_ae346a0e299a7cbea186ad6ab25a46ae0}{set\+Name} (const string \&f\+Name)
+\item 
+bool \hyperlink{classRunway_a7696b8546ad5ba33d401d7ba740c5936}{is\+Free} () const 
+\item 
+void \hyperlink{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{set\+Free} (bool free)
+\item 
+string \hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{get\+Taxi\+Point} () const 
+\item 
+void \hyperlink{classRunway_a99a62b2993713ffc18e88cae16c11d11}{set\+Taxi\+Point} (const string \&)
+\item 
+\hyperlink{classAirport}{Airport} $\ast$ \hyperlink{classRunway_a8a16d41a8c65a85e433d96faafb5de06}{get\+Airport} () const 
+\item 
+void \hyperlink{classRunway_a41fd8ad7313e7b667853869854bdc4e6}{set\+Airport} (\hyperlink{classAirport}{Airport} $\ast$f\+Airport)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Runway@{Runway}!Runway@{Runway}}
+\index{Runway@{Runway}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{Runway()}{Runway()}}]{\setlength{\rightskip}{0pt plus 5cm}Runway\+::\+Runway (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_a75b9355b4953bd430f7c6ea0a18b465a}{}\label{classRunway_a75b9355b4953bd430f7c6ea0a18b465a}
+Constructor for the \hyperlink{classRunway}{Runway} class. ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properly\+Initialized()}, \char`\"{}\+Runway wasn\textquotesingle{}t properly initialized after constructing.\char`\"{}); 
+\begin{DoxyCode}
+10               : fFree(\textcolor{keyword}{true}), fAirport(NULL), fType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae1dd31bfff8efb153bcf74bebfc8fe57}{kDefaultRunType}), fLength(-1) \{
+11     fInitCheck = \textcolor{keyword}{this};
+12     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized after
+       constructing."});
+13 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{Runway@{Runway}!complete@{complete}}
+\index{complete@{complete}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{complete() const }{complete() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Runway\+::complete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a3f905e251e1c7941690cf89c1fabd04c}{}\label{classRunway_a3f905e251e1c7941690cf89c1fabd04c}
+Checks if all the data members were initialized ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properly\+Initialized()}, \char`\"{}\+Runway wasn\textquotesingle{}t properly initialized when calling complete.\char`\"{}); \begin{DoxyReturn}{Returns}
+\+: Boolean indicating if all members were initialized 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+15                             \{
+16     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling complete."});
+17     \textcolor{keywordflow}{return} !(fType == \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae1dd31bfff8efb153bcf74bebfc8fe57}{kDefaultRunType} or fAirport == NULL or
+18              fLength == -1 or fName.empty() or fTaxiPoint.empty());
+19 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!get\+Airport@{get\+Airport}}
+\index{get\+Airport@{get\+Airport}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{get\+Airport() const }{getAirport() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Airport} $\ast$ Runway\+::get\+Airport (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a8a16d41a8c65a85e433d96faafb5de06}{}\label{classRunway_a8a16d41a8c65a85e433d96faafb5de06}
+
+\begin{DoxyCode}
+131                                   \{
+132     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+133     \textcolor{keywordflow}{return} fAirport;
+134 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!get\+Length@{get\+Length}}
+\index{get\+Length@{get\+Length}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{get\+Length() const }{getLength() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Runway\+::get\+Length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_ab22377036fde6582fa86441e73ad69d2}{}\label{classRunway_ab22377036fde6582fa86441e73ad69d2}
+
+\begin{DoxyCode}
+109                             \{
+110     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+111     \textcolor{keywordflow}{return} fLength;
+112 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{get\+Name() const }{getName() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Runway\+::get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{}\label{classRunway_a2934c38f3af6080f7b40c306a27c57cd}
+
+\begin{DoxyCode}
+120                                     \{
+121     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+122     \textcolor{keywordflow}{return} fName;
+123 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!get\+Taxi\+Point@{get\+Taxi\+Point}}
+\index{get\+Taxi\+Point@{get\+Taxi\+Point}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{get\+Taxi\+Point() const }{getTaxiPoint() const }}]{\setlength{\rightskip}{0pt plus 5cm}string Runway\+::get\+Taxi\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{}\label{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}
+
+\begin{DoxyCode}
+153                                   \{
+154     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+155     \textcolor{keywordflow}{return} fTaxiPoint;
+156 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{get\+Type() const }{getType() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Runway\+Type} Runway\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a6d936a840916f8a5fe01551622cf6c46}{}\label{classRunway_a6d936a840916f8a5fe01551622cf6c46}
+Getters and setters for the fields of the class. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properly\+Initialized()}, \char`\"{}\+Runway wasn\textquotesingle{}t properly initialized when calling getter/setter.\char`\"{});
+
+Setters\+: ~\newline
+ E\+N\+S\+U\+RE(f\+Field == value, \char`\"{}\+Field wasn\textquotesingle{}t set properly\char`\"{}); 
+\begin{DoxyCode}
+98                                   \{
+99     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+100     \textcolor{keywordflow}{return} fType;
+101 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!is\+Free@{is\+Free}}
+\index{is\+Free@{is\+Free}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{is\+Free() const }{isFree() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Runway\+::is\+Free (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a7696b8546ad5ba33d401d7ba740c5936}{}\label{classRunway_a7696b8546ad5ba33d401d7ba740c5936}
+
+\begin{DoxyCode}
+142                           \{
+143     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+144     \textcolor{keywordflow}{return} Runway::fFree;
+145 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Runway\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{}\label{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}
+Checks if the object is properly initialized \begin{DoxyReturn}{Returns}
+\+: Boolean indicating if properly initialized or not. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+21                                        \{
+22     \textcolor{keywordflow}{return} fInitCheck == \textcolor{keyword}{this};
+23 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!set\+Airport@{set\+Airport}}
+\index{set\+Airport@{set\+Airport}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Airport(\+Airport $\ast$f\+Airport)}{setAirport(Airport *fAirport)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Airport (
+\begin{DoxyParamCaption}
+\item[{{\bf Airport} $\ast$}]{f\+Airport}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_a41fd8ad7313e7b667853869854bdc4e6}{}\label{classRunway_a41fd8ad7313e7b667853869854bdc4e6}
+
+\begin{DoxyCode}
+136                                         \{
+137     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+138     fAirport = airport;
+139     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fAirport == airport, \textcolor{stringliteral}{"Field wasn't set properly"});
+140 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!set\+Free@{set\+Free}}
+\index{set\+Free@{set\+Free}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Free(bool free)}{setFree(bool free)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Free (
+\begin{DoxyParamCaption}
+\item[{bool}]{free}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}{}\label{classRunway_aa93f02e87a66d6ac6ff49ebaf6919216}
+
+\begin{DoxyCode}
+147                               \{
+148     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+149     fFree = free;
+150     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fFree == free, \textcolor{stringliteral}{"Field wasn't set properly"});
+151 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!set\+Length@{set\+Length}}
+\index{set\+Length@{set\+Length}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Length(int length)}{setLength(int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Length (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_af32954dc4688acd3a91114d200c6df9e}{}\label{classRunway_af32954dc4688acd3a91114d200c6df9e}
+
+\begin{DoxyCode}
+114                                  \{
+115     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+116     fLength = length;
+117     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fLength == length, \textcolor{stringliteral}{"Field wasn't set properly"});
+118 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Name(const string \&f\+Name)}{setName(const string &fName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Name (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{f\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_ae346a0e299a7cbea186ad6ab25a46ae0}{}\label{classRunway_ae346a0e299a7cbea186ad6ab25a46ae0}
+
+\begin{DoxyCode}
+125                                        \{
+126     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+127     fName = name;
+128     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fName == name, \textcolor{stringliteral}{"Field wasn't set properly"});
+129 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!set\+Taxi\+Point@{set\+Taxi\+Point}}
+\index{set\+Taxi\+Point@{set\+Taxi\+Point}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Taxi\+Point(const string \&)}{setTaxiPoint(const string &)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Taxi\+Point (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_a99a62b2993713ffc18e88cae16c11d11}{}\label{classRunway_a99a62b2993713ffc18e88cae16c11d11}
+
+\begin{DoxyCode}
+158                                             \{
+159     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+160     fTaxiPoint = name;
+161     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fTaxiPoint == name, \textcolor{stringliteral}{"Field wasn't set properly"});
+162 \}\end{DoxyCode}
+\index{Runway@{Runway}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{set\+Type(\+E\+Runway\+Type type)}{setType(ERunwayType type)}}]{\setlength{\rightskip}{0pt plus 5cm}void Runway\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{{\bf E\+Runway\+Type}}]{type}
+\end{DoxyParamCaption}
+)}\hypertarget{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}{}\label{classRunway_a0a95f11d67cb4677f1bddd8cf20ed5bc}
+
+\begin{DoxyCode}
+103                                      \{
+104     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling getter/setter."});
+105     fType = type;
+106     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fType == type, \textcolor{stringliteral}{"Field wasn't set properly"});
+107 \}
+\end{DoxyCode}
+\index{Runway@{Runway}!valid\+For\+Airplane@{valid\+For\+Airplane}}
+\index{valid\+For\+Airplane@{valid\+For\+Airplane}!Runway@{Runway}}
+\subsubsection[{\texorpdfstring{valid\+For\+Airplane(\+Airplane $\ast$plane) const }{validForAirplane(Airplane *plane) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Runway\+::valid\+For\+Airplane (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{plane}
+\end{DoxyParamCaption}
+) const}\hypertarget{classRunway_a54aa6c5f9054cc5d16c10257c641f997}{}\label{classRunway_a54aa6c5f9054cc5d16c10257c641f997}
+Check if this runway is valid for the provided airplane. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properly\+Initialized()}, \char`\"{}\+Runway wasn\textquotesingle{}t properly initialized when calling valid\+For\+Airplane.\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(plane != N\+U\+LL, \char`\"{}\+Plane object does not exist.\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em plane} & \hyperlink{classAirplane}{Airplane} to check validity for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Boolean indicating if valid or not. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+25                                                    \{
+26     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classRunway_ab1eb6649c04ead1c6ba6405b0d6e2a9f}{properlyInitialized}(), \textcolor{stringliteral}{"Runway wasn't properly initialized when
+       calling validForAirplane."});
+27     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(plane != NULL, \textcolor{stringliteral}{"Plane object does not exist."});
+28 
+29     \textcolor{comment}{// Get the required info about the plane.}
+30     \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{EPlaneSize} size = plane->\hyperlink{classAirplane_a0160009a553a9bf339892ba4c3803830}{getSize}();
+31     \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}{EPlaneEngine} engine = plane->\hyperlink{classAirplane_a7c594903638696b53c2dd823fe33ecf2}{getEngine}();
+32     \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2}{ERunwayType} runwayType = \hyperlink{classRunway_a6d936a840916f8a5fe01551622cf6c46}{getType}();
+33     \textcolor{keywordtype}{int} length = \hyperlink{classRunway_ab22377036fde6582fa86441e73ad69d2}{getLength}();
+34 
+35     \textcolor{comment}{// Check all possible valid combinations}
+36     \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall}) \{
+37         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}) \{
+38             \textcolor{keywordflow}{if} (length >= 500) \{
+39                 \textcolor{comment}{// Small, propeller, grass/no grass, l >= 500}
+40                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+41             \}
+42         \}
+43         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}) \{
+44             \textcolor{keywordflow}{if} (runwayType != \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass}) \{
+45                 \textcolor{keywordflow}{if} (length >= 1000) \{
+46                     \textcolor{comment}{// Small, jet, no grass, l >= 1000}
+47                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+48                 \}
+49             \}
+50         \}
+51     \}
+52 
+53     \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium}) \{
+54         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}) \{
+55             \textcolor{keywordflow}{if} (runwayType != \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass}) \{
+56                 \textcolor{keywordflow}{if} (length >= 1000) \{
+57                     \textcolor{comment}{// Medium, propeller, no grass, l >= 1000}
+58                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+59                 \}
+60             \}
+61         \}
+62         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}) \{
+63             \textcolor{keywordflow}{if} (runwayType != \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass}) \{
+64                 \textcolor{keywordflow}{if} (length >= 2000) \{
+65                     \textcolor{comment}{// Medium, jet, no grass, l >= 2000}
+66                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+67                 \}
+68             \}
+69         \}
+70     \}
+71 
+72     \textcolor{keywordflow}{if} (size == \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge}) \{
+73         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}) \{
+74             \textcolor{keywordflow}{if} (runwayType != \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass}) \{
+75                 \textcolor{keywordflow}{if} (length >= 1500) \{
+76                     \textcolor{comment}{// Large, propeller, no grass, l >= 1500}
+77                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+78                 \}
+79             \}
+80         \}
+81         \textcolor{keywordflow}{if} (engine == \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}) \{
+82             \textcolor{keywordflow}{if} (runwayType != \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass}) \{
+83                 \textcolor{keywordflow}{if} (length >= 3000) \{
+84                     \textcolor{comment}{// Large, jet, no grass, l >= 3000}
+85                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+86                 \}
+87             \}
+88         \}
+89     \}
+90 
+91     \textcolor{comment}{// Anything else gets rejected.}
+92     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+93 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{Runway_8h}{Runway.\+h}\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{Runway_8cpp}{Runway.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,223 @@
+\hypertarget{Airplane_8h}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Airplane.h File Reference}
+\label{Airplane_8h}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Airplane.\+h@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Airplane.\+h}}
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include \char`\"{}Design\+By\+Contract.\+h\char`\"{}}\\*
+Include dependency graph for Airplane.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{Airplane_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Airplane_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classAirplane}{Airplane}
+\begin{DoxyCompactList}\small\item\em \+: Class that represents an airplane in the simulation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{E\+Plane\+Status} \{ \\*
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}{k\+Approaching}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{k\+Descending}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{k\+Taxi\+Arrival}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{k\+Taxi\+Departure}, 
+\\*
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}{k\+Circling}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{k\+Deboarding}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{k\+Technical\+Check}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{k\+Gate}, 
+\\*
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{k\+Departure}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{k\+Away}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{k\+Airport}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{k\+Ascending}, 
+\\*
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{k\+Pushback}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{k\+Waiting\+For\+Departure}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{k\+Parked}, 
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{k\+Crossing\+Arrival}, 
+\\*
+\hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{k\+Crossing\+Departure}
+ \}
+\item 
+enum \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9}{E\+Plane\+Type} \{ \\*
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{k\+Private}, 
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{k\+Airline}, 
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{k\+Military}, 
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}{k\+Emergency}, 
+\\*
+\hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{k\+Default\+Type}
+ \}
+\item 
+enum \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{E\+Plane\+Size} \{ \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{k\+Small}, 
+\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{k\+Medium}, 
+\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{k\+Large}, 
+\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{k\+Default\+Size}
+ \}
+\item 
+enum \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}{E\+Plane\+Engine} \{ \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{k\+Propeller}, 
+\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{k\+Jet}, 
+\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{k\+Default\+Engine}
+ \}
+\item 
+enum \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{E\+Plane\+Request} \{ \\*
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{k\+Pending}, 
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{k\+Accepted}, 
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{k\+Denied}, 
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{k\+Confirmed}, 
+\\*
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{k\+Accepted\+Immediate}, 
+\hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{k\+Idle}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{Airplane.\+h@{Airplane.\+h}!E\+Plane\+Engine@{E\+Plane\+Engine}}
+\index{E\+Plane\+Engine@{E\+Plane\+Engine}!Airplane.\+h@{Airplane.\+h}}
+\subsubsection[{\texorpdfstring{E\+Plane\+Engine}{EPlaneEngine}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+Plane\+Engine}}\hypertarget{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}{}\label{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791d}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Propeller@{k\+Propeller}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Propeller@{k\+Propeller}}\item[{\em 
+k\+Propeller\hypertarget{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{}\label{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}
+}]\index{k\+Jet@{k\+Jet}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Jet@{k\+Jet}}\item[{\em 
+k\+Jet\hypertarget{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{}\label{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}
+}]\index{k\+Default\+Engine@{k\+Default\+Engine}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Default\+Engine@{k\+Default\+Engine}}\item[{\em 
+k\+Default\+Engine\hypertarget{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{}\label{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+29 \{ \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller}, \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet}, \hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e}{kDefaultEngine} \};
+\end{DoxyCode}
+\index{Airplane.\+h@{Airplane.\+h}!E\+Plane\+Request@{E\+Plane\+Request}}
+\index{E\+Plane\+Request@{E\+Plane\+Request}!Airplane.\+h@{Airplane.\+h}}
+\subsubsection[{\texorpdfstring{E\+Plane\+Request}{EPlaneRequest}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+Plane\+Request}}\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9b}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Pending@{k\+Pending}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Pending@{k\+Pending}}\item[{\em 
+k\+Pending\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}
+}]\index{k\+Accepted@{k\+Accepted}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Accepted@{k\+Accepted}}\item[{\em 
+k\+Accepted\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}
+}]\index{k\+Denied@{k\+Denied}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Denied@{k\+Denied}}\item[{\em 
+k\+Denied\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}
+}]\index{k\+Confirmed@{k\+Confirmed}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Confirmed@{k\+Confirmed}}\item[{\em 
+k\+Confirmed\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}
+}]\index{k\+Accepted\+Immediate@{k\+Accepted\+Immediate}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Accepted\+Immediate@{k\+Accepted\+Immediate}}\item[{\em 
+k\+Accepted\+Immediate\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}
+}]\index{k\+Idle@{k\+Idle}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Idle@{k\+Idle}}\item[{\em 
+k\+Idle\hypertarget{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{}\label{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+31 \{ \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9bad143035084d581f7aecfabd95652e62c}{kPending}, \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba15597ea7f444a937d40b39b9ea99dd1d}{kAccepted}, \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9baac195c08fab2dff9d0520caf49ea4e11}{kDenied}, \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba85d56dac5419035294b1c769317026fa}{kConfirmed}, 
+      \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba77f4edb231ad722f9deeb2f574557c17}{kAcceptedImmediate}, \hyperlink{Airplane_8h_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632}{kIdle} \};
+\end{DoxyCode}
+\index{Airplane.\+h@{Airplane.\+h}!E\+Plane\+Size@{E\+Plane\+Size}}
+\index{E\+Plane\+Size@{E\+Plane\+Size}!Airplane.\+h@{Airplane.\+h}}
+\subsubsection[{\texorpdfstring{E\+Plane\+Size}{EPlaneSize}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+Plane\+Size}}\hypertarget{Airplane_8h_a0526623f951311ba6780209b9e278dbf}{}\label{Airplane_8h_a0526623f951311ba6780209b9e278dbf}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Small@{k\+Small}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Small@{k\+Small}}\item[{\em 
+k\+Small\hypertarget{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{}\label{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}
+}]\index{k\+Medium@{k\+Medium}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Medium@{k\+Medium}}\item[{\em 
+k\+Medium\hypertarget{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{}\label{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}
+}]\index{k\+Large@{k\+Large}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Large@{k\+Large}}\item[{\em 
+k\+Large\hypertarget{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{}\label{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}
+}]\index{k\+Default\+Size@{k\+Default\+Size}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Default\+Size@{k\+Default\+Size}}\item[{\em 
+k\+Default\+Size\hypertarget{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{}\label{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+27 \{ \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall}, \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium}, \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge}, \hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a}{kDefaultSize} \};
+\end{DoxyCode}
+\index{Airplane.\+h@{Airplane.\+h}!E\+Plane\+Status@{E\+Plane\+Status}}
+\index{E\+Plane\+Status@{E\+Plane\+Status}!Airplane.\+h@{Airplane.\+h}}
+\subsubsection[{\texorpdfstring{E\+Plane\+Status}{EPlaneStatus}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+Plane\+Status}}\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Approaching@{k\+Approaching}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Approaching@{k\+Approaching}}\item[{\em 
+k\+Approaching\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}
+}]\index{k\+Descending@{k\+Descending}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Descending@{k\+Descending}}\item[{\em 
+k\+Descending\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}
+}]\index{k\+Taxi\+Arrival@{k\+Taxi\+Arrival}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Taxi\+Arrival@{k\+Taxi\+Arrival}}\item[{\em 
+k\+Taxi\+Arrival\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}
+}]\index{k\+Taxi\+Departure@{k\+Taxi\+Departure}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Taxi\+Departure@{k\+Taxi\+Departure}}\item[{\em 
+k\+Taxi\+Departure\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}
+}]\index{k\+Circling@{k\+Circling}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Circling@{k\+Circling}}\item[{\em 
+k\+Circling\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}
+}]\index{k\+Deboarding@{k\+Deboarding}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Deboarding@{k\+Deboarding}}\item[{\em 
+k\+Deboarding\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}
+}]\index{k\+Technical\+Check@{k\+Technical\+Check}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Technical\+Check@{k\+Technical\+Check}}\item[{\em 
+k\+Technical\+Check\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}
+}]\index{k\+Gate@{k\+Gate}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Gate@{k\+Gate}}\item[{\em 
+k\+Gate\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}
+}]\index{k\+Departure@{k\+Departure}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Departure@{k\+Departure}}\item[{\em 
+k\+Departure\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}
+}]\index{k\+Away@{k\+Away}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Away@{k\+Away}}\item[{\em 
+k\+Away\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}
+}]\index{k\+Airport@{k\+Airport}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Airport@{k\+Airport}}\item[{\em 
+k\+Airport\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}
+}]\index{k\+Ascending@{k\+Ascending}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Ascending@{k\+Ascending}}\item[{\em 
+k\+Ascending\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}
+}]\index{k\+Pushback@{k\+Pushback}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Pushback@{k\+Pushback}}\item[{\em 
+k\+Pushback\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}
+}]\index{k\+Waiting\+For\+Departure@{k\+Waiting\+For\+Departure}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Waiting\+For\+Departure@{k\+Waiting\+For\+Departure}}\item[{\em 
+k\+Waiting\+For\+Departure\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}
+}]\index{k\+Parked@{k\+Parked}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Parked@{k\+Parked}}\item[{\em 
+k\+Parked\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}
+}]\index{k\+Crossing\+Arrival@{k\+Crossing\+Arrival}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Crossing\+Arrival@{k\+Crossing\+Arrival}}\item[{\em 
+k\+Crossing\+Arrival\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}
+}]\index{k\+Crossing\+Departure@{k\+Crossing\+Departure}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Crossing\+Departure@{k\+Crossing\+Departure}}\item[{\em 
+k\+Crossing\+Departure\hypertarget{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{}\label{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+22                   \{ \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2c6325ac177ddfbe70edf92941c4e8e0}{kApproaching}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{kDescending}, 
+      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa4459995e4bdd3412bbe3d741b3941158}{kCircling}, 
+      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{kDeboarding}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{kTechnicalCheck}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{kGate}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{kDeparture}, 
+      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34}{kAway},
+23                     \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{kAirport}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{kAscending}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{kPushback}, 
+      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{kWaitingForDeparture}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{kParked}, \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival}, 
+      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{kCrossingDeparture} \};
+\end{DoxyCode}
+\index{Airplane.\+h@{Airplane.\+h}!E\+Plane\+Type@{E\+Plane\+Type}}
+\index{E\+Plane\+Type@{E\+Plane\+Type}!Airplane.\+h@{Airplane.\+h}}
+\subsubsection[{\texorpdfstring{E\+Plane\+Type}{EPlaneType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf E\+Plane\+Type}}\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{k\+Private@{k\+Private}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Private@{k\+Private}}\item[{\em 
+k\+Private\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}
+}]\index{k\+Airline@{k\+Airline}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Airline@{k\+Airline}}\item[{\em 
+k\+Airline\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}
+}]\index{k\+Military@{k\+Military}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Military@{k\+Military}}\item[{\em 
+k\+Military\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}
+}]\index{k\+Emergency@{k\+Emergency}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Emergency@{k\+Emergency}}\item[{\em 
+k\+Emergency\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}
+}]\index{k\+Default\+Type@{k\+Default\+Type}!Airplane.\+h@{Airplane.\+h}}\index{Airplane.\+h@{Airplane.\+h}!k\+Default\+Type@{k\+Default\+Type}}\item[{\em 
+k\+Default\+Type\hypertarget{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{}\label{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+25 \{ \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a00ca80b4ed05d96bd6ed02aca4b78e1f}{kPrivate}, \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9aa60181ba834d25b46f4c717f3403c313}{kAirline}, \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9a1dbdb6d83cd39b00ba5515617716d186}{kMilitary}, \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9ad0ab6e7d19d66949c60d9db1aa58f9ef}{kEmergency}, 
+      \hyperlink{Airplane_8h_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00}{kDefaultType} \};
+\end{DoxyCode}

@@ -1,0 +1,325 @@
+\hypertarget{classFlightplan}{}\section{Flightplan Class Reference}
+\label{classFlightplan}\index{Flightplan@{Flightplan}}
+
+
+\+: Class that represents a flight plan in the simulation  
+
+
+
+
+{\ttfamily \#include $<$Flightplan.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFlightplan_ac2382ffda13572e5f7434d887c05f2f5}{Flightplan} ()
+\item 
+\hyperlink{classFlightplan_af94db993571dde1fa3da8fc4f733ed8d}{$\sim$\+Flightplan} ()
+\item 
+bool \hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized} () const 
+\item 
+void \hyperlink{classFlightplan_a46d9b61f11e05ee917423b30018eb311}{set\+Departure} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} f\+Departure)
+\item 
+void \hyperlink{classFlightplan_aa418664239c83960df069cdfb456e819}{set\+Arrival} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} f\+Arrival)
+\item 
+void \hyperlink{classFlightplan_a7a253899d4a09a629bf88f5184f6f7a3}{set\+Interval} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} f\+Interval)
+\item 
+\hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8}{E\+Event} \hyperlink{classFlightplan_a2b7410b0bcabb84db2164b4163dfddb4}{get\+Event} (\hyperlink{classTime}{Time} time)
+\item 
+bool \hyperlink{classFlightplan_a07f564cb5e5cdbad4abb2098f7941597}{complete} () const 
+\item 
+const string \& \hyperlink{classFlightplan_aa625d49c014955ff1e62668a297dd0a0}{get\+Destination} () const 
+\item 
+void \hyperlink{classFlightplan_a9d345a0fbf7a000075cd8bac019e1827}{set\+Destination} (const string \&f\+Destination)
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classFlightplan_a2453c9cf22ec82997787a60088f71c67}{get\+Departure} () const 
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classFlightplan_a88e4a0195a8268c5c06a42c677857a6c}{get\+Arrival} () const 
+\item 
+\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classFlightplan_ae5bc96d39d3e4e9e1fb5540c7dd2b6d5}{get\+Interval} () const 
+\item 
+void \hyperlink{classFlightplan_a1dc1abd7a13e56ad85d84ebdc15e448a}{set\+Airplane} (\hyperlink{classAirplane}{Airplane} $\ast$)
+\item 
+\hyperlink{classAirplane}{Airplane} $\ast$ \hyperlink{classFlightplan_a8406fbb2f98685fba170063acde0fdd7}{get\+Airplane} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Class that represents a flight plan in the simulation 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Flightplan@{Flightplan}!Flightplan@{Flightplan}}
+\index{Flightplan@{Flightplan}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{Flightplan()}{Flightplan()}}]{\setlength{\rightskip}{0pt plus 5cm}Flightplan\+::\+Flightplan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_ac2382ffda13572e5f7434d887c05f2f5}{}\label{classFlightplan_ac2382ffda13572e5f7434d887c05f2f5}
+Default constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); 
+\begin{DoxyCode}
+9                       : fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterval(-1) \{
+10     fInitCheck = \textcolor{keyword}{this};
+11     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"constructor must end in properlyInitialized
+       state"});
+12 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!````~Flightplan@{$\sim$\+Flightplan}}
+\index{````~Flightplan@{$\sim$\+Flightplan}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{$\sim$\+Flightplan()}{~Flightplan()}}]{\setlength{\rightskip}{0pt plus 5cm}Flightplan\+::$\sim$\+Flightplan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_af94db993571dde1fa3da8fc4f733ed8d}{}\label{classFlightplan_af94db993571dde1fa3da8fc4f733ed8d}
+Destructor 
+\begin{DoxyCode}
+107                         \{
+108     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+109     \textcolor{keyword}{delete} fAirplane;
+110 \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{Flightplan@{Flightplan}!complete@{complete}}
+\index{complete@{complete}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{complete() const }{complete() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Flightplan\+::complete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_a07f564cb5e5cdbad4abb2098f7941597}{}\label{classFlightplan_a07f564cb5e5cdbad4abb2098f7941597}
+Checks if all the data members were initialized ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling complete\char`\"{}); 
+\begin{DoxyCode}
+14                                 \{
+15     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling complete"});
+16     \textcolor{keywordflow}{return} !(fDeparture == -1 or fArrival == -1 or
+17             fInterval == -1 or fDestination.empty());
+18 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Airplane@{get\+Airplane}}
+\index{get\+Airplane@{get\+Airplane}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Airplane() const }{getAirplane() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Airplane} $\ast$ Flightplan\+::get\+Airplane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_a8406fbb2f98685fba170063acde0fdd7}{}\label{classFlightplan_a8406fbb2f98685fba170063acde0fdd7}
+
+\begin{DoxyCode}
+97                                         \{
+98     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+99     \textcolor{keywordflow}{return} fAirplane;
+100 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Arrival@{get\+Arrival}}
+\index{get\+Arrival@{get\+Arrival}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Arrival() const }{getArrival() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Flightplan\+::get\+Arrival (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_a88e4a0195a8268c5c06a42c677857a6c}{}\label{classFlightplan_a88e4a0195a8268c5c06a42c677857a6c}
+
+\begin{DoxyCode}
+41                                  \{
+42     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+43     \textcolor{keywordflow}{return} fArrival;
+44 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Departure@{get\+Departure}}
+\index{get\+Departure@{get\+Departure}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Departure() const }{getDeparture() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Flightplan\+::get\+Departure (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_a2453c9cf22ec82997787a60088f71c67}{}\label{classFlightplan_a2453c9cf22ec82997787a60088f71c67}
+
+\begin{DoxyCode}
+30                                    \{
+31     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+32     \textcolor{keywordflow}{return} fDeparture;
+33 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Destination@{get\+Destination}}
+\index{get\+Destination@{get\+Destination}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Destination() const }{getDestination() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Flightplan\+::get\+Destination (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_aa625d49c014955ff1e62668a297dd0a0}{}\label{classFlightplan_aa625d49c014955ff1e62668a297dd0a0}
+Getters and setters for the fields of the class. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan wasn\textquotesingle{}t initialized when calling getter/setter\char`\"{}); 
+\begin{DoxyCode}
+20                                                \{
+21     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+22     \textcolor{keywordflow}{return} fDestination;
+23 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Event@{get\+Event}}
+\index{get\+Event@{get\+Event}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Event(\+Time time)}{getEvent(Time time)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+Event} Flightplan\+::get\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf Time}}]{time}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_a2b7410b0bcabb84db2164b4163dfddb4}{}\label{classFlightplan_a2b7410b0bcabb84db2164b4163dfddb4}
+Returns the event at the given time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling get\+Event\char`\"{}); 
+\begin{DoxyCode}
+63                                      \{
+64     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getEvent"});
+65     \textcolor{comment}{// Start at 12:00}
+66     \hyperlink{classTime}{Time} currentTime(12);
+67 
+68     \textcolor{comment}{// While not midnight}
+69     \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{
+70         \textcolor{comment}{// Set to departure time}
+71         currentTime = \hyperlink{classTime}{Time}(currentTime.getHour(), fDeparture);
+72 
+73         \textcolor{comment}{// If times match up, return takeoff}
+74         \textcolor{keywordflow}{if} (currentTime == time) \{
+75             \textcolor{keywordflow}{return} \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a81c03ffd159b67afc7df0ffab6a9297f}{kTakeoff};
+76         \}
+77 
+78         \textcolor{comment}{// Set to arrival time}
+79         currentTime = \hyperlink{classTime}{Time}(currentTime.getHour(), fArrival);
+80 
+81         \textcolor{comment}{// If times match up, return land}
+82         \textcolor{keywordflow}{if} (currentTime == time) \{
+83             \textcolor{keywordflow}{return} \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8aeaa0025051cf36faa589b5da72a153c4}{kLand};
+84         \}
+85 
+86         \textcolor{comment}{// Set advance hour by interval}
+87         currentTime.advance(60 * fInterval);
+88 
+89         \textcolor{keywordflow}{if} (currentTime.getHour() < 12) \{
+90             \textcolor{keywordflow}{break};
+91         \}
+92     \}
+93 
+94     \textcolor{keywordflow}{return} \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a58584cd9619135e5689ded56238c3427}{kNothing};
+95 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!get\+Interval@{get\+Interval}}
+\index{get\+Interval@{get\+Interval}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{get\+Interval() const }{getInterval() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Flightplan\+::get\+Interval (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_ae5bc96d39d3e4e9e1fb5540c7dd2b6d5}{}\label{classFlightplan_ae5bc96d39d3e4e9e1fb5540c7dd2b6d5}
+
+\begin{DoxyCode}
+52                                   \{
+53     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+54     \textcolor{keywordflow}{return} fInterval;
+55 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Flightplan\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{}\label{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}
+Checks if the object is properly initialized 
+\begin{DoxyCode}
+112                                            \{
+113     \textcolor{keywordflow}{return} fInitCheck == \textcolor{keyword}{this};
+114 \}\end{DoxyCode}
+\index{Flightplan@{Flightplan}!set\+Airplane@{set\+Airplane}}
+\index{set\+Airplane@{set\+Airplane}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{set\+Airplane(\+Airplane $\ast$)}{setAirplane(Airplane *)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flightplan\+::set\+Airplane (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{airplane}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_a1dc1abd7a13e56ad85d84ebdc15e448a}{}\label{classFlightplan_a1dc1abd7a13e56ad85d84ebdc15e448a}
+
+\begin{DoxyCode}
+102                                                \{
+103     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+104     fAirplane = airplane;
+105 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!set\+Arrival@{set\+Arrival}}
+\index{set\+Arrival@{set\+Arrival}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{set\+Arrival(int f\+Arrival)}{setArrival(int fArrival)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flightplan\+::set\+Arrival (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{f\+Arrival}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_aa418664239c83960df069cdfb456e819}{}\label{classFlightplan_aa418664239c83960df069cdfb456e819}
+Setter for arrival time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Arrival\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(arrival $>$= 0 \&\& arrival $<$ 60, \char`\"{}\+Arrival has to be between 0 and 60\char`\"{}); 
+\begin{DoxyCode}
+46                                        \{
+47     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling setArrival"});
+48     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(arrival >= 0 && arrival < 60, \textcolor{stringliteral}{"Arrival has to be between 0 and 60"});
+49     Flightplan::fArrival = arrival;
+50 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!set\+Departure@{set\+Departure}}
+\index{set\+Departure@{set\+Departure}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{set\+Departure(int f\+Departure)}{setDeparture(int fDeparture)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flightplan\+::set\+Departure (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{f\+Departure}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_a46d9b61f11e05ee917423b30018eb311}{}\label{classFlightplan_a46d9b61f11e05ee917423b30018eb311}
+Setter for departure time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Departure\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(departure $>$= 0 \&\& departure $<$ 60, \char`\"{}\+Departure has to be between 0 and 60\char`\"{}); 
+\begin{DoxyCode}
+35                                            \{
+36     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling setDeparture"});
+37     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{ATC_8txt_af9835824e50bb6ca59bed75129f137e3}{departure} >= 0 && \hyperlink{ATC_8txt_af9835824e50bb6ca59bed75129f137e3}{departure} < 60, \textcolor{stringliteral}{"Departure has to be between 0 and
+       60"});
+38     Flightplan::fDeparture = \hyperlink{ATC_8txt_af9835824e50bb6ca59bed75129f137e3}{departure};
+39 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!set\+Destination@{set\+Destination}}
+\index{set\+Destination@{set\+Destination}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{set\+Destination(const string \&f\+Destination)}{setDestination(const string &fDestination)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flightplan\+::set\+Destination (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{f\+Destination}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_a9d345a0fbf7a000075cd8bac019e1827}{}\label{classFlightplan_a9d345a0fbf7a000075cd8bac019e1827}
+
+\begin{DoxyCode}
+25                                                           \{
+26     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling getter/setter"});
+27     Flightplan::fDestination = fDestination;
+28 \}
+\end{DoxyCode}
+\index{Flightplan@{Flightplan}!set\+Interval@{set\+Interval}}
+\index{set\+Interval@{set\+Interval}!Flightplan@{Flightplan}}
+\subsubsection[{\texorpdfstring{set\+Interval(int f\+Interval)}{setInterval(int fInterval)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flightplan\+::set\+Interval (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{f\+Interval}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightplan_a7a253899d4a09a629bf88f5184f6f7a3}{}\label{classFlightplan_a7a253899d4a09a629bf88f5184f6f7a3}
+Setter for interval ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Interval\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(interval $>$ 0, \char`\"{}\+Interval has to be at least 1\char`\"{}); 
+\begin{DoxyCode}
+57                                          \{
+58     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(this->\hyperlink{classFlightplan_a5b5f371dc8451e95a981ec4e01f348a0}{properlyInitialized}(), \textcolor{stringliteral}{"Flightplan was't initialized when
+       calling setInterval"});
+59     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(interval > 0, \textcolor{stringliteral}{"Interval has to be at least 1"});
+60     Flightplan::fInterval = interval;
+61 \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{Flightplan_8h}{Flightplan.\+h}\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{Flightplan_8cpp}{Flightplan.\+cpp}\end{DoxyCompactItemize}

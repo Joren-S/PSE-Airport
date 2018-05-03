@@ -1,0 +1,181 @@
+\hypertarget{domainTestsRunway_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Runway.cpp File Reference}
+\label{domainTestsRunway_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Runway.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Runway.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+Runway.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsRunway_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestRunway}{domain\+Test\+Runway}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsRunway_8cpp_adbd3fc9764de96926ee04a49f6127984}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestRunway}{domain\+Test\+Runway}, Default\+Constructor)
+\item 
+\hyperlink{domainTestsRunway_8cpp_a597128efd87c7da3a1ec5febae120da2}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestRunway}{domain\+Test\+Runway}, happy\+Day)
+\item 
+\hyperlink{domainTestsRunway_8cpp_ab1852781b57c7840b0ac5f2b4f61006b}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestRunway}{domain\+Test\+Runway}, complete)
+\item 
+\hyperlink{domainTestsRunway_8cpp_abeaa480a1f7ced337e02db2732933b0b}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestRunway}{domain\+Test\+Runway}, field\+Manipulation)
+\item 
+\hyperlink{domainTestsRunway_8cpp_aaef9b34c44845a4bf131fd2c16bcae76}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestRunway}{domain\+Test\+Runway}, Contract\+Violations)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Runway, Default\+Constructor)}{TEST_F(domainTestRunway, DefaultConstructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Runway}}]{, }
+\item[{Default\+Constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsRunway_8cpp_adbd3fc9764de96926ee04a49f6127984}{}\label{domainTestsRunway_8cpp_adbd3fc9764de96926ee04a49f6127984}
+
+\begin{DoxyCode}
+18                                              \{
+19     EXPECT\_TRUE(runway.properlyInitialized());
+20 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Runway, happy\+Day)}{TEST_F(domainTestRunway, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Runway}}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsRunway_8cpp_a597128efd87c7da3a1ec5febae120da2}{}\label{domainTestsRunway_8cpp_a597128efd87c7da3a1ec5febae120da2}
+
+\begin{DoxyCode}
+22                                    \{
+23     EXPECT\_TRUE(runway.properlyInitialized());
+24     runway.setAirport(\textcolor{keyword}{new} \hyperlink{classAirport}{Airport}());
+25     runway.setName(\textcolor{stringliteral}{"RW1"});
+26     runway.setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+27     runway.setLength(1000);
+28     runway.setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae0b5b4fcb396cd73cb79793039658380}{kAsphalt});
+29     EXPECT\_TRUE(runway.complete());
+30 
+31     \textcolor{comment}{// small, prop}
+32     plane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfaf99aeb93b2774bc0c7856d1510d17a54}{kSmall});
+33     plane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+34     EXPECT\_TRUE(runway.validForAirplane(&plane));
+35     \textcolor{comment}{// small, jet}
+36     plane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+37     EXPECT\_TRUE(runway.validForAirplane(&plane));
+38     \textcolor{comment}{// medium, jet}
+39     plane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfabade85bef98ad2c69fb2216bb947b6c3}{kMedium});
+40     EXPECT\_FALSE(runway.validForAirplane(&plane));
+41     \textcolor{comment}{// medium, prop}
+42     plane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791daef171fc98c472a2acd2338353679dcc3}{kPropeller});
+43     EXPECT\_TRUE(runway.validForAirplane(&plane));
+44     \textcolor{comment}{// large, prop}
+45     plane.setSize(\hyperlink{Airplane_8h_a0526623f951311ba6780209b9e278dbfa6b6a05b83fa2f5308724e45442b38b7e}{kLarge});
+46     EXPECT\_FALSE(runway.validForAirplane(&plane));
+47     \textcolor{comment}{// large, jet}
+48     plane.setEngine(\hyperlink{Airplane_8h_a3d2a8adb53da58e78cb0018d784e791da6262caeb7b5646a03a202006f584364c}{kJet});
+49     EXPECT\_FALSE(runway.validForAirplane(&plane));
+50 
+51     \textcolor{comment}{// long enough for large jet, with correct type}
+52     runway.setLength(3000);
+53     EXPECT\_TRUE(runway.validForAirplane(&plane));
+54 
+55     \textcolor{comment}{// not long enough for large jet, with correct type}
+56     runway.setLength(1000);
+57     EXPECT\_FALSE(runway.validForAirplane(&plane));
+58 
+59     \textcolor{comment}{// long enough for large jet, with incorrect type}
+60     runway.setLength(3000);
+61     runway.setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+62     EXPECT\_FALSE(runway.validForAirplane(&plane));
+63 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Runway, complete)}{TEST_F(domainTestRunway, complete)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Runway}}]{, }
+\item[{complete}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsRunway_8cpp_ab1852781b57c7840b0ac5f2b4f61006b}{}\label{domainTestsRunway_8cpp_ab1852781b57c7840b0ac5f2b4f61006b}
+
+\begin{DoxyCode}
+65                                    \{
+66     EXPECT\_FALSE(runway.complete());
+67     runway.setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+68 
+69     EXPECT\_FALSE(runway.complete());
+70     runway.setAirport(\textcolor{keyword}{new} \hyperlink{classAirport}{Airport}());
+71 
+72     EXPECT\_FALSE(runway.complete());
+73     runway.setLength(1000);
+74 
+75     EXPECT\_FALSE(runway.complete());
+76     runway.setName(\textcolor{stringliteral}{"RW1"});
+77 
+78     EXPECT\_FALSE(runway.complete());
+79     runway.setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+80 
+81     EXPECT\_TRUE(runway.complete());
+82 
+83     \textcolor{keyword}{delete} runway.getAirport();
+84 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Runway, field\+Manipulation)}{TEST_F(domainTestRunway, fieldManipulation)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Runway}}]{, }
+\item[{field\+Manipulation}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsRunway_8cpp_abeaa480a1f7ced337e02db2732933b0b}{}\label{domainTestsRunway_8cpp_abeaa480a1f7ced337e02db2732933b0b}
+
+\begin{DoxyCode}
+86                                             \{
+87     \hyperlink{classAirport}{Airport} *\hyperlink{docs_2html_2jquery_8js_a6ddf393cc7f9a8828e197bb0d9916c44}{ap} = \textcolor{keyword}{new} \hyperlink{classAirport}{Airport}();
+88 
+89     runway.setType(\hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+90     EXPECT\_EQ(runway.getType(), \hyperlink{Runway_8h_adbb3e23fdb96fa1bac0dbbae33431cd2ae97f33599679c1a293bb8403f4a7a8f7}{kGrass});
+91 
+92     runway.setLength(1000);
+93     EXPECT\_EQ(runway.getLength(), 1000);
+94 
+95     runway.setName(\textcolor{stringliteral}{"RW1"});
+96     EXPECT\_EQ(runway.getName(), \textcolor{stringliteral}{"RW1"});
+97 
+98     runway.setFree(\textcolor{keyword}{true});
+99     EXPECT\_TRUE(runway.isFree());
+100 
+101     runway.setFree(\textcolor{keyword}{false});
+102     EXPECT\_FALSE(runway.isFree());
+103 
+104     runway.setTaxiPoint(\textcolor{stringliteral}{"Alpha"});
+105     EXPECT\_EQ(runway.getTaxiPoint(), \textcolor{stringliteral}{"Alpha"});
+106 
+107     runway.setAirport(ap);
+108     EXPECT\_EQ(runway.getAirport(), \hyperlink{docs_2html_2jquery_8js_a6ddf393cc7f9a8828e197bb0d9916c44}{ap});
+109 
+110     \textcolor{keyword}{delete} \hyperlink{docs_2html_2jquery_8js_a6ddf393cc7f9a8828e197bb0d9916c44}{ap};
+111 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Runway.\+cpp@{domain\+Tests\+Runway.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Runway, Contract\+Violations)}{TEST_F(domainTestRunway, ContractViolations)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Runway}}]{, }
+\item[{Contract\+Violations}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsRunway_8cpp_aaef9b34c44845a4bf131fd2c16bcae76}{}\label{domainTestsRunway_8cpp_aaef9b34c44845a4bf131fd2c16bcae76}
+
+\begin{DoxyCode}
+113                                              \{
+114     EXPECT\_DEATH(runway.validForAirplane(NULL), \textcolor{stringliteral}{"Plane object does not exist."});
+115 \}\end{DoxyCode}

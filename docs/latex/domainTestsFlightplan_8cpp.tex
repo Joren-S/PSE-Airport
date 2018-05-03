@@ -1,0 +1,126 @@
+\hypertarget{domainTestsFlightplan_8cpp}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Flightplan.cpp File Reference}
+\label{domainTestsFlightplan_8cpp}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Flightplan.\+cpp@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/test/domain\+Tests\+Flightplan.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../headers/\+System.\+h\char`\"{}}\\*
+Include dependency graph for domain\+Tests\+Flightplan.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{domainTestsFlightplan_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdomainTestFlightplan}{domain\+Test\+Flightplan}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{domainTestsFlightplan_8cpp_af05d9fe357a8df7fab5307aa1ed33c5b}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestFlightplan}{domain\+Test\+Flightplan}, default\+Constructor)
+\item 
+\hyperlink{domainTestsFlightplan_8cpp_a20710a4da05ecacedebb50680df94182}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestFlightplan}{domain\+Test\+Flightplan}, happy\+Day)
+\item 
+\hyperlink{domainTestsFlightplan_8cpp_a60e7533d18e915790ec13658773fbd29}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestFlightplan}{domain\+Test\+Flightplan}, field\+Manipulation)
+\item 
+\hyperlink{domainTestsFlightplan_8cpp_a486badc1d9e23c600039cedcc1c091a2}{T\+E\+S\+T\+\_\+F} (\hyperlink{classdomainTestFlightplan}{domain\+Test\+Flightplan}, contract\+Violations)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Flightplan, default\+Constructor)}{TEST_F(domainTestFlightplan, defaultConstructor)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Flightplan}}]{, }
+\item[{default\+Constructor}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsFlightplan_8cpp_af05d9fe357a8df7fab5307aa1ed33c5b}{}\label{domainTestsFlightplan_8cpp_af05d9fe357a8df7fab5307aa1ed33c5b}
+
+\begin{DoxyCode}
+19                                                  \{
+20     EXPECT\_TRUE(flightplan.properlyInitialized());
+21     EXPECT\_EQ(flightplan.getDeparture(), -1);
+22     EXPECT\_EQ(flightplan.getArrival(), -1);
+23     EXPECT\_EQ(flightplan.getInterval(), -1);
+24     EXPECT\_TRUE(flightplan.getAirplane() == NULL);
+25 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Flightplan, happy\+Day)}{TEST_F(domainTestFlightplan, happyDay)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Flightplan}}]{, }
+\item[{happy\+Day}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsFlightplan_8cpp_a20710a4da05ecacedebb50680df94182}{}\label{domainTestsFlightplan_8cpp_a20710a4da05ecacedebb50680df94182}
+
+\begin{DoxyCode}
+27                                        \{
+28     flightplan.setInterval(1);
+29     EXPECT\_EQ(flightplan.getInterval(), 1);
+30     flightplan.setArrival(5);
+31     EXPECT\_EQ(flightplan.getArrival(), 5);
+32     flightplan.setDeparture(12);
+33     EXPECT\_EQ(flightplan.getDeparture(), 12);
+34 
+35     \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8}{EEvent} event;
+36     \textcolor{keyword}{event} = flightplan.getEvent(\hyperlink{classTime}{Time}(12, 12));
+37     EXPECT\_EQ(event, \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a81c03ffd159b67afc7df0ffab6a9297f}{kTakeoff});
+38     \textcolor{keyword}{event} = flightplan.getEvent(\hyperlink{classTime}{Time}(13, 12));
+39     EXPECT\_EQ(event, \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a81c03ffd159b67afc7df0ffab6a9297f}{kTakeoff});
+40 
+41     \textcolor{keyword}{event} = flightplan.getEvent(\hyperlink{classTime}{Time}(13, 5));
+42     EXPECT\_EQ(event, \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8aeaa0025051cf36faa589b5da72a153c4}{kLand});
+43     \textcolor{keyword}{event} = flightplan.getEvent(\hyperlink{classTime}{Time}(12, 5));
+44     EXPECT\_EQ(event, \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8aeaa0025051cf36faa589b5da72a153c4}{kLand});
+45 
+46     \textcolor{keyword}{event} = flightplan.getEvent(\hyperlink{classTime}{Time}(14, 55));
+47     EXPECT\_EQ(event, \hyperlink{Flightplan_8h_ab41c9a082b57fd41aefb64a57d8149f8a58584cd9619135e5689ded56238c3427}{kNothing});
+48 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Flightplan, field\+Manipulation)}{TEST_F(domainTestFlightplan, fieldManipulation)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Flightplan}}]{, }
+\item[{field\+Manipulation}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsFlightplan_8cpp_a60e7533d18e915790ec13658773fbd29}{}\label{domainTestsFlightplan_8cpp_a60e7533d18e915790ec13658773fbd29}
+
+\begin{DoxyCode}
+50                                                 \{
+51     flightplan.setDestination(\textcolor{stringliteral}{"Alpha"});
+52     EXPECT\_EQ(flightplan.getDestination(), \textcolor{stringliteral}{"Alpha"});
+53 
+54     flightplan.setArrival(10);
+55     EXPECT\_EQ(flightplan.getArrival(), 10);
+56 
+57     flightplan.setDeparture(20);
+58     EXPECT\_EQ(flightplan.getDeparture(), 20);
+59 
+60     flightplan.setInterval(3);
+61     EXPECT\_EQ(flightplan.getInterval(), 3);
+62 
+63     flightplan.setAirplane(NULL);
+64     EXPECT\_TRUE(flightplan.getAirplane() == NULL);
+65 \}
+\end{DoxyCode}
+\index{domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}!T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}}
+\index{T\+E\+S\+T\+\_\+F@{T\+E\+S\+T\+\_\+F}!domain\+Tests\+Flightplan.\+cpp@{domain\+Tests\+Flightplan.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T\+\_\+\+F(domain\+Test\+Flightplan, contract\+Violations)}{TEST_F(domainTestFlightplan, contractViolations)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+S\+T\+\_\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf domain\+Test\+Flightplan}}]{, }
+\item[{contract\+Violations}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{domainTestsFlightplan_8cpp_a486badc1d9e23c600039cedcc1c091a2}{}\label{domainTestsFlightplan_8cpp_a486badc1d9e23c600039cedcc1c091a2}
+
+\begin{DoxyCode}
+67                                                  \{
+68     EXPECT\_DEATH(flightplan.setDeparture(-2), \textcolor{stringliteral}{"Departure has to be between 0 and 60"});
+69     EXPECT\_DEATH(flightplan.setDeparture(65), \textcolor{stringliteral}{"Departure has to be between 0 and 60"});
+70     EXPECT\_DEATH(flightplan.setArrival(-6), \textcolor{stringliteral}{"Arrival has to be between 0 and 60"});
+71     EXPECT\_DEATH(flightplan.setArrival(200), \textcolor{stringliteral}{"Arrival has to be between 0 and 60"});
+72     EXPECT\_DEATH(flightplan.setInterval(0), \textcolor{stringliteral}{"Interval has to be at least 1"});
+73 \}\end{DoxyCode}

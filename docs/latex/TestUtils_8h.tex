@@ -1,0 +1,145 @@
+\hypertarget{TestUtils_8h}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Test\+Utils.h File Reference}
+\label{TestUtils_8h}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Test\+Utils.\+h@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\+Test\+Utils.\+h}}
+{\ttfamily \#include $<$iostream$>$}\\*
+Include dependency graph for Test\+Utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{TestUtils_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TestUtils_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{Directory\+Exists} (const std\+::string dirname)
+\item 
+bool \hyperlink{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{File\+Exists} (const std\+::string dirname)
+\item 
+bool \hyperlink{TestUtils_8h_a535fe54abcba82699a3d58fc7c04fce7}{File\+Is\+Empty} (const std\+::string filename)
+\item 
+bool \hyperlink{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{File\+Compare} (const std\+::string left\+File\+Name, const std\+::string right\+File\+Name)
+\item 
+std\+::string \hyperlink{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{To\+String} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} i)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Test\+Utils.\+h@{Test\+Utils.\+h}!Directory\+Exists@{Directory\+Exists}}
+\index{Directory\+Exists@{Directory\+Exists}!Test\+Utils.\+h@{Test\+Utils.\+h}}
+\subsubsection[{\texorpdfstring{Directory\+Exists(const std\+::string dirname)}{DirectoryExists(const std::string dirname)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Directory\+Exists (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{dirname}
+\end{DoxyParamCaption}
+)}\hypertarget{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}{}\label{TestUtils_8h_a20aa51a3c6e35cb8af1d6d45efd6c71b}
+Auxiliary functions for file manipulation. 
+\begin{DoxyCode}
+19                                               \{
+20     \textcolor{keyword}{struct }stat st;
+21     \textcolor{keywordflow}{return} stat(dirname.c\_str(), &st) == 0;
+22 \}
+\end{DoxyCode}
+\index{Test\+Utils.\+h@{Test\+Utils.\+h}!File\+Compare@{File\+Compare}}
+\index{File\+Compare@{File\+Compare}!Test\+Utils.\+h@{Test\+Utils.\+h}}
+\subsubsection[{\texorpdfstring{File\+Compare(const std\+::string left\+File\+Name, const std\+::string right\+File\+Name)}{FileCompare(const std::string leftFileName, const std::string rightFileName)}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+Compare (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{left\+File\+Name, }
+\item[{const std\+::string}]{right\+File\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}{}\label{TestUtils_8h_a7e429f636217210c61bb4f2cdfe74871}
+
+\begin{DoxyCode}
+43                                                                               \{
+44     ifstream leftFile, rightFile;
+45     \textcolor{keywordtype}{char} leftRead, rightRead;
+46     \textcolor{keywordtype}{bool} result;
+47 
+48     \textcolor{comment}{// Open the two files.}
+49     leftFile.open(leftFileName.c\_str());
+50     \textcolor{keywordflow}{if} (!leftFile.is\_open()) \{
+51         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+52     \};
+53     rightFile.open(rightFileName.c\_str());
+54     \textcolor{keywordflow}{if} (!rightFile.is\_open()) \{
+55         leftFile.close();
+56         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+57     \};
+58 
+59     result = \textcolor{keyword}{true}; \textcolor{comment}{// files exist and are open; assume equality unless a counterexamples shows up.}
+60     \textcolor{keywordflow}{while} (result && leftFile.good() && rightFile.good()) \{
+61         leftFile.get(leftRead);
+62         rightFile.get(rightRead);
+63         result = (leftRead == rightRead);
+64     \};
+65     \textcolor{keywordflow}{if} (result) \{
+66         \textcolor{comment}{// last read was still equal; are we at the end of both files ?}
+67         result = (!leftFile.good()) && (!rightFile.good());
+68     \};
+69 
+70     leftFile.close();
+71     rightFile.close();
+72     \textcolor{keywordflow}{return} result;
+73 \}
+\end{DoxyCode}
+\index{Test\+Utils.\+h@{Test\+Utils.\+h}!File\+Exists@{File\+Exists}}
+\index{File\+Exists@{File\+Exists}!Test\+Utils.\+h@{Test\+Utils.\+h}}
+\subsubsection[{\texorpdfstring{File\+Exists(const std\+::string dirname)}{FileExists(const std::string dirname)}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+Exists (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{dirname}
+\end{DoxyParamCaption}
+)}\hypertarget{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}{}\label{TestUtils_8h_a946ac5d51dccb6d031b655a60eab6343}
+
+\begin{DoxyCode}
+24                                           \{
+25     \textcolor{keyword}{struct }stat st;
+26     \textcolor{keywordflow}{if} (stat(filename.c\_str(), &st) != 0) \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+27     ifstream f(filename.c\_str());
+28     \textcolor{keywordflow}{if} (f.good()) \{
+29         f.close();
+30         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+31     \} \textcolor{keywordflow}{else} \{
+32         f.close();
+33         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+34     \}
+35 \}
+\end{DoxyCode}
+\index{Test\+Utils.\+h@{Test\+Utils.\+h}!File\+Is\+Empty@{File\+Is\+Empty}}
+\index{File\+Is\+Empty@{File\+Is\+Empty}!Test\+Utils.\+h@{Test\+Utils.\+h}}
+\subsubsection[{\texorpdfstring{File\+Is\+Empty(const std\+::string filename)}{FileIsEmpty(const std::string filename)}}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+Is\+Empty (
+\begin{DoxyParamCaption}
+\item[{const std\+::string}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{TestUtils_8h_a535fe54abcba82699a3d58fc7c04fce7}{}\label{TestUtils_8h_a535fe54abcba82699a3d58fc7c04fce7}
+
+\begin{DoxyCode}
+37                                            \{
+38     \textcolor{keyword}{struct }stat st;
+39     \textcolor{keywordflow}{if} (stat(filename.c\_str(), &st) != 0) \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \textcolor{comment}{// File does not exist; thus it is empty}
+40     \textcolor{keywordflow}{return} st.st\_size == 0;
+41 \}
+\end{DoxyCode}
+\index{Test\+Utils.\+h@{Test\+Utils.\+h}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Test\+Utils.\+h@{Test\+Utils.\+h}}
+\subsubsection[{\texorpdfstring{To\+String(int i)}{ToString(int i)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string To\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf int}}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}{}\label{TestUtils_8h_a163b58e93d058ff9ba6145139fb9293b}
+
+\begin{DoxyCode}
+75                          \{
+76     \textcolor{keywordtype}{int} length = snprintf( NULL, 0, \textcolor{stringliteral}{"%d"}, x );
+77     \textcolor{keywordtype}{char}* buf = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[length + 1];
+78     snprintf( buf, length + 1, \textcolor{stringliteral}{"%d"}, x );
+79     \textcolor{keywordtype}{string} str( buf );
+80     \textcolor{keyword}{delete}[] buf;
+81     \textcolor{keywordflow}{return} str;
+82 \}\end{DoxyCode}

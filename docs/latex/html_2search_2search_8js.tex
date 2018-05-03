@@ -1,0 +1,886 @@
+\hypertarget{html_2search_2search_8js}{}\section{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/search/search.js File Reference}
+\label{html_2search_2search_8js}\index{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/search/search.\+js@{/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/html/search/search.\+js}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{html_2search_2search_8js_a196a29bd5a5ee7cd5b485e0753a49e57}{convert\+To\+Id} (search)
+\item 
+function \hyperlink{html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}{get\+X\+Pos} (item)
+\item 
+function \hyperlink{html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}{get\+Y\+Pos} (item)
+\item 
+function \hyperlink{html_2search_2search_8js_a52066106482f8136aa9e0ec859e8188f}{Search\+Box} (name, results\+Path, in\+Frame, label)
+\item 
+function \hyperlink{html_2search_2search_8js_a9189b9f7a32b6bc78240f40348f7fe03}{Search\+Results} (name)
+\item 
+function \hyperlink{html_2search_2search_8js_a98192fa2929bb8e4b0a890a4909ab9b2}{set\+Key\+Actions} (elem, action)
+\item 
+function \hyperlink{html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{set\+Class\+Attr} (elem, attr)
+\item 
+function \hyperlink{html_2search_2search_8js_a6b2c651120de3ed1dcf0d85341d51895}{create\+Results} ()
+\item 
+function \hyperlink{html_2search_2search_8js_ae95ec7d5d450d0a8d6928a594798aaf4}{init\+\_\+search} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{html/search/search.\+js@{html/search/search.\+js}!convert\+To\+Id@{convert\+To\+Id}}
+\index{convert\+To\+Id@{convert\+To\+Id}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{convert\+To\+Id(search)}{convertToId(search)}}]{\setlength{\rightskip}{0pt plus 5cm}function convert\+To\+Id (
+\begin{DoxyParamCaption}
+\item[{}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a196a29bd5a5ee7cd5b485e0753a49e57}{}\label{html_2search_2search_8js_a196a29bd5a5ee7cd5b485e0753a49e57}
+
+\begin{DoxyCode}
+2 \{
+3   var result = \textcolor{stringliteral}{''};
+4   \textcolor{keywordflow}{for} (i=0;i<search.length;i++)
+5   \{
+6     var \hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c} = search.charAt(i);
+7     var cn = c.charCodeAt(0);
+8     \textcolor{keywordflow}{if} (c.match(/[a-z0-9\(\backslash\)u0080-\(\backslash\)uFFFF]/))
+9     \{
+10       result+=\hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c};
+11     \}
+12     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (cn<16)
+13     \{
+14       result+=\textcolor{stringliteral}{"\_0"}+cn.toString(16);
+15     \}
+16     \textcolor{keywordflow}{else}
+17     \{
+18       result+=\textcolor{stringliteral}{"\_"}+cn.toString(16);
+19     \}
+20   \}
+21   \textcolor{keywordflow}{return} result;
+22 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!create\+Results@{create\+Results}}
+\index{create\+Results@{create\+Results}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{create\+Results()}{createResults()}}]{\setlength{\rightskip}{0pt plus 5cm}function create\+Results (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a6b2c651120de3ed1dcf0d85341d51895}{}\label{html_2search_2search_8js_a6b2c651120de3ed1dcf0d85341d51895}
+
+\begin{DoxyCode}
+723 \{
+724   var results = document.getElementById(\textcolor{stringliteral}{"SRResults"});
+725   \textcolor{keywordflow}{for} (var e=0; e<searchData.length; e++)
+726   \{
+727     var \textcolor{keywordtype}{id} = searchData[e][0];
+728     var srResult = document.createElement(\textcolor{stringliteral}{'div'});
+729     srResult.setAttribute(\textcolor{stringliteral}{'id'},\textcolor{stringliteral}{'SR\_'}+\textcolor{keywordtype}{id});
+730     \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srResult,\textcolor{stringliteral}{'SRResult'});
+731     var srEntry = document.createElement(\textcolor{stringliteral}{'div'});
+732     \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srEntry,\textcolor{stringliteral}{'SREntry'});
+733     var srLink = document.createElement(\textcolor{charliteral}{'a'});
+734     srLink.setAttribute(\textcolor{stringliteral}{'id'},\textcolor{stringliteral}{'Item'}+e);
+735     \hyperlink{docs_2html_2search_2search_8js_a98192fa2929bb8e4b0a890a4909ab9b2}{setKeyActions}(srLink,\textcolor{stringliteral}{'return searchResults.Nav(event,'}+e+\textcolor{charliteral}{')'});
+736     \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srLink,\textcolor{stringliteral}{'SRSymbol'});
+737     srLink.innerHTML = searchData[e][1][0];
+738     srEntry.appendChild(srLink);
+739     \textcolor{keywordflow}{if} (searchData[e][1].length==2) \textcolor{comment}{// single result}
+740     \{
+741       srLink.setAttribute(\textcolor{stringliteral}{'href'},searchData[e][1][1][0]);
+742       \textcolor{keywordflow}{if} (searchData[e][1][1][1])
+743       \{
+744        srLink.setAttribute(\textcolor{stringliteral}{'target'},\textcolor{stringliteral}{'\_parent'});
+745       \}
+746       var srScope = document.createElement(\textcolor{stringliteral}{'span'});
+747       \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srScope,\textcolor{stringliteral}{'SRScope'});
+748       srScope.innerHTML = searchData[e][1][1][2];
+749       srEntry.appendChild(srScope);
+750     \}
+751     \textcolor{keywordflow}{else} \textcolor{comment}{// multiple results}
+752     \{
+753       srLink.setAttribute(\textcolor{stringliteral}{'href'},\textcolor{stringliteral}{'javascript:searchResults.Toggle("SR\_'}+\textcolor{keywordtype}{id}+\textcolor{stringliteral}{'")'});
+754       var srChildren = document.createElement(\textcolor{stringliteral}{'div'});
+755       \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srChildren,\textcolor{stringliteral}{'SRChildren'});
+756       \textcolor{keywordflow}{for} (var \hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}=0; \hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}<searchData[e][1].length-1; \hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}++)
+757       \{
+758         var srChild = document.createElement(\textcolor{charliteral}{'a'});
+759         srChild.setAttribute(\textcolor{stringliteral}{'id'},\textcolor{stringliteral}{'Item'}+e+\textcolor{stringliteral}{'\_c'}+\hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c});
+760         \hyperlink{docs_2html_2search_2search_8js_a98192fa2929bb8e4b0a890a4909ab9b2}{setKeyActions}(srChild,\textcolor{stringliteral}{'return searchResults.NavChild(event,'}+e+\textcolor{charliteral}{','}+
+      \hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}+\textcolor{charliteral}{')'});
+761         \hyperlink{docs_2html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{setClassAttr}(srChild,\textcolor{stringliteral}{'SRScope'});
+762         srChild.setAttribute(\textcolor{stringliteral}{'href'},searchData[e][1][\hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}+1][0]);
+763         \textcolor{keywordflow}{if} (searchData[e][1][\hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}+1][1])
+764         \{
+765          srChild.setAttribute(\textcolor{stringliteral}{'target'},\textcolor{stringliteral}{'\_parent'});
+766         \}
+767         srChild.innerHTML = searchData[e][1][\hyperlink{CMakeCache_8txt_aac1d6a1710812201527c735f7c6afbaa}{c}+1][2];
+768         srChildren.appendChild(srChild);
+769       \}
+770       srEntry.appendChild(srChildren);
+771     \}
+772     srResult.appendChild(srEntry);
+773     results.appendChild(srResult);
+774   \}
+775 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!get\+X\+Pos@{get\+X\+Pos}}
+\index{get\+X\+Pos@{get\+X\+Pos}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{get\+X\+Pos(item)}{getXPos(item)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+X\+Pos (
+\begin{DoxyParamCaption}
+\item[{}]{item}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}{}\label{html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}
+
+\begin{DoxyCode}
+25 \{
+26   var x = 0;
+27   \textcolor{keywordflow}{if} (item.offsetWidth)
+28   \{
+29     \textcolor{keywordflow}{while} (item && item!=document.body)
+30     \{
+31       x   += item.offsetLeft;
+32       item = item.offsetParent;
+33     \}
+34   \}
+35   \textcolor{keywordflow}{return} x;
+36 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!get\+Y\+Pos@{get\+Y\+Pos}}
+\index{get\+Y\+Pos@{get\+Y\+Pos}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{get\+Y\+Pos(item)}{getYPos(item)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Y\+Pos (
+\begin{DoxyParamCaption}
+\item[{}]{item}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}{}\label{html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}
+
+\begin{DoxyCode}
+39 \{
+40   var y = 0;
+41   \textcolor{keywordflow}{if} (item.offsetWidth)
+42   \{
+43      \textcolor{keywordflow}{while} (item && item!=document.body)
+44      \{
+45        y   += item.offsetTop;
+46        item = item.offsetParent;
+47      \}
+48   \}
+49   \textcolor{keywordflow}{return} y;
+50 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!init\+\_\+search@{init\+\_\+search}}
+\index{init\+\_\+search@{init\+\_\+search}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{init\+\_\+search()}{init_search()}}]{\setlength{\rightskip}{0pt plus 5cm}function init\+\_\+search (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_ae95ec7d5d450d0a8d6928a594798aaf4}{}\label{html_2search_2search_8js_ae95ec7d5d450d0a8d6928a594798aaf4}
+
+\begin{DoxyCode}
+778 \{
+779   var results = document.getElementById(\textcolor{stringliteral}{"MSearchSelectWindow"});
+780   \textcolor{keywordflow}{for} (var key in \hyperlink{docs_2html_2search_2searchdata_8js_a529972e449c82dc118cbbd3bcf50c44d}{indexSectionLabels})
+781   \{
+782     var link = document.createElement(\textcolor{charliteral}{'a'});
+783     link.setAttribute(\textcolor{stringliteral}{'class'},\textcolor{stringliteral}{'SelectItem'});
+784     link.setAttribute(\textcolor{stringliteral}{'onclick'},\textcolor{stringliteral}{'searchBox.OnSelectItem('}+key+\textcolor{charliteral}{')'});
+785     link.href=\textcolor{stringliteral}{'javascript:void(0)'};
+786     link.innerHTML=\textcolor{stringliteral}{'<span class="SelectionMark">&#160;</span>'}+indexSectionLabels[key];
+787     results.appendChild(link);
+788   \}
+789   searchBox.OnSelectItem(0);
+790 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!Search\+Box@{Search\+Box}}
+\index{Search\+Box@{Search\+Box}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{Search\+Box(name, results\+Path, in\+Frame, label)}{SearchBox(name, resultsPath, inFrame, label)}}]{\setlength{\rightskip}{0pt plus 5cm}function Search\+Box (
+\begin{DoxyParamCaption}
+\item[{}]{name, }
+\item[{}]{results\+Path, }
+\item[{}]{in\+Frame, }
+\item[{}]{label}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a52066106482f8136aa9e0ec859e8188f}{}\label{html_2search_2search_8js_a52066106482f8136aa9e0ec859e8188f}
+
+\begin{DoxyCode}
+60 \{
+61   \textcolor{keywordflow}{if} (!name || !resultsPath) \{  alert(\textcolor{stringliteral}{"Missing parameters to SearchBox."}); \}
+62 
+63   \textcolor{comment}{// ---------- Instance variables}
+64   this.name                  = name;
+65   this.resultsPath           = resultsPath;
+66   this.keyTimeout            = 0;
+67   this.keyTimeoutLength      = 500;
+68   this.closeSelectionTimeout = 300;
+69   this.lastSearchValue       = \textcolor{stringliteral}{""};
+70   this.lastResultsPage       = \textcolor{stringliteral}{""};
+71   this.hideTimeout           = 0;
+72   this.searchIndex           = 0;
+73   this.searchActive          = \textcolor{keyword}{false};
+74   this.insideFrame           = inFrame;
+75   this.searchLabel           = label;
+76 
+77   \textcolor{comment}{// ----------- DOM Elements}
+78 
+79   this.DOMSearchField = \textcolor{keyword}{function}()
+80   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchField"});  \}
+81 
+82   this.DOMSearchSelect = \textcolor{keyword}{function}()
+83   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchSelect"});  \}
+84 
+85   this.DOMSearchSelectWindow = \textcolor{keyword}{function}()
+86   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchSelectWindow"});  \}
+87 
+88   this.DOMPopupSearchResults = \textcolor{keyword}{function}()
+89   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchResults"});  \}
+90 
+91   this.DOMPopupSearchResultsWindow = \textcolor{keyword}{function}()
+92   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchResultsWindow"});  \}
+93 
+94   this.DOMSearchClose = \textcolor{keyword}{function}()
+95   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchClose"}); \}
+96 
+97   this.DOMSearchBox = \textcolor{keyword}{function}()
+98   \{  \textcolor{keywordflow}{return} document.getElementById(\textcolor{stringliteral}{"MSearchBox"});  \}
+99 
+100   \textcolor{comment}{// ------------ Event Handlers}
+101 
+102   \textcolor{comment}{// Called when focus is added or removed from the search field.}
+103   this.OnSearchFieldFocus = \textcolor{keyword}{function}(isActive)
+104   \{
+105     this.Activate(isActive);
+106   \}
+107 
+108   this.OnSearchSelectShow = \textcolor{keyword}{function}()
+109   \{
+110     var searchSelectWindow = this.DOMSearchSelectWindow();
+111     var searchField        = this.DOMSearchSelect();
+112 
+113     \textcolor{keywordflow}{if} (this.insideFrame)
+114     \{
+115       var left = \hyperlink{docs_2html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}{getXPos}(searchField);
+116       var top  = \hyperlink{docs_2html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}{getYPos}(searchField);
+117       left += searchField.offsetWidth + 6;
+118       top += searchField.offsetHeight;
+119 
+120       \textcolor{comment}{// show search selection popup}
+121       searchSelectWindow.style.display=\textcolor{stringliteral}{'block'};
+122       left -= searchSelectWindow.offsetWidth;
+123       searchSelectWindow.style.left =  left + \textcolor{stringliteral}{'px'};
+124       searchSelectWindow.style.top  =  top  + \textcolor{stringliteral}{'px'};
+125     \}
+126     \textcolor{keywordflow}{else}
+127     \{
+128       var left = \hyperlink{docs_2html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}{getXPos}(searchField);
+129       var top  = \hyperlink{docs_2html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}{getYPos}(searchField);
+130       top += searchField.offsetHeight;
+131 
+132       \textcolor{comment}{// show search selection popup}
+133       searchSelectWindow.style.display=\textcolor{stringliteral}{'block'};
+134       searchSelectWindow.style.left =  left + \textcolor{stringliteral}{'px'};
+135       searchSelectWindow.style.top  =  top  + \textcolor{stringliteral}{'px'};
+136     \}
+137 
+138     \textcolor{comment}{// stop selection hide timer}
+139     \textcolor{keywordflow}{if} (this.hideTimeout)
+140     \{
+141       clearTimeout(this.hideTimeout);
+142       this.hideTimeout=0;
+143     \}
+144     \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \textcolor{comment}{// to avoid "image drag" default event}
+145   \}
+146 
+147   this.OnSearchSelectHide = \textcolor{keyword}{function}()
+148   \{
+149     this.hideTimeout = setTimeout(this.name +\textcolor{stringliteral}{".CloseSelectionWindow()"},
+150                                   this.closeSelectionTimeout);
+151   \}
+152 
+153   \textcolor{comment}{// Called when the content of the search field is changed.}
+154   this.OnSearchFieldChange = \textcolor{keyword}{function}(evt)
+155   \{
+156     \textcolor{keywordflow}{if} (this.keyTimeout) \textcolor{comment}{// kill running timer}
+157     \{
+158       clearTimeout(this.keyTimeout);
+159       this.keyTimeout = 0;
+160     \}
+161 
+162     var e  = (evt) ? evt : window.event; \textcolor{comment}{// for IE}
+163     \hyperlink{docs_2html_2jquery_8js_a9db6d45a025ad692282fe23e69eeba43}{if} (e.keyCode==40 || e.keyCode==13)
+164     \{
+165       \textcolor{keywordflow}{if} (e.shiftKey==1)
+166       \{
+167         this.OnSearchSelectShow();
+168         var win=this.DOMSearchSelectWindow();
+169         \textcolor{keywordflow}{for} (i=0;i<win.childNodes.length;i++)
+170         \{
+171           var child = win.childNodes[i]; \textcolor{comment}{// get span within a}
+172           \textcolor{keywordflow}{if} (child.className==\textcolor{stringliteral}{'SelectItem'})
+173           \{
+174             child.focus();
+175             \textcolor{keywordflow}{return};
+176           \}
+177         \}
+178         \textcolor{keywordflow}{return};
+179       \}
+180       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (window.frames.MSearchResults.searchResults)
+181       \{
+182         var elem = window.frames.MSearchResults.searchResults.NavNext(0);
+183         \textcolor{keywordflow}{if} (elem) elem.focus();
+184       \}
+185     \}
+186     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.keyCode==27) \textcolor{comment}{// Escape out of the search field}
+187     \{
+188       this.DOMSearchField().blur();
+189       this.DOMPopupSearchResultsWindow().style.display = \textcolor{stringliteral}{'none'};
+190       this.DOMSearchClose().style.display = \textcolor{stringliteral}{'none'};
+191       this.lastSearchValue = \textcolor{stringliteral}{''};
+192       this.Activate(\textcolor{keyword}{false});
+193       \textcolor{keywordflow}{return};
+194     \}
+195 
+196     \textcolor{comment}{// strip whitespaces}
+197     var searchValue = this.DOMSearchField().value.replace(/ +/g, \textcolor{stringliteral}{""});
+198 
+199     \textcolor{keywordflow}{if} (searchValue != this.lastSearchValue) \textcolor{comment}{// search value has changed}
+200     \{
+201       \textcolor{keywordflow}{if} (searchValue != \textcolor{stringliteral}{""}) \textcolor{comment}{// non-empty search}
+202       \{
+203         \textcolor{comment}{// set timer for search update}
+204         this.keyTimeout = setTimeout(this.name + \textcolor{stringliteral}{'.Search()'},
+205                                      this.keyTimeoutLength);
+206       \}
+207       \textcolor{keywordflow}{else} \textcolor{comment}{// empty search field}
+208       \{
+209         this.DOMPopupSearchResultsWindow().style.display = \textcolor{stringliteral}{'none'};
+210         this.DOMSearchClose().style.display = \textcolor{stringliteral}{'none'};
+211         this.lastSearchValue = \textcolor{stringliteral}{''};
+212       \}
+213     \}
+214   \}
+215 
+216   this.SelectItemCount = \textcolor{keyword}{function}(id)
+217   \{
+218     var count=0;
+219     var win=this.DOMSearchSelectWindow();
+220     \textcolor{keywordflow}{for} (i=0;i<win.childNodes.length;i++)
+221     \{
+222       var child = win.childNodes[i]; \textcolor{comment}{// get span within a}
+223       \textcolor{keywordflow}{if} (child.className==\textcolor{stringliteral}{'SelectItem'})
+224       \{
+225         count++;
+226       \}
+227     \}
+228     \textcolor{keywordflow}{return} count;
+229   \}
+230 
+231   this.SelectItemSet = \textcolor{keyword}{function}(id)
+232   \{
+233     var i,j=0;
+234     var win=this.DOMSearchSelectWindow();
+235     \textcolor{keywordflow}{for} (i=0;i<win.childNodes.length;i++)
+236     \{
+237       var child = win.childNodes[i]; \textcolor{comment}{// get span within a}
+238       \textcolor{keywordflow}{if} (child.className==\textcolor{stringliteral}{'SelectItem'})
+239       \{
+240         var node = child.firstChild;
+241         \textcolor{keywordflow}{if} (j==\textcolor{keywordtype}{id})
+242         \{
+243           node.innerHTML=\textcolor{stringliteral}{'&#8226;'};
+244         \}
+245         \textcolor{keywordflow}{else}
+246         \{
+247           node.innerHTML=\textcolor{stringliteral}{'&#160;'};
+248         \}
+249         j++;
+250       \}
+251     \}
+252   \}
+253 
+254   \textcolor{comment}{// Called when an search filter selection is made.}
+255   \textcolor{comment}{// set item with index id as the active item}
+256   this.OnSelectItem = \textcolor{keyword}{function}(id)
+257   \{
+258     this.searchIndex = id;
+259     this.SelectItemSet(\textcolor{keywordtype}{id});
+260     var searchValue = this.DOMSearchField().value.replace(/ +/g, \textcolor{stringliteral}{""});
+261     \textcolor{keywordflow}{if} (searchValue!=\textcolor{stringliteral}{""} && this.searchActive) \textcolor{comment}{// something was found -> do a search}
+262     \{
+263       this.Search();
+264     \}
+265   \}
+266 
+267   this.OnSearchSelectKey = \textcolor{keyword}{function}(evt)
+268   \{
+269     var e = (evt) ? evt : window.event; \textcolor{comment}{// for IE}
+270     \hyperlink{docs_2html_2jquery_8js_a9db6d45a025ad692282fe23e69eeba43}{if} (e.keyCode==40 && \textcolor{keyword}{this}.searchIndex<\textcolor{keyword}{this}.SelectItemCount()) \textcolor{comment}{// Down}
+271     \{
+272       this.searchIndex++;
+273       this.OnSelectItem(this.searchIndex);
+274     \}
+275     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.keyCode==38 && \textcolor{keyword}{this}.searchIndex>0) \textcolor{comment}{// Up}
+276     \{
+277       this.searchIndex--;
+278       this.OnSelectItem(this.searchIndex);
+279     \}
+280     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.keyCode==13 || e.keyCode==27)
+281     \{
+282       this.OnSelectItem(this.searchIndex);
+283       this.CloseSelectionWindow();
+284       this.DOMSearchField().focus();
+285     \}
+286     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+287   \}
+288 
+289   \textcolor{comment}{// --------- Actions}
+290 
+291   \textcolor{comment}{// Closes the results window.}
+292   this.CloseResultsWindow = \textcolor{keyword}{function}()
+293   \{
+294     this.DOMPopupSearchResultsWindow().style.display = \textcolor{stringliteral}{'none'};
+295     this.DOMSearchClose().style.display = \textcolor{stringliteral}{'none'};
+296     this.Activate(\textcolor{keyword}{false});
+297   \}
+298 
+299   this.CloseSelectionWindow = \textcolor{keyword}{function}()
+300   \{
+301     this.DOMSearchSelectWindow().style.display = \textcolor{stringliteral}{'none'};
+302   \}
+303 
+304   \textcolor{comment}{// Performs a search.}
+305   this.Search = \textcolor{keyword}{function}()
+306   \{
+307     this.keyTimeout = 0;
+308 
+309     \textcolor{comment}{// strip leading whitespace}
+310     var searchValue = this.DOMSearchField().value.replace(/^ +/, \textcolor{stringliteral}{""});
+311 
+312     var code = searchValue.toLowerCase().charCodeAt(0);
+313     var idxChar = searchValue.substr(0, 1).toLowerCase();
+314     \textcolor{keywordflow}{if} ( 0xD800 <= code && code <= 0xDBFF && searchValue > 1) \textcolor{comment}{// surrogate pair}
+315     \{
+316       idxChar = searchValue.substr(0, 2);
+317     \}
+318 
+319     var resultsPage;
+320     var resultsPageWithSearch;
+321     var hasResultsPage;
+322 
+323     var idx = \hyperlink{docs_2html_2search_2searchdata_8js_a6250af3c9b54dee6efc5f55f40c78126}{indexSectionsWithContent}[this.searchIndex].indexOf(idxChar);
+324     \textcolor{keywordflow}{if} (idx!=-1)
+325     \{
+326        var hexCode=idx.toString(16);
+327        resultsPage = this.resultsPath + \textcolor{charliteral}{'/'} + \hyperlink{docs_2html_2search_2searchdata_8js_a77149ceed055c6c6ce40973b5bdc19ad}{indexSectionNames}[this.searchIndex] + \textcolor{charliteral}{'\_'} + 
+      hexCode + \textcolor{stringliteral}{'.html'};
+328        resultsPageWithSearch = resultsPage+\textcolor{charliteral}{'?'}+escape(searchValue);
+329        hasResultsPage = \textcolor{keyword}{true};
+330     \}
+331     \textcolor{keywordflow}{else} \textcolor{comment}{// nothing available for this search term}
+332     \{
+333        resultsPage = this.resultsPath + \textcolor{stringliteral}{'/nomatches.html'};
+334        resultsPageWithSearch = resultsPage;
+335        hasResultsPage = \textcolor{keyword}{false};
+336     \}
+337 
+338     window.frames.MSearchResults.location = resultsPageWithSearch;
+339     var domPopupSearchResultsWindow = this.DOMPopupSearchResultsWindow();
+340 
+341     \textcolor{keywordflow}{if} (domPopupSearchResultsWindow.style.display!=\textcolor{stringliteral}{'block'})
+342     \{
+343        var domSearchBox = this.DOMSearchBox();
+344        this.DOMSearchClose().style.display = \textcolor{stringliteral}{'inline'};
+345        \textcolor{keywordflow}{if} (this.insideFrame)
+346        \{
+347          var domPopupSearchResults = this.DOMPopupSearchResults();
+348          domPopupSearchResultsWindow.style.position = \textcolor{stringliteral}{'relative'};
+349          domPopupSearchResultsWindow.style.display  = \textcolor{stringliteral}{'block'};
+350          var width = document.body.clientWidth - 8; \textcolor{comment}{// the -8 is for IE :-(}
+351          domPopupSearchResultsWindow.style.width    = width + \textcolor{stringliteral}{'px'};
+352          domPopupSearchResults.style.width          = width + \textcolor{stringliteral}{'px'};
+353        \}
+354        \textcolor{keywordflow}{else}
+355        \{
+356          var domPopupSearchResults = this.DOMPopupSearchResults();
+357          var left = \hyperlink{docs_2html_2search_2search_8js_a76d24aea0009f892f8ccc31d941c0a2b}{getXPos}(domSearchBox) + 150; \textcolor{comment}{// domSearchBox.offsetWidth;}
+358          var top  = \hyperlink{docs_2html_2search_2search_8js_a8d7b405228661d7b6216b6925d2b8a69}{getYPos}(domSearchBox) + 20;  \textcolor{comment}{// domSearchBox.offsetHeight + 1;}
+359          domPopupSearchResultsWindow.style.display = \textcolor{stringliteral}{'block'};
+360          left -= domPopupSearchResults.offsetWidth;
+361          domPopupSearchResultsWindow.style.top     = top  + \textcolor{stringliteral}{'px'};
+362          domPopupSearchResultsWindow.style.left    = left + \textcolor{stringliteral}{'px'};
+363        \}
+364     \}
+365 
+366     this.lastSearchValue = searchValue;
+367     this.lastResultsPage = resultsPage;
+368   \}
+369 
+370   \textcolor{comment}{// -------- Activation Functions}
+371 
+372   \textcolor{comment}{// Activates or deactivates the search panel, resetting things to}
+373   \textcolor{comment}{// their default values if necessary.}
+374   this.Activate = \textcolor{keyword}{function}(isActive)
+375   \{
+376     \textcolor{keywordflow}{if} (isActive || \textcolor{comment}{// open it}
+377         this.DOMPopupSearchResultsWindow().style.display == \textcolor{stringliteral}{'block'}
+378        )
+379     \{
+380       this.DOMSearchBox().className = \textcolor{stringliteral}{'MSearchBoxActive'};
+381 
+382       var searchField = this.DOMSearchField();
+383 
+384       \textcolor{keywordflow}{if} (searchField.value == \textcolor{keyword}{this}.searchLabel) \textcolor{comment}{// clear "Search" term upon entry}
+385       \{
+386         searchField.value = \textcolor{stringliteral}{''};
+387         this.searchActive = \textcolor{keyword}{true};
+388       \}
+389     \}
+390     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!isActive) \textcolor{comment}{// directly remove the panel}
+391     \{
+392       this.DOMSearchBox().className = \textcolor{stringliteral}{'MSearchBoxInactive'};
+393       this.DOMSearchField().value   = this.searchLabel;
+394       this.searchActive             = \textcolor{keyword}{false};
+395       this.lastSearchValue          = \textcolor{stringliteral}{''}
+396       this.lastResultsPage          = \textcolor{stringliteral}{''};
+397     \}
+398   \}
+399 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!Search\+Results@{Search\+Results}}
+\index{Search\+Results@{Search\+Results}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{Search\+Results(name)}{SearchResults(name)}}]{\setlength{\rightskip}{0pt plus 5cm}function Search\+Results (
+\begin{DoxyParamCaption}
+\item[{}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a9189b9f7a32b6bc78240f40348f7fe03}{}\label{html_2search_2search_8js_a9189b9f7a32b6bc78240f40348f7fe03}
+
+\begin{DoxyCode}
+405 \{
+406     \textcolor{comment}{// The number of matches from the last run of <Search()>.}
+407     this.lastMatchCount = 0;
+408     this.lastKey = 0;
+409     this.repeatOn = \textcolor{keyword}{false};
+410 
+411     \textcolor{comment}{// Toggles the visibility of the passed element ID.}
+412     this.FindChildElement = \textcolor{keyword}{function}(id)
+413     \{
+414       var parentElement = document.getElementById(\textcolor{keywordtype}{id});
+415       var element = parentElement.firstChild;
+416 
+417       \textcolor{keywordflow}{while} (element && element!=parentElement)
+418       \{
+419         \textcolor{keywordflow}{if} (element.nodeName == \textcolor{stringliteral}{'DIV'} && element.className == \textcolor{stringliteral}{'SRChildren'})
+420         \{
+421           \textcolor{keywordflow}{return} element;
+422         \}
+423 
+424         \textcolor{keywordflow}{if} (element.nodeName == \textcolor{stringliteral}{'DIV'} && element.hasChildNodes())
+425         \{
+426            element = element.firstChild;
+427         \}
+428         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (element.nextSibling)
+429         \{
+430            element = element.nextSibling;
+431         \}
+432         \textcolor{keywordflow}{else}
+433         \{
+434           \textcolor{keywordflow}{do}
+435           \{
+436             element = element.parentNode;
+437           \}
+438           \textcolor{keywordflow}{while} (element && element!=parentElement && !element.nextSibling);
+439 
+440           \textcolor{keywordflow}{if} (element && element!=parentElement)
+441           \{
+442             element = element.nextSibling;
+443           \}
+444         \}
+445       \}
+446     \}
+447 
+448     this.Toggle = \textcolor{keyword}{function}(id)
+449     \{
+450       var element = this.FindChildElement(\textcolor{keywordtype}{id});
+451       \textcolor{keywordflow}{if} (element)
+452       \{
+453         \textcolor{keywordflow}{if} (element.style.display == \textcolor{stringliteral}{'block'})
+454         \{
+455           element.style.display = \textcolor{stringliteral}{'none'};
+456         \}
+457         \textcolor{keywordflow}{else}
+458         \{
+459           element.style.display = \textcolor{stringliteral}{'block'};
+460         \}
+461       \}
+462     \}
+463 
+464     \textcolor{comment}{// Searches for the passed string.  If there is no parameter,}
+465     \textcolor{comment}{// it takes it from the URL query.}
+466     \textcolor{comment}{//}
+467     \textcolor{comment}{// Always returns true, since other documents may try to call it}
+468     \textcolor{comment}{// and that may or may not be possible.}
+469     this.Search = \textcolor{keyword}{function}(search)
+470     \{
+471       \textcolor{keywordflow}{if} (!search) \textcolor{comment}{// get search word from URL}
+472       \{
+473         search = window.location.search;
+474         search = search.substring(1);  \textcolor{comment}{// Remove the leading '?'}
+475         search = unescape(search);
+476       \}
+477 
+478       search = search.replace(/^ +/, \textcolor{stringliteral}{""}); \textcolor{comment}{// strip leading spaces}
+479       search = search.replace(/ +$/, \textcolor{stringliteral}{""}); \textcolor{comment}{// strip trailing spaces}
+480       search = search.toLowerCase();
+481       search = \hyperlink{docs_2html_2search_2search_8js_a196a29bd5a5ee7cd5b485e0753a49e57}{convertToId}(search);
+482 
+483       var resultRows = document.getElementsByTagName(\textcolor{stringliteral}{"div"});
+484       var matches = 0;
+485 
+486       var i = 0;
+487       \textcolor{keywordflow}{while} (i < resultRows.length)
+488       \{
+489         var row = resultRows.item(i);
+490         \textcolor{keywordflow}{if} (row.className == \textcolor{stringliteral}{"SRResult"})
+491         \{
+492           var rowMatchName = row.id.toLowerCase();
+493           rowMatchName = rowMatchName.replace(/^sr\(\backslash\)d*\_/, \textcolor{stringliteral}{''}); \textcolor{comment}{// strip 'sr123\_'}
+494 
+495           \textcolor{keywordflow}{if} (search.length<=rowMatchName.length &&
+496              rowMatchName.substr(0, search.length)==search)
+497           \{
+498             row.style.display = \textcolor{stringliteral}{'block'};
+499             matches++;
+500           \}
+501           \textcolor{keywordflow}{else}
+502           \{
+503             row.style.display = \textcolor{stringliteral}{'none'};
+504           \}
+505         \}
+506         i++;
+507       \}
+508       document.getElementById(\textcolor{stringliteral}{"Searching"}).style.display=\textcolor{stringliteral}{'none'};
+509       \textcolor{keywordflow}{if} (matches == 0) \textcolor{comment}{// no results}
+510       \{
+511         document.getElementById(\textcolor{stringliteral}{"NoMatches"}).style.display=\textcolor{stringliteral}{'block'};
+512       \}
+513       \textcolor{keywordflow}{else} \textcolor{comment}{// at least one result}
+514       \{
+515         document.getElementById(\textcolor{stringliteral}{"NoMatches"}).style.display=\textcolor{stringliteral}{'none'};
+516       \}
+517       this.lastMatchCount = matches;
+518       \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+519     \}
+520 
+521     \textcolor{comment}{// return the first item with index index or higher that is visible}
+522     this.NavNext = \textcolor{keyword}{function}(index)
+523     \{
+524       var focusItem;
+525       \textcolor{keywordflow}{while} (1)
+526       \{
+527         var focusName = \textcolor{stringliteral}{'Item'}+index;
+528         focusItem = document.getElementById(focusName);
+529         \textcolor{keywordflow}{if} (focusItem && focusItem.parentNode.parentNode.style.display==\textcolor{stringliteral}{'block'})
+530         \{
+531           \textcolor{keywordflow}{break};
+532         \}
+533         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!focusItem) \textcolor{comment}{// last element}
+534         \{
+535           \textcolor{keywordflow}{break};
+536         \}
+537         focusItem=null;
+538         index++;
+539       \}
+540       \textcolor{keywordflow}{return} focusItem;
+541     \}
+542 
+543     this.NavPrev = \textcolor{keyword}{function}(index)
+544     \{
+545       var focusItem;
+546       \textcolor{keywordflow}{while} (1)
+547       \{
+548         var focusName = \textcolor{stringliteral}{'Item'}+index;
+549         focusItem = document.getElementById(focusName);
+550         \textcolor{keywordflow}{if} (focusItem && focusItem.parentNode.parentNode.style.display==\textcolor{stringliteral}{'block'})
+551         \{
+552           \textcolor{keywordflow}{break};
+553         \}
+554         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!focusItem) \textcolor{comment}{// last element}
+555         \{
+556           \textcolor{keywordflow}{break};
+557         \}
+558         focusItem=null;
+559         index--;
+560       \}
+561       \textcolor{keywordflow}{return} focusItem;
+562     \}
+563 
+564     this.ProcessKeys = \textcolor{keyword}{function}(e)
+565     \{
+566       \textcolor{keywordflow}{if} (e.type == \textcolor{stringliteral}{"keydown"})
+567       \{
+568         this.repeatOn = \textcolor{keyword}{false};
+569         this.lastKey = e.keyCode;
+570       \}
+571       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.type == \textcolor{stringliteral}{"keypress"})
+572       \{
+573         \textcolor{keywordflow}{if} (!this.repeatOn)
+574         \{
+575           \textcolor{keywordflow}{if} (this.lastKey) this.repeatOn = \textcolor{keyword}{true};
+576           \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \textcolor{comment}{// ignore first keypress after keydown}
+577         \}
+578       \}
+579       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.type == \textcolor{stringliteral}{"keyup"})
+580       \{
+581         this.lastKey = 0;
+582         this.repeatOn = \textcolor{keyword}{false};
+583       \}
+584       \textcolor{keywordflow}{return} this.lastKey!=0;
+585     \}
+586 
+587     this.Nav = \textcolor{keyword}{function}(evt,itemIndex)
+588     \{
+589       var e  = (evt) ? evt : window.event; \textcolor{comment}{// for IE}
+590       \hyperlink{docs_2html_2jquery_8js_a9db6d45a025ad692282fe23e69eeba43}{if} (e.keyCode==13) \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+591       \textcolor{keywordflow}{if} (!this.ProcessKeys(e)) \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+592 
+593       \textcolor{keywordflow}{if} (this.lastKey==38) \textcolor{comment}{// Up}
+594       \{
+595         var newIndex = itemIndex-1;
+596         var focusItem = this.NavPrev(newIndex);
+597         \textcolor{keywordflow}{if} (focusItem)
+598         \{
+599           var child = this.FindChildElement(focusItem.parentNode.parentNode.id);
+600           \textcolor{keywordflow}{if} (child && child.style.display == \textcolor{stringliteral}{'block'}) \textcolor{comment}{// children visible}
+601           \{
+602             var n=0;
+603             var tmpElem;
+604             \textcolor{keywordflow}{while} (1) \textcolor{comment}{// search for last child}
+605             \{
+606               tmpElem = document.getElementById(\textcolor{stringliteral}{'Item'}+newIndex+\textcolor{stringliteral}{'\_c'}+n);
+607               \textcolor{keywordflow}{if} (tmpElem)
+608               \{
+609                 focusItem = tmpElem;
+610               \}
+611               \textcolor{keywordflow}{else} \textcolor{comment}{// found it!}
+612               \{
+613                 \textcolor{keywordflow}{break};
+614               \}
+615               n++;
+616             \}
+617           \}
+618         \}
+619         \textcolor{keywordflow}{if} (focusItem)
+620         \{
+621           focusItem.focus();
+622         \}
+623         \textcolor{keywordflow}{else} \textcolor{comment}{// return focus to search field}
+624         \{
+625            parent.document.getElementById(\textcolor{stringliteral}{"MSearchField"}).focus();
+626         \}
+627       \}
+628       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==40) \textcolor{comment}{// Down}
+629       \{
+630         var newIndex = itemIndex+1;
+631         var focusItem;
+632         var item = document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex);
+633         var elem = this.FindChildElement(item.parentNode.parentNode.id);
+634         \textcolor{keywordflow}{if} (elem && elem.style.display == \textcolor{stringliteral}{'block'}) \textcolor{comment}{// children visible}
+635         \{
+636           focusItem = document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex+\textcolor{stringliteral}{'\_c0'});
+637         \}
+638         \textcolor{keywordflow}{if} (!focusItem) focusItem = this.NavNext(newIndex);
+639         \textcolor{keywordflow}{if} (focusItem)  focusItem.focus();
+640       \}
+641       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==39) \textcolor{comment}{// Right}
+642       \{
+643         var item = document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex);
+644         var elem = this.FindChildElement(item.parentNode.parentNode.id);
+645         \textcolor{keywordflow}{if} (elem) elem.style.display = \textcolor{stringliteral}{'block'};
+646       \}
+647       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==37) \textcolor{comment}{// Left}
+648       \{
+649         var item = document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex);
+650         var elem = this.FindChildElement(item.parentNode.parentNode.id);
+651         \textcolor{keywordflow}{if} (elem) elem.style.display = \textcolor{stringliteral}{'none'};
+652       \}
+653       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==27) \textcolor{comment}{// Escape}
+654       \{
+655         parent.searchBox.CloseResultsWindow();
+656         parent.document.getElementById(\textcolor{stringliteral}{"MSearchField"}).focus();
+657       \}
+658       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==13) \textcolor{comment}{// Enter}
+659       \{
+660         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+661       \}
+662       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+663     \}
+664 
+665     this.NavChild = \textcolor{keyword}{function}(evt,itemIndex,childIndex)
+666     \{
+667       var e  = (evt) ? evt : window.event; \textcolor{comment}{// for IE}
+668       \hyperlink{docs_2html_2jquery_8js_a9db6d45a025ad692282fe23e69eeba43}{if} (e.keyCode==13) \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+669       \textcolor{keywordflow}{if} (!this.ProcessKeys(e)) \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+670 
+671       \textcolor{keywordflow}{if} (this.lastKey==38) \textcolor{comment}{// Up}
+672       \{
+673         \textcolor{keywordflow}{if} (childIndex>0)
+674         \{
+675           var newIndex = childIndex-1;
+676           document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex+\textcolor{stringliteral}{'\_c'}+newIndex).focus();
+677         \}
+678         \textcolor{keywordflow}{else} \textcolor{comment}{// already at first child, jump to parent}
+679         \{
+680           document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex).focus();
+681         \}
+682       \}
+683       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==40) \textcolor{comment}{// Down}
+684       \{
+685         var newIndex = childIndex+1;
+686         var elem = document.getElementById(\textcolor{stringliteral}{'Item'}+itemIndex+\textcolor{stringliteral}{'\_c'}+newIndex);
+687         \textcolor{keywordflow}{if} (!elem) \textcolor{comment}{// last child, jump to parent next parent}
+688         \{
+689           elem = this.NavNext(itemIndex+1);
+690         \}
+691         \textcolor{keywordflow}{if} (elem)
+692         \{
+693           elem.focus();
+694         \}
+695       \}
+696       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==27) \textcolor{comment}{// Escape}
+697       \{
+698         parent.searchBox.CloseResultsWindow();
+699         parent.document.getElementById(\textcolor{stringliteral}{"MSearchField"}).focus();
+700       \}
+701       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (this.lastKey==13) \textcolor{comment}{// Enter}
+702       \{
+703         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+704       \}
+705       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+706     \}
+707 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!set\+Class\+Attr@{set\+Class\+Attr}}
+\index{set\+Class\+Attr@{set\+Class\+Attr}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{set\+Class\+Attr(elem, attr)}{setClassAttr(elem, attr)}}]{\setlength{\rightskip}{0pt plus 5cm}function set\+Class\+Attr (
+\begin{DoxyParamCaption}
+\item[{}]{elem, }
+\item[{}]{attr}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}{}\label{html_2search_2search_8js_a499422fc054a5278ae32801ec0082c56}
+
+\begin{DoxyCode}
+717 \{
+718   elem.setAttribute(\textcolor{stringliteral}{'class'},attr);
+719   elem.setAttribute(\textcolor{stringliteral}{'className'},attr);
+720 \}
+\end{DoxyCode}
+\index{html/search/search.\+js@{html/search/search.\+js}!set\+Key\+Actions@{set\+Key\+Actions}}
+\index{set\+Key\+Actions@{set\+Key\+Actions}!html/search/search.\+js@{html/search/search.\+js}}
+\subsubsection[{\texorpdfstring{set\+Key\+Actions(elem, action)}{setKeyActions(elem, action)}}]{\setlength{\rightskip}{0pt plus 5cm}function set\+Key\+Actions (
+\begin{DoxyParamCaption}
+\item[{}]{elem, }
+\item[{}]{action}
+\end{DoxyParamCaption}
+)}\hypertarget{html_2search_2search_8js_a98192fa2929bb8e4b0a890a4909ab9b2}{}\label{html_2search_2search_8js_a98192fa2929bb8e4b0a890a4909ab9b2}
+
+\begin{DoxyCode}
+710 \{
+711   elem.setAttribute(\textcolor{stringliteral}{'onkeydown'},action);
+712   elem.setAttribute(\textcolor{stringliteral}{'onkeypress'},action);
+713   elem.setAttribute(\textcolor{stringliteral}{'onkeyup'},action);
+714 \}
+\end{DoxyCode}

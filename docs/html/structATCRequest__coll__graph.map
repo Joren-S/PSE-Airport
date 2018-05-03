@@ -1,0 +1,4 @@
+<map id="ATCRequest" name="ATCRequest">
+<area shape="rect" id="node2" href="$classAirplane.html" title=": Class that represents an airplane in the simulation " alt="" coords="5,5,75,32"/>
+<area shape="rect" id="node3" href="$classTime.html" title="Time" alt="" coords="101,5,152,32"/>
+</map>

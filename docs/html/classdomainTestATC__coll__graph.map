@@ -1,0 +1,6 @@
+<map id="domainTestATC" name="domainTestATC">
+<area shape="rect" id="node3" href="$classRunway.html" title="Runway" alt="" coords="78,5,149,32"/>
+<area shape="rect" id="node4" href="$classAirplane.html" title=": Class that represents an airplane in the simulation " alt="" coords="173,5,243,32"/>
+<area shape="rect" id="node5" href="$classSystem.html" title=": Main class, controls the simulation " alt="" coords="267,5,333,32"/>
+<area shape="rect" id="node6" href="$classATC.html" title="ATC" alt="" coords="358,5,407,32"/>
+</map>
