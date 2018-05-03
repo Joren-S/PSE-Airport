@@ -312,3 +312,19 @@ TEST_F(domainTestATC, processTakeOffRunway) {
     atc->processTakeOffRunway(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kDenied);
 }
+
+TEST_F(domainTestATC, fieldManipulation) {
+    atc->set3occupied(true);
+    EXPECT_EQ(atc->get3occupied(), true);
+
+    atc->set5occupied(true);
+    EXPECT_EQ(atc->get5occupied(), true);
+
+    Time time = Time(12, 0);
+    atc->setLastActive(time);
+    EXPECT_EQ(atc->getLastActive().getHour(), 12);
+    EXPECT_EQ(atc->getLastActive().getMinute(), 0);
+
+    atc->setAirport(NULL);
+    EXPECT_TRUE(atc->getAirport() == NULL);
+}
