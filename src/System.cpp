@@ -924,3 +924,8 @@ void System::setEndTime(Time end) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
     fEndTime = end;
 }
+
+ATC* System::getATC() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
+    return fATC;
+}

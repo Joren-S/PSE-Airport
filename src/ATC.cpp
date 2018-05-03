@@ -420,7 +420,6 @@ void ATC::set5occupied(bool occupied) {
 
 void ATC::processApproach(Airplane *airplane, Time time) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
-
     // Change request status
     airplane->setRequest(kAccepted);
 
@@ -441,14 +440,13 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
     if (airplane->getAltitude() == 5) {
 
-        // A plane is already circling at 3000ft
-        if (f3Occupied) {
+        // A plane is already circling at 3000ft, 5000ft is clear
+        if (f3Occupied and !f5Occupied) {
 
             // Change request status
             airplane->setRequest(kDenied);
 
-            REQUIRE(!f5Occupied, "Exceeded capacity");
-
+            // Set this level occupied
             f5Occupied = true;
 
             // Get clearance time
@@ -460,6 +458,7 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
             fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
         }
 
+        // Accept request
         else {
             // Change request status
             airplane->setRequest(kAccepted);
@@ -482,7 +481,6 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
             airplane->setRequest(kDenied);
 
             REQUIRE(!f3Occupied, "Exceeded capacity");
-
             f3Occupied = true;
 
             // Get clearance time
@@ -494,7 +492,7 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
             fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
         }
 
-            // Runway available
+        // Runway available
         else {
 
             // Change request status
@@ -521,9 +519,6 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
     // Plane position is not set yet, so it just arrived
     if (airplane->getPosition().empty()) {
 
-        // Change the position of the plane to the taxipoint of the runway
-        // airplane->setPosition(airplane->getRunway()->getTaxiPoint());
-
         // Runway closest to the gates
         if (airplane->getRunway() == fAirport->getRunways()[0]) {
 
@@ -532,6 +527,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
             ostringstream stream;
             stream << gate;
 
+            // Set gate in airplane
             airplane->setGateID(gate);
 
             // Set up message
@@ -544,8 +540,6 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
         }
 
         else {
-            // Runway* runway = NULL;
-            // if ()
             // Get the next runway by temporarily setting the position of the plane
             airplane->setPosition(airplane->getRunway()->getTaxiPoint());
             Runway* runway = fAirport->getNextRunway(airplane);
@@ -559,6 +553,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
             fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
         }
 
+        // Accept request
         airplane->setRequest(kAccepted);
     }
 
@@ -568,10 +563,10 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
 
         // If it's free, accept request
         if (runway->isFree()) {
+            // Declare message
             string message;
 
-
-            // Set up message
+            // Airplane crosses last runway before gates
             if (airplane->getPosition() == fAirport->getRunways()[1]->getTaxiPoint()) {
 
                 // Get free gate
@@ -579,6 +574,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
                 ostringstream stream;
                 stream << gate;
 
+                // Set gate in airplane
                 airplane->setGateID(gate);
 
                 message = airplane->getCallsign() + ", cleared to cross " +
@@ -586,12 +582,13 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
                           + " via " + runway->getTaxiPoint() + ", " + airplane->getCallsign() + ".";
             }
 
+            // Runway is not last
             else {
+                // Temporarily set plane position to get runway after the one it crosses
                 string position = airplane->getPosition();
                 airplane->setPosition(runway->getTaxiPoint());
                 Runway* nextRunway = fAirport->getNextRunway(airplane);
                 airplane->setPosition(position);
-
 
                 message = airplane->getCallsign() + ", cleared to cross " +
                           runway->getName() + ", taxi to holding point " + nextRunway->getName()
@@ -601,10 +598,11 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
             // Send message to plane
             fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
 
+            // Accept request
             airplane->setRequest(kAccepted);
         }
 
-            // Runway is not free, set request to denied
+        // Runway is not free, set request to denied
         else {
             airplane->setRequest(kDenied);
         }

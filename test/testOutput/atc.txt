@@ -1,0 +1,9 @@
+[12:00][Antwerp Tower]
+$ Cessna eight four two, taxi to gate one via Alpha.
+
+[12:00][Antwerp Tower]
+$ Cessna eight four two, taxi to holding point one one romeo via Bravo.
+
+[12:00][Antwerp Tower]
+$ Cessna eight four two, cleared to cross one one romeo taxi to gate two via Alpha, Cessna eight four two.
+
