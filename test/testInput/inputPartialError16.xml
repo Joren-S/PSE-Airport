@@ -1,3 +1,9 @@
+<AIRPORT>
+	<name>Antwerp International Airport</name>
+	<iata>ANR</iata>
+	<callsign>Antwerp Tower</callsign>
+	<gates>10</gates>
+</AIRPORT>
 <RUNWAY>
 	<name>11R</name>
 	<airport>ANR</airport>
@@ -5,16 +11,7 @@
 	<length>1510</length>
 	<TAXIROUTE>
 		<taxipoint>Alpha</taxipoint>
-	</TAXIROUTE>
-</RUNWAY>
-<RUNWAY>
-	<name>11L</name>
-	<airport>ANR</airport>
-	<type>grass</type>
-	<length>1010</length>
-	<TAXIROUTE>
-		<taxipoint>Alpha</taxipoint>
-		<crossing>11R</crossing>
+		<crossing>11L</crossing>
 		<taxipoint>Bravo</taxipoint>
 	</TAXIROUTE>
 </RUNWAY>
@@ -42,7 +39,7 @@
 	<engine>jet</engine>
 	<size>large</size>
 	<passengers>20</passengers>
-	<fuel>-10</fuel>
+	<fuel>10000</fuel>
 	<FLIGHTPLAN>
 		<destination>JFK</destination>
 		<departure>10</departure>

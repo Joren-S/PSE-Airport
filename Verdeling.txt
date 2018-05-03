@@ -6,7 +6,7 @@ DONE        Airport
 DONE        Runway
             System -> takeoff, import
             ATC > splitsen + tests zoals system
-        Flightplans for inputfiles {failures}
+DONE    Flightplans for inputfiles {failures}
             ->opnieuw genererem
 DONE    nato alphabet (numbers in full)
 
