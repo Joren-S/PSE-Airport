@@ -199,6 +199,33 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
             else if (curPlane->getStatus() == kTaxiArrival and curPlane->getPosition() == curTP) {
                 planesAtTaxiPoint++;
             }
+
+
+
+            // at taxipoint during taxiing
+            else if (curPlane->getStatus() == kTaxiDeparture and curPlane->getPosition() == curTP) {
+                planesAtTaxiPoint++;
+            }
+
+            // plane is waiting at runway before takeoff
+            else if (curPlane->getStatus() == kWaitingForDeparture and curPlane->getPosition() == curTP) {
+                planesAtTaxiPoint++;
+            }
+
+            // plane is waiting on runway before takeoff
+            else if (curPlane->getStatus() == kAscending and curPlane->getRunway()->getTaxiPoint() == curTP and curPlane->getAltitude() == 0) {
+                planeFound = true;
+            }
+
+            // plane is waiting on runway before takeoff
+            else if (curPlane->getStatus() == kDeparture and curPlane->getRunway()->getTaxiPoint() == curTP) {
+                planeFound = true;
+            }
+
+            // plane is crossing runway
+            else if (curPlane->getStatus() == kCrossingDeparture and curPlane->getPosition() == curTP) {
+                planeFound = true;
+            }
 //
 //            if (curPlane->getPosition() == curTP) {
 //                EPlaneStatus status = curPlane->getStatus();
