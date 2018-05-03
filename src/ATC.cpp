@@ -579,7 +579,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
                 airplane->setGateID(gate);
 
                 message = airplane->getCallsign() + ", cleared to cross " +
-                          runway->getName() + " taxi to gate " + stream.str()
+                          runway->getName() + ", taxi to gate " + stream.str()
                           + " via " + runway->getTaxiPoint() + ", " + airplane->getCallsign() + ".";
             }
 

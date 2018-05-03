@@ -331,7 +331,9 @@ vector<Runway*> Airport::getRunways() const {
 Airport::~Airport() {
     vector<Runway*>::const_iterator itr;
     for (itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
-        delete *itr;
+        if (*itr != NULL or !(*itr)->properlyInitialized()) {
+            delete *itr;
+        }
     }
 }
 
