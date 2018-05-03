@@ -177,3 +177,233 @@ TEST_F(domainTestSystem, simulationFinished) {
     system.setEndTime(end2);
     EXPECT_TRUE(system.simulationFinished());
 }
+
+TEST_F(domainTestSystem, import) {
+    // setup
+    Input input;
+    input.read("../test/testInput/happyDay.xml");
+    system.initializeATC(out);
+
+    system.import(input);
+    EXPECT_EQ(system.getFlightplans(), input.getFlightplans());
+    EXPECT_EQ(system.getAirport(), input.getAirports()[0]);
+    EXPECT_EQ(system.getATC()->getAirport(), input.getAirports()[0]);
+}
+
+TEST_F(domainTestSystem, ascend) {
+    airplane->setStatus(kAscending);
+    airplane->setEngine(kPropeller);
+
+    // ascend 1000ft each time ascend is called and altitude < 5000ft
+    EXPECT_EQ(airplane->getAltitude(), 0);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getPosition(), "");
+    EXPECT_EQ(airplane->getAltitude(), 1);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 2);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 3);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 4);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getAltitude(), 5);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+    system.ascend(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kAway);
+}
+
+TEST_F(domainTestSystem, onRunway) {
+    // Request permission to take off.
+    airplane->setStatus(kDeparture);
+    airplane->setRequest(kIdle);
+    airplane->setRunway(runway);
+
+    system.onRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kDeparture);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC hasn't responded yet
+    system.onRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kDeparture);
+
+    // ATC gave permission to take off
+    airplane->setRequest(kAccepted);
+    system.onRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kAscending);
+
+}
+
+TEST_F(domainTestSystem, atRunway) {
+    // Request permission to go on runway
+    airplane->setStatus(kWaitingForDeparture);
+    airplane->setRequest(kIdle);
+    airplane->setRunway(runway);
+
+    system.atRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kWaitingForDeparture);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC hasn't responded yet
+    system.atRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kWaitingForDeparture);
+
+    // ATC gave permission to line up on runway
+    airplane->setRequest(kAccepted);
+    system.atRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kDeparture);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC gave permission to line up and take off.
+    airplane->setRequest(kAcceptedImmediate);
+    system.atRunway(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kAscending);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+}
+
+TEST_F(domainTestSystem, taxiDepartureCross) {
+    airplane->setStatus(kCrossingDeparture);
+    airplane->setRequest(kIdle);
+    airplane->setPosition(runway->getTaxiPoint());
+    system.taxiDepartureCross(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
+    EXPECT_EQ(airplane->getTimeRemaining(), 5);
+}
+
+TEST_F(domainTestSystem, taxiDepartureStep) {
+    airplane->setSize(kSmall);
+    airplane->setEngine(kPropeller);
+    airplane->setStatus(kTaxiDeparture);
+    airplane->setRequest(kIdle);
+    airplane->setRunway(runway);
+    airplane->setPosition("");
+
+    // first ever taxi step
+    system.taxiDepartureStep(airplane, out);
+    EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
+    EXPECT_EQ(airplane->getPosition(), system.getAirport()->getRunways().at(0)->getTaxiPoint());
+    EXPECT_EQ(airplane->getTimeRemaining(), 5);
+
+    // request crossing
+    airplane->setRequest(kIdle);
+    system.taxiDepartureStep(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // atc hasn't responded yet
+    system.taxiDepartureStep(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
+
+    // atc has responded and has accepted the request
+    airplane->setRequest(kAccepted);
+    system.taxiDepartureStep(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kCrossingDeparture);
+    EXPECT_FALSE(system.getAirport()->getRunway(airplane->getPosition())->isFree());
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // atc has responded and has confirmed the request (arrived at destination)
+    airplane->setRequest(kConfirmed);
+    airplane->getRunway()->setName("RW1");
+    airplane->getRunway()->setTaxiPoint("Alpha");
+    airplane->setPosition("Alpha");
+    system.taxiDepartureStep(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kWaitingForDeparture);
+}
+
+TEST_F(domainTestSystem, taxiDepartureStart) {
+    // Requesting permission to start taxiing
+    airplane->setStatus(kPushback);
+    airplane->setRequest(kIdle);
+    airplane->setCallsign("CSAP");
+    system.taxiDepartureStart(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kPushback);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC hasn't responded yet
+    system.taxiDepartureStart(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kPushback);
+
+    // ATC has responded and accepted request
+    airplane->setRequest(kAccepted);
+    system.taxiDepartureStart(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
+    EXPECT_EQ(airplane->getPosition(), "");
+}
+
+TEST_F(domainTestSystem, pushback) {
+    // Requesting permission to pushback
+    airplane->setStatus(kGate);
+    airplane->setRequest(kIdle);
+    system.pushback(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kGate);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC hasn't responded yet
+    system.pushback(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kGate);
+
+    // ATC has responded and accepted request
+    // different plane sizes:
+    airplane->setRequest(kAccepted);
+    airplane->setSize(kSmall);
+    system.pushback(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kPushback);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    airplane->setRequest(kAccepted);
+    airplane->setSize(kMedium);
+    system.pushback(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kPushback);
+    EXPECT_EQ(airplane->getTimeRemaining(), 2);
+
+    airplane->setRequest(kAccepted);
+    airplane->setSize(kLarge);
+    system.pushback(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kPushback);
+    EXPECT_EQ(airplane->getTimeRemaining(), 3);
+}
+
+TEST_F(domainTestSystem, prepare) {
+    // Requesting IFR clearancy
+    airplane->setStatus(kAirport);
+    airplane->setRequest(kIdle);
+    runway->setName("RW1");
+    airplane->setRunway(runway);
+    system.prepare(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kAirport);
+    EXPECT_EQ(airplane->getTimeRemaining(), 1);
+
+    // ATC hasn't responded yet
+    system.prepare(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kPending);
+    EXPECT_EQ(airplane->getStatus(), kAirport);
+
+    // ATC has responded and accepted request
+    airplane->setRequest(kAccepted);
+    system.prepare(airplane, out);
+    EXPECT_EQ(airplane->getRequest(), kIdle);
+    EXPECT_EQ(airplane->getStatus(), kGate);
+}
