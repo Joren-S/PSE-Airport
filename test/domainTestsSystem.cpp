@@ -7,7 +7,6 @@
 #include <gtest/gtest.h>
 #include "../headers/System.h"
 
-
 class domainTestSystem: public ::testing::Test {
 protected:
 
