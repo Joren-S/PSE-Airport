@@ -66,13 +66,13 @@ public:
     
     /**
      * Constructor for the Runway class.
-     * ENSURE(properlyInitialized(), "Runway wasn't properly initialized after constructing.");
+     * \n ENSURE(properlyInitialized(), "Runway wasn't properly initialized after constructing.");
      */
     Runway();
 
     /**
      * Checks if all the data members were initialized
-     * REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling complete.");
+     * \n REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling complete.");
      * @return: Boolean indicating if all members were initialized
      */
     bool complete() const;
@@ -85,8 +85,8 @@ public:
 
     /**
      * Check if this runway is valid for the provided airplane.
-     * REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling validForAirplane.");
-     * REQUIRE(plane != NULL, "Plane object does not exist.");
+     * \n REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling validForAirplane.");
+     * \n REQUIRE(plane != NULL, "Plane object does not exist.");
      * @param plane: Airplane to check validity for.
      * @return: Boolean indicating if valid or not.
      */
@@ -94,10 +94,10 @@ public:
 
     /**
      * Getters and setters for the fields of the class.
-     * REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling getter/setter.");
+     * \n REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling getter/setter.");
      *
      * Setters:
-     * ENSURE(fField == value, "Field wasn't set properly");
+     * \n ENSURE(fField == value, "Field wasn't set properly");
      */
     ERunwayType getType() const;
     void setType(ERunwayType type);

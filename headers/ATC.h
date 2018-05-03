@@ -88,7 +88,7 @@ public:
 
     /**
      * Constructor
-     * ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
+     * \n ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
      * @param stream: ostream to write to.
      */
     ATC(ostream& stream, bool test);
@@ -106,9 +106,9 @@ public:
 
     /**
      * Send a request to the ATC.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendRequest.");
-     * REQUIRE(source != NULL, "Source is NULL.");
-     * ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendRequest.");
+     * \n REQUIRE(source != NULL, "Source is NULL.");
+     * \n ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
      * @param time: Time of the request.
      * @param source: Airplane that made the request.
      */
@@ -116,17 +116,17 @@ public:
 
     /**
      * Return the amount of requests that are queued.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
-     * ENSURE(size >= 0, "Queue has a negative size.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
+     * \n ENSURE(size >= 0, "Queue has a negative size.");
      * @return: Size of the queue.
      */
     int getQueueSize() const;
 
     /**
      * Get the next request that needs to be handled by the ATC.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
-     * ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
-     * ENSURE(msg != NULL, "Request popped from queue is NULL.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
+     * \n ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
+     * \n ENSURE(msg != NULL, "Request popped from queue is NULL.");
      * @return: Pointer to the request, NULL if queue is empty.
      */
     ATCRequest *getNextRequest();
@@ -143,14 +143,14 @@ public:
     /**
      * Main function of the ATC, needs to be called every time we advance in time.
      * Handles requests and responds correctly.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
      * @param time: Time of "heartbeat".
      */
     void doHeartbeat(Time time);
 
     /**
      * Processes a request for approach.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
@@ -158,7 +158,7 @@ public:
 
     /**
      * Processes a request for descend.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
@@ -166,7 +166,7 @@ public:
 
     /**
      * Processes a request for taxiing at arrival.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiArrival.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiArrival.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
@@ -216,7 +216,7 @@ public:
 
     /**
      * Write a message to the ATC stream.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
      * @param message: Message that needs to be send.
      */
     void sendMessage(const string &message);
@@ -224,16 +224,16 @@ public:
     /**
      * Generates a squawk code for a given plane.
      * The returned code will not be generated for any other plane.
-     * REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
      */
     int getSquawk(Airplane*);
 
     /**
      * Getters and setters for the fields of the class.
-     * REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+     * \n REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
      *
      * Setters:
-     * ENSURE(fField == value, "Field wasn't set properly");
+     * \n ENSURE(fField == value, "Field wasn't set properly");
      */
     queue<ATCRequest*> *getQueue();
     void setLastActive(Time);

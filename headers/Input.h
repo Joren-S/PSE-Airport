@@ -81,7 +81,7 @@ public:
 
     /**
      * Default constructor
-     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
+     * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Input();
 
@@ -92,58 +92,58 @@ public:
 
     /**
      * Reads the given file and stores the information
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling read");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling read");
      * @param filename: name of the file with input
      */
     void read(const string& filename, ostream& errorLog = cerr);
 
     /**
      * Adds an airport to the simulation
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
-     * REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
-     * ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
+     * \n REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
+     * \n ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
      */
     void addAirport(Airport* airport);
 
     /**
      * Adds a runway to the simulation with the given specifications
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
-     * REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
-     * ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
+     * \n REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
+     * \n ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
      */
     void addRunway(Runway* runway);
 
     /**
      * Adds a flightplan to the simulation with the given specifications
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
-     * REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
-     * ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
+     * \n REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
+     * \n ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
      */
     void addFlightplan(Flightplan* flightplan);
 
     /**
      * Finds an airport with a specific IATA
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
      */
     Airport* findAirportByIATA(const string& iata) const;
 
     /**
      * Getter for the airports in the simulation
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
      * @return vec of all airports
      */
     vector<Airport*> getAirports() const;
 
     /**
      * Getter for the flightplans in the simulation
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
      * @return vec of all flightplans
      */
     vector<Flightplan*> getFlightplans() const;
 
     /**
      * Checks if a given string is a valid unsigned int
-     * REQUIRE(this->properlyInitialized(), "Input was't initialized when calling isNumber");
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling isNumber");
      */
     static bool isNumber(const string&);
 

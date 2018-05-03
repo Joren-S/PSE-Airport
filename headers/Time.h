@@ -33,8 +33,8 @@ public:
      * Constructor, sets the time
      * Defaults to 12:00, which is the starting point of
      * the simulation
-     * REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
-     * REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
+     * \n REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
+     * \n REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
      */
     Time(int hour = 12, int minute = 0);
 
@@ -45,13 +45,13 @@ public:
 
     /**
      * Advances the time by an amount of minutes
-     * REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
+     * \n REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
      */
     void advance(int minutes = 1);
 
     /**
      * Setter for the minute.
-     * REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
+     * \n REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
      */
     void setMinute(int minute);
 
@@ -62,7 +62,7 @@ public:
 
     /**
      * Setter for the hour.
-     * REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
+     * \n REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
      */
     void setHour(int hour);
 

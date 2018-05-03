@@ -117,7 +117,7 @@ public:
 
     /**
      * Default constructor
-     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
+     * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Airplane();
 
@@ -128,80 +128,80 @@ public:
 
     /**
      * Increases the plane's altitude by a given amount
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling increaseAltitude");
-     * REQUIRE(difference > 0, "Difference can't be negative");
-     * ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling increaseAltitude");
+     * \n REQUIRE(difference > 0, "Difference can't be negative");
+     * \n ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
      */
     void increaseAltitude(int difference = 1);
 
     /**
      * Decreases the plane's altitude by a given amount
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseAltitude");
-     * REQUIRE(difference > 0, "Difference can't be negative");
-     * REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
-     * ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseAltitude");
+     * \n REQUIRE(difference > 0, "Difference can't be negative");
+     * \n REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
+     * \n ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
      */
     void decreaseAltitude(int difference = 1);
 
     /**
      * Decreases the time of the remaining operation by one.
      * If there's no operation busy, it does nothing.
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseTimeRemaining");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseTimeRemaining");
      */
     void decreaseTimeRemaining();
 
     /**
      * Checks if all the data members were initialized
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane::complete");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane::complete");
      */
     bool complete() const;
 
     /**
      * Setter for the altitude
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(altitude >= 0, "Altitude can't be negative");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(altitude >= 0, "Altitude can't be negative");
      */
     void setAltitude(int altitude);
 
     /**
      * Setter for the time remaining on the operation
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(time >= 0, "Time remaining can't be negative");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(time >= 0, "Time remaining can't be negative");
      */
     void setTimeRemaining(int time);
 
     /**
      * Setter for the maximum amount of passengers
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(passengers >= 0, "Passenger amount can't be negative");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(passengers >= 0, "Passenger amount can't be negative");
      */
     void setPassengers(int fPassengers);
 
     /**
      * Setter for the gate the plane's at
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(id >= -1, "Gate id can't be less than -1");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(id >= -1, "Gate id can't be less than -1");
      */
     void setGateID(int id);
 
     /**
      * Setter for the maximum amount of fuel (in 10.000 units)
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(fuel > 0, "Fuel can't be less than 1");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(fuel > 0, "Fuel can't be less than 1");
      */
     void setFuel(int fuel);
 
 
     /**
      * Setter for the squawk code
-     * REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
-     * REQUIRE(squawk >= 0, "Squawk code can't be negative");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(squawk >= 0, "Squawk code can't be negative");
      */
     void setSquawk(int squawk);
 
     /**
      * Getters and setters for the fields of the class.
-     * REQUIRE(properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
      *
      */
     EPlaneSize getSize() const;

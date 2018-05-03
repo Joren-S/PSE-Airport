@@ -60,7 +60,7 @@ public:
 
     /**
      * Default constructor
-     * ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
+     * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
     Flightplan();
 
@@ -76,40 +76,40 @@ public:
 
     /**
      * Setter for departure time
-     * REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setDeparture");
-     * REQUIRE(departure >= 0 && departure < 60, "Departure has to be between 0 and 60");
+     * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setDeparture");
+     * \n REQUIRE(departure >= 0 && departure < 60, "Departure has to be between 0 and 60");
      */
     void setDeparture(int fDeparture);
 
     /**
      * Setter for arrival time
-     * REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setArrival");
-     * REQUIRE(arrival >= 0 && arrival < 60, "Arrival has to be between 0 and 60");
+     * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setArrival");
+     * \n REQUIRE(arrival >= 0 && arrival < 60, "Arrival has to be between 0 and 60");
      */
     void setArrival(int fArrival);
 
     /**
      * Setter for interval
-     * REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setInterval");
-     * REQUIRE(interval > 0, "Interval has to be at least 1");
+     * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setInterval");
+     * \n REQUIRE(interval > 0, "Interval has to be at least 1");
      */
     void setInterval(int fInterval);
 
     /**
      * Returns the event at the given time
-     * REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling getEvent");
+     * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling getEvent");
      */
     EEvent getEvent(Time time);
 
     /**
      * Checks if all the data members were initialized
-     * REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling complete");
+     * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling complete");
      */
     bool complete() const;
 
     /**
      * Getters and setters for the fields of the class.
-     * REQUIRE(properlyInitialized(), "Flightplan wasn't initialized when calling getter/setter");
+     * \n REQUIRE(properlyInitialized(), "Flightplan wasn't initialized when calling getter/setter");
      *
      */
     const string &getDestination() const;
