@@ -47,6 +47,23 @@ TEST_F(domainTestFlightplan, happyDay) {
     EXPECT_EQ(event, kNothing);
 }
 
+TEST_F(domainTestFlightplan, fieldManipulation) {
+    flightplan.setDestination("Alpha");
+    EXPECT_EQ(flightplan.getDestination(), "Alpha");
+
+    flightplan.setArrival(10);
+    EXPECT_EQ(flightplan.getArrival(), 10);
+
+    flightplan.setDeparture(20);
+    EXPECT_EQ(flightplan.getDeparture(), 20);
+
+    flightplan.setInterval(3);
+    EXPECT_EQ(flightplan.getInterval(), 3);
+
+    flightplan.setAirplane(NULL);
+    EXPECT_TRUE(flightplan.getAirplane() == NULL);
+}
+
 TEST_F(domainTestFlightplan, contractViolations) {
     EXPECT_DEATH(flightplan.setDeparture(-2), "Departure has to be between 0 and 60");
     EXPECT_DEATH(flightplan.setDeparture(65), "Departure has to be between 0 and 60");
