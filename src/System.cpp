@@ -506,7 +506,7 @@ void System::prepare(Airplane *plane, ostream& fLog) {
 
         // Send new request to ATC, which takes 1 minute, and we change the status of the request
         fATC->sendRequest(fTime, plane);
-        fATC->sendMessage(fATC->formatMessage(fTime, planeCS, planeCS + ", " + planeCS + ", requesting IFR clearancy."));
+        fATC->sendMessage(fATC->formatMessage(fTime, planeCS, getAirport()->getCallsign() + ", " + planeCS + ", requesting IFR clearancy."));
 
         // Advance
         plane->setTimeRemaining(1);
