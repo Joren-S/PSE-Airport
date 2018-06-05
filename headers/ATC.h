@@ -35,6 +35,12 @@ struct ATCRequest {
     ATCRequest(Time time, Airplane* plane) : fTime(time), fAirplane(plane) {}
 };
 
+struct Comparator {
+    bool operator()(const ATCRequest* lhs, const ATCRequest* rhs) {
+        return lhs->fAirplane->getSquawk() < rhs->fAirplane->getSquawk();
+    }
+};
+
 class ATC {
 private:
 
@@ -51,7 +57,7 @@ private:
     /**
      * Queue of messages.
      */
-    queue<ATCRequest*> fQueue;
+    priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> fQueue;
 
     /**
     * Time when ATC was last active.
@@ -108,7 +114,6 @@ public:
      * Send a request to the ATC.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendRequest.");
      * \n REQUIRE(source != NULL, "Source is NULL.");
-     * \n ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
      * @param time: Time of the request.
      * @param source: Airplane that made the request.
      */
@@ -118,16 +123,15 @@ public:
      * Return the amount of requests that are queued.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
      * \n ENSURE(size >= 0, "Queue has a negative size.");
-     * @return: Size of the queue.
+     * @return: Size of the priority_queue.
      */
     int getQueueSize() const;
 
     /**
      * Get the next request that needs to be handled by the ATC.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
-     * \n ENSURE(getQueue()->front() != rqst, "Message wasn't removed from the queue.");
-     * \n ENSURE(msg != NULL, "Request popped from queue is NULL.");
-     * @return: Pointer to the request, NULL if queue is empty.
+     * \n ENSURE(msg != NULL, "Request popped from priority_queue is NULL.");
+     * @return: Pointer to the request, NULL if priority_queue is empty.
      */
     ATCRequest *getNextRequest();
 
@@ -235,7 +239,7 @@ public:
      * Setters:
      * \n ENSURE(fField == value, "Field wasn't set properly");
      */
-    queue<ATCRequest*> *getQueue();
+    priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> *getQueue();
     void setLastActive(Time);
     Time getLastActive() const;
     Airport* getAirport() const;

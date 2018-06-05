@@ -42,7 +42,6 @@ void ATC::sendRequest(Time time, Airplane *source) {
     ATCRequest *rqst = new ATCRequest(time, source);
 
     getQueue()->push(rqst);
-    ENSURE(getQueue()->back() == rqst, "Request wasn't queued properly.");
 }
 
 string ATC::formatMessage(Time time, string source, string message) {
@@ -147,17 +146,17 @@ string ATC::formatMessage(Time time, string source, string message) {
 ATCRequest *ATC::getNextRequest() {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
 
-    // If queue is empty, return NULL.
+    // If priority_queue is empty, return NULL.
     if (getQueueSize() == 0) {
         return NULL;
     }
 
-    // If not empty, get the message at the front of the queue and pop it.
-    ATCRequest *rqst = getQueue()->front();
+    // If not empty, get the message at the front of the priority_queue and pop it.
+    ATCRequest *rqst = getQueue()->top();
     getQueue()->pop();
 
     // Make sure our message was retrieved correctly.
-    ENSURE(rqst != NULL, "Request popped from queue is NULL.");
+    ENSURE(rqst != NULL, "Request popped from priority_queue is NULL.");
 
     // Return our message.
     return rqst;
@@ -166,7 +165,7 @@ ATCRequest *ATC::getNextRequest() {
 void ATC::doHeartbeat(Time curTime) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
 
-    // Fetch the next request in the queue
+    // Fetch the next request in the priority_queue
     ATCRequest* request = getNextRequest();
 
     // If there are none, return
@@ -285,7 +284,7 @@ int ATC::getSquawk(Airplane *airplane) {
 }
 
 // Getters and setters
-queue<ATCRequest *> *ATC::getQueue() {
+priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> *ATC::getQueue() {
     REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
     return &fQueue;
 }
@@ -631,7 +630,7 @@ void ATC::processTakeOffRunway(Airplane* airplane, Time time) {
 
 ATC::~ATC() {
     while (!fQueue.empty()) {
-        ATCRequest* request = fQueue.front();
+        ATCRequest* request = fQueue.top();
         delete request;
         fQueue.pop();
     }
