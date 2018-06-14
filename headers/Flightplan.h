@@ -17,7 +17,6 @@
  */
 enum EEvent { kLand, kTakeoff, kNothing };
 
-using namespace std;
 
 
 /**
@@ -39,7 +38,7 @@ private:
     /**
      * IATA of destination airport.
      */
-    string fDestination;
+    std::string fDestination;
 
     /**
      * Minute of departure
@@ -112,8 +111,8 @@ public:
      * \n REQUIRE(properlyInitialized(), "Flightplan wasn't initialized when calling getter/setter");
      *
      */
-    const string &getDestination() const;
-    void setDestination(const string &fDestination);
+    const std::string &getDestination() const;
+    void setDestination(const std::string &fDestination);
     int getDeparture() const;
     int getArrival() const;
     int getInterval() const;

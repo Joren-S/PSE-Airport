@@ -6,8 +6,9 @@
 
 #include "../headers/Runway.h"
 
+using namespace std;
 
-Runway::Runway(): fFree(true), fAirport(NULL), fType(kDefaultRunType), fLength(-1) {
+Runway::Runway(): fType(kDefaultRunType), fLength(-1), fFree(true), fAirport(NULL) {
     fInitCheck = this;
     ENSURE(properlyInitialized(), "Runway wasn't properly initialized after constructing.");
 }

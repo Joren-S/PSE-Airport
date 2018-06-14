@@ -7,10 +7,20 @@
 
 #include "../headers/Time.h"
 
+using namespace std;
 
 Time::Time(int hour, int minute) {
+    fInitCheck = this;
     setHour(hour);
     setMinute(minute);
+    ENSURE(properlyInitialized(), "Time wasn't properly initialized after constructing.");
+}
+
+Time::Time(const Time &time) {
+    fInitCheck = this;
+    setHour(time.getHour());
+    setMinute(time.getMinute());
+    ENSURE(properlyInitialized(), "Time wasn't properly initialized after constructing.");
 }
 
 string Time::formatted() const {
@@ -41,6 +51,7 @@ string Time::formatted() const {
 }
 
 void Time::advance(int minutes) {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling advance");
     REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
 
     // While there are minutes remaining
@@ -59,20 +70,24 @@ void Time::advance(int minutes) {
 }
 
 void Time::setMinute(int minute) {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling setMinute");
     REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
     fMinute = minute;
 }
 
 void Time::setHour(int hour) {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling setHour");
     REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
     fHour = hour;
 }
 
 int Time::getHour() const {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling getHour");
     return fHour;
 }
 
 int Time::getMinute() const {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling getMinute");
     return fMinute;
 }
 
@@ -90,4 +105,15 @@ bool Time::operator<(const Time& time) const {
         return false;
     }
     return this->getMinute() < time.getMinute();
+}
+
+Time& Time::operator=(const Time &time) {
+    fMinute = time.getMinute();
+    fHour = time.getHour();
+    fInitCheck = this;
+    return *this;
+}
+
+bool Time::properlyInitialized() const {
+    return fInitCheck == this;
 }

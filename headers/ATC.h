@@ -52,12 +52,12 @@ private:
     /**
      * Output stream.
      */
-    ostream& fStream;
+    std::ostream& fStream;
 
     /**
      * Queue of messages.
      */
-    priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> fQueue;
+    std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> fQueue;
 
     /**
     * Time when ATC was last active.
@@ -80,9 +80,9 @@ private:
     Airport* fAirport;
 
     /**
-     * The set of used squawk codes
+     * The std::set of used squawk codes
      */
-    set<int> fUsedCodes;
+    std::set<int> fUsedCodes;
     
     /**
      * Bool indicating if tests are running
@@ -95,9 +95,9 @@ public:
     /**
      * Constructor
      * \n ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
-     * @param stream: ostream to write to.
+     * @param stream: std::ostream to write to.
      */
-    ATC(ostream& stream, bool test);
+    ATC(std::ostream& stream, bool test);
 
     /**
      * Destructor
@@ -123,15 +123,15 @@ public:
      * Return the amount of requests that are queued.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
      * \n ENSURE(size >= 0, "Queue has a negative size.");
-     * @return: Size of the priority_queue.
+     * @return: Size of the std::priority_queue.
      */
     int getQueueSize() const;
 
     /**
      * Get the next request that needs to be handled by the ATC.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
-     * \n ENSURE(msg != NULL, "Request popped from priority_queue is NULL.");
-     * @return: Pointer to the request, NULL if priority_queue is empty.
+     * \n ENSURE(msg != NULL, "Request popped from std::priority_queue is NULL.");
+     * @return: Pointer to the request, NULL if std::priority_queue is empty.
      */
     ATCRequest *getNextRequest();
 
@@ -142,7 +142,7 @@ public:
      * @param message: Content of message.
      * @return: Formatted message.
      */
-    static string formatMessage(Time time, string source, string message);
+    static std::string formatMessage(Time time, std::string source, std::string message);
 
     /**
      * Main function of the ATC, needs to be called every time we advance in time.
@@ -223,7 +223,7 @@ public:
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
      * @param message: Message that needs to be send.
      */
-    void sendMessage(const string &message);
+    void sendMessage(const std::string &message);
 
     /**
      * Generates a squawk code for a given plane.
@@ -237,9 +237,9 @@ public:
      * \n REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
      *
      * Setters:
-     * \n ENSURE(fField == value, "Field wasn't set properly");
+     * \n ENSURE(fField == value, "Field wasn't std::set properly");
      */
-    priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> *getQueue();
+    std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> *getQueue();
     void setLastActive(Time);
     Time getLastActive() const;
     Airport* getAirport() const;

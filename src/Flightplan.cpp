@@ -6,6 +6,8 @@
 
 #include "../headers/Flightplan.h"
 
+using namespace std;
+
 Flightplan::Flightplan(): fAirplane(NULL), fDeparture(-1), fArrival(-1), fInterval(-1) {
     fInitCheck = this;
     ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");

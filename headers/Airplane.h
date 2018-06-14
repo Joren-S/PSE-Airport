@@ -11,8 +11,6 @@
 #include <string>
 #include "DesignByContract.h"
 
-using namespace std;
-
 
 class Runway; // Forward declaration
 
@@ -35,84 +33,6 @@ enum EPlaneRequest { kPending, kAccepted, kDenied, kConfirmed, kAcceptedImmediat
  * \brief: Class that represents an airplane in the simulation
  */
 class Airplane {
-private:
-
-    /**
-     * Pointer to itself
-     */
-    Airplane *fInitCheck;
-
-    /**
-     * Members indicating number, callsign and model
-     */
-    string fNumber, fCallsign, fModel;
-
-    /**
-     * Status of plane
-     */
-    EPlaneStatus fStatus;
-
-    /**
-     * Size of plane
-     */
-    EPlaneSize fSize;
-
-    /**
-     * Engine type of plane
-     */
-    EPlaneEngine fEngine;
-
-    /**
-     * Type of plane
-     */
-    EPlaneType fType;
-
-    /**
-     * Status of last request.
-     */
-    EPlaneRequest fRequest;
-
-    /**
-     * Amount of passengers it can hold
-     */
-    int fPassengers;
-
-    /**
-     * Gate where the airplane is at.
-     * If the value is -1, the airplane is not at a gate
-     */
-    int fGateID;
-
-    /**
-     * Altitude in 1000feet
-     */
-    int fAltitude;
-
-    /**
-     * Time remaining of current operation.
-     */
-    int fTimeRemaining;
-
-    /**
-     * Indicates the taxipoint it's at right now.
-     */
-    string fPosition;
-
-    /**
-     * Indicates the runway on which the airplane lands/takes off
-     */
-    Runway* fRunway;
-
-    /**
-     * Amount of fuel
-     */
-     int fFuel;
-
-     /**
-      * Squawk code of the airplane
-      */
-     int fSquawk;
-
 public:
 
     /**
@@ -213,23 +133,101 @@ public:
     int getAltitude() const;
     int getGateID() const;
     int getPassengers() const;
-    const string &getNumber() const;
-    void setNumber(const string &fNumber);
-    const string &getCallsign() const;
-    void setCallsign(const string &fCallsign);
-    const string &getModel() const;
-    void setModel(const string &fModel);
+    const std::string &getNumber() const;
+    void setNumber(const std::string &fNumber);
+    const std::string &getCallsign() const;
+    void setCallsign(const std::string &fCallsign);
+    const std::string &getModel() const;
+    void setModel(const std::string &fModel);
     EPlaneStatus getStatus() const;
     void setStatus(EPlaneStatus fStatus);
     int getTimeRemaining() const;
-    void setPosition(const string&);
-    const string &getPosition() const;
+    void setPosition(const std::string&);
+    const std::string &getPosition() const;
     void setRequest(EPlaneRequest);
     EPlaneRequest getRequest() const;
     Runway* getRunway() const;
     void setRunway(Runway*);
     int getFuel() const;
     int getSquawk() const;
+
+private:
+
+    /**
+     * Pointer to itself
+     */
+    Airplane *fInitCheck;
+
+    /**
+     * Members indicating number, callsign and model
+     */
+    std::string fNumber, fCallsign, fModel;
+
+    /**
+     * Status of plane
+     */
+    EPlaneStatus fStatus;
+
+    /**
+     * Size of plane
+     */
+    EPlaneSize fSize;
+
+    /**
+     * Engine type of plane
+     */
+    EPlaneEngine fEngine;
+
+    /**
+     * Type of plane
+     */
+    EPlaneType fType;
+
+    /**
+     * Status of last request.
+     */
+    EPlaneRequest fRequest;
+
+    /**
+     * Amount of passengers it can hold
+     */
+    int fPassengers;
+
+    /**
+     * Gate where the airplane is at.
+     * If the value is -1, the airplane is not at a gate
+     */
+    int fGateID;
+
+    /**
+     * Altitude in 1000feet
+     */
+    int fAltitude;
+
+    /**
+     * Time remaining of current operation.
+     */
+    int fTimeRemaining;
+
+    /**
+     * Indicates the taxipoint it's at right now.
+     */
+    std::string fPosition;
+
+    /**
+     * Indicates the runway on which the airplane lands/takes off
+     */
+    Runway* fRunway;
+
+    /**
+     * Amount of fuel
+     */
+    int fFuel;
+
+    /**
+     * Squawk code of the airplane
+     */
+    int fSquawk;
 
 };
 

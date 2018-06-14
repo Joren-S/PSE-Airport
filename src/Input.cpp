@@ -6,6 +6,8 @@
 
 #include "../headers/Input.h"
 
+using namespace std;
+
 void Input::read(const string &filename, ostream& errorLog) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
@@ -162,7 +164,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
             }
 
             // Read the flightplan, it returns a pointer to the object
-            flightplan = readFlightplan(elem->FirstChildElement());
+            flightplan = readFlightplan(elem->FirstChildElement(), errorLog);
 
             // Flightplan is NULL when there was an error
             if (flightplan == NULL) {

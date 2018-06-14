@@ -6,6 +6,7 @@
 
 #include "../headers/Airport.h"
 
+using namespace std;
 
 Airport::Airport() {
     fGates = -1;

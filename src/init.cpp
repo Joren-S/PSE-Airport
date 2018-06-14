@@ -17,10 +17,10 @@ int main() {
     input.read(INPUTFILENAME);
 
     // Output file for atc
-    ofstream atc(ATCFILENAME);
+    std::ofstream atc(ATCFILENAME);
 
     // Output file for logging
-    ofstream log(LOGFILENAME);
+    std::ofstream log(LOGFILENAME);
 
     // Initialize system
     System system(atc,  ENDTIME);

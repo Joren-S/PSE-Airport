@@ -6,6 +6,8 @@
 
 #include "../headers/System.h"
 
+using namespace std;
+
 System::System(ostream& atc, Time end): fTime(Time()), fEndTime(end), fATC(new ATC(atc, false)) {
     fAirport = NULL;
     fInitCheck = this;

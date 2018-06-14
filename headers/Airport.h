@@ -11,41 +11,15 @@
 #include <stack>
 #include <vector>
 #include <sstream>
-
 #include "DesignByContract.h"
 #include "Runway.h"
 #include "Time.h"
 #include "Flightplan.h"
 
-using namespace std;
-
+/**
+ * Class that represents the airport in a simulation
+ */
 class Airport {
-private:
-    /**
-     * Pointer to itself
-     */
-    Airport *fInitCheck;
-
-    /**
-     * Members indicating name, iata and callsign
-     */
-    string fName, fIata, fCallsign;
-
-    /**
-     * Amount of gates in the airport
-     */
-    int fGates;
-
-    /**
-     * Stack of available gates
-     */
-    stack<int> fGateStack;
-
-    /**
-     * Vector of all the runways the airport contains
-     */
-    vector<Runway*> fRunways;
-
 public:
 
     /**
@@ -98,7 +72,7 @@ public:
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getRunway.");
      * @return: Pointer to the found runway, NULL if nothing is found.
      */
-    Runway* getRunway(const string&) const;
+    Runway* getRunway(const std::string&) const;
 
     /**
      * Gets the next runway (for taxiing) based on what the airplane is doing.
@@ -148,7 +122,7 @@ public:
      * @param time: time of the impression.
      * @param stream: ostream to write the impression to.
      */
-    void drawImpression(Time time, ostream& stream, vector<Flightplan*> plans);
+    void drawImpression(Time time, std::ostream& stream, std::vector<Flightplan*> plans);
 
     /**
      * Set the amount of gates in the airport.
@@ -166,14 +140,42 @@ public:
      * Setters:
      * \n ENSURE(fField == value, "Field wasn't set properly");
      */
-    const string &getName() const;
-    void setName(const string &fName);
-    const string &getIata() const;
-    void setIata(const string &fIata);
-    const string &getCallsign() const;
-    void setCallsign(const string &fCallsign);
+    const std::string &getName() const;
+    void setName(const std::string &fName);
+    const std::string &getIata() const;
+    void setIata(const std::string &fIata);
+    const std::string &getCallsign() const;
+    void setCallsign(const std::string &fCallsign);
     int getGates() const;
-    vector<Runway*> getRunways() const;
+    std::vector<Runway*> getRunways() const;
+
+private:
+
+    /**
+     * Pointer to itself
+     */
+    Airport *fInitCheck;
+
+    /**
+     * Members indicating name, iata and callsign
+     */
+    std::string fName, fIata, fCallsign;
+
+    /**
+     * Amount of gates in the airport
+     */
+    int fGates;
+
+    /**
+     * Stack of available gates
+     */
+    std::stack<int> fGateStack;
+
+    /**
+     * Vector of all the runways the airport contains
+     */
+    std::vector<Runway*> fRunways;
+
 };
 
 

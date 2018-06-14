@@ -7,6 +7,8 @@
 
 #include "../headers/ATC.h"
 
+using namespace std;
+
 // Constructor and initialise-check
 
 ATC::ATC(ostream& stream, bool test): fStream(stream) {
