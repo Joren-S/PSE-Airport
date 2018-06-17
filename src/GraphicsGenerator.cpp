@@ -16,8 +16,6 @@
 using namespace std;
 
 GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0), gates(gates) {
-    // TODO: draw airport with gates
-
     ostringstream stream;
 
     string cube = "type = \"Cube\"\n"
@@ -26,6 +24,9 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
                   "rotateZ = 0\n";
 
     int offset = gates / 2 + 2;
+
+    int xMax = 0;
+    int xMin = 0;
 
     for (int i = 0; i < gates * 2; i++) {
         stream << "[Figure" << fFigures.size() << "]" << endl;
@@ -36,6 +37,15 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
         fFigures.push_back(stream.str());
 
         stream.str(string());
+
+        int x = i * 6 - offset * 6;
+
+        if (xMin > x) {
+            xMin = x;
+        }
+        if (xMax < x) {
+            xMax = x;
+        }
 
         if (i % 2 == 0) {
             stream << "[Figure" << fFigures.size() << "]" << endl;
@@ -69,8 +79,20 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
         }
     }
 
-    stream <<
-
+    stream << "[Figure" << fFigures.size() << "]" << endl;
+    stream << "type = \"Face\"\n"
+              "nrPoints = 4\n"
+              "scale = 1\n"
+              "rotateX = 0\n"
+              "rotateY = 0\n"
+              "rotateZ = 0\n"
+              "center = (0, 0, 0)\n"
+              "color = (0.3, 0.3, 0.3)\n";
+    stream << "point0 = (" << xMax + 7 << ", 2, -0.5)" << endl;
+    stream << "point1 = (" << xMax + 7 << ", -25, -0.5)" << endl;
+    stream << "point2 = (" << xMin - 7 << ", -25, -0.5)" << endl;
+    stream << "point3 = (" << xMin - 7 << ", 2, -0.5)" << endl;
+    fFigures.push_back(stream.str());
 }
 
 
@@ -121,7 +143,7 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "rotateY = 0\n"
               "rotateZ = 0\n"
               "center = (0, 0, 0)\n"
-              "color = (0.8, 0.8, 0.8)\n";
+              "color = (0.3, 0.3, 0.3)\n";
 
     ini << "point0 = (-7" << ", " << -5 << ", -0.5)" << endl;
     ini << "point1 = (7" << ", " << 0 << ", -0.5)" << endl;
@@ -129,22 +151,22 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
     ini << "point3 = (-7" << ", " << - 2 * xLength + 15 << ", -0.5)" << endl << endl;
 
 
-    ini << "[Figure" << fFigures.size() << "]\n";
-    ini << "type = \"Face\"\n"
-              "nrPoints = 4\n"
-              "scale = 1\n"
-              "rotateX = 0\n"
-              "rotateY = 0\n"
-              "rotateZ = 0\n";
-
-
-    // Set right points according to length
-    ini << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
-    ini << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
-    ini << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
-    ini << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
-    ini << "center";
-    ini << "color";
+//    ini << "[Figure" << fFigures.size() << "]\n";
+//    ini << "type = \"Face\"\n"
+//              "nrPoints = 4\n"
+//              "scale = 1\n"
+//              "rotateX = 0\n"
+//              "rotateY = 0\n"
+//              "rotateZ = 0\n";
+//
+//
+//    // Set right points according to length
+//    ini << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
+//    ini << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
+//    ini << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
+//    ini << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
+//    ini << "center";
+//    ini << "color";
 
     return ini.str();
 }
@@ -216,7 +238,7 @@ void GraphicsGenerator::addElement(const Runway *runway) {
     figure << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
 
 
-    int offset = nrRunways * 30 + 40;
+    int offset = nrRunways * 30 + 45;
 
     // Center at right position
     figure << "center = (0, -" << offset << ", 0)" << endl;
@@ -243,7 +265,7 @@ void GraphicsGenerator::addElement(const Airplane *airplane) {
     string line;
 
     // TODO set these
-    double x=5, y=-13, z=0;
+    double x=12, y=-11, z=0;
 //    double rotateZ = 90;
 
     double xC, yC, zC;
