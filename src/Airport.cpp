@@ -157,7 +157,7 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     return NULL;
 }
 
-void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> plans) {
+string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>& plans) const {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
 
     stringstream impression;
@@ -274,8 +274,14 @@ void Airport::drawImpression(Time time, ostream &stream, vector<Flightplan*> pla
     impression << "Gates [ " << planesatgate << " ]" << endl;
 
     // Write the result to our stream
-    stream << impression.str();
+    return impression.str();
 }
+
+
+std::string Airport::graphicsINI(const Time& time, const std::vector<Flightplan *>& plans) const {
+
+}
+
 
 // Getters en setters
 
