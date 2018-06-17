@@ -40,6 +40,8 @@ private:
 
     int maximumLength;
 
+    int gates;
+
 };
 
 #endif //PROJECTVLIEGVELD_GRAPHICSGENERATOR_H

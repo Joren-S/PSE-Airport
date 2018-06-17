@@ -15,15 +15,66 @@
 
 using namespace std;
 
-GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0) {
+GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0), gates(gates) {
     // TODO: draw airport with gates
 
+    ostringstream stream;
+
+    string cube = "type = \"Cube\"\n"
+                  "rotateX = 0\n"
+                  "rotateY = 0\n"
+                  "rotateZ = 0\n";
+
+    int offset = gates / 2 + 2;
+
+    for (int i = 0; i < gates * 2; i++) {
+        stream << "[Figure" << fFigures.size() << "]" << endl;
+        stream << cube;
+        stream << "center = (" << i * 6 - offset * 6 << ", 0, 2)" << endl;
+        stream << "color = (0.7, 0.7, 0.7)" << endl;
+        stream << "scale = 3" << endl << endl;
+        fFigures.push_back(stream.str());
+
+        stream.str(string());
+
+        if (i % 2 == 0) {
+            stream << "[Figure" << fFigures.size() << "]" << endl;
+            stream << cube;
+            stream << "center = (" << i * 6 - offset * 6<< ", -4, 0)" << endl;
+            stream << "color = (0.5, 0.5, 0.5)" << endl;
+            stream << "scale = 1" << endl << endl;
+            fFigures.push_back(stream.str());
+            stream.str(string());
+            stream << "[Figure" << fFigures.size() << "]" << endl;
+            stream << cube;
+            stream << "center = (" << i * 6 - offset * 6<< ", -4, 2)" << endl;
+            stream << "color = (0.5, 0.5, 0.5)" << endl;
+            stream << "scale = 1" << endl << endl;
+            fFigures.push_back(stream.str());
+            stream.str(string());
+            stream << "[Figure" << fFigures.size() << "]" << endl;
+            stream << cube;
+            stream << "center = (" << i * 6 - offset * 6<< ", -6, 0)" << endl;
+            stream << "color = (0.5, 0.5, 0.5)" << endl;
+            stream << "scale = 1" << endl << endl;
+            fFigures.push_back(stream.str());
+            stream.str(string());
+            stream << "[Figure" << fFigures.size() << "]" << endl;
+            stream << cube;
+            stream << "center = (" << i * 6 - offset * 6<< ", -6, 2)" << endl;
+            stream << "color = (0.5, 0.5, 0.5)" << endl;
+            stream << "scale = 1" << endl << endl;
+            fFigures.push_back(stream.str());
+            stream.str(string());
+        }
+    }
+
+    stream <<
 
 }
 
 
 std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
-    // Make a rectangle that contains the whole airport
     ostringstream ini;
 
     // Add general section
@@ -32,7 +83,7 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
     while (getline(generalTemplate, line)) {
         ini << line << endl;
     }
-    ini << "nrFigures = " << fFigures.size() << endl;
+    ini << "nrFigures = " << fFigures.size() + 2 << endl;
     ini << "eye = (" << x << ", " << y << ", " << z << ")\n" << endl;
     generalTemplate.close();
 
@@ -41,24 +92,59 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
     for (itr = fFigures.begin(); itr != fFigures.end(); ++itr) {
         ini << *itr;
     }
-//
-//    ini << "[Figure" << fFigures.size() << "]" << endl;
-//    ini << "type = \"Face\"\n"
-//              "nrPoints = 4\n"
-//              "scale = 1\n"
-//              "rotateX = 0\n"
-//              "rotateY = 0\n"
-//              "rotateZ = 0\n"
-//              "center = (0, 0, 0)\n"
-//              "color = (0.27, 0.34, 0.15)\n";
-//
-//    int xLength = nrRunways * 20;
-//
-//    ini << "point0 = (" << maximumLength / 2 + 10 << ", " << - xLength << ", -1)" << endl;
-//    ini << "point1 = (" << maximumLength / 2 + 10 << ", " << xLength << ", -1)" << endl;
-//    ini << "point2 = (" << - maximumLength / 2 - 10 << ", " << xLength << ", -1)" << endl;
-//    ini << "point3 = (" << - maximumLength / 2 - 10 << ", " << - xLength << ", -1)" << endl;
 
+    // Make a rectangle that contains the whole airport
+
+    ini << "[Figure" << fFigures.size() << "]" << endl;
+    ini << "type = \"Face\"\n"
+              "nrPoints = 4\n"
+              "scale = 1\n"
+              "rotateX = 0\n"
+              "rotateY = 0\n"
+              "rotateZ = 0\n"
+              "center = (0, 0, 0)\n"
+              "color = (0.27, 0.34, 0.15)\n";
+
+    int xLength = nrRunways * 20 + 5;
+
+    ini << "point0 = (" << maximumLength / 2 + 10 << ", " << - 2 * xLength << ", -1)" << endl;
+    ini << "point1 = (" << maximumLength / 2 + 10 << ", " << 10 << ", -1)" << endl;
+    ini << "point2 = (" << - maximumLength / 2 - 10 << ", " << 10 << ", -1)" << endl;
+    ini << "point3 = (" << - maximumLength / 2 - 10 << ", " << - 2 * xLength << ", -1)" << endl << endl;
+
+
+    ini << "[Figure" << fFigures.size() + 1 << "]" << endl;
+    ini << "type = \"Face\"\n"
+              "nrPoints = 4\n"
+              "scale = 1\n"
+              "rotateX = 0\n"
+              "rotateY = 0\n"
+              "rotateZ = 0\n"
+              "center = (0, 0, 0)\n"
+              "color = (0.8, 0.8, 0.8)\n";
+
+    ini << "point0 = (-7" << ", " << -5 << ", -0.5)" << endl;
+    ini << "point1 = (7" << ", " << 0 << ", -0.5)" << endl;
+    ini << "point2 = (7" << ", " << - 2 * xLength + 15 << ", -0.5)" << endl;
+    ini << "point3 = (-7" << ", " << - 2 * xLength + 15 << ", -0.5)" << endl << endl;
+
+
+    ini << "[Figure" << fFigures.size() << "]\n";
+    ini << "type = \"Face\"\n"
+              "nrPoints = 4\n"
+              "scale = 1\n"
+              "rotateX = 0\n"
+              "rotateY = 0\n"
+              "rotateZ = 0\n";
+
+
+    // Set right points according to length
+    ini << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
+    ini << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
+    ini << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
+    ini << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
+    ini << "center";
+    ini << "color";
 
     return ini.str();
 }
@@ -130,7 +216,7 @@ void GraphicsGenerator::addElement(const Runway *runway) {
     figure << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
 
 
-    int offset = nrRunways * 20;
+    int offset = nrRunways * 30 + 40;
 
     // Center at right position
     figure << "center = (0, -" << offset << ", 0)" << endl;
@@ -152,12 +238,12 @@ void GraphicsGenerator::addElement(const Airplane *airplane) {
     ostringstream figure;
 
 //    ifstream iniTemplate("../airplaneTemplate.txt");
-//    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
-    ifstream iniTemplate("../airplaneDepartureTemplate.txt");
+    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
+//    ifstream iniTemplate("../airplaneDepartureTemplate.txt");
     string line;
 
     // TODO set these
-    double x=0, y=0, z=0;
+    double x=5, y=-13, z=0;
 //    double rotateZ = 90;
 
     double xC, yC, zC;
