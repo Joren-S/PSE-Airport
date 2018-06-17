@@ -865,7 +865,9 @@ void System::run(ostream& log, const string& impressionName) {
         ofstream impression(name.c_str());
 
         // Each tick, we draw a graphical impression of the airport.
-        getAirport()->drawImpression(fTime, impression, getFlightplans());
+        string impressionStr = getAirport()->drawImpression(fTime, getFlightplans());
+        impression << impressionStr;
+        impression.close();
 
 
         // Get flightplans and set up iterator

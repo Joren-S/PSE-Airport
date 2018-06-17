@@ -15,86 +15,151 @@
 
 using namespace std;
 
-GraphicsGenerator::GraphicsGenerator(Airport* airport): fAirport(airport) {
+GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0) {
+    // TODO: draw airport with gates
+
 
 }
 
 
 std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
-    string ini;
-
-    // Convert eyepoint coordinates to string tuple
-    ostringstream converter;
-    converter << "eye = (" << x << ", " << y << ", " << z << ")" << endl;
-    string eyeTuple = converter.str();
+    // Make a rectangle that contains the whole airport
+    ostringstream ini;
 
     // Add general section
     ifstream generalTemplate("../IniTemplateGeneral.txt");
     string line;
     while (getline(generalTemplate, line)) {
-        ini += line;
+        ini << line << endl;
     }
-    ini += "nrFigures = " + ToString(int(fFigures.size())) + "\n";
-    ini += eyeTuple + "\n";
+    ini << "nrFigures = " << fFigures.size() << endl;
+    ini << "eye = (" << x << ", " << y << ", " << z << ")\n" << endl;
+    generalTemplate.close();
 
     // Add figures
-    for (const auto& figure: fFigures) {
-        ini += figure;
+    vector<string>::const_iterator itr;
+    for (itr = fFigures.begin(); itr != fFigures.end(); ++itr) {
+        ini << *itr;
     }
+//
+//    ini << "[Figure" << fFigures.size() << "]" << endl;
+//    ini << "type = \"Face\"\n"
+//              "nrPoints = 4\n"
+//              "scale = 1\n"
+//              "rotateX = 0\n"
+//              "rotateY = 0\n"
+//              "rotateZ = 0\n"
+//              "center = (0, 0, 0)\n"
+//              "color = (0.27, 0.34, 0.15)\n";
+//
+//    int xLength = nrRunways * 20;
+//
+//    ini << "point0 = (" << maximumLength / 2 + 10 << ", " << - xLength << ", -1)" << endl;
+//    ini << "point1 = (" << maximumLength / 2 + 10 << ", " << xLength << ", -1)" << endl;
+//    ini << "point2 = (" << - maximumLength / 2 - 10 << ", " << xLength << ", -1)" << endl;
+//    ini << "point3 = (" << - maximumLength / 2 - 10 << ", " << - xLength << ", -1)" << endl;
 
-    return ini;
+
+    return ini.str();
 }
 
 
-void GraphicsGenerator::parseCoordinates(const std::string &parameters, double &x, double &y, double &z) {
+void GraphicsGenerator::parseCoordinates(const std::string &coordinates, double &x, double &y, double &z) const {
+    string coordinate;
+
+    // Keeps up how many coordinates we've saved
     int counter = 0;
-    string parameter;
-    for (char symbol: parameters) {
+
+    // Iterate over all chars in the coordinates
+    string::const_iterator itr;
+    for (itr = coordinates.begin(); itr != coordinates.end(); ++itr) {
+        char symbol = *itr;
+
+        // Parameter ended
         if (symbol == ',') {
+
+            // Save it in the right coordinate
             if (counter == 0) {
-                x = atof(parameter.c_str());
+                x = atof(coordinate.c_str());
             }
             else {
-                y = atof(parameter.c_str());
+                y = atof(coordinate.c_str());
             }
+
+            // Reset and increase counter
+            coordinate = "";
             counter++;
         }
-        else if (isdigit(symbol) or symbol == '.') {
-            parameter += symbol;
+
+        // If it's a digit, point or minus, add to coordinate
+        else if (isdigit(symbol) or symbol == '.' or symbol == '-') {
+            coordinate += symbol;
         }
     }
-    z = atof(parameter.c_str());
+
+    // Add last one
+    z = atof(coordinate.c_str());
 }
 
 
 void GraphicsGenerator::addElement(const Runway *runway) {
-    // TODO set these
-    double x, y, z;
+    REQUIRE(runway != NULL, "Runway can't be NULL when calling addElement");
 
-    string figure = "[Figure" + ToString(int(fFigures.size())) + "\n" +
-                    "type = \"Face\"\n"
-                    "nrPoints = 4\n"
-                    "scale = 1\n"
-                    "rotateX = 0\n"
-                    "rotateY = 0\n"
-                    "rotateZ = 0\n";
+    ostringstream figure;
 
-    // Check type of runway
-    figure += "POINTS";
-    figure += "CENTER";
-    "color = (0.15, 0.15, 0.15)\n";
+    // Add standard information
+    figure << "[Figure" << fFigures.size() << "]\n";
+    figure << "type = \"Face\"\n"
+              "nrPoints = 4\n"
+              "scale = 1\n"
+              "rotateX = 0\n"
+              "rotateY = 0\n"
+              "rotateZ = 0\n";
 
+    // Drawing is scaled 1:7
+    int runwayLength = runway->getLength() / 7;
+
+    if (runwayLength > maximumLength) {
+        maximumLength = runwayLength;
+    }
+
+    // Set right points according to length
+    figure << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
+    figure << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
+    figure << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
+    figure << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
+
+
+    int offset = nrRunways * 20;
+
+    // Center at right position
+    figure << "center = (0, -" << offset << ", 0)" << endl;
+
+    // Set right color
+    if (runway->getType() == kAsphalt) {
+        figure << "color = (0.15, 0.15, 0.15)\n" << endl;
+    }
+    else {
+        figure << "color = (0.17, 0.70, 0.21)\n" << endl;
+    }
+
+    nrRunways++;
+    fFigures.push_back(figure.str());
 }
 
 
 void GraphicsGenerator::addElement(const Airplane *airplane) {
     ostringstream figure;
 
-    ifstream iniTemplate("../IniTemplateAirplane");
+//    ifstream iniTemplate("../airplaneTemplate.txt");
+//    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
+    ifstream iniTemplate("../airplaneDepartureTemplate.txt");
     string line;
 
     // TODO set these
     double x=0, y=0, z=0;
+//    double rotateZ = 90;
+
     double xC, yC, zC;
     
     while (getline(iniTemplate, line)) {
@@ -118,10 +183,16 @@ void GraphicsGenerator::addElement(const Airplane *airplane) {
 
         // Parse center tuple and add values to it
         else if (line.find("center") != string::npos) {
-            string parameters = line.substr(line.find('('), line.find(')') - line.find('('));
-            parseCoordinates(parameters, xC, yC, zC);
+            string coordinates = line.substr(line.find('(') + 1, line.find(')') - line.find('(') - 1);
+            parseCoordinates(coordinates, xC, yC, zC);
             figure << "center = (" << x + xC << ", " << y + yC << ", " << z + zC << ")\n";
         }
+
+//        else if (line.find("rotateZ") != string::npos) {
+//            string angleStr = line.substr(line.find('='));
+//            double angle = atof(angleStr.c_str()) + rotateZ;
+//            figure << "rotateZ = " << angle << endl;
+//        }
 
         // Standard line, add to figure
         else {

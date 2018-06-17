@@ -170,21 +170,3 @@ center = (0, 0, 0)
 color = (0.6, 0.6, 0.6)
 
 
-
-; Runway
-
-[Figure12]
-type = "Face"
-nrPoints = 4
-point0 = (10, -5, 0)
-point1 = (10, 5, 0)
-point2 = (-5, 5, 0)
-point3 = (-5, -5, 0)
-scale = 1
-rotateX = 0
-rotateY = 0
-rotateZ = 0
-center = (0, 0, 0)
-color = (0.15, 0.15, 0.15)
-
-

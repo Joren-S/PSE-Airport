@@ -6,14 +6,14 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <ostringstream>
+#include <sstream>
 #include "Airport.h"
 #include "TestUtils.h"
 
 class GraphicsGenerator {
 public:
 
-    GraphicsGenerator(Airport* airport);
+    GraphicsGenerator(int gates);
 
     void addElement(const Airplane* airplane);
 
@@ -23,11 +23,22 @@ public:
 
 private:
 
-    void parseCoordinates(const std::string& parameters, double& x, double& y, double& z);
+    /**
+     * Parses a string of coordinates in the form of "double, double, double"
+     * \n and saves each number in the right coordinate.
+     * \n The assumption is made that the coordinates string is in a correct format.
+     * @param coordinates: string of coordinates, separated with a comma
+     * @param x: x coordinate that will be set
+     * @param y: y coordinate that will be set
+     * @param z: z coordinate that will be set
+     */
+    void parseCoordinates(const std::string& coordinates, double& x, double& y, double& z) const;
 
     std::vector<std::string> fFigures;
 
-    Airport* fAirport;
+    int nrRunways;
+
+    int maximumLength;
 
 };
 

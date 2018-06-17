@@ -279,7 +279,7 @@ string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>
 
 
 std::string Airport::graphicsINI(const Time& time, const std::vector<Flightplan *>& plans) const {
-
+    return "";
 }
 
 
