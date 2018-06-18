@@ -130,13 +130,11 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "center = (0, 0, 0)\n"
               "color = (0.27, 0.34, 0.15)\n";
 
-    // y coordinate for rectangle, made with trial and error
-    int rectangleY = int(- 2 * (fRunways.size() * 20 + 5));
 
-    ini << "point0 = (" << fMaximumX + 10 << ", " << rectangleY << ", -1)" << endl;
+    ini << "point0 = (" << fMaximumX + 10 << ", " << - (fMaximumY + 15) << ", -1)" << endl;
     ini << "point1 = (" << fMaximumX  + 10 << ", " << 10 << ", -1)" << endl;
     ini << "point2 = (" << - (fMaximumX + 10) << ", " << 10 << ", -1)" << endl;
-    ini << "point3 = (" << - (fMaximumX + 10) << ", " << rectangleY << ", -1)" << endl << endl;
+    ini << "point3 = (" << - (fMaximumX + 10) << ", " << - (fMaximumY + 15) << ", -1)" << endl << endl;
 
 
     // Make a road for taxiing
@@ -230,8 +228,8 @@ void GraphicsGenerator::addElement(Runway *runway) {
     // Center at right position
     figure << "center = (0, -" << offset << ", 0)" << endl;
 
-    if (fMaximumY < 7 + offset) {
-        fMaximumY = 7 + offset;
+    if (fMaximumY < offset) {
+        fMaximumY = offset;
     }
 
     // Set right color
@@ -249,6 +247,15 @@ void GraphicsGenerator::addElement(Runway *runway) {
 
 void GraphicsGenerator::addElement(Airplane *airplane) {
     ostringstream figure;
+
+    if (airplane->getAltitude() > 0) {
+        return;
+    }
+
+    ifstream iniTemplate;
+
+
+
 
     ifstream iniTemplate("../airplaneTemplate.txt");
 //    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
