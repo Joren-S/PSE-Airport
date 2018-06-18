@@ -15,7 +15,7 @@
 
 using namespace std;
 
-GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0), maximumLengthY(0) {
+GraphicsGenerator::GraphicsGenerator(int gates): fMaximumY(0) {
     // Stream used to save all the figures
     ostringstream stream;
 
@@ -35,7 +35,9 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
                         "color = (0.5, 0.5, 0.5)\n";
 
     // Off set to calculate x values
-    int offset = gates / 2 + 1;
+    int offset = gates;
+
+    // Maximum and minimum values of the gates
     int xMax = 0;
     int xMin = 0;
 
@@ -74,6 +76,12 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
         }
     }
 
+    // Keep track of extrema
+    fMaximumX = xMax;
+    if (fMaximumX < -xMin) {
+        fMaximumX = - xMin;
+    }
+
     // Add the ground under building/gates
     stream << "[Figure" << fFigures.size() << "]" << endl;
     stream << "type = \"Face\"\n"
@@ -84,10 +92,10 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
               "rotateZ = 0\n"
               "center = (0, 0, 0)\n"
               "color = (0.3, 0.3, 0.3)\n";
-    stream << "point0 = (" << xMax + 7 << ", 2, -0.5)" << endl;
+    stream << "point0 = (" << xMax + 7 << ", 4, -0.5)" << endl;
     stream << "point1 = (" << xMax + 7 << ", -25, -0.5)" << endl;
     stream << "point2 = (" << xMin - 7 << ", -25, -0.5)" << endl;
-    stream << "point3 = (" << xMin - 7 << ", 2, -0.5)" << endl;
+    stream << "point3 = (" << xMin - 7 << ", 4, -0.5)" << endl;
     fFigures.push_back(stream.str());
 }
 
@@ -122,12 +130,13 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "center = (0, 0, 0)\n"
               "color = (0.27, 0.34, 0.15)\n";
 
-    int xLength = nrRunways * 20 + 5;
+    // y coordinate for rectangle, made with trial and error
+    int rectangleY = int(- 2 * (fRunways.size() * 20 + 5));
 
-    ini << "point0 = (" << maximumLengthY / 2 + 10 << ", " << - 2 * xLength << ", -1)" << endl;
-    ini << "point1 = (" << maximumLengthY / 2 + 10 << ", " << 10 << ", -1)" << endl;
-    ini << "point2 = (" << - maximumLengthY / 2 - 10 << ", " << 10 << ", -1)" << endl;
-    ini << "point3 = (" << - maximumLengthY / 2 - 10 << ", " << - 2 * xLength << ", -1)" << endl << endl;
+    ini << "point0 = (" << fMaximumX + 10 << ", " << rectangleY << ", -1)" << endl;
+    ini << "point1 = (" << fMaximumX  + 10 << ", " << 10 << ", -1)" << endl;
+    ini << "point2 = (" << - (fMaximumX + 10) << ", " << 10 << ", -1)" << endl;
+    ini << "point3 = (" << - (fMaximumX + 10) << ", " << rectangleY << ", -1)" << endl << endl;
 
 
     // Make a road for taxiing
@@ -141,10 +150,10 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "center = (0, 0, 0)\n"
               "color = (0.3, 0.3, 0.3)\n";
 
-    ini << "point0 = (-7" << ", " << -5 << ", -0.5)" << endl;
+    ini << "point0 = (-7" << ", " << - 5 << ", -0.5)" << endl;
     ini << "point1 = (7" << ", " << 0 << ", -0.5)" << endl;
-    ini << "point2 = (7" << ", " << -maximumLength << ", -0.5)" << endl;
-    ini << "point3 = (-7" << ", " << -maximumLength << ", -0.5)" << endl << endl;
+    ini << "point2 = (7" << ", " << - fMaximumY  << ", -0.5)" << endl;
+    ini << "point3 = (-7" << ", " << - fMaximumY << ", -0.5)" << endl << endl;
 
     return ini.str();
 }
@@ -188,7 +197,7 @@ void GraphicsGenerator::parseCoordinates(const std::string &coordinates, double 
 }
 
 
-void GraphicsGenerator::addElement(const Runway *runway) {
+void GraphicsGenerator::addElement(Runway *runway) {
     REQUIRE(runway != NULL, "Runway can't be NULL when calling addElement");
 
     ostringstream figure;
@@ -205,26 +214,24 @@ void GraphicsGenerator::addElement(const Runway *runway) {
     // Drawing is scaled 1:7
     int runwayLength = runway->getLength() / 7;
 
-    if (runwayLength > maximumLengthY) {
-        maximumLengthY = runwayLength;
+    if (runwayLength / 2 > fMaximumX) {
+        fMaximumX = runwayLength / 2;
     }
 
     // Set right points according to length
-    figure << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
-    figure << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
-    figure << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
-    figure << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
+    figure << "point0 = (" << runwayLength / 2 << ", -7, 0)" << endl;
+    figure << "point1 = (" << runwayLength / 2 << ", 7, 0)"  << endl;
+    figure << "point2 = (" << - runwayLength / 2 << ", 7, 0)"  << endl;
+    figure << "point3 = (" << - runwayLength / 2 << ", -7, 0)" << endl;
 
 
-    int offset = nrRunways * 30 + 45;
-
-
+    int offset = int(fRunways.size() * 30 + 45);
 
     // Center at right position
     figure << "center = (0, -" << offset << ", 0)" << endl;
 
-    if (maximumLength < 7 + offset) {
-        maximumLength = 7 + offset;
+    if (fMaximumY < 7 + offset) {
+        fMaximumY = 7 + offset;
     }
 
     // Set right color
@@ -235,12 +242,12 @@ void GraphicsGenerator::addElement(const Runway *runway) {
         figure << "color = (0.17, 0.70, 0.21)\n" << endl;
     }
 
-    nrRunways++;
+    fRunways.push_back(runway);
     fFigures.push_back(figure.str());
 }
 
 
-void GraphicsGenerator::addElement(const Airplane *airplane) {
+void GraphicsGenerator::addElement(Airplane *airplane) {
     ostringstream figure;
 
     ifstream iniTemplate("../airplaneTemplate.txt");
