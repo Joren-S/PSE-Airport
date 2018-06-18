@@ -39,8 +39,7 @@ private:
     int nrRunways;
 
     int maximumLength;
-
-    int gates;
+    int maximumLengthY;
 
 };
 

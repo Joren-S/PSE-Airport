@@ -15,31 +15,42 @@
 
 using namespace std;
 
-GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0), gates(gates) {
+GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0), maximumLengthY(0) {
+    // Stream used to save all the figures
     ostringstream stream;
 
-    string cube = "type = \"Cube\"\n"
-                  "rotateX = 0\n"
-                  "rotateY = 0\n"
-                  "rotateZ = 0\n";
+    // Preset ini format
+    string bigCube =    "type = \"Cube\"\n"
+                        "rotateX = 0\n"
+                        "rotateY = 0\n"
+                        "rotateZ = 0\n"
+                        "scale = 3\n"
+                        "color = (0.7, 0.7, 0.7)\n";
 
-    int offset = gates / 2 + 2;
+    string smallCube =  "type = \"Cube\"\n"
+                        "rotateX = 0\n"
+                        "rotateY = 0\n"
+                        "rotateZ = 0\n"
+                        "scale = 1\n"
+                        "color = (0.5, 0.5, 0.5)\n";
 
+    // Off set to calculate x values
+    int offset = gates / 2 + 1;
     int xMax = 0;
     int xMin = 0;
 
+    // Loop over gates * 2, because we generate two big cubes for every gate
     for (int i = 0; i < gates * 2; i++) {
-        stream << "[Figure" << fFigures.size() << "]" << endl;
-        stream << cube;
-        stream << "center = (" << i * 6 - offset * 6 << ", 0, 2)" << endl;
-        stream << "color = (0.7, 0.7, 0.7)" << endl;
-        stream << "scale = 3" << endl << endl;
-        fFigures.push_back(stream.str());
-
-        stream.str(string());
-
         int x = i * 6 - offset * 6;
 
+        // Add a big cube
+        stream << "[Figure" << fFigures.size() << "]" << endl;
+        stream << bigCube;
+        stream << "center = (" << x << ", 0, 2)" << endl;
+        fFigures.push_back(stream.str());
+        stream.str(string());
+
+        // Keep track of extrema
         if (xMin > x) {
             xMin = x;
         }
@@ -47,38 +58,23 @@ GraphicsGenerator::GraphicsGenerator(int gates): nrRunways(0), maximumLength(0),
             xMax = x;
         }
 
+        // Every even time, we add a small rectangle next to the building
         if (i % 2 == 0) {
-            stream << "[Figure" << fFigures.size() << "]" << endl;
-            stream << cube;
-            stream << "center = (" << i * 6 - offset * 6<< ", -4, 0)" << endl;
-            stream << "color = (0.5, 0.5, 0.5)" << endl;
-            stream << "scale = 1" << endl << endl;
-            fFigures.push_back(stream.str());
-            stream.str(string());
-            stream << "[Figure" << fFigures.size() << "]" << endl;
-            stream << cube;
-            stream << "center = (" << i * 6 - offset * 6<< ", -4, 2)" << endl;
-            stream << "color = (0.5, 0.5, 0.5)" << endl;
-            stream << "scale = 1" << endl << endl;
-            fFigures.push_back(stream.str());
-            stream.str(string());
-            stream << "[Figure" << fFigures.size() << "]" << endl;
-            stream << cube;
-            stream << "center = (" << i * 6 - offset * 6<< ", -6, 0)" << endl;
-            stream << "color = (0.5, 0.5, 0.5)" << endl;
-            stream << "scale = 1" << endl << endl;
-            fFigures.push_back(stream.str());
-            stream.str(string());
-            stream << "[Figure" << fFigures.size() << "]" << endl;
-            stream << cube;
-            stream << "center = (" << i * 6 - offset * 6<< ", -6, 2)" << endl;
-            stream << "color = (0.5, 0.5, 0.5)" << endl;
-            stream << "scale = 1" << endl << endl;
-            fFigures.push_back(stream.str());
-            stream.str(string());
+            for (int j = 0; j < 4; j++) {
+                int y = j < 2? -4: -6;
+                int z = j % 2 == 0? 0:  2;
+
+                // Add a small cube
+                stream << "[Figure" << fFigures.size() << "]" << endl;
+                stream << smallCube;
+                stream << "center = (" << x << ", " << y << ", " << z << ")" << endl;
+                fFigures.push_back(stream.str());
+                stream.str(string());
+            }
         }
     }
 
+    // Add the ground under building/gates
     stream << "[Figure" << fFigures.size() << "]" << endl;
     stream << "type = \"Face\"\n"
               "nrPoints = 4\n"
@@ -100,14 +96,13 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
     ostringstream ini;
 
     // Add general section
-    ifstream generalTemplate("../IniTemplateGeneral.txt");
-    string line;
-    while (getline(generalTemplate, line)) {
-        ini << line << endl;
-    }
+    ini << "[General]\n"
+           "size = 2500\n"
+           "backgroundcolor = (0.52, 0.8, 0.98)\n"
+           "type = \"ZBuffering\"";
+
     ini << "nrFigures = " << fFigures.size() + 2 << endl;
     ini << "eye = (" << x << ", " << y << ", " << z << ")\n" << endl;
-    generalTemplate.close();
 
     // Add figures
     vector<string>::const_iterator itr;
@@ -129,12 +124,13 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
 
     int xLength = nrRunways * 20 + 5;
 
-    ini << "point0 = (" << maximumLength / 2 + 10 << ", " << - 2 * xLength << ", -1)" << endl;
-    ini << "point1 = (" << maximumLength / 2 + 10 << ", " << 10 << ", -1)" << endl;
-    ini << "point2 = (" << - maximumLength / 2 - 10 << ", " << 10 << ", -1)" << endl;
-    ini << "point3 = (" << - maximumLength / 2 - 10 << ", " << - 2 * xLength << ", -1)" << endl << endl;
+    ini << "point0 = (" << maximumLengthY / 2 + 10 << ", " << - 2 * xLength << ", -1)" << endl;
+    ini << "point1 = (" << maximumLengthY / 2 + 10 << ", " << 10 << ", -1)" << endl;
+    ini << "point2 = (" << - maximumLengthY / 2 - 10 << ", " << 10 << ", -1)" << endl;
+    ini << "point3 = (" << - maximumLengthY / 2 - 10 << ", " << - 2 * xLength << ", -1)" << endl << endl;
 
 
+    // Make a road for taxiing
     ini << "[Figure" << fFigures.size() + 1 << "]" << endl;
     ini << "type = \"Face\"\n"
               "nrPoints = 4\n"
@@ -147,26 +143,8 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
 
     ini << "point0 = (-7" << ", " << -5 << ", -0.5)" << endl;
     ini << "point1 = (7" << ", " << 0 << ", -0.5)" << endl;
-    ini << "point2 = (7" << ", " << - 2 * xLength + 15 << ", -0.5)" << endl;
-    ini << "point3 = (-7" << ", " << - 2 * xLength + 15 << ", -0.5)" << endl << endl;
-
-
-//    ini << "[Figure" << fFigures.size() << "]\n";
-//    ini << "type = \"Face\"\n"
-//              "nrPoints = 4\n"
-//              "scale = 1\n"
-//              "rotateX = 0\n"
-//              "rotateY = 0\n"
-//              "rotateZ = 0\n";
-//
-//
-//    // Set right points according to length
-//    ini << "point0 = ("  << runwayLength / 2 << ", -7, 0)" << endl;
-//    ini << "point1 = ("  << runwayLength / 2 << ", 7, 0)"  << endl;
-//    ini << "point2 = (-" << runwayLength / 2 << ", 7, 0)"  << endl;
-//    ini << "point3 = (-" << runwayLength / 2 << ", -7, 0)" << endl;
-//    ini << "center";
-//    ini << "color";
+    ini << "point2 = (7" << ", " << -maximumLength << ", -0.5)" << endl;
+    ini << "point3 = (-7" << ", " << -maximumLength << ", -0.5)" << endl << endl;
 
     return ini.str();
 }
@@ -227,8 +205,8 @@ void GraphicsGenerator::addElement(const Runway *runway) {
     // Drawing is scaled 1:7
     int runwayLength = runway->getLength() / 7;
 
-    if (runwayLength > maximumLength) {
-        maximumLength = runwayLength;
+    if (runwayLength > maximumLengthY) {
+        maximumLengthY = runwayLength;
     }
 
     // Set right points according to length
@@ -240,8 +218,14 @@ void GraphicsGenerator::addElement(const Runway *runway) {
 
     int offset = nrRunways * 30 + 45;
 
+
+
     // Center at right position
     figure << "center = (0, -" << offset << ", 0)" << endl;
+
+    if (maximumLength < 7 + offset) {
+        maximumLength = 7 + offset;
+    }
 
     // Set right color
     if (runway->getType() == kAsphalt) {
@@ -259,17 +243,17 @@ void GraphicsGenerator::addElement(const Runway *runway) {
 void GraphicsGenerator::addElement(const Airplane *airplane) {
     ostringstream figure;
 
-//    ifstream iniTemplate("../airplaneTemplate.txt");
-    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
+    ifstream iniTemplate("../airplaneTemplate.txt");
+//    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
 //    ifstream iniTemplate("../airplaneDepartureTemplate.txt");
-    string line;
 
     // TODO set these
-    double x=12, y=-11, z=0;
-//    double rotateZ = 90;
+//    double x=12, y=-11, z=0;
+    double x=0, y=-45, z=0;
 
     double xC, yC, zC;
-    
+
+    string line;
     while (getline(iniTemplate, line)) {
         // Comment
         if (line[0] == ';')  {
@@ -296,12 +280,6 @@ void GraphicsGenerator::addElement(const Airplane *airplane) {
             figure << "center = (" << x + xC << ", " << y + yC << ", " << z + zC << ")\n";
         }
 
-//        else if (line.find("rotateZ") != string::npos) {
-//            string angleStr = line.substr(line.find('='));
-//            double angle = atof(angleStr.c_str()) + rotateZ;
-//            figure << "rotateZ = " << angle << endl;
-//        }
-
         // Standard line, add to figure
         else {
             figure << line << endl;
@@ -314,244 +292,3 @@ void GraphicsGenerator::addElement(const Airplane *airplane) {
         fFigures.push_back(newPart);
     }
 }
-
-/*
-void GraphicsGenerator::addAirplane(const Airplane *airplane) {
-    // TODO: set these
-    double x = 0, y = 0, z = 0;
-
-    // These will be custom for each figure
-    double xC, yC, zC;
-    ostringstream centerTuple;
-
-    ///
-    /// Next come all the figures in the airplane, with added x, y and z coordinates
-    ///
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    string figure = "[Figure" + ToString(fFigures.size()) + "]\n"
-                  "type = \"Cylinder\"\n"
-                  "height = 5\n"
-                  "n = 36\n"
-                  "scale = 1\n"
-                  "rotateX = 0\n"
-                  "rotateY = 90\n"
-                  "rotateZ = 0\n"
-                  "color = (0.7, 0.7, 0.7)\n" +
-                  centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 5 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Sphere\"\n"
-            "n = 3\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "color = (0.7, 0.7, 0.7)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Sphere\"\n"
-            "n = 3\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "color = (0.7, 0.7, 0.7)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 5.1 + x;
-    yC = 0 + y;
-    zC = 1.1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Torus\"\n"
-            "r = 1\n"
-            "R = 1\n"
-            "m = 36\n"
-            "n = 36\n"
-            "scale = 0.48\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "color = (0.15, 0.15, 0.15)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Cone\"\n"
-            "height = 2.5\n"
-            "n = 36\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = -68\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 1.07)\n"
-            "color = (0.7, 0.7, 0.7)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Face\"\n"
-            "nrPoints = 4\n"
-            "point0 = (-0.5, 0, 2)\n"
-            "point1 = (-2, 0, 2)\n"
-            "point2 = (-2, 0, 3.5)\n"
-            "point3 = (-1.5, 0, 3.5)\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 0)\n"
-            "color = (0.6, 0.6, 0.6)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Face\"\n"
-            "nrPoints = 4\n"
-            "point0 = (3.5, 1, 1)\n"
-            "point1 = (1.5, 1, 1)\n"
-            "point2 = (1.5, 5, 1)\n"
-            "point3 = (1.7, 5, 1)\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 0)\n"
-            "color = (0.80, 0.80, 0.80)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Face\"\n"
-            "nrPoints = 4\n"
-            "point0 = (3.5, -1, 1)\n"
-            "point1 = (1.5, -1, 1)\n"
-            "point2 = (1.5, -5, 1)\n"
-            "point3 = (1.7, -5, 1)\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 0)\n"
-            "color = (0.80, 0.80, 0.80)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Cylinder\"\n"
-            "height = 2.2\n"
-            "n = 36\n"
-            "scale = 0.48\n"
-            "rotateX = 0\n"
-            "rotateY = 90\n"
-            "rotateZ = 0\n"
-            "center = (2, 2.5, 0.49)\n"
-            "color = (0.3, 0.3, 0.3)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Cylinder\"\n"
-            "height = 2.2\n"
-            "n = 36\n"
-            "scale = 0.48\n"
-            "rotateX = 0\n"
-            "rotateY = 90\n"
-            "rotateZ = 0\n"
-            "center = (2, -2.5, 0.49)\n"
-            "color = (0.3, 0.3, 0.3)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Face\"\n"
-            "nrPoints = 4\n"
-            "point0 = (-1.3, 0, 1.8)\n"
-            "point1 = (-2, 0, 1.8)\n"
-            "point2 = (-2, 2, 1.8)\n"
-            "point3 = (-1.8, 2, 1.8)\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 0)\n"
-            "color = (0.6, 0.6, 0.6)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-
-    xC = 0 + x;
-    yC = 0 + y;
-    zC = 1 + z;
-    centerTuple.str(string());
-    centerTuple << "(" << xC << ", " << yC << ", " << zC << ")" << endl;
-    figure += "[Figure" + ToString(fFigures.size()) +
-            "type = \"Face\"\n"
-            "nrPoints = 4\n"
-            "point0 = (-1.3, 0, 1.8)\n"
-            "point1 = (-2, 0, 1.8)\n"
-            "point2 = (-2, -2, 1.8)\n"
-            "point3 = (-1.8, -2, 1.8)\n"
-            "scale = 1\n"
-            "rotateX = 0\n"
-            "rotateY = 0\n"
-            "rotateZ = 0\n"
-            "center = (0, 0, 0)\n"
-            "color = (0.6, 0.6, 0.6)\n" +
-            centerTuple.str() + "\n\n";
-    fFigures.size()++;
-} */

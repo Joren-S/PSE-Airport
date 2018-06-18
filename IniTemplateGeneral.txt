@@ -1,4 +1,4 @@
 [General]
-size = 3000
+size = 1000
 backgroundcolor = (0.52, 0.8, 0.98)
 type = "ZBuffering"
