@@ -16,6 +16,7 @@ ATC::ATC(ostream& stream, bool test): fStream(stream) {
     f3Occupied = false;
     f5Occupied = false;
     fTest = test;
+    fTime = Time();
     ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
 }
 
@@ -628,6 +629,16 @@ void ATC::processTakeOffRunway(Airplane* airplane, Time time) {
         sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
         airplane->setRequest(kDenied);
     }
+}
+
+Time ATC::getTime() const {
+    REQUIRE(this->properlyInitialized(), "ATC wasn't initialized when calling getTime");
+    return fTime;
+}
+
+void ATC::setTime(Time time) {
+    REQUIRE(this->properlyInitialized(), "ATC wasn't initialized when calling getTime");
+    fTime = time;
 }
 
 ATC::~ATC() {

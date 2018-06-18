@@ -13,10 +13,10 @@
 #include <set>
 #include <map>
 
-#include "Airplane.h"
 #include "Runway.h"
 #include "Time.h"
 #include "Airport.h"
+#include "Airplane.h"
 
 struct ATCRequest {
     /**
@@ -58,6 +58,11 @@ private:
      * Queue of messages.
      */
     std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> fQueue;
+
+    /**
+     * Object that keeps track of current time
+     */
+    Time fTime;
 
     /**
     * Time when ATC was last active.
@@ -231,6 +236,19 @@ public:
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
      */
     int getSquawk(Airplane*);
+
+    /**
+    * Getter for the current time
+    * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+    */
+    Time getTime() const;
+
+    /**
+    * Setter for the current time
+    * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+    */
+    void setTime(Time);
+
 
     /**
      * Getters and setters for the fields of the class.

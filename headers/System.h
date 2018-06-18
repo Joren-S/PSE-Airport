@@ -96,127 +96,6 @@ public:
      */
     bool simulationFinished() const;
 
-    /**
-     * Performs the approach of a given plane.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
-     */
-    void approach(Airplane*, std::ostream& log);
-
-    /**
-     * Performs the descend of a given plane.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling descend");
-     */
-    void descend(Airplane*, std::ostream& log);
-
-    /**
-     * Performs the circling of a given plane.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
-     */
-    void circle(Airplane*, std::ostream& log);
-
-    /**
-     * Performs the taxiing upon arrival of a given plane.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling taxiArrival");
-     */
-    void taxiArrival(Airplane*, std::ostream& log);
-
-    /**
-     * Crosses a runway
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling crossArrival");
-     */
-    void crossArrival(Airplane*, std::ostream& log);
-
-    /**
-     * Performs the deboarding of a given plane.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling deboard");
-     */
-    void deboard(Airplane*, std::ostream& log);
-
-    /**
-     * Performs the technical check of the plane
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
-     */
-    void technicalCheck(Airplane*, std::ostream& log);
-
-    /**
-     * Lands an airplane on the airport of the simulation.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
-     */
-    void land(Airplane*, std::ostream& log);
-
-    /**
-     * Ascends an airplane to 5000ft.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
-     */
-    void ascend(Airplane*, std::ostream& fLog);
-
-    /**
-     * Lets an airplane wait ON a runway before taking off.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling onRunway.");
-     */
-    void onRunway(Airplane*, std::ostream& fLog);
-
-    /**
-     * Lets an airplane wait AT a runway until instructions are given.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling atRunway");
-     */
-    void atRunway(Airplane*, std::ostream& fLog);
-
-    /**
-     * Performs a cross.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
-     */
-    void taxiDepartureCross(Airplane*, std::ostream& fLog);
-
-    /**
-     * Performs the next taxi-step.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep");
-     */
-    void taxiDepartureStep(Airplane*, std::ostream& fLog);
-
-    /**
-     * Lets an airplane wait before taxiing.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart");
-     */
-    void taxiDepartureStart(Airplane*, std::ostream& fLog);
-
-    /**
-     * Pushes an airplane back from the gate.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback");
-     */
-    void pushback(Airplane*, std::ostream& fLog);
-
-    /**
-     * Refuels the airplane and lets passengers board.
-     * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare");
-     */
-    void prepare(Airplane*, std::ostream& fLog);
-
-    /**
-     * Performs a takeoff of a plane on an airport
-     * Logs the info to an output stream, defaulted to "cout".
-     * \n REQUIRE: plane status is kGate &&
-     * a runway at target airport is available &&
-     * at least one airport in the system
-     * \n ENSURE: plane status is kFinished
-     */
-    void takeoff(Airplane*, std::ostream& log);
 
     /**
      * Getter for the airport in the simulation
@@ -236,11 +115,6 @@ public:
      */
     ATC* getATC() const;
 
-    /**
-     * Getter for the current time
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
-     */
-    Time getTime() const;
 
 private:
 
@@ -248,11 +122,6 @@ private:
      * Pointer to the system to check for proper initialization
      */
     System *fInitCheck;
-
-    /**
-     * Object that keeps track of current time
-     */
-    Time fTime;
 
     /**
      * Ending time of simulation
