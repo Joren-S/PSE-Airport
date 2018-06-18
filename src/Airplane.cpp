@@ -5,6 +5,7 @@
 //============================================================================
 
 #include "../headers/Airplane.h"
+#include "../headers/ATC.h"
 
 using namespace std;
 
@@ -51,6 +52,172 @@ void Airplane::increaseAltitude(int difference) {
     int oldAltitude = Airplane::fAltitude;
     Airplane::fAltitude += difference;
     ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
+}
+
+int Airplane::getFuelCost() {
+    REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling getFuelCost");
+    REQUIRE(fEngine != kDefaultEngine, "Invalid engine type for calculating fuel.");
+    REQUIRE(fSize != kDefaultSize, "Invalid size for calculating fuel.");
+
+    int result = -1;
+    if (fSize == kSmall) {
+        if (fEngine == kPropeller) {
+            result = 10;
+        }
+        if (fEngine== kJet) {
+            result = 25;
+        }
+    }
+    if (fSize == kMedium) {
+        if (fEngine == kPropeller) {
+            result = 50;
+        }
+        if (fEngine== kJet) {
+            result = 175;
+        }
+    }
+    if (fSize == kLarge) {
+        if (fEngine == kPropeller) {
+            result = 100;
+        }
+        if (fEngine== kJet) {
+            result = 250;
+        }
+    }
+
+    ENSURE(result > 0, "getFuelCost returned an invalid value!");
+    return result;
+}
+
+void Airplane::checkFuel(ostream& log, ATC *fATC) {
+    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling checkFuel");
+
+    // normal operation
+    if (fSquawk != 7700) {
+        // if plane is on the ground, nothing needs to be done
+        if (fAltitude <= 0)
+            return;
+
+        // if not, we reduce the current fuel by the fuelcost
+        fCurFuel = fCurFuel - getFuelCost();
+
+        // if plane has no more fuel, set emergency squawk
+        if (fCurFuel <= 0) {
+            fCurFuel = 0;
+            fOldSquawk = fSquawk;
+            setSquawk(7700);
+
+            // if 3000ft or higher: emergency landing at airport
+            if (fAltitude >= 3000) {
+
+                // set plane status
+                setStatus(kEmergencyLanding);
+
+                // log
+                log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                    << " has ran out of fuel and has requested an emergency landing on "
+                    << fATC->getAirport()->getName() << "." << endl;
+            }
+
+            // if less than 3000ft: emergency landing outside airport
+            else {
+
+                // set plane status
+                setStatus(kEmergencyLandingUrgent);
+
+                // contact atc
+                stringstream msg;
+                fATC->sendRequest(fATC->getTime(), this);
+                msg << "Mayday mayday mayday, " + fATC->getAirport()->getCallsign() + ", " + getCallsign();
+                msg << ", out of fuel, performing emergency landing, ";
+                msg << fPassengers;
+                msg << " persons on board.";
+                fATC->sendMessage(ATC::formatMessage(fATC->getTime(), getCallsign(), msg.str()));
+
+                // log
+                log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                    << " has ran out of fuel and is making an urgent emergency landing outside "
+                    << fATC->getAirport()->getName() << "." << endl;
+
+                // since our request always is accepted, we return and continue next tick
+                return;
+            }
+        }
+    }
+
+    if (fSquawk == 7700) {
+
+        if (fStatus == kEmergencyLanding) {
+
+            if (getRequest() == kDenied or getRequest() == kIdle) {
+
+                //contact atc
+                stringstream msg;
+                fATC->sendRequest(fATC->getTime(), this);
+                msg << "Mayday mayday mayday, " + fATC->getAirport()->getCallsign() + ", " + getCallsign();
+                msg << ", out of fuel, request immediate landing, ";
+                msg << fPassengers;
+                msg << " persons on board.";
+                fATC->sendMessage(ATC::formatMessage(fATC->getTime(), getCallsign(), msg.str()));
+
+            }
+            else if (getRequest() == kAccepted) {
+
+                // reduce altitude by 500
+                setAltitude(max(fAltitude - 500, 0));
+
+                if (getAltitude() <= 0) {
+
+                    // Set runway to available
+                    getRunway()->setFree(true);
+
+                    // Change status
+                    setStatus(kTaxiArrival);
+
+                    // Set request to idle
+                    setRequest(kIdle);
+
+                    // restore squawk
+                    fSquawk = fOldSquawk;
+
+                    log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                        << " has made an emergency landing at " << fATC->getAirport()->getName() << "." << endl;
+                }
+
+                else {
+                    log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                        << " descended to " << getAltitude() << "ft. (EL)." << endl;
+                    setTimeRemaining(getEngine() == kJet ? 1 : 2);
+                }
+
+            }
+        }
+        else if (fStatus == kEmergencyLandingUrgent) {
+
+            //restore request status (not needed since ATC always accepts)
+            setRequest(kIdle);
+
+            // reduce altitude by 500
+            setAltitude(max(fAltitude - 500, 0));
+
+            if (getAltitude() <= 0) {
+                // log
+                log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                    << " has made an emergency landing outside " << fATC->getAirport()->getName() << "." << endl;
+
+                // restore squawk just incase
+                fSquawk = fOldSquawk;
+
+                // set status
+                setStatus(kAway);
+            }
+            else {
+                log << "[" << fATC->getTime().formatted() << "] " << getCallsign()
+                    << " descended to " << getAltitude() << "ft. (EL)." << endl;
+                setTimeRemaining(getEngine() == kJet ? 1 : 2);
+            }
+        }
+    }
 }
 
 // Getters and setters
@@ -228,8 +395,20 @@ int Airplane::getSquawk() const {
     return fSquawk;
 }
 
+int Airplane::getCurFuel() const {
+    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    return fCurFuel;
+}
 
-#include "../headers/ATC.h"
+void Airplane::setCurFuel(int fuel) {
+    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(fuel >= 0, "Fuel can't be negative");
+    REQUIRE(fuel <= fFuel, "Fuel can't be more than the max. fuel");
+    fCurFuel = fuel;
+}
+
+
+// LANDING/TAKEOFF
 
 void Airplane::approach(ostream& log, ATC *fATC) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
@@ -245,7 +424,7 @@ void Airplane::approach(ostream& log, ATC *fATC) {
         fATC->sendMessage(ATC::formatMessage(fATC->getTime(), getCallsign(), message));
 
         // Set the altitude of the plane
-        setAltitude(10);
+        setAltitude(10000);
 
         // Set status to descending
         setStatus(kDescending);
@@ -254,7 +433,7 @@ void Airplane::approach(ostream& log, ATC *fATC) {
         setTimeRemaining(getEngine() == kJet? 1:2);
 
         // Log
-        log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is approaching " << fATC->getAirport()->getName() << " at " << getAltitude() << ".000ft." << endl;
+        log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is approaching " << fATC->getAirport()->getName() << " at " << getAltitude() << "ft." << endl;
 
         // Set request to idle
         setRequest(kIdle);
@@ -294,12 +473,12 @@ void Airplane::descend(ostream& log, ATC *fATC) {
     }
 
     // Plane is descending
-    if ((getAltitude() != 5 and getAltitude() != 3) or getRequest() == kConfirmed) {
+    if ((getAltitude() != 5000 and getAltitude() != 3000) or getRequest() == kConfirmed) {
         // Decrease the altitude
-        decreaseAltitude();
+        decreaseAltitude(1000);
 
         // If plane is at one of the key altitudes, send a request to atc
-        if (getAltitude() == 5 or getAltitude() == 3) {
+        if (getAltitude() == 5000 or getAltitude() == 3000) {
             fATC->sendRequest(fATC->getTime(), this);
         }
 
@@ -311,7 +490,7 @@ void Airplane::descend(ostream& log, ATC *fATC) {
 
             // Normal descend
         else {
-            log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " descended to " << getAltitude() << ".000ft." << endl;
+            log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " descended to " << getAltitude() << "ft." << endl;
             setTimeRemaining(getEngine() == kJet ? 1 : 2);
         }
 
@@ -322,7 +501,7 @@ void Airplane::descend(ostream& log, ATC *fATC) {
     if (getRequest() == kAccepted) {
         // Pick the right message for the altitude
         string message;
-        if (getAltitude() == 5) message = "Descend and maintain three thousand feet, " + getCallsign() + ".";
+        if (getAltitude() == 5000) message = "Descend and maintain three thousand feet, " + getCallsign() + ".";
         else message = "Cleared ILS approach runway " + getRunway()->getName() + ", " + getCallsign() + ".";
 
         // Send message to fATC
@@ -352,10 +531,10 @@ void Airplane::descend(ostream& log, ATC *fATC) {
 void Airplane::circle(ostream& log, ATC *fATC) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
     // Log event
-    log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has circled at " << getAltitude() << ".000ft." << endl;
+    log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has circled at " << getAltitude() << "ft." << endl;
 
     // Make the altitude available again for circling
-    if (getAltitude() == 3) {
+    if (getAltitude() == 3000) {
         fATC->set3occupied(false);
     }
     else {
@@ -619,20 +798,27 @@ void Airplane::prepare(ostream& fLog, ATC *fATC) {
         stream << getSquawk();
         fATC->sendMessage(fATC->formatMessage(fATC->getTime(), planeCS, "Cleared to " + dest->getName() + ", initial altitude five thousand, expecting one zero zero in ten, squawking " + stream.str() + ", " + planeCS + "."));
 
+        // calculate fuel needed
+        int fuelNeeded = getFuel() - getCurFuel();
+
         // If so, we refuel and let passengers board
-        setTimeRemaining(int(ceil(getPassengers() / 2.0)) + int(ceil(getFuel() / 10000.0)));
+        setTimeRemaining(int(ceil(getPassengers() / 2.0))    // calculate time for boarding
+                         + int(ceil(fuelNeeded / 10000.0)));  // calculate time for refueling
+
+        // set our fuel to max.
+        setCurFuel(getFuel());
 
         // log
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " is being refueled" << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is being refueled" << endl;
         if (getPassengers() == 1) {
             fLog << "[" << fATC->getTime().formatted() << "] " << getPassengers() << " passenger is boarding "
-                 << getModel() << " at Gate " << getGateID() << " of " << fATC->getAirport()->getName() << endl;
+                 << getCallsign() << " at Gate " << getGateID() << " of " << fATC->getAirport()->getName() << endl;
         }
         else if (getPassengers() > 1) {
             fLog << "[" << fATC->getTime().formatted() << "] " << getPassengers() << " passengers are boarding "
-                 << getModel() << " at Gate " << getGateID() << " of " << fATC->getAirport()->getName() << endl;
+                 << getCallsign() << " at Gate " << getGateID() << " of " << fATC->getAirport()->getName() << endl;
         }
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " is standing at Gate " << getGateID() << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is standing at Gate " << getGateID() << endl;
 
         // set status to kGate (= fully ready to start takeoff sequence) and return
         setStatus(kGate);
@@ -671,7 +857,7 @@ void Airplane::pushback(ostream &fLog, ATC *fATC) {
         fATC->sendMessage(fATC->formatMessage(fATC->getTime(), planeCS, "Pushback approved, " + planeCS + "."));
 
         // log
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " is being pushed back" << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is being pushed back" << endl;
 
         // If so, we start the pushback and "forget" the previous request (kIdle)
         setStatus(kPushback);
@@ -719,7 +905,7 @@ void Airplane::taxiDepartureStart(ostream &fLog, ATC *fATC) {
     if (request == kAccepted) {
 
         Runway *firstRW = fATC->getAirport()->getRunways().at(0);
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " has started taxiing to runway " << firstRW->getName() << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has started taxiing to runway " << firstRW->getName() << endl;
 
         setPosition("");
         setStatus(kTaxiDeparture);
@@ -821,13 +1007,13 @@ void Airplane::taxiDepartureCross(ostream &fLog, ATC *fATC) {
     cur_rw->setFree(true);
 
     // fLog
-    fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " crossed " << cur_rw->getName() << "." << endl;
+    fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " crossed " << cur_rw->getName() << "." << endl;
 
     // Taxi to next holding point
     setTimeRemaining(5);
     Time tTime(fATC->getTime().getHour(), fATC->getTime().getMinute());
     tTime.advance(5);
-    fLog << "[" << tTime.formatted() << "] " << getModel() << " has taxied to holding point at " << next_rw->getTaxiPoint() << "." << endl;
+    fLog << "[" << tTime.formatted() << "] " << getCallsign() << " has taxied to holding point at " << next_rw->getTaxiPoint() << "." << endl;
 
     // set fields
     setPosition(next_rw->getTaxiPoint());
@@ -896,7 +1082,7 @@ void Airplane::onRunway(ostream &fLog, ATC *fATC) {
         fATC->sendMessage(fATC->formatMessage(fATC->getTime(), planeCS, "Runway " + dest->getName() + " cleared for take-off, " + planeCS + "."));
 
         // log
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " is taking off at " << fATC->getAirport()->getName() << " on runway " << dest->getName() << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " is taking off at " << fATC->getAirport()->getName() << " on runway " << dest->getName() << endl;
     }
 
         // If plane hasn't sent a request yet, or the previous request was denied
@@ -918,19 +1104,19 @@ void Airplane::ascend(ostream &fLog, ATC *fATC) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
     setPosition("");
     // If plane is at a height < 5000 ft
-    if (getAltitude() < 5) {
+    if (getAltitude() < 5000) {
 
         // Ascend 1000 ft
-        increaseAltitude(1);
+        increaseAltitude(1000);
         setTimeRemaining(getEngine() == kPropeller? 2 : 1);
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " ascended to " << getAltitude() << ".000 ft." << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " ascended to " << getAltitude() << "ft." << endl;
     }
 
         // plane is at a 5000 ft or higher
     else {
 
         // plane is finished, left airport
-        fLog << "[" << fATC->getTime().formatted() << "] " << getModel() << " has left " << fATC->getAirport()->getName() << endl;
+        fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has left " << fATC->getAirport()->getName() << endl;
         setStatus(kAway);
     }
     return;

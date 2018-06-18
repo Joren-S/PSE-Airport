@@ -21,7 +21,7 @@ class Runway; // Forward declaration
 // Enums for the Airplane class
 
 enum EPlaneStatus { kApproaching, kDescending, kTaxiArrival, kTaxiDeparture, kCircling, kDeboarding, kTechnicalCheck, kGate, kDeparture, kAway,
-                    kAirport, kAscending, kPushback, kWaitingForDeparture, kParked, kCrossingArrival, kCrossingDeparture };
+                    kAirport, kAscending, kPushback, kWaitingForDeparture, kParked, kCrossingArrival, kCrossingDeparture, kEmergencyLanding, kEmergencyLandingUrgent };
 
 enum EPlaneType { kPrivate, kAirline, kMilitary, kEmergency, kDefaultType };
 
@@ -55,7 +55,7 @@ public:
      * \n REQUIRE(difference > 0, "Difference can't be negative");
      * \n ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
      */
-    void increaseAltitude(int difference = 1);
+    void increaseAltitude(int difference = 1000);
 
     /**
      * Decreases the plane's altitude by a given amount
@@ -64,7 +64,7 @@ public:
      * \n REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
      * \n ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
      */
-    void decreaseAltitude(int difference = 1);
+    void decreaseAltitude(int difference = 1000);
 
     /**
      * Decreases the time of the remaining operation by one.
@@ -122,120 +122,123 @@ public:
      */
     void setSquawk(int squawk);
 
-
-
-
-
+    /**
+     * Setter for the current amount of fuel
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+     * \n REQUIRE(fuel >= 0, "Fuel can't be negative");
+     * \n REQUIRE(fuel <= fFuel, "Fuel can't be more than the max. fuel");
+     */
+    void setCurFuel(int fuel);
 
     /**
      * Performs the approach of a given plane.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling approach");
      */
     void approach(std::ostream& log, ATC *fATC);
 
     /**
      * Performs the descend of a given plane.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling descend");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling descend");
      */
     void descend(std::ostream& log, ATC *fATC);
 
     /**
      * Performs the circling of a given plane.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling circle");
      */
     void circle(std::ostream& log, ATC *fATC);
 
     /**
      * Performs the taxiing upon arrival of a given plane.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling taxiArrival");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling taxiArrival");
      */
     void taxiArrival(std::ostream& log, ATC *fATC);
 
     /**
      * Crosses a runway
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling crossArrival");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling crossArrival");
      */
     void crossArrival(std::ostream& log, ATC *fATC);
 
     /**
      * Performs the deboarding of a given plane.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling deboard");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling deboard");
      */
     void deboard(std::ostream& log, ATC *fATC);
 
     /**
      * Performs the technical check of the plane
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling technicalCheck");
      */
     void technicalCheck(std::ostream& log, ATC *fATC);
 
     /**
      * Lands an airplane on the airport of the simulation.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling land");
      */
     void land(std::ostream& log, ATC *fATC);
 
     /**
      * Ascends an airplane to 5000ft.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling ascend.");
      */
     void ascend(std::ostream& fLog, ATC *fATC);
 
     /**
      * Lets an airplane wait ON a runway before taking off.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling onRunway.");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling onRunway.");
      */
     void onRunway(std::ostream& fLog, ATC *fATC);
 
     /**
      * Lets an airplane wait AT a runway until instructions are given.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling atRunway");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling atRunway");
      */
     void atRunway(std::ostream& fLog, ATC *fATC);
 
     /**
      * Performs a cross.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureCross");
      */
     void taxiDepartureCross(std::ostream& fLog, ATC *fATC);
 
     /**
      * Performs the next taxi-step.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureStep");
      */
     void taxiDepartureStep(std::ostream& fLog, ATC *fATC);
 
     /**
      * Lets an airplane wait before taxiing.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureStart");
      */
     void taxiDepartureStart(std::ostream& fLog, ATC *fATC);
 
     /**
      * Pushes an airplane back from the gate.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling pushback");
      */
     void pushback(std::ostream& fLog, ATC *fATC);
 
     /**
      * Refuels the airplane and lets passengers board.
      * Events are logged to the given std::ostream&.
-     * \n REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare");
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling prepare");
      */
     void prepare(std::ostream& fLog, ATC *fATC);
 
@@ -249,6 +252,19 @@ public:
      */
     void takeoff(std::ostream& log, ATC *fATC);
 
+    /**
+     * Calculate the fuel cost for a plane
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling getFuelCost");
+     * \n REQUIRE(fEngine != kDefaultEngine, "Invalid engine type for calculating fuel.");
+     * \n REQUIRE(fSize != kDefaultSize, "Invalid size for calculating fuel.");
+     */
+    int getFuelCost();
+
+    /**
+     * Check fuel, subtract fuelcost if needed, adjust squawk if needed, contact ATC if needed.
+     * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling checkFuel");
+     */
+    void checkFuel(std::ostream& log, ATC *fATC);
 
     /**
      * Getters and setters for the fields of the class.
@@ -280,6 +296,7 @@ public:
     Runway* getRunway() const;
     void setRunway(Runway*);
     int getFuel() const;
+    int getCurFuel() const;
     int getSquawk() const;
 
 private:
@@ -356,9 +373,19 @@ private:
     int fFuel;
 
     /**
+     * Current amount of fuel
+     */
+     int fCurFuel;
+
+    /**
      * Squawk code of the airplane
      */
     int fSquawk;
+
+    /**
+     * Old squawk code for restoration incase of emergency.
+     */
+    int fOldSquawk;
 
 };
 

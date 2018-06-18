@@ -146,6 +146,8 @@ void System::run(ostream& log, const string& impressionName) {
 
             airplane->takeoff(log, fATC);
 
+            airplane->checkFuel(log, fATC);
+
             airplane->decreaseTimeRemaining();
         }
 

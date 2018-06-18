@@ -51,32 +51,32 @@ TEST_F(domainTestSystem, approach) {
     airplane->setRequest(kAccepted);
     system.approach(airplane, out);
     EXPECT_EQ(airplane->getRequest(), kIdle);
-    EXPECT_EQ(airplane->getAltitude(), 10);
+    EXPECT_EQ(airplane->getAltitude(), 10000);
     EXPECT_EQ(airplane->getStatus(), kDescending);
 }
 
 TEST_F(domainTestSystem, descend) {
     // Normal descend
     airplane->setStatus(kDescending);
-    airplane->setAltitude(10);
+    airplane->setAltitude(10000);
     system.descend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 9);
+    EXPECT_EQ(airplane->getAltitude(), 9000);
     EXPECT_EQ(airplane->getStatus(), kDescending);
 
     // Plane at 3000ft and can land
     airplane->setRequest(kConfirmed);
-    airplane->setAltitude(3);
+    airplane->setAltitude(3000);
     airplane->setRunway(runway);
     system.descend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 2);
+    EXPECT_EQ(airplane->getAltitude(), 2000);
     EXPECT_EQ(airplane->getStatus(), kDescending);
 
     // Plane at 3000ft and has to circle
     airplane->setRequest(kDenied);
-    airplane->setAltitude(3);
+    airplane->setAltitude(3000);
     system.descend(airplane, out);
     EXPECT_EQ(airplane->getStatus(), kCircling);
-    EXPECT_EQ(airplane->getAltitude(), 3);
+    EXPECT_EQ(airplane->getAltitude(), 3000);
 
     // Plane has landed
     airplane->setAltitude(0);
@@ -197,19 +197,19 @@ TEST_F(domainTestSystem, ascend) {
     EXPECT_EQ(airplane->getAltitude(), 0);
     system.ascend(airplane, out);
     EXPECT_EQ(airplane->getPosition(), "");
-    EXPECT_EQ(airplane->getAltitude(), 1);
+    EXPECT_EQ(airplane->getAltitude(), 1000);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
     system.ascend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 2);
+    EXPECT_EQ(airplane->getAltitude(), 2000);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
     system.ascend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 3);
+    EXPECT_EQ(airplane->getAltitude(), 3000);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
     system.ascend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 4);
+    EXPECT_EQ(airplane->getAltitude(), 4000);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
     system.ascend(airplane, out);
-    EXPECT_EQ(airplane->getAltitude(), 5);
+    EXPECT_EQ(airplane->getAltitude(), 5000);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
     system.ascend(airplane, out);
     EXPECT_EQ(airplane->getStatus(), kAway);

@@ -56,19 +56,19 @@ TEST_F(domainTestATC, processApproach) {
 
 TEST_F(domainTestATC, processDescend) {
     // All clear, can descend
-    airplane->setAltitude(5);
+    airplane->setAltitude(5000);
     atc->processDescend(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kAccepted);
 
     // Has to circle because of circling at 3.000ft
-    airplane->setAltitude(5);
+    airplane->setAltitude(5000);
     atc->set3occupied(true);
     atc->processDescend(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kDenied);
     EXPECT_TRUE(atc->get5occupied());
 
     // Can descend, but 5000ft is occupied
-    airplane->setAltitude(5);
+    airplane->setAltitude(5000);
     atc->set3occupied(false);
     atc->set5occupied(true);
     atc->processDescend(airplane, Time());
@@ -79,14 +79,14 @@ TEST_F(domainTestATC, processDescend) {
     // Can descend, but only because circling is going at 5000ft, 3000ft is also occupied
     atc->set5occupied(true);
     atc->set3occupied(true);
-    airplane->setAltitude(5);
+    airplane->setAltitude(5000);
     atc->processDescend(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kAccepted);
     EXPECT_TRUE(atc->get5occupied());
     EXPECT_TRUE(atc->get3occupied());
 
     // Can land, all clear
-    airplane->setAltitude(3);
+    airplane->setAltitude(3000);
     atc->processDescend(airplane, Time());
     EXPECT_EQ(airplane->getRequest(), kAccepted);
     EXPECT_EQ(airplane->getRunway(), runway);

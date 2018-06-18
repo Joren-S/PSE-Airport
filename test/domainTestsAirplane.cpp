@@ -32,11 +32,11 @@ TEST_F(domainTestAirplane, DefaultConstructor) {
 }
 
 TEST_F(domainTestAirplane, happyDay) {
-    airplane.increaseAltitude(3);
-    EXPECT_EQ(airplane.getAltitude(), 3);
-    airplane.increaseAltitude(2);
-    EXPECT_EQ(airplane.getAltitude(), 5);
-    airplane.decreaseAltitude(5);
+    airplane.increaseAltitude(3000);
+    EXPECT_EQ(airplane.getAltitude(), 3000);
+    airplane.increaseAltitude(2000);
+    EXPECT_EQ(airplane.getAltitude(), 5000);
+    airplane.decreaseAltitude(5000);
     EXPECT_EQ(airplane.getAltitude(), 0);
 
     airplane.decreaseTimeRemaining();
@@ -98,8 +98,8 @@ TEST_F(domainTestAirplane, fieldManipulation) {
     airplane.setTimeRemaining(50);
     EXPECT_EQ(airplane.getTimeRemaining(), 50);
 
-    airplane.setAltitude(100);
-    EXPECT_EQ(airplane.getAltitude(), 100);
+    airplane.setAltitude(100000);
+    EXPECT_EQ(airplane.getAltitude(), 100000);
 
     airplane.setFuel(50000);
     EXPECT_EQ(airplane.getFuel(), 50000);
@@ -123,12 +123,12 @@ TEST_F(domainTestAirplane, fieldManipulation) {
 }
 
 TEST_F(domainTestAirplane, ContractViolations) {
-    EXPECT_DEATH(airplane.decreaseAltitude(-3), "Difference can't be negative");
-    EXPECT_DEATH(airplane.increaseAltitude(-2), "Difference can't be negative");
+    EXPECT_DEATH(airplane.decreaseAltitude(-3000), "Difference can't be negative");
+    EXPECT_DEATH(airplane.increaseAltitude(-2000), "Difference can't be negative");
 
     // Set altitude to 1 and try to decrease by 2
-    airplane.setAltitude(1);
-    EXPECT_DEATH(airplane.decreaseAltitude(2), "New altitude can't be less than 0!");
+    airplane.setAltitude(1000);
+    EXPECT_DEATH(airplane.decreaseAltitude(2000), "New altitude can't be less than 0!");
 
     EXPECT_DEATH(airplane.setAltitude(-3), "Altitude can't be negative");
     EXPECT_DEATH(airplane.setTimeRemaining(-5), "Time remaining can't be negative");

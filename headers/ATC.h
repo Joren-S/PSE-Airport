@@ -224,6 +224,20 @@ public:
     void processTakeOffRunway(Airplane* airplane, Time time);
 
     /**
+     * Processes a request for an emergency landing.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processEmergency(Airplane* airplane, Time time);
+
+    /**
+     * Processes a request for an urgent emergency landing.
+     * @param airplane: the sender of the request
+     * @param time: current time
+     */
+    void processUrgentEmergency(Airplane* airplane, Time time);
+
+    /**
      * Write a message to the ATC stream.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendMessage.");
      * @param message: Message that needs to be send.

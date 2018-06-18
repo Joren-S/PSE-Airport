@@ -31,7 +31,7 @@
 <type>private</type>
 <engine>jet</engine>
 <size>small</size>
-<fuel>10</fuel>
+<fuel>100</fuel>
 <passengers>8</passengers>
 <FLIGHTPLAN>
 	<destination>LCY</destination>

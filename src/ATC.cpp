@@ -180,6 +180,14 @@ void ATC::doHeartbeat(Time curTime) {
     Airplane* airplane = request->fAirplane;
     EPlaneStatus status = airplane->getStatus();
 
+    // ---- EMERGENCY ----
+    if (status == kEmergencyLanding) {
+        processEmergency(airplane, curTime);
+    }
+    if (status == kEmergencyLandingUrgent) {
+        processUrgentEmergency(airplane, curTime);
+    }
+
     // ---- LANDING ----
 
     // Plane has requested an approach
@@ -356,7 +364,7 @@ void ATC::processApproach(Airplane *airplane, Time time) {
 
 void ATC::processDescend(Airplane *airplane, Time curTime) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
-    if (airplane->getAltitude() == 5) {
+    if (airplane->getAltitude() == 5000) {
 
         // A plane is already circling at 3000ft, 5000ft is clear
         if (f3Occupied and !f5Occupied) {
@@ -387,7 +395,7 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
         }
     }
 
-    else if (airplane->getAltitude() == 3) {
+    else if (airplane->getAltitude() == 3000) {
 
         // Get a free runway
         Runway* runway = getAirport()->getFreeRunway(airplane);
@@ -631,6 +639,45 @@ void ATC::processTakeOffRunway(Airplane* airplane, Time time) {
     }
 }
 
+void ATC::processEmergency(Airplane *airplane, Time time) {
+
+    // Get a free runway
+    Runway* runway = getAirport()->getFreeRunway(airplane);
+
+    // If no available
+    if (runway == NULL) {
+
+        // Change request status
+        airplane->setRequest(kDenied);
+    }
+
+    // Runway available
+    else {
+
+        // Change request status
+        airplane->setRequest(kAccepted);
+
+        // Set airplane runway
+        airplane->setRunway(runway);
+
+        // Reset position in airport
+        airplane->setPosition("");
+
+        // Change status of runway
+        runway->setFree(false);
+
+        // send message to plane
+        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, cleared ILS landing runway " + runway->getName()));
+    }
+}
+
+void ATC::processUrgentEmergency(Airplane *airplane, Time time) {
+
+    airplane->setRequest(kAccepted);
+    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!"));
+}
+
+// test
 Time ATC::getTime() const {
     REQUIRE(this->properlyInitialized(), "ATC wasn't initialized when calling getTime");
     return fTime;

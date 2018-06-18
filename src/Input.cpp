@@ -152,6 +152,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
                 break;
             }
             tmp->setFuel(atoi(elem->GetText()));
+            tmp->setCurFuel(tmp->getFuel());
         }
 
         // Flightplan
