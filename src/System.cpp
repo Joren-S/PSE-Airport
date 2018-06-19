@@ -218,10 +218,6 @@ ATC* System::getATC() const {
     return fATC;
 }
 
-Time System::getTime() const {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
-    return fTime;
-}
 
 void System::generateImages(Time start, Time end) {
     string command = "../graphics/engine ";

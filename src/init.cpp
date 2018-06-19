@@ -39,6 +39,7 @@ int main() {
     // Log information to output file
     system.info();
 
+    // Generate wanted images
     system.generateImages(Time(12, 40), Time(12, 45));
 
     return 0;
