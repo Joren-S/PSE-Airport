@@ -565,8 +565,15 @@ void Airplane::taxiArrival(ostream& log) {
 
         setPosition("");
 
-        // Set time remaining for deboarding
-        setTimeRemaining(int(ceil(getPassengers() / 2.0)));
+        if (getSize() == kSmall) {
+            setTimeRemaining(5);
+        }
+        else if (getSize() == kMedium) {
+            setTimeRemaining(10);
+        }
+        else if (getSize() == kLarge) {
+            setTimeRemaining(15);
+        }
 
         // Change status to at airport
         setStatus(kDeboarding);
@@ -809,8 +816,15 @@ void Airplane::prepare(ostream& fLog) {
         int fuelNeeded = getFuel() - getCurFuel();
 
         // If so, we refuel and let passengers board
-        setTimeRemaining(int(ceil(getPassengers() / 2.0))    // calculate time for boarding
-                         + int(ceil(fuelNeeded / 10000.0)));  // calculate time for refueling
+        if (getSize() == kSmall) {
+            setTimeRemaining(5 + int(ceil(fuelNeeded / 10000.0)));
+        }
+        else if (getSize() == kMedium) {
+            setTimeRemaining(10 + int(ceil(fuelNeeded / 10000.0)));
+        }
+        else if (getSize() == kLarge) {
+            setTimeRemaining(15 + int(ceil(fuelNeeded / 10000.0)));
+        }
 
         // set our fuel to max.
         setCurFuel(getFuel());

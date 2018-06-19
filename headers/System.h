@@ -28,7 +28,7 @@
 
 
 /**
- * \brief: Main class, controls the simulation
+ * \brief: Main class, controls the simulation.
  */
 class System {
 public:
@@ -36,6 +36,7 @@ public:
     /**
      * Constructor
      * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
+     * @param atc:
      */
     System(std::ostream& atc, Time end);
 
@@ -50,28 +51,29 @@ public:
      */
     ~System();
 
-    /**
-     * Checks if the object is properly initialized
-     */
-    bool properlyInitialized() const;
+
 
     /**
      * Sets the end time of the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
+     * @param sets the
      */
     void setEndTime(Time end);
 
     /**
      * Initializes the air traffic control of the simulation with an std::ostream
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
+     * @param log: ostream where all the ATC messages will be written to
+     * @param test: if true, it will set all the squawk codes to zero, for testing purposes
      */
     void initializeATC(std::ostream& log, bool test = false);
 
     /**
      * Imports the given input
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling import");
+     * @param input: the input used in the simulation
      */
-    void import(Input&);
+    void import(Input& input);
 
     /**
      * Logs information of the airports and airplanes to a text file
@@ -87,11 +89,21 @@ public:
      * \n REQUIRE(fAirport != NULL, "No airport in the simulation.");
      * \n REQUIRE(!simulationFinished(), "Simulation is already finished");.
      * \n ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
+     * @param log: ostream where all the log messages will be written to
+     * @param impressionName: basename of the files for the impressions
+     * @param iniName: basename of the files for the ini files
      */
     void run(std::ostream& log,
              const std::string& impressionName = "../output/impressions/impression",
              const std::string& iniName = "../output/ini/graphics");
 
+    /**
+     * Generates the images from the start time until the end time, with the use of
+     * \n the generated ini files and the graphics engine.
+     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling generateImages");
+     * @param start: time of first image
+     * @param end: time of last image, not included
+     */
     void generateImages(Time start, Time end);
 
     /**
@@ -99,7 +111,6 @@ public:
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling simulationFinished");
      */
     bool simulationFinished() const;
-
 
     /**
      * Getter for the airport in the simulation
@@ -118,6 +129,11 @@ public:
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
      */
     ATC* getATC() const;
+
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
 
 
 private:

@@ -247,7 +247,7 @@ TEST_F(domainTestAirplane, taxiArrival) {
     airplane->taxiArrival(out);
     EXPECT_TRUE(airplane->getPosition().empty());
     EXPECT_EQ(airplane->getStatus(), kDeboarding);
-    EXPECT_EQ(airplane->getTimeRemaining(), 4);
+    EXPECT_EQ(airplane->getTimeRemaining(), 5);
 
     // Arrived at taxipoint
     airplane->setStatus(kTaxiArrival);

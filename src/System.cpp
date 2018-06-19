@@ -220,6 +220,7 @@ ATC* System::getATC() const {
 
 
 void System::generateImages(Time start, Time end) {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling generateImages");
     string command = "../graphics/engine ";
     for (; start < end; start.advance()) {
         command += "../output/ini/graphics" + start.formatted() + ".ini ";
