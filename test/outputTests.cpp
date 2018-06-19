@@ -13,14 +13,14 @@
 TEST(outputTest, happyDay) {
     ASSERT_TRUE(DirectoryExists("../test/testOutput"));
     int counter = 1;
-    string filename = "../test/testOutput/happyDay" + ToString(counter) + ".xml";
+    std::string filename = "../test/testOutput/happyDay" + ToString(counter) + ".xml";
 
     while (FileExists(filename)) {
-        string atcname = "../test/testOutput/happyDay" + ToString(counter) + "ATC.txt";
-        string logname = "../test/testOutput/happyDay" + ToString(counter) + "Log.txt";
-        string infoname = "../test/testOutput/happyDay" + ToString(counter) + "Info.txt";
-        ofstream atc(atcname.c_str());
-        ofstream log(logname.c_str());
+        std::string atcname = "../test/testOutput/happyDay" + ToString(counter) + "ATC.txt";
+        std::string logname = "../test/testOutput/happyDay" + ToString(counter) + "Log.txt";
+        std::string infoname = "../test/testOutput/happyDay" + ToString(counter) + "Info.txt";
+        std::ofstream atc(atcname.c_str());
+        std::ofstream log(logname.c_str());
         Input input;
         input.read(filename);
         System system;
@@ -32,9 +32,9 @@ TEST(outputTest, happyDay) {
         atc.close();
         log.close();
 
-        string expectedatc = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedATC.txt";
-        string expectedlog = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedLog.txt";
-        string expectedinfo = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedInfo.txt";
+        std::string expectedatc = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedATC.txt";
+        std::string expectedlog = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedLog.txt";
+        std::string expectedinfo = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedInfo.txt";
 
         EXPECT_TRUE(FileCompare(atcname, expectedatc));
         EXPECT_TRUE(FileCompare(logname, expectedlog));

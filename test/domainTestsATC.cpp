@@ -32,7 +32,7 @@ protected:
         atc = system.getATC();
     }
 
-    ofstream out;
+    std::ofstream out;
     System system;
     Runway* runway;
     Airplane* airplane;

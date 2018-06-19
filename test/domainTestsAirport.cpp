@@ -132,7 +132,7 @@ TEST_F(domainTestAirport, fieldManipulation) {
     runway1->setName("RW1");
     runway1->setTaxiPoint("Alpha");
     airport.addRunway(runway1);
-    vector<Runway*> rws = airport.getRunways();
+    std::vector<Runway*> rws = airport.getRunways();
     EXPECT_TRUE(rws.size() == 1);
     EXPECT_EQ(rws.at(0), runway1);
 }

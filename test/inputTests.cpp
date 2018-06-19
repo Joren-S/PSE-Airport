@@ -20,10 +20,10 @@ TEST_F(inputTest, HappyDay) {
     ASSERT_TRUE(FileExists("../test/testInput/happyDay.xml"));
     input.read("../test/testInput/happyDay.xml");
 
-    vector<Flightplan*> flightplans = input.getFlightplans();
+    std::vector<Flightplan*> flightplans = input.getFlightplans();
     EXPECT_EQ(flightplans.size(), size_t(1));
 
-    vector<Airport*> airports = input.getAirports();
+    std::vector<Airport*> airports = input.getAirports();
     EXPECT_EQ(airports.size(), size_t(1));
 
     Flightplan* flightplan = flightplans[0];
@@ -32,7 +32,7 @@ TEST_F(inputTest, HappyDay) {
     Airport* airport = input.getAirports()[0];
     EXPECT_TRUE(airport != NULL);
 
-    vector<Runway*> runways = airport->getRunways();
+    std::vector<Runway*> runways = airport->getRunways();
     EXPECT_EQ(runways.size(), size_t(2));
 
     // Airport
@@ -78,9 +78,9 @@ TEST_F(inputTest, HappyDay) {
 TEST_F(inputTest, legalInput) {
     ASSERT_TRUE(DirectoryExists("../test/testInput"));
 
-    ofstream myfile;
+    std::ofstream myfile;
     int fileCounter = 1;
-    string fileName = "../test/testInput/legalInput" + ToString(fileCounter) + ".xml";
+    std::string fileName = "../test/testInput/legalInput" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
         myfile.open("../test/testInput/error.txt");
@@ -104,9 +104,9 @@ TEST_F(inputTest, nonexistentFile) {
 TEST_F(inputTest, XMLSyntaxErrors) {
     ASSERT_TRUE(DirectoryExists("../test/testInput"));
 
-    ofstream myfile;
+    std::ofstream myfile;
     int fileCounter = 1;
-    string fileName = "../test/testInput/inputSyntaxError" + ToString(fileCounter) + ".xml";
+    std::string fileName = "../test/testInput/inputSyntaxError" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
 
@@ -121,12 +121,12 @@ TEST_F(inputTest, XMLSyntaxErrors) {
 TEST_F(inputTest, illegalAirport) {
     ASSERT_TRUE(DirectoryExists("../test/testInput"));
 
-    ofstream myfile;
+    std::ofstream myfile;
     int fileCounter = 1;
-    string fileName = "../test/testInput/inputAirportError" + ToString(fileCounter) + ".xml";
+    std::string fileName = "../test/testInput/inputAirportError" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
-        string errorFileName = "../test/testInput/airportError" + ToString(fileCounter) + ".txt";
+        std::string errorFileName = "../test/testInput/airportError" + ToString(fileCounter) + ".txt";
 
         myfile.open("../test/testInput/error.txt");
 
@@ -143,12 +143,12 @@ TEST_F(inputTest, illegalAirport) {
 TEST_F(inputTest, illegalElement) {
     ASSERT_TRUE(DirectoryExists("../test/testInput"));
 
-    ofstream myfile;
+    std::ofstream myfile;
     int fileCounter = 1;
-    string fileName = "../test/testInput/inputPartialError" + ToString(fileCounter) + ".xml";
+    std::string fileName = "../test/testInput/inputPartialError" + ToString(fileCounter) + ".xml";
 
     while (FileExists (fileName)) {
-        string errorFileName = "../test/testInput/illegalError" + ToString(fileCounter) + ".txt";
+        std::string errorFileName = "../test/testInput/illegalError" + ToString(fileCounter) + ".txt";
 
         myfile.open("../test/testInput/error.txt");
 
