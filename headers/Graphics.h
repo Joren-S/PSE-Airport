@@ -48,6 +48,7 @@ public:
 
     /**
      * Constructor. Adds the figures for the gates.
+     * \n ENSURE(properlyInitialized(), "Graphics object was not properly constructed");
      * @param airport: airport in the simulation
      */
     Graphics(Airport* airport);
@@ -55,6 +56,8 @@ public:
     /**
      * Adds the figures for an airplane.
      * \n The position is calculated with the status and position of the airplane.
+     * \n REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(airplane)");
+     * \n REQUIRE(runway != NULL, "Element can't be NULL when calling addElement");
      * @param airplane: the airplane to be added
      */
     void addElement(Airplane* airplane);
@@ -62,18 +65,28 @@ public:
     /**
      * Adds the figures for a runway.
      * \n The position is calculated by the number of runways already added
+     * \n REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(runway)");
+     * \n REQUIRE(airplane != NULL, "Element can't be NULL when calling addElement");
      * @param runway: the runway to be added
      */
     void addElement(Runway* runway);
 
     /**
      * Generates the ini file of all the elements in the figures vector.
+     * \n REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling generateINI");
+     * \n REQUIRE(size > 0, "Size can't be negative");
      * @param x: eye point x coordinate
      * @param y: eye point y coordinate
      * @param z: eye point z coordinate
      * @return string in valid ini format
      */
     std::string generateINI(double x, double y, double z, int size = 3000) const;
+
+    /**
+     * Checks if the object is properly initialized
+     * @return: Boolean indicating if properly initialized or not.
+     */
+    bool properlyInitialized() const;
 
 private:
 
@@ -112,6 +125,11 @@ private:
      * Maximum y value
      */
     int fMaximumY;
+
+    /**
+     * Pointer to itself
+     */
+    Graphics* fInitCheck;
 
 };
 

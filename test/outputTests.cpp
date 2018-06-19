@@ -8,6 +8,7 @@
 #include "../headers/System.h"
 #include "../headers/TestUtils.h"
 
+using namespace std;
 
 
 TEST(outputTest, happyDay) {

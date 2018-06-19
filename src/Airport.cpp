@@ -278,8 +278,15 @@ string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>
 }
 
 
-std::string Airport::graphicsINI(const Time& time, const std::vector<Flightplan *>& plans) const {
-    return "";
+std::string Airport::graphicsINI(const std::vector<Flightplan *>& plans) {
+    Graphics graphics(this);
+    for (vector<Runway*>::const_iterator itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
+        graphics.addElement(*itr);
+    }
+    for (vector<Flightplan*>::const_iterator itr = plans.begin(); itr != plans.end(); ++itr) {
+        graphics.addElement((*itr)->getAirplane());
+    }
+    return graphics.generateINI(300, 80, 140);
 }
 
 

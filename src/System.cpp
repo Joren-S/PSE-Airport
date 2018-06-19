@@ -850,13 +850,12 @@ void System::takeoff(Airplane *plane, ostream& fLog) {
 }
 
 
-void System::run(ostream& log, const string& impressionName) {
+void System::run(ostream& log, const string& impressionName, const string& iniName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
 
     while (!simulationFinished()) {
-
         // Each tick, we make sure our ATC handles requests.
         fATC->doHeartbeat(fTime);
 
@@ -869,6 +868,11 @@ void System::run(ostream& log, const string& impressionName) {
         impression << impressionStr;
         impression.close();
 
+        // Also generate an ini file for use with the graphics engine
+        name = iniName + fTime.formatted() + ".ini";
+        ofstream graphics(name.c_str());
+        graphics << getAirport()->graphicsINI(fFlightplans);
+        graphics.close();
 
         // Get flightplans and set up iterator
         vector<Flightplan*>::iterator flightplanItr;
@@ -962,4 +966,12 @@ ATC* System::getATC() const {
 Time System::getTime() const {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
     return fTime;
+}
+
+void System::generateImages(Time start, Time end) {
+    string command = "../graphics/engine ";
+    for (; start < end; start.advance()) {
+        command += "../output/ini/graphics" + start.formatted() + ".ini ";
+    }
+    system(command.c_str());
 }

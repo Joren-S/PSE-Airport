@@ -10,6 +10,8 @@
 using namespace std;
 
 Graphics::Graphics(Airport* airport): fAirport(airport), fMaximumY(0) {
+    fInitCheck = this;
+
     // Stream used to save all the figures
     ostringstream stream;
 
@@ -88,10 +90,14 @@ Graphics::Graphics(Airport* airport): fAirport(airport), fMaximumY(0) {
     stream << "point2 = (" << xMin - 7 << ", -25, -0.5)" << endl;
     stream << "point3 = (" << xMin - 7 << ", 4, -0.5)" << endl;
     fFigures.push_back(stream.str());
+
+    ENSURE(properlyInitialized(), "Graphics object was not properly constructed");
 }
 
 
 std::string Graphics::generateINI(double x, double y, double z, int size) const {
+    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling generateINI");
+    REQUIRE(size > 0, "Size can't be negative");
     ostringstream ini;
 
     // Add figures
@@ -222,7 +228,8 @@ void Graphics::parseCoordinates(const std::string &coordinates, double &x, doubl
 
 
 void Graphics::addElement(Runway *runway) {
-    REQUIRE(runway != NULL, "Runway can't be NULL when calling addElement");
+    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(runway)");
+    REQUIRE(runway != NULL, "Element can't be NULL when calling addElement");
 
     ostringstream figure;
 
@@ -277,11 +284,13 @@ void Graphics::addElement(Runway *runway) {
 
 
 void Graphics::addElement(Airplane *airplane) {
+    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(airplane)");
+    REQUIRE(airplane != NULL, "Element can't be NULL when calling addElement");
     ostringstream figure;
 
-    const char* airplaneTemplate = "../airplaneTemplate.txt";
-    const char* airplaneArrivalTemplate = "../airplaneArrivalTemplate.txt";
-    const char* airplaneDepartureTemplate = "../airplaneDepartureTemplate.txt";
+    const char* airplaneTemplate = "../graphics/airplaneTemplate.txt";
+    const char* airplaneArrivalTemplate = "../graphics/airplaneArrivalTemplate.txt";
+    const char* airplaneDepartureTemplate = "../graphics/airplaneDepartureTemplate.txt";
 
     if (airplane->getAltitude() > 0) {
         return;
@@ -295,7 +304,7 @@ void Graphics::addElement(Airplane *airplane) {
     if (status == kDeboarding or status == kTechnicalCheck or status == kParked or
         status == kGate or status == kAirport or status == kPushback)
     {
-        iniTemplate.open("../airplaneArrivalTemplate.txt");
+        iniTemplate.open(airplaneArrivalTemplate);
         x = ((airplane->getGateID() - 1) * 12 - 6 * fAirport->getGates()) + 5;
         y = -11;
     }
@@ -402,4 +411,8 @@ void Graphics::addElement(Airplane *airplane) {
     if (!newPart.empty()) {
         fFigures.push_back(newPart);
     }
+}
+
+bool Graphics::properlyInitialized() const {
+    return fInitCheck == this;
 }

@@ -8,6 +8,8 @@
 #include "../headers/System.h"
 #include "../headers/TestUtils.h"
 
+using namespace std;
+
 class inputTest: public ::testing::Test {
 protected:
 

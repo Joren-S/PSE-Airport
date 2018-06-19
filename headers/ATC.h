@@ -32,13 +32,11 @@ struct ATCRequest {
     /**
      * Constructor.
      */
-    ATCRequest(Time time, Airplane* plane) : fTime(time), fAirplane(plane) {}
+    ATCRequest(Time time, Airplane* plane);
 };
 
 struct Comparator {
-    bool operator()(const ATCRequest* lhs, const ATCRequest* rhs) {
-        return lhs->fAirplane->getSquawk() < rhs->fAirplane->getSquawk();
-    }
+    bool operator()(const ATCRequest* lhs, const ATCRequest* rhs);
 };
 
 class ATC {

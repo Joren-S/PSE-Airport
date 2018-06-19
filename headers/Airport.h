@@ -15,6 +15,7 @@
 #include "Runway.h"
 #include "Time.h"
 #include "Flightplan.h"
+#include "Graphics.h"
 
 /**
  * Class that represents the airport in a simulation
@@ -125,7 +126,7 @@ public:
      */
     std::string drawImpression(const Time& time, const std::vector<Flightplan *>& plans) const;
 
-    std::string graphicsINI(const Time& time, const std::vector<Flightplan *>& plans) const;
+    std::string graphicsINI(const std::vector<Flightplan *>& plans);
 
     /**
      * Set the amount of gates in the airport.

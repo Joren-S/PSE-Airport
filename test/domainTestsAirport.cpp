@@ -6,6 +6,7 @@
 
 #include <gtest/gtest.h>
 #include "../headers/System.h"
+#include "../headers/TestUtils.h"
 
 
 class domainTestAirport: public ::testing::Test {
@@ -93,9 +94,6 @@ TEST_F(domainTestAirport, happyDay) {
     // alter rw so it's a valid runway.
     rw->setType(kAsphalt);
     EXPECT_EQ(airport.getFreeRunway(&plane), rw);
-
-
-//    delete  rw;
 }
 
 TEST_F(domainTestAirport, complete) {
@@ -132,7 +130,7 @@ TEST_F(domainTestAirport, fieldManipulation) {
     runway1->setName("RW1");
     runway1->setTaxiPoint("Alpha");
     airport.addRunway(runway1);
-    vector<Runway*> rws = airport.getRunways();
+    std::vector<Runway*> rws = airport.getRunways();
     EXPECT_TRUE(rws.size() == 1);
     EXPECT_EQ(rws.at(0), runway1);
 }
@@ -179,4 +177,58 @@ TEST_F(domainTestAirport, ContractViolations) {
 
     // getFreeRunway
     EXPECT_DEATH(airport.getFreeRunway(NULL), "Plane object does not exist.");
+}
+
+
+
+TEST_F(domainTestAirport, impressions) {
+    Runway* rw2 = new Runway();
+    rw2->setName("RW1");
+    rw2->setTaxiPoint("Alpha");
+    rw2->setType(kGrass);
+    rw2->setLength(20000);
+
+    // 2nd runway
+    Runway *rw = new Runway();
+    rw->setName("RW2");
+    rw->setTaxiPoint("Bravo");
+    rw->setType(kGrass);
+    rw->setLength(20000);
+
+    airport.addRunway(rw);
+    airport.addRunway(rw2);
+
+    std::vector<Flightplan*> plans;
+
+    Airplane* airplane = new Airplane;
+    airplane->setStatus(kDeboarding);
+    airplane->setGateID(1);
+    Flightplan* plan = new Flightplan;
+    plan->setAirplane(airplane);
+    plans.push_back(plan);
+
+    std::string tempname = "../test/testOutput/temp.txt";
+
+    std::ofstream out(tempname.c_str());
+    out << airport.drawImpression(Time(), plans);
+    out.close();
+
+    EXPECT_TRUE(FileCompare("../test/testOutput/expectedImpression1.txt", tempname));
+
+    airplane->setStatus(kTaxiArrival);
+    airplane->setPosition("Alpha");
+
+    out.open(tempname.c_str());
+    out << airport.drawImpression(Time(), plans);
+    out.close();
+
+    EXPECT_TRUE(FileCompare("../test/testOutput/expectedImpression2.txt", "../test/testOutput/temp.txt"));
+
+    airplane->setStatus(kCrossingDeparture);
+
+    out.open(tempname.c_str());
+    out << airport.drawImpression(Time(), plans);
+    out.close();
+
+    EXPECT_TRUE(FileCompare("../test/testOutput/expectedImpression3.txt", "../test/testOutput/temp.txt"));
 }

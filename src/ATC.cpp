@@ -637,3 +637,9 @@ ATC::~ATC() {
         fQueue.pop();
     }
 }
+
+bool Comparator::operator()(const ATCRequest *lhs, const ATCRequest *rhs) {
+    return lhs->fAirplane->getSquawk() < rhs->fAirplane->getSquawk();
+}
+
+ATCRequest::ATCRequest(Time time, Airplane* plane) : fTime(time), fAirplane(plane) {}
