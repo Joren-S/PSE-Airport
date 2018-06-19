@@ -2,20 +2,14 @@
 // Name        : GraphicsGenerator.cpp
 // Author      : Joren Servotte, Max Van Houcke
 // Description : Airport simulation, Project Software Engineering
-// !
-// The file contains mainly large strings with
-// preset ini text for the Graphics Engine where just a
-// couple of variables like position have to be set.
-// !
 //============================================================================
 
 
-#include <cstdlib>
 #include "../headers/GraphicsGenerator.h"
 
 using namespace std;
 
-GraphicsGenerator::GraphicsGenerator(int gates): fMaximumY(0) {
+GraphicsGenerator::GraphicsGenerator(Airport* airport): fAirport(airport), fMaximumY(0) {
     // Stream used to save all the figures
     ostringstream stream;
 
@@ -34,16 +28,13 @@ GraphicsGenerator::GraphicsGenerator(int gates): fMaximumY(0) {
                         "scale = 1\n"
                         "color = (0.5, 0.5, 0.5)\n";
 
-    // Off set to calculate x values
-    int offset = gates;
-
     // Maximum and minimum values of the gates
     int xMax = 0;
     int xMin = 0;
 
     // Loop over gates * 2, because we generate two big cubes for every gate
-    for (int i = 0; i < gates * 2; i++) {
-        int x = i * 6 - offset * 6;
+    for (int i = 0; i < fAirport->getGates() * 2; i++) {
+        int x = i * 6 - fAirport->getGates() * 6;
 
         // Add a big cube
         stream << "[Figure" << fFigures.size() << "]" << endl;
@@ -100,17 +91,8 @@ GraphicsGenerator::GraphicsGenerator(int gates): fMaximumY(0) {
 }
 
 
-std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
+std::string GraphicsGenerator::generateINI(double x, double y, double z, int size) const {
     ostringstream ini;
-
-    // Add general section
-    ini << "[General]\n"
-           "size = 2500\n"
-           "backgroundcolor = (0.52, 0.8, 0.98)\n"
-           "type = \"ZBuffering\"";
-
-    ini << "nrFigures = " << fFigures.size() + 2 << endl;
-    ini << "eye = (" << x << ", " << y << ", " << z << ")\n" << endl;
 
     // Add figures
     vector<string>::const_iterator itr;
@@ -118,9 +100,10 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
         ini << *itr;
     }
 
-    // Make a rectangle that contains the whole airport
+    int nrFigures = int(fFigures.size());
 
-    ini << "[Figure" << fFigures.size() << "]" << endl;
+    // Make a rectangle that contains the whole airport
+    ini << "[Figure" << nrFigures << "]" << endl;
     ini << "type = \"Face\"\n"
               "nrPoints = 4\n"
               "scale = 1\n"
@@ -129,16 +112,14 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "rotateZ = 0\n"
               "center = (0, 0, 0)\n"
               "color = (0.27, 0.34, 0.15)\n";
-
-
     ini << "point0 = (" << fMaximumX + 10 << ", " << - (fMaximumY + 15) << ", -1)" << endl;
     ini << "point1 = (" << fMaximumX  + 10 << ", " << 10 << ", -1)" << endl;
     ini << "point2 = (" << - (fMaximumX + 10) << ", " << 10 << ", -1)" << endl;
     ini << "point3 = (" << - (fMaximumX + 10) << ", " << - (fMaximumY + 15) << ", -1)" << endl << endl;
-
+    nrFigures++;
 
     // Make a road for taxiing
-    ini << "[Figure" << fFigures.size() + 1 << "]" << endl;
+    ini << "[Figure" << nrFigures << "]" << endl;
     ini << "type = \"Face\"\n"
               "nrPoints = 4\n"
               "scale = 1\n"
@@ -147,11 +128,56 @@ std::string GraphicsGenerator::generateINI(double x, double y, double z) const {
               "rotateZ = 0\n"
               "center = (0, 0, 0)\n"
               "color = (0.3, 0.3, 0.3)\n";
+    ini << "point0 = (-12" << ", " << - 5 << ", -0.5)" << endl;
+    ini << "point1 = (12" << ", " << 0 << ", -0.5)" << endl;
+    ini << "point2 = (12" << ", " << - fMaximumY  << ", -0.5)" << endl;
+    ini << "point3 = (-12" << ", " << - fMaximumY << ", -0.5)" << endl << endl;
+    nrFigures++;
 
-    ini << "point0 = (-7" << ", " << - 5 << ", -0.5)" << endl;
-    ini << "point1 = (7" << ", " << 0 << ", -0.5)" << endl;
-    ini << "point2 = (7" << ", " << - fMaximumY  << ", -0.5)" << endl;
-    ini << "point3 = (-7" << ", " << - fMaximumY << ", -0.5)" << endl << endl;
+    // Add counter for planes at a certain taxipoint
+    for (unsigned int i=0; i<fRunways.size(); i++) {
+        for (int j=0; j<fRunways[i].arrivingPlanes; j++) {
+            ini << "[Figure" << nrFigures << "]" << endl;
+            ini << "type = \"Face\"\n"
+                   "nrPoints = 4\n"
+                   "scale = 1\n"
+                   "rotateX = 0\n"
+                   "rotateY = 0\n"
+                   "rotateZ = 0\n"
+                   "center = (0, 0, 0)\n"
+                   "color = (0.8, 0.8, 0.8)\n";
+            ini << "point0 = (14" << ", " << - i * 30 - 35 + j * 2 << ", -0.5)" << endl;
+            ini << "point1 = (13" << ", " << - i * 30 - 35 + j * 2 << ", -0.5)" << endl;
+            ini << "point2 = (13" << ", " << - i * 30 - 35 + j * 2 + 1  << ", -0.5)" << endl;
+            ini << "point3 = (14" << ", " << - i * 30 - 35 + j * 2 + 1 << ", -0.5)" << endl << endl;
+            nrFigures++;
+        }
+        for (int j=0; j<fRunways[i].departingPlanes; j++) {
+            ini << "[Figure" << nrFigures << "]" << endl;
+            ini << "type = \"Face\"\n"
+                   "nrPoints = 4\n"
+                   "scale = 1\n"
+                   "rotateX = 0\n"
+                   "rotateY = 0\n"
+                   "rotateZ = 0\n"
+                   "center = (0, 0, 0)\n"
+                   "color = (0.8, 0.8, 0.8)\n";
+            ini << "point0 = (-14" << ", " << - i * 30 - 35 + j * 2 << ", -0.5)" << endl;
+            ini << "point1 = (-13" << ", " << - i * 30 - 35 + j * 2 << ", -0.5)" << endl;
+            ini << "point2 = (-13" << ", " << - i * 30 - 35 + j * 2 + 1  << ", -0.5)" << endl;
+            ini << "point3 = (-14" << ", " << - i * 30 - 35 + j * 2 + 1 << ", -0.5)" << endl << endl;
+            nrFigures++;
+        }
+    }
+
+    // Add general section
+    ini << "[General]\n"
+           "backgroundcolor = (0.52, 0.8, 0.98)\n"
+           "type = \"ZBuffering\"";
+
+    ini << "nrFigures = " << nrFigures << endl;
+    ini << "size = " << size << endl;
+    ini << "eye = (" << x << ", " << y << ", " << z << ")\n" << endl;
 
     return ini.str();
 }
@@ -240,7 +266,11 @@ void GraphicsGenerator::addElement(Runway *runway) {
         figure << "color = (0.17, 0.70, 0.21)\n" << endl;
     }
 
-    fRunways.push_back(runway);
+    RunwayInfo info;
+    info.runway = runway;
+    info.arrivingPlanes = info.departingPlanes = 0;
+
+    fRunways.push_back(info);
     fFigures.push_back(figure.str());
 }
 
@@ -248,22 +278,88 @@ void GraphicsGenerator::addElement(Runway *runway) {
 void GraphicsGenerator::addElement(Airplane *airplane) {
     ostringstream figure;
 
+    const char* airplaneTemplate = "../airplaneTemplate.txt";
+    const char* airplaneArrivalTemplate = "../airplaneArrivalTemplate.txt";
+    const char* airplaneDepartureTemplate = "../airplaneDepartureTemplate.txt";
+
     if (airplane->getAltitude() > 0) {
         return;
     }
 
     ifstream iniTemplate;
+    double x = 0, y = 0, z = 0;
+    EPlaneStatus status = airplane->getStatus();
+
+    // At gate
+    if (status == kDeboarding or status == kTechnicalCheck or status == kParked or
+        status == kGate or status == kAirport or status == kPushback)
+    {
+        iniTemplate.open("../airplaneArrivalTemplate.txt");
+        x = ((airplane->getGateID() - 1) * 12 - 6 * fAirport->getGates()) + 5;
+        y = -11;
+    }
+    
+    else {
+        for (unsigned int i=0; i<fRunways.size(); i++) {
+            Runway* runway = fRunways[i].runway;
+            string taxipoint = runway->getTaxiPoint();
+
+            // Plane is landing or taking off
+            if ((airplane->getPosition().empty() and airplane->getAltitude() == 0 and airplane->getStatus() == kDescending and airplane->getRunway() == runway) or
+                    (airplane->getStatus() == kAscending and airplane->getRunway()->getTaxiPoint() == taxipoint and airplane->getAltitude() == 0))
+            {
+                iniTemplate.open(airplaneTemplate);
+                x = -6;
+                y = -45 - double(i * 30);
+            }
+
+            // Plane is crossing when taxiing at arrival
+            else if (airplane->getStatus() == kCrossingArrival and fAirport->getNextRunway(airplane) == runway) {
+                iniTemplate.open(airplaneArrivalTemplate);
+                x = 6;
+                y = -47 - double(i * 30);
+            }
+
+            // Plane just landed and at taxipoint
+            else if ((airplane->getPosition().empty() and airplane->getStatus() == kTaxiArrival and airplane->getRunway() == runway) or
+                    (airplane->getStatus() == kTaxiArrival and airplane->getPosition() == taxipoint))
+            {
+                if (fRunways[i].arrivingPlanes == 0) {
+                    iniTemplate.open(airplaneArrivalTemplate);
+                    x = 6;
+                    y = -33 - double(i * 30);
+                }
+                fRunways[i].arrivingPlanes++;
+            }
 
 
+            // Departure and at taxipoint
+            else if ((airplane->getStatus() == kTaxiDeparture and airplane->getPosition() == taxipoint) or
+                    (airplane->getStatus() == kWaitingForDeparture and airplane->getPosition() == taxipoint))
+            {
+                if (fRunways[i].departingPlanes == 0) {
+                    iniTemplate.open(airplaneDepartureTemplate);
+                    x = - 6;
+                    y = - 28 - double(i * 30);
+                }
+                fRunways[i].departingPlanes++;
+            }
 
+            // Plane is waiting on runway before takeoff
+            else if (airplane->getStatus() == kDeparture and airplane->getRunway()->getTaxiPoint() == taxipoint) {
+                iniTemplate.open(airplaneTemplate);
+                x = - double(runway->getLength()) / 14 + 10;
+                y = -45 - double(i * 30);
+            }
 
-    ifstream iniTemplate("../airplaneTemplate.txt");
-//    ifstream iniTemplate("../airplaneArrivalTemplate.txt");
-//    ifstream iniTemplate("../airplaneDepartureTemplate.txt");
-
-    // TODO set these
-//    double x=12, y=-11, z=0;
-    double x=0, y=-45, z=0;
+            // Plane is crossing runway at departure
+            else if (airplane->getStatus() == kCrossingDeparture and airplane->getPosition() == taxipoint) {
+                iniTemplate.open("../airplaneDepartureTemplate.txt");
+                x = -6;
+                y = -42 - double(i * 30);
+            }
+        }
+    }
 
     double xC, yC, zC;
 

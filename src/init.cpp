@@ -41,17 +41,41 @@ int main() {
 //    system.info();
 
     Airport* airport = new Airport;
-    GraphicsGenerator generator(airport->getGates());
-    Airplane* airplane = new Airplane;
-    generator.addElement(airplane);
-    Runway* runway = new Runway;
-    runway->setType(kAsphalt);
-    runway->setLength(1000);
-//    generator.addElement(runway);
-    Runway* runway1 = new Runway;
-    runway1->setLength(700);
-//    generator.addElement(runway1);
-    std::string ini = generator.generateINI(50, 50, 50);
+    airport->setGates(6);
+    
+    Runway* asphalt = new Runway;
+    asphalt->setType(kAsphalt);
+    asphalt->setLength(1000);
+    asphalt->setTaxiPoint("a");
+    asphalt->setAirport(airport);
+    asphalt->setName("asphalt");
+
+    Runway* grass = new Runway;
+    grass->setType(kGrass);
+    grass->setLength(700);
+    grass->setTaxiPoint("b");
+    asphalt->setAirport(airport);
+    asphalt->setName("grass");
+    
+    airport->addRunway(asphalt);
+    airport->addRunway(grass);
+
+    Airplane* plane = new Airplane;
+    plane->setStatus(kAscending);
+    plane->setAltitude(0);
+    plane->setGateID(4);
+    plane->setPosition("a");
+    plane->setRunway(grass);
+
+    GraphicsGenerator generator(airport);
+    generator.addElement(asphalt);
+    generator.addElement(grass);
+
+    generator.addElement(plane);
+
+    
+    std::string ini = generator.generateINI(100, 20, 50);
+
     std::ofstream out("../OUTPUTINI.ini");
     out << ini;
     out.close();

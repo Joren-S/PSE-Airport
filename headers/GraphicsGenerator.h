@@ -1,4 +1,8 @@
-
+//============================================================================
+// Name        : GraphicsGenerator.h
+// Author      : Joren Servotte, Max Van Houcke
+// Description : Airport simulation, Project Software Engineering
+//============================================================================
 
 #ifndef PROJECTVLIEGVELD_GRAPHICSGENERATOR_H
 #define PROJECTVLIEGVELD_GRAPHICSGENERATOR_H
@@ -7,8 +11,19 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 #include "Airport.h"
 #include "TestUtils.h"
+
+struct RunwayInfo {
+
+    Runway* runway;
+
+    int arrivingPlanes;
+
+    int departingPlanes;
+
+};
 
 /**
  * Class that generates a string in valid .ini format.
@@ -20,9 +35,9 @@ public:
 
     /**
      * Constructor. Adds the figures for the gates.
-     * @param gates: amount of gates in the airport
+     * @param airport: airport in the simulation
      */
-    GraphicsGenerator(int gates);
+    GraphicsGenerator(Airport* airport);
 
     /**
      * Adds the figures for an airplane.
@@ -45,7 +60,7 @@ public:
      * @param z: eye point z coordinate
      * @return string in valid ini format
      */
-    std::string generateINI(double x, double y, double z) const;
+    std::string generateINI(double x, double y, double z, int size = 3000) const;
 
 private:
 
@@ -68,7 +83,12 @@ private:
     /**
      * Runways added to the drawing
      */
-    std::vector<Runway*> fRunways;
+    std::vector<RunwayInfo> fRunways;
+
+    /**
+     * Airport used in the simulation
+     */
+    Airport* fAirport;
 
     /**
      * Maximum x value
