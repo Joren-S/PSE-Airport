@@ -313,6 +313,36 @@ TEST_F(domainTestATC, processTakeOffRunway) {
     EXPECT_EQ(airplane->getRequest(), kDenied);
 }
 
+TEST_F(domainTestATC, processEmergency) {
+
+    // setup airplane in emergency that contacted atc
+    airplane->setStatus(kEmergencyLanding);
+    airplane->setRequest(kIdle);
+
+    // no free runway
+    runway->setFree(false);
+    atc->processEmergency(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kDenied);
+
+    // free runway
+    runway->setFree(true);
+    atc->processEmergency(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+    EXPECT_EQ(airplane->getRunway(), runway);
+    EXPECT_EQ(airplane->getPosition(), "");
+    EXPECT_EQ(runway->isFree(), false);
+}
+
+TEST_F(domainTestATC, processUrgentEmergency) {
+
+    // setup airplane in urgent emergency that contacted atc
+    airplane->setStatus(kEmergencyLandingUrgent);
+    airplane->setRequest(kIdle);
+
+    atc->processUrgentEmergency(airplane, Time());
+    EXPECT_EQ(airplane->getRequest(), kAccepted);
+}
+
 TEST_F(domainTestATC, fieldManipulation) {
     atc->set3occupied(true);
     EXPECT_EQ(atc->get3occupied(), true);

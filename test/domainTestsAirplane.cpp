@@ -7,12 +7,18 @@
 #include <gtest/gtest.h>
 #include "../headers/System.h"
 
+#include "fstream"
 
 class domainTestAirplane: public ::testing::Test {
 protected:
 
-    Airplane airplane;
+    virtual void SetUp() {
+        fATC = new ATC(out, true);
+    }
 
+    Airplane airplane;
+    std::ofstream out;
+    ATC *fATC;
 };
 
 
@@ -68,6 +74,90 @@ TEST_F(domainTestAirplane, complete) {
     airplane.setNumber("test");
 
     EXPECT_TRUE(airplane.complete());
+}
+
+
+TEST_F(domainTestAirplane, getFuelCost) {
+
+    //small, propeller: 10
+    airplane.setSize(kSmall);
+    airplane.setEngine(kPropeller);
+    EXPECT_EQ(airplane.getFuelCost(), 10);
+
+    //small, jet: 25
+    airplane.setSize(kSmall);
+    airplane.setEngine(kJet);
+    EXPECT_EQ(airplane.getFuelCost(), 25);
+
+    //medium, propellor: 50
+    airplane.setSize(kMedium);
+    airplane.setEngine(kPropeller);
+    EXPECT_EQ(airplane.getFuelCost(), 50);
+
+    //medium, jet: 175
+    airplane.setSize(kMedium);
+    airplane.setEngine(kJet);
+    EXPECT_EQ(airplane.getFuelCost(), 175);
+
+    //large, propellor: 100
+    airplane.setSize(kLarge);
+    airplane.setEngine(kPropeller);
+    EXPECT_EQ(airplane.getFuelCost(), 100);
+
+    //large, jet: 250
+    airplane.setSize(kLarge);
+    airplane.setEngine(kJet);
+    EXPECT_EQ(airplane.getFuelCost(), 250);
+
+}
+
+TEST_F(domainTestAirplane, checkFuel) {
+
+    // fuelcost: 10
+    airplane.setSize(kSmall);
+    airplane.setEngine(kPropeller);
+    airplane.setSquawk(1337);
+
+    // first call: only decrease fuel
+    airplane.setCurFuel(20);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getCurFuel(), 10);
+
+    // second call: fuel runs out, emergency at altitude >= 3000
+    airplane.setAltitude(3500);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getCurFuel(), 0);
+    EXPECT_EQ(airplane.getSquawk(), 7700);
+    EXPECT_EQ(airplane.getStatus(), kEmergencyLanding);
+
+    // third call: plane in emergency at 3500, accepted by ATC
+    airplane.setRequest(kAccepted);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getAltitude(), 3000);
+    EXPECT_EQ(airplane.getTimeRemaining(), 2);
+
+    // fourth call: fuel runs out, emergency at altitutde < 3000
+    airplane.setRequest(kIdle);
+    airplane.setAltitude(2000);
+    airplane.setSquawk(1337);
+    airplane.setCurFuel(10);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getCurFuel(), 0);
+    EXPECT_EQ(airplane.getSquawk(), 7700);
+    EXPECT_EQ(airplane.getStatus(), kEmergencyLandingUrgent);
+
+    // fifth call: urgent emergency landing, descending
+    airplane.setAltitude(1000);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getRequest(), kIdle);
+    EXPECT_EQ(airplane.getAltitude(), 500);
+    EXPECT_EQ(airplane.getTimeRemaining(), 2);
+
+    // sixth call: urgent emergency landing, landed
+    airplane.setAltitude(500);
+    airplane.checkFuel(out, fATC);
+    EXPECT_EQ(airplane.getStatus(), kAway);
+    EXPECT_TRUE(airplane.getSquawk() != 7700);
 }
 
 TEST_F(domainTestAirplane, fieldManipulation) {
