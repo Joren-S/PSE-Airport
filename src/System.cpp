@@ -133,6 +133,9 @@ void System::run(ostream& log, const string& impressionName) {
             // Get the airplane
             Airplane* airplane = flightplan->getAirplane();
 
+            // Set the ATC of the airport the airplane is communicating with
+            airplane->setATC(fATC);
+
             if (airplane->getStatus() == kAway and event == kLand) {
                 airplane->setStatus(kApproaching);
             }
@@ -142,11 +145,11 @@ void System::run(ostream& log, const string& impressionName) {
                 airplane->setStatus(kAirport);
             }
 
-            airplane->land(log, fATC);
+            airplane->land(log);
 
-            airplane->takeoff(log, fATC);
+            airplane->takeoff(log);
 
-            airplane->checkFuel(log, fATC);
+            airplane->checkFuel(log);
 
             airplane->decreaseTimeRemaining();
         }

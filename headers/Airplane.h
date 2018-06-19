@@ -135,112 +135,112 @@ public:
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling approach");
      */
-    void approach(std::ostream& log, ATC *fATC);
+    void approach(std::ostream& log);
 
     /**
      * Performs the descend of a given plane.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling descend");
      */
-    void descend(std::ostream& log, ATC *fATC);
+    void descend(std::ostream& log);
 
     /**
      * Performs the circling of a given plane.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling circle");
      */
-    void circle(std::ostream& log, ATC *fATC);
+    void circle(std::ostream& log);
 
     /**
      * Performs the taxiing upon arrival of a given plane.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling taxiArrival");
      */
-    void taxiArrival(std::ostream& log, ATC *fATC);
+    void taxiArrival(std::ostream& log);
 
     /**
      * Crosses a runway
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling crossArrival");
      */
-    void crossArrival(std::ostream& log, ATC *fATC);
+    void crossArrival(std::ostream& log);
 
     /**
      * Performs the deboarding of a given plane.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling deboard");
      */
-    void deboard(std::ostream& log, ATC *fATC);
+    void deboard(std::ostream& log);
 
     /**
      * Performs the technical check of the plane
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling technicalCheck");
      */
-    void technicalCheck(std::ostream& log, ATC *fATC);
+    void technicalCheck(std::ostream& log);
 
     /**
      * Lands an airplane on the airport of the simulation.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling land");
      */
-    void land(std::ostream& log, ATC *fATC);
+    void land(std::ostream& log);
 
     /**
      * Ascends an airplane to 5000ft.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling ascend.");
      */
-    void ascend(std::ostream& fLog, ATC *fATC);
+    void ascend(std::ostream& fLog);
 
     /**
      * Lets an airplane wait ON a runway before taking off.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling onRunway.");
      */
-    void onRunway(std::ostream& fLog, ATC *fATC);
+    void onRunway(std::ostream& fLog);
 
     /**
      * Lets an airplane wait AT a runway until instructions are given.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling atRunway");
      */
-    void atRunway(std::ostream& fLog, ATC *fATC);
+    void atRunway(std::ostream& fLog);
 
     /**
      * Performs a cross.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureCross");
      */
-    void taxiDepartureCross(std::ostream& fLog, ATC *fATC);
+    void taxiDepartureCross(std::ostream& fLog);
 
     /**
      * Performs the next taxi-step.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureStep");
      */
-    void taxiDepartureStep(std::ostream& fLog, ATC *fATC);
+    void taxiDepartureStep(std::ostream& fLog);
 
     /**
      * Lets an airplane wait before taxiing.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling taxiDepartureStart");
      */
-    void taxiDepartureStart(std::ostream& fLog, ATC *fATC);
+    void taxiDepartureStart(std::ostream& fLog);
 
     /**
      * Pushes an airplane back from the gate.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling pushback");
      */
-    void pushback(std::ostream& fLog, ATC *fATC);
+    void pushback(std::ostream& fLog);
 
     /**
      * Refuels the airplane and lets passengers board.
      * Events are logged to the given std::ostream&.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling prepare");
      */
-    void prepare(std::ostream& fLog, ATC *fATC);
+    void prepare(std::ostream& fLog);
 
     /**
      * Performs a takeoff of a plane on an airport
@@ -250,7 +250,7 @@ public:
      * at least one airport in the system
      * \n ENSURE: plane status is kFinished
      */
-    void takeoff(std::ostream& log, ATC *fATC);
+    void takeoff(std::ostream& log);
 
     /**
      * Calculate the fuel cost for a plane
@@ -264,7 +264,7 @@ public:
      * Check fuel, subtract fuelcost if needed, adjust squawk if needed, contact ATC if needed.
      * \n REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling checkFuel");
      */
-    void checkFuel(std::ostream& log, ATC *fATC);
+    void checkFuel(std::ostream& log);
 
     /**
      * Getters and setters for the fields of the class.
@@ -298,6 +298,7 @@ public:
     int getFuel() const;
     int getCurFuel() const;
     int getSquawk() const;
+    void setATC(ATC *atc);
 
 private:
 
@@ -387,6 +388,10 @@ private:
      */
     int fOldSquawk;
 
+    /**
+     * ATC of the airport this plane is interacting with.
+     */
+     ATC *fATC;
 };
 
 

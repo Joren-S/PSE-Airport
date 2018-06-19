@@ -89,7 +89,7 @@ int Airplane::getFuelCost() {
     return result;
 }
 
-void Airplane::checkFuel(ostream& log, ATC *fATC) {
+void Airplane::checkFuel(ostream& log) {
     REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling checkFuel");
 
     // normal operation
@@ -407,10 +407,17 @@ void Airplane::setCurFuel(int fuel) {
     fCurFuel = fuel;
 }
 
+void Airplane::setATC(ATC *atc) {
+    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    fATC = atc;
+}
+
+
+
 
 // LANDING/TAKEOFF
 
-void Airplane::approach(ostream& log, ATC *fATC) {
+void Airplane::approach(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
 
     // Request has been accepted by fATC
@@ -453,7 +460,7 @@ void Airplane::approach(ostream& log, ATC *fATC) {
     }
 }
 
-void Airplane::descend(ostream& log, ATC *fATC) {
+void Airplane::descend(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling descend");
     // Plane has landed
     if (getAltitude() == 0) {
@@ -528,7 +535,7 @@ void Airplane::descend(ostream& log, ATC *fATC) {
     }
 }
 
-void Airplane::circle(ostream& log, ATC *fATC) {
+void Airplane::circle(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
     // Log event
     log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has circled at " << getAltitude() << "ft." << endl;
@@ -549,7 +556,7 @@ void Airplane::circle(ostream& log, ATC *fATC) {
 }
 
 
-void Airplane::taxiArrival(ostream& log, ATC *fATC) {
+void Airplane::taxiArrival(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling taxiArrival");
     // Arrived at gate
     if (getPosition() == fATC->getAirport()->getRunways()[0]->getTaxiPoint() and getRequest() == kConfirmed) {
@@ -678,7 +685,7 @@ void Airplane::taxiArrival(ostream& log, ATC *fATC) {
     }
 }
 
-void Airplane::crossArrival(ostream& log, ATC *fATC) {
+void Airplane::crossArrival(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling crossArrival");
     // Get the runway the plane just crossed
     Runway* runway = fATC->getAirport()->getNextRunway(this);
@@ -699,7 +706,7 @@ void Airplane::crossArrival(ostream& log, ATC *fATC) {
     setStatus(kTaxiArrival);
 }
 
-void Airplane::deboard(ostream& log, ATC *fATC) {
+void Airplane::deboard(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling deboard");
 
     // Log event
@@ -724,7 +731,7 @@ void Airplane::deboard(ostream& log, ATC *fATC) {
     setRequest(kIdle);
 }
 
-void Airplane::technicalCheck(ostream &log, ATC *fATC) {
+void Airplane::technicalCheck(ostream &log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
 
     // Log event
@@ -737,7 +744,7 @@ void Airplane::technicalCheck(ostream &log, ATC *fATC) {
     setRequest(kIdle);
 }
 
-void Airplane::land(ostream& log, ATC *fATC) {
+void Airplane::land(ostream& log) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
 
     // If time remaining is not 0, plane is still busy
@@ -747,37 +754,37 @@ void Airplane::land(ostream& log, ATC *fATC) {
 
     // Plane is approaching
     if (getStatus() == kApproaching) {
-        approach(log, fATC);
+        approach(log);
     }
 
         // Plane is descending
     else if (getStatus() == kDescending) {
-        descend(log, fATC);
+        descend(log);
     }
 
         // Plane is circling
     else if (getStatus() == kCircling) {
-        circle(log, fATC);
+        circle(log);
     }
 
         // Plane is taxiing
     else if (getStatus() == kTaxiArrival) {
-        taxiArrival(log, fATC);
+        taxiArrival(log);
     }
 
         // Plane is crossing a runway
     else if (getStatus() == kCrossingArrival) {
-        crossArrival(log, fATC);
+        crossArrival(log);
     }
 
         // Plane is deboarding
     else if (getStatus() == kDeboarding) {
-        deboard(log, fATC);
+        deboard(log);
     }
 
         // Plane is having a technical check
     else if (getStatus() == kTechnicalCheck) {
-        technicalCheck(log, fATC);
+        technicalCheck(log);
     }
 }
 
@@ -785,7 +792,7 @@ void Airplane::land(ostream& log, ATC *fATC) {
 
 // ---- TAKE-OFF ----
 
-void Airplane::prepare(ostream& fLog, ATC *fATC) {
+void Airplane::prepare(ostream& fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare.");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
@@ -845,7 +852,7 @@ void Airplane::prepare(ostream& fLog, ATC *fATC) {
     else return;
 }
 
-void Airplane::pushback(ostream &fLog, ATC *fATC) {
+void Airplane::pushback(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback.");
     EPlaneRequest request = getRequest();
     EPlaneSize size = getSize();
@@ -895,7 +902,7 @@ void Airplane::pushback(ostream &fLog, ATC *fATC) {
     else return;
 }
 
-void Airplane::taxiDepartureStart(ostream &fLog, ATC *fATC) {
+void Airplane::taxiDepartureStart(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart.");
     REQUIRE(fATC->getAirport()->amountOfRunways() >= 1, "No runways in airport.");
     EPlaneRequest request = getRequest();
@@ -928,7 +935,7 @@ void Airplane::taxiDepartureStart(ostream &fLog, ATC *fATC) {
     else return;
 }
 
-void Airplane::taxiDepartureStep(ostream &fLog, ATC *fATC) {
+void Airplane::taxiDepartureStep(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep.");
     REQUIRE(fATC->getAirport()->getRunways().size() > 0, "There are no runways in the airport.");
     EPlaneRequest request = getRequest();
@@ -997,7 +1004,7 @@ void Airplane::taxiDepartureStep(ostream &fLog, ATC *fATC) {
     }
 }
 
-void Airplane::taxiDepartureCross(ostream &fLog, ATC *fATC) {
+void Airplane::taxiDepartureCross(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
 
     Runway *next_rw = fATC->getAirport()->getNextRunway(this);
@@ -1021,7 +1028,7 @@ void Airplane::taxiDepartureCross(ostream &fLog, ATC *fATC) {
     return;
 }
 
-void Airplane::atRunway(ostream &fLog, ATC *fATC) {
+void Airplane::atRunway(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling atRunway");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
@@ -1069,7 +1076,7 @@ void Airplane::atRunway(ostream &fLog, ATC *fATC) {
     else return;
 }
 
-void Airplane::onRunway(ostream &fLog, ATC *fATC) {
+void Airplane::onRunway(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling onRunway.");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
@@ -1100,7 +1107,7 @@ void Airplane::onRunway(ostream &fLog, ATC *fATC) {
     else return;
 }
 
-void Airplane::ascend(ostream &fLog, ATC *fATC) {
+void Airplane::ascend(ostream &fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
     setPosition("");
     // If plane is at a height < 5000 ft
@@ -1122,7 +1129,7 @@ void Airplane::ascend(ostream &fLog, ATC *fATC) {
     return;
 }
 
-void Airplane::takeoff(ostream& fLog, ATC *fATC) {
+void Airplane::takeoff(ostream& fLog) {
     REQUIRE(fATC->properlyInitialized(), "ATC was not properly initialized.");
     REQUIRE(fATC->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(fATC->getAirport()->properlyInitialized(), "ATC was not properly initialized.");
@@ -1135,42 +1142,42 @@ void Airplane::takeoff(ostream& fLog, ATC *fATC) {
 
         // if plane is at airport, but not yet refueled and boarded
         if (status == kAirport) {
-            prepare(fLog, fATC);
+            prepare(fLog);
         }
 
         // plane is done refueling and boarding
         if (status == kGate) {
-            pushback(fLog, fATC);
+            pushback(fLog);
         }
 
         // plane is done pushing back
         if (status == kPushback) {
-            taxiDepartureStart(fLog, fATC);
+            taxiDepartureStart(fLog);
         }
 
         // plane is at a taxipoint
         if (status == kTaxiDeparture) {
-            taxiDepartureStep(fLog, fATC);
+            taxiDepartureStep(fLog);
         }
 
         // plane is done crossing runway
         if (status == kCrossingDeparture) {
-            taxiDepartureCross(fLog, fATC);
+            taxiDepartureCross(fLog);
         }
 
         // Plane is done taxiing and is waiting at runway
         if (status == kWaitingForDeparture) {
-            atRunway(fLog, fATC);
+            atRunway(fLog);
         }
 
         // Plane is waiting on runway
         if (status == kDeparture) {
-            onRunway(fLog, fATC);
+            onRunway(fLog);
         }
 
         // Plane is taking off
         if (status == kAscending) {
-            ascend(fLog, fATC);
+            ascend(fLog);
         }
     }
 }
