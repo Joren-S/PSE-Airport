@@ -15,6 +15,7 @@
 #include "Runway.h"
 #include "Time.h"
 #include "Flightplan.h"
+#include "Graphics.h"
 
 /**
  * Class that represents the airport in a simulation
@@ -120,9 +121,12 @@ public:
      * Generates a graphical impression for the current state of the airport.
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
      * @param time: time of the impression.
-     * @param stream: ostream to write the impression to.
+     * @param plans: the flight plans to access the planes
+     * @return string containing the impression.
      */
-    void drawImpression(Time time, std::ostream& stream, std::vector<Flightplan*> plans);
+    std::string drawImpression(const Time& time, const std::vector<Flightplan *>& plans) const;
+
+    std::string graphicsINI(const std::vector<Flightplan *>& plans);
 
     /**
      * Set the amount of gates in the airport.

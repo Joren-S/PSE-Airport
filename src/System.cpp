@@ -93,7 +93,7 @@ void System::info(const string &filename) {
 
 
 
-void System::run(ostream& log, const string& impressionName) {
+void System::run(ostream& log, const string& impressionName, const string& iniName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
     REQUIRE(fAirport != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
@@ -111,8 +111,15 @@ void System::run(ostream& log, const string& impressionName) {
         ofstream impression(name.c_str());
 
         // Each tick, we draw a graphical impression of the airport.
-        getAirport()->drawImpression(fTime, impression, getFlightplans());
+        string impressionStr = getAirport()->drawImpression(fTime, getFlightplans());
+        impression << impressionStr;
+        impression.close();
 
+        // Also generate an ini file for use with the graphics engine
+        name = iniName + fTime.formatted() + ".ini";
+        ofstream graphics(name.c_str());
+        graphics << getAirport()->graphicsINI(fFlightplans);
+        graphics.close();
 
         // Get flightplans and set up iterator
         vector<Flightplan*>::iterator flightplanItr;
@@ -209,4 +216,17 @@ void System::setEndTime(Time end) {
 ATC* System::getATC() const {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
     return fATC;
+}
+
+Time System::getTime() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+    return fTime;
+}
+
+void System::generateImages(Time start, Time end) {
+    string command = "../graphics/engine ";
+    for (; start < end; start.advance()) {
+        command += "../output/ini/graphics" + start.formatted() + ".ini ";
+    }
+    system(command.c_str());
 }

@@ -10,6 +10,7 @@
 #define ATCFILENAME     "../output/ATC.txt"
 #define LOGFILENAME     "../output/log.txt"
 
+
 int main() {
 
     // Read input
@@ -37,6 +38,8 @@ int main() {
 
     // Log information to output file
     system.info();
+
+    system.generateImages(Time(12, 40), Time(12, 45));
 
     return 0;
 }

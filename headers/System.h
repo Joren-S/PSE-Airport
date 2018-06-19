@@ -88,7 +88,11 @@ public:
      * \n REQUIRE(!simulationFinished(), "Simulation is already finished");.
      * \n ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
      */
-    void run(std::ostream& log, const std::string& impressionName = "../output/impressions/impression");
+    void run(std::ostream& log,
+             const std::string& impressionName = "../output/impressions/impression",
+             const std::string& iniName = "../output/ini/graphics");
+
+    void generateImages(Time start, Time end);
 
     /**
      * Checks if the simulation has ended, i.e. specified end time has been reached

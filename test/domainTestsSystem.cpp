@@ -7,6 +7,8 @@
 #include <gtest/gtest.h>
 #include "../headers/System.h"
 
+using namespace std;
+
 class domainTestSystem: public ::testing::Test {
 protected:
 
