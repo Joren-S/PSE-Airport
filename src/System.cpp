@@ -8,15 +8,17 @@
 
 using namespace std;
 
-System::System(ostream& atc, Time end): fEndTime(end), fATC(new ATC(atc, false)) {
-    fAirport = NULL;
-    fInitCheck = this;
-    ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
-}
+System::System(const Input& input, ostream& atc, const Time& end): fEndTime(end) {
+    REQUIRE(!input.getAirports().empty(), "There has to be an airport in the input to start the simulation");
+    
+    // Make new atc
+    fATC = new ATC(atc);
 
-System::System() {
-    fAirport = NULL;
-    fATC = NULL;
+    // Get input
+    fAirport = input.getAirports()[0];
+    fATC->setAirport(fAirport);
+    fFlightPlans = input.getFlightPlans();
+
     fInitCheck = this;
     ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
 }
@@ -25,33 +27,19 @@ bool System::properlyInitialized() const {
     return fInitCheck == this;
 }
 
-void System::import(Input &input) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling import");
-    fFlightplans = input.getFlightplans();
-    fAirport = input.getAirports()[0];
-    fATC->setAirport(fAirport);
-}
-
-void System::info(const string &filename) {
+void System::info(ostream& out) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
     REQUIRE(fAirport != NULL, "No airport in the simulation");
-
-    // Output file
-    ofstream out(filename.c_str());
 
     // Log airport info
     out << "Airport: " << fAirport->getName() << " (" << fAirport->getIata() << ")\n";
     out << " -> gates: " << fAirport->getGates() << endl;
     out << " -> runways: " << fAirport->amountOfRunways() << endl;
     out << endl;
-
-    // Set up iterator
+    
+    // Loop over flight plans
     vector<Flightplan *>::iterator itr_air;
-
-    // Get flightplans
-    vector<Flightplan *> flightplans = getFlightplans();
-
-    // Loop over all of them
+    vector<Flightplan *> flightplans = getFlightPlans();
     for (itr_air = flightplans.begin(); itr_air < flightplans.end(); ++itr_air) {
         // Get airplane
         Airplane* cur_ap = (*itr_air)->getAirplane();
@@ -86,9 +74,6 @@ void System::info(const string &filename) {
         out << endl << " -> passengers: " << cur_ap->getPassengers() << endl;
         out << endl;
     }
-
-    // Close file
-    out.close();
 }
 
 
@@ -111,21 +96,21 @@ void System::run(ostream& log, const string& impressionName, const string& iniNa
         ofstream impression(name.c_str());
 
         // Each tick, we draw a graphical impression of the airport.
-        string impressionStr = getAirport()->drawImpression(fTime, getFlightplans());
+        string impressionStr = getAirport()->drawImpression(fTime, getFlightPlans());
         impression << impressionStr;
         impression.close();
 
         // Also generate an ini file for use with the graphics engine
         name = iniName + fTime.formatted() + ".ini";
         ofstream graphics(name.c_str());
-        graphics << getAirport()->graphicsINI(fFlightplans);
+        graphics << getAirport()->graphicsINI(getFlightPlans());
         graphics.close();
 
         // Get flightplans and set up iterator
         vector<Flightplan*>::iterator flightplanItr;
 
         // Get flightplans
-        vector<Flightplan*> flightplans = getFlightplans();
+        vector<Flightplan*> flightplans = getFlightPlans();
 
         // Loop over flightplans
         for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
@@ -182,9 +167,9 @@ Airport* System::getAirport() const {
     return System::fAirport;
 }
 
-vector<Flightplan*> System::getFlightplans() const {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightplans");
-    return System::fFlightplans;
+vector<Flightplan*> System::getFlightPlans() const {
+    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans");
+    return System::fFlightPlans;
 }
 
 System::~System() {
@@ -196,7 +181,7 @@ System::~System() {
 
     // Delete all flightplans, which in the destructor deletes the airplane
     vector<Flightplan*>::iterator flightplanItr;
-    vector<Flightplan*> flightplans = getFlightplans();
+    vector<Flightplan*> flightplans = getFlightPlans();
     for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
         delete *flightplanItr;
     }

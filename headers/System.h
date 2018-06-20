@@ -35,53 +35,18 @@ public:
 
     /**
      * Constructor
+     * \n REQUIRE(!input.getAirports().empty(), "There has to be an airport in the input to start the simulation");
      * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
-     * @param atc:
+     * @param input: the input of the simulation
+     * @param atc: the stream where atc messages will be written to
+     * @param end: the ending time of the simulation
      */
-    System(std::ostream& atc, Time end);
-
-    /**
-     * Default constructor
-     * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
-     */
-    System();
+    System(const Input& input, std::ostream& atc, const Time& end);
 
     /**
      * Destructor
      */
     ~System();
-
-
-
-    /**
-     * Sets the end time of the simulation
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
-     * @param sets the
-     */
-    void setEndTime(Time end);
-
-    /**
-     * Initializes the air traffic control of the simulation with an std::ostream
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
-     * @param log: ostream where all the ATC messages will be written to
-     * @param test: if true, it will set all the squawk codes to zero, for testing purposes
-     */
-    void initializeATC(std::ostream& log, bool test = false);
-
-    /**
-     * Imports the given input
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling import");
-     * @param input: the input used in the simulation
-     */
-    void import(Input& input);
-
-    /**
-     * Logs information of the airports and airplanes to a text file
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
-     * \n REQUIRE(fAirport != NULL, "No airport in the simulation");
-     * @param filename: name of the to be generated txt file, default to "../output/info.txt"
-     */
-    void info(const std::string &filename = "../output/info.txt");
 
     /**
      * Runs the complete simulation
@@ -96,6 +61,14 @@ public:
     void run(std::ostream& log,
              const std::string& impressionName = "../output/impressions/impression",
              const std::string& iniName = "../output/ini/graphics");
+
+    /**
+     * Logs information of the airports and airplanes to a text file
+     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
+     * \n REQUIRE(fAirport != NULL, "No airport in the simulation");
+     * @param out: the ostream where the info will be written to
+     */
+    void info(ostream& out);
 
     /**
      * Generates the images from the start time until the end time, with the use of
@@ -119,34 +92,23 @@ public:
     Airport* getAirport() const;
 
     /**
-     * Getter for the flightplans in the simulation
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightplans);
-     */
-    std::vector<Flightplan*> getFlightplans() const;
-
-    /**
      * Getter for the air traffic control in the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
      */
     ATC* getATC() const;
 
     /**
+     * Getter for the flight plans in the simulation
+     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans);
+     */
+    std::vector<Flightplan*> getFlightPlans() const;
+
+    /**
      * Checks if the object is properly initialized
      */
     bool properlyInitialized() const;
 
-
 private:
-
-    /**
-     * Pointer to the system to check for proper initialization
-     */
-    System *fInitCheck;
-
-    /**
-     * Ending time of simulation
-     */
-    Time fEndTime;
 
     /**
      * The airport of the simulation
@@ -159,9 +121,19 @@ private:
     ATC* fATC;
 
     /**
-     * Vector containing all the flightplans
+     * List of flight plans
      */
-    std::vector<Flightplan*> fFlightplans;
+    std::vector<Flightplan*> fFlightPlans;
+
+    /**
+     * Ending time of simulation
+     */
+    Time fEndTime;
+
+    /**
+     * Pointer to the system to check for proper initialization
+     */
+    System *fInitCheck;
 
 };
 
