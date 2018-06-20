@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: Member List</title>
+<title>AirportSimulation: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AirportSimulation
    </div>
   </td>
  </tr>
@@ -62,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -90,43 +89,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is the complete list of members for <a class="el" href="classAirplane.html">Airplane</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#afccae36e3013e038d51504cea1a98219">Airplane</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a44a6eac9309f6218c7e0c0332f25ee51">complete</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#aed1d8b816a7140ba82223901fa7bb1d5">decreaseAltitude</a>(int difference=1)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#ac97a6ca10328e33558f682e0b45e5a60">decreaseTimeRemaining</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ad2550909ab563f7df850f79f23c3a308">getAltitude</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a6a62bd06d28789336c5ce1543d9391f1">getCallsign</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a7c594903638696b53c2dd823fe33ecf2">getEngine</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a23170e5f55fa9fc6822be06615f028db">getFuel</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#acab03ea6ec6df824368bf9851316e140">getGateID</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#ab3086ab630a7e427df70c7b45f11dd82">getModel</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a2341fbcce9704ffdb81f7638ab74c0cb">getNumber</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#acd0cbb46d1c8a17a5eb4f5ab679f2dcb">getPassengers</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ab4fa66c0adb05725a51524265f8c520c">getPosition</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#afe210aea9002a8975234a78350158c46">getRequest</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ab6dda72f7cfd29a7334e0494d184bbfa">getRunway</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#abd790d1e894b85c33f698a920b5c2fe2">approach</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a7af6a3b907be25247455830265befd28">ascend</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#a2280da4f41ce62d63fe785d1935d4205">atRunway</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#aba3070261e49daba68be9fb4f7bbc6cd">checkFuel</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#afab6247e7e75ecf584dadbe19e581d23">circle</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a44a6eac9309f6218c7e0c0332f25ee51">complete</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#ab389f4b94829a8b87b42fb30625a21af">crossArrival</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ab321adcb22c349b2917416c33a052dfe">deboard</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#a94b54e287a5bd8ca9b5959f9e74bbf19">decreaseAltitude</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ac97a6ca10328e33558f682e0b45e5a60">decreaseTimeRemaining</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#ae250403048844ff6cd5a1de3be2fdf56">descend</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getAltitude</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getCallsign</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getCurFuel</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getEngine</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getFuel</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#a3948e4de793ba5d20d17d16d6eaf88f8">getFuelCost</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getGateID</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getModel</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getNumber</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getPassengers</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getPosition</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getRequest</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getRunway</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirplane.html#a0160009a553a9bf339892ba4c3803830">getSize</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a88f0199d7eae4d1f24b14802047549ea">getSquawk</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a40bbb3024a476115700977c60bae2705">getStatus</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a39233c86a764ac1051ce4b4460a9a684">getTimeRemaining</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a6ba13e6c94762127b5b87238f9fbb037">getType</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a5a1735c5e75f857a4de0a473c5e26ffe">increaseAltitude</a>(int difference=1)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getSquawk</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getStatus</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getTimeRemaining</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getType</b>() const  (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a53f024bb7bd5d429e30d54a87bb0ec0b">increaseAltitude</a>()</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#aee84fa3894dc1978bc78e307c3c628c4">onRunway</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ad705fa6ec334df7a62c2911e0981e95f">performNextStep</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#ab3275ffc4b5e27f61180ed6f03fce0f3">prepare</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>() const </td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#a0238712883456e7df2073f054dbe1347">pushback</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a60ea276094957364060f7b22bb6e549d">setAltitude</a>(int altitude)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a2b9b2ea3c51f0d1be91e1ffb7543f03d">setCallsign</a>(const string &amp;fCallsign)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a9df8583afc31aad36bf893db5fc37dbd">setEngine</a>(EPlaneEngine engine)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setATC</b>(ATC *atc) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setCallsign</b>(const std::string &amp;fCallsign) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#a4f15d7aaed74d4e001ef03aefb477afd">setCurFuel</a>(int fuel)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setEngine</b>(EPlaneEngine engine) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirplane.html#a13aeed597173ecae5951cb9bdaf22474">setFuel</a>(int fuel)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#aed585c73c9dd5065bd1f8b55236260a0">setGateID</a>(int id)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a79639d54a99b5d1fc33c8e97ee091fe8">setModel</a>(const string &amp;fModel)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ae9eddf3e39a40dca935be7bbfd9d6f1d">setNumber</a>(const string &amp;fNumber)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setModel</b>(const std::string &amp;fModel) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setNumber</b>(const std::string &amp;fNumber) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirplane.html#a1f8bcb214c96664d15d8c4d82c3f613a">setPassengers</a>(int fPassengers)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a656e916c30af73584f781e7e2e28e78a">setPosition</a>(const string &amp;)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#affcc5325670824881ccc1524223aa209">setRequest</a>(EPlaneRequest)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a81fe42b8f9310edae12abb6e5f3ae9ac">setRunway</a>(Runway *)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#ab88c4d346a27430d4812f37c717c26d3">setSize</a>(EPlaneSize size)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setPosition</b>(const std::string &amp;) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setRequest</b>(EPlaneRequest) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setRunway</b>(Runway *) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setSize</b>(EPlaneSize size) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#ac9106f1b9f793b2a17bb605f514e0fcf">setSquawk</a>(int squawk)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#a23934fb97d8fab12d4dc790cee673747">setStatus</a>(EPlaneStatus fStatus)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setStatus</b>(EPlaneStatus fStatus) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a43e7b856df001168956ed6d115943ec9">setTimeRemaining</a>(int time)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirplane.html#acaf1e610b7b45804e1ae27408fd9f40f">setType</a>(EPlaneType type)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setType</b>(EPlaneType type) (defined in <a class="el" href="classAirplane.html">Airplane</a>)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a8e23b42b6c256110579e8d64c32fd196">taxiArrival</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#ab7eaf297d958af5764755d76bd23177c">taxiDepartureCross</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a96fabaa910b088a1173aa3706d2e4c42">taxiDepartureStart</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirplane.html#abaa6cc9cae3821e26731f0f0792b878e">taxiDepartureStep</a>(std::ostream &amp;fLog)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirplane.html#a15f4ddd77be6754ffd31e1c4f499e41c">technicalCheck</a>(std::ostream &amp;log)</td><td class="entry"><a class="el" href="classAirplane.html">Airplane</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

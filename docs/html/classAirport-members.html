@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: Member List</title>
+<title>AirportSimulation: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AirportSimulation
    </div>
   </td>
  </tr>
@@ -62,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -93,23 +92,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr><td class="entry"><a class="el" href="classAirport.html#a2fc0f2402c94225b9deaf76176bb887f">Airport</a>()</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a587d39bfd3934a70f94b42f40fe72245">amountOfRunways</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirport.html#a76819017f88f563183bd16a0b4da4e40">complete</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a6bc9b678b5f9f0c9f2d9c179436766ef">drawImpression</a>(Time time, ostream &amp;stream, vector&lt; Flightplan * &gt; plans)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#a6ed56e05a8c881b8e4718a34ba9cccc5">getCallsign</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a011dbf8ff05f8d6a2c52d2f39f365051">drawImpression</a>(const Time &amp;time, const std::vector&lt; FlightPlan * &gt; &amp;plans) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getCallsign</b>() const  (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a73b57b192084fb8082d912da70beb5b0">getFreeGate</a>()</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirport.html#a760fd9c19e06fa37362006e42153ca0a">getFreeRunway</a>(Airplane *plane) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a4d23d65ad0ba4d3878e9e32429dd9286">getGates</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#a4550198ddc92d3583a0f3c31278189b2">getIata</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a9b6eb908a82342b64dda9a72f9369d43">getName</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#a894669e2c8865a6c0442004e7e75063c">getNextRunway</a>(Airplane *airplane) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a15405cc39a7a397466fff1d54cc738d1">getRunway</a>(const string &amp;) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#a14310ffeba8a024105071c156fd42cf7">getRunways</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a2a4915cb5db8ff9a992c262af3f333cb">initStack</a>()</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getGateMap</b>() const  (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getGates</b>() const  (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getIata</b>() const  (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirport.html#a9b6eb908a82342b64dda9a72f9369d43">getName</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a894669e2c8865a6c0442004e7e75063c">getNextRunway</a>(Airplane *airplane) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirport.html#a49a0963b8e15ad1fd299c9ccf2c97ab4">getRunway</a>(const std::string &amp;) const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getRunways</b>() const  (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classAirport.html#aa280a5763b0dbc605e46b951b4e7781b">graphicsINI</a>(const std::vector&lt; FlightPlan * &gt; &amp;plans)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#ae207524a428ee2d93dd25ad5ef4fa1f7">initGates</a>()</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirport.html#a1ac3a730b557a36ac7521cce6ab64722">properlyInitialized</a>() const </td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classAirport.html#ad93ec78d36fa040b97e6ff2a806e5885">restoreGate</a>(int id)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#a5e682d5e40ba9513f075348d51a9cb53">setCallsign</a>(const string &amp;fCallsign)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#af2c69fb8b654073f978b9bf373b3216f">setGates</a>(int fGates)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classAirport.html#ae4698bb1842fc83574c1650425c8daa6">setIata</a>(const string &amp;fIata)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#aef847257fe845bbcbc2ac446663481c0">setName</a>(const string &amp;fName)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setCallsign</b>(const std::string &amp;fCallsign) (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classAirport.html#a9c7d8fabce9110b49c2b9426e9527420">setGates</a>(int gates)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setIata</b>(const std::string &amp;fIata) (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setName</b>(const std::string &amp;fName) (defined in <a class="el" href="classAirport.html">Airport</a>)</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classAirport.html#a2c42073a186171586f3ac66d84af97ca">~Airport</a>()</td><td class="entry"><a class="el" href="classAirport.html">Airport</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->

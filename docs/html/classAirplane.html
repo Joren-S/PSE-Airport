@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: Airplane Class Reference</title>
+<title>AirportSimulation: Airplane Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AirportSimulation
    </div>
   </td>
  </tr>
@@ -62,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -101,78 +100,148 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afccae36e3013e038d51504cea1a98219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa58418c017671c7b5de17c81a4172971"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a> () const </td></tr>
 <tr class="separator:aa58418c017671c7b5de17c81a4172971"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a1735c5e75f857a4de0a473c5e26ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a5a1735c5e75f857a4de0a473c5e26ffe">increaseAltitude</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> difference=1)</td></tr>
-<tr class="separator:a5a1735c5e75f857a4de0a473c5e26ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed1d8b816a7140ba82223901fa7bb1d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aed1d8b816a7140ba82223901fa7bb1d5">decreaseAltitude</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> difference=1)</td></tr>
-<tr class="separator:aed1d8b816a7140ba82223901fa7bb1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac97a6ca10328e33558f682e0b45e5a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ac97a6ca10328e33558f682e0b45e5a60">decreaseTimeRemaining</a> ()</td></tr>
-<tr class="separator:ac97a6ca10328e33558f682e0b45e5a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad705fa6ec334df7a62c2911e0981e95f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ad705fa6ec334df7a62c2911e0981e95f">performNextStep</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:ad705fa6ec334df7a62c2911e0981e95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44a6eac9309f6218c7e0c0332f25ee51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a44a6eac9309f6218c7e0c0332f25ee51">complete</a> () const </td></tr>
 <tr class="separator:a44a6eac9309f6218c7e0c0332f25ee51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60ea276094957364060f7b22bb6e549d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a60ea276094957364060f7b22bb6e549d">setAltitude</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> altitude)</td></tr>
+<tr class="memitem:a3948e4de793ba5d20d17d16d6eaf88f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a3948e4de793ba5d20d17d16d6eaf88f8">getFuelCost</a> ()</td></tr>
+<tr class="separator:a3948e4de793ba5d20d17d16d6eaf88f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f024bb7bd5d429e30d54a87bb0ec0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a53f024bb7bd5d429e30d54a87bb0ec0b">increaseAltitude</a> ()</td></tr>
+<tr class="separator:a53f024bb7bd5d429e30d54a87bb0ec0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94b54e287a5bd8ca9b5959f9e74bbf19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a94b54e287a5bd8ca9b5959f9e74bbf19">decreaseAltitude</a> ()</td></tr>
+<tr class="separator:a94b54e287a5bd8ca9b5959f9e74bbf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac97a6ca10328e33558f682e0b45e5a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ac97a6ca10328e33558f682e0b45e5a60">decreaseTimeRemaining</a> ()</td></tr>
+<tr class="separator:ac97a6ca10328e33558f682e0b45e5a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd790d1e894b85c33f698a920b5c2fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#abd790d1e894b85c33f698a920b5c2fe2">approach</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:abd790d1e894b85c33f698a920b5c2fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae250403048844ff6cd5a1de3be2fdf56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ae250403048844ff6cd5a1de3be2fdf56">descend</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:ae250403048844ff6cd5a1de3be2fdf56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab6247e7e75ecf584dadbe19e581d23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#afab6247e7e75ecf584dadbe19e581d23">circle</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:afab6247e7e75ecf584dadbe19e581d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e23b42b6c256110579e8d64c32fd196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a8e23b42b6c256110579e8d64c32fd196">taxiArrival</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:a8e23b42b6c256110579e8d64c32fd196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab389f4b94829a8b87b42fb30625a21af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab389f4b94829a8b87b42fb30625a21af">crossArrival</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:ab389f4b94829a8b87b42fb30625a21af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab321adcb22c349b2917416c33a052dfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab321adcb22c349b2917416c33a052dfe">deboard</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:ab321adcb22c349b2917416c33a052dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f4ddd77be6754ffd31e1c4f499e41c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a15f4ddd77be6754ffd31e1c4f499e41c">technicalCheck</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:a15f4ddd77be6754ffd31e1c4f499e41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af6a3b907be25247455830265befd28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a7af6a3b907be25247455830265befd28">ascend</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:a7af6a3b907be25247455830265befd28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee84fa3894dc1978bc78e307c3c628c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aee84fa3894dc1978bc78e307c3c628c4">onRunway</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:aee84fa3894dc1978bc78e307c3c628c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2280da4f41ce62d63fe785d1935d4205"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a2280da4f41ce62d63fe785d1935d4205">atRunway</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:a2280da4f41ce62d63fe785d1935d4205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7eaf297d958af5764755d76bd23177c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab7eaf297d958af5764755d76bd23177c">taxiDepartureCross</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:ab7eaf297d958af5764755d76bd23177c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa6cc9cae3821e26731f0f0792b878e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#abaa6cc9cae3821e26731f0f0792b878e">taxiDepartureStep</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:abaa6cc9cae3821e26731f0f0792b878e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96fabaa910b088a1173aa3706d2e4c42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a96fabaa910b088a1173aa3706d2e4c42">taxiDepartureStart</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:a96fabaa910b088a1173aa3706d2e4c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0238712883456e7df2073f054dbe1347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a0238712883456e7df2073f054dbe1347">pushback</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:a0238712883456e7df2073f054dbe1347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3275ffc4b5e27f61180ed6f03fce0f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab3275ffc4b5e27f61180ed6f03fce0f3">prepare</a> (std::ostream &amp;fLog)</td></tr>
+<tr class="separator:ab3275ffc4b5e27f61180ed6f03fce0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3070261e49daba68be9fb4f7bbc6cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aba3070261e49daba68be9fb4f7bbc6cd">checkFuel</a> (std::ostream &amp;log)</td></tr>
+<tr class="separator:aba3070261e49daba68be9fb4f7bbc6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ea276094957364060f7b22bb6e549d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a60ea276094957364060f7b22bb6e549d">setAltitude</a> (int altitude)</td></tr>
+<tr class="memdesc:a60ea276094957364060f7b22bb6e549d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters and setters with special contracts/documentation.  <a href="#a60ea276094957364060f7b22bb6e549d">More...</a><br /></td></tr>
 <tr class="separator:a60ea276094957364060f7b22bb6e549d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43e7b856df001168956ed6d115943ec9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a43e7b856df001168956ed6d115943ec9">setTimeRemaining</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> time)</td></tr>
+<tr class="memitem:a43e7b856df001168956ed6d115943ec9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a43e7b856df001168956ed6d115943ec9">setTimeRemaining</a> (int time)</td></tr>
 <tr class="separator:a43e7b856df001168956ed6d115943ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f8bcb214c96664d15d8c4d82c3f613a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a1f8bcb214c96664d15d8c4d82c3f613a">setPassengers</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> fPassengers)</td></tr>
+<tr class="memitem:a1f8bcb214c96664d15d8c4d82c3f613a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a1f8bcb214c96664d15d8c4d82c3f613a">setPassengers</a> (int fPassengers)</td></tr>
 <tr class="separator:a1f8bcb214c96664d15d8c4d82c3f613a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed585c73c9dd5065bd1f8b55236260a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aed585c73c9dd5065bd1f8b55236260a0">setGateID</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> id)</td></tr>
+<tr class="memitem:aed585c73c9dd5065bd1f8b55236260a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#aed585c73c9dd5065bd1f8b55236260a0">setGateID</a> (int id)</td></tr>
 <tr class="separator:aed585c73c9dd5065bd1f8b55236260a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13aeed597173ecae5951cb9bdaf22474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a13aeed597173ecae5951cb9bdaf22474">setFuel</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> fuel)</td></tr>
+<tr class="memitem:a13aeed597173ecae5951cb9bdaf22474"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a13aeed597173ecae5951cb9bdaf22474">setFuel</a> (int fuel)</td></tr>
 <tr class="separator:a13aeed597173ecae5951cb9bdaf22474"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9106f1b9f793b2a17bb605f514e0fcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ac9106f1b9f793b2a17bb605f514e0fcf">setSquawk</a> (<a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> squawk)</td></tr>
+<tr class="memitem:ac9106f1b9f793b2a17bb605f514e0fcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ac9106f1b9f793b2a17bb605f514e0fcf">setSquawk</a> (int squawk)</td></tr>
 <tr class="separator:ac9106f1b9f793b2a17bb605f514e0fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0160009a553a9bf339892ba4c3803830"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbf">EPlaneSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a0160009a553a9bf339892ba4c3803830">getSize</a> () const </td></tr>
+<tr class="memitem:a4f15d7aaed74d4e001ef03aefb477afd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a4f15d7aaed74d4e001ef03aefb477afd">setCurFuel</a> (int fuel)</td></tr>
+<tr class="separator:a4f15d7aaed74d4e001ef03aefb477afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0160009a553a9bf339892ba4c3803830"><td class="memItemLeft" align="right" valign="top">EPlaneSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a0160009a553a9bf339892ba4c3803830">getSize</a> () const </td></tr>
 <tr class="separator:a0160009a553a9bf339892ba4c3803830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab88c4d346a27430d4812f37c717c26d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab88c4d346a27430d4812f37c717c26d3">setSize</a> (<a class="el" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbf">EPlaneSize</a> size)</td></tr>
+<tr class="memitem:ab88c4d346a27430d4812f37c717c26d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab88c4d346a27430d4812f37c717c26d3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setSize</b> (EPlaneSize size)</td></tr>
 <tr class="separator:ab88c4d346a27430d4812f37c717c26d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ba13e6c94762127b5b87238f9fbb037"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9">EPlaneType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a6ba13e6c94762127b5b87238f9fbb037">getType</a> () const </td></tr>
+<tr class="memitem:a6ba13e6c94762127b5b87238f9fbb037"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ba13e6c94762127b5b87238f9fbb037"></a>
+EPlaneType&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const </td></tr>
 <tr class="separator:a6ba13e6c94762127b5b87238f9fbb037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaf1e610b7b45804e1ae27408fd9f40f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#acaf1e610b7b45804e1ae27408fd9f40f">setType</a> (<a class="el" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9">EPlaneType</a> type)</td></tr>
+<tr class="memitem:acaf1e610b7b45804e1ae27408fd9f40f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acaf1e610b7b45804e1ae27408fd9f40f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setType</b> (EPlaneType type)</td></tr>
 <tr class="separator:acaf1e610b7b45804e1ae27408fd9f40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c594903638696b53c2dd823fe33ecf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791d">EPlaneEngine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a7c594903638696b53c2dd823fe33ecf2">getEngine</a> () const </td></tr>
+<tr class="memitem:a7c594903638696b53c2dd823fe33ecf2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c594903638696b53c2dd823fe33ecf2"></a>
+EPlaneEngine&#160;</td><td class="memItemRight" valign="bottom"><b>getEngine</b> () const </td></tr>
 <tr class="separator:a7c594903638696b53c2dd823fe33ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9df8583afc31aad36bf893db5fc37dbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a9df8583afc31aad36bf893db5fc37dbd">setEngine</a> (<a class="el" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791d">EPlaneEngine</a> engine)</td></tr>
+<tr class="memitem:a9df8583afc31aad36bf893db5fc37dbd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9df8583afc31aad36bf893db5fc37dbd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setEngine</b> (EPlaneEngine engine)</td></tr>
 <tr class="separator:a9df8583afc31aad36bf893db5fc37dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2550909ab563f7df850f79f23c3a308"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ad2550909ab563f7df850f79f23c3a308">getAltitude</a> () const </td></tr>
+<tr class="memitem:ad2550909ab563f7df850f79f23c3a308"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2550909ab563f7df850f79f23c3a308"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getAltitude</b> () const </td></tr>
 <tr class="separator:ad2550909ab563f7df850f79f23c3a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acab03ea6ec6df824368bf9851316e140"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#acab03ea6ec6df824368bf9851316e140">getGateID</a> () const </td></tr>
+<tr class="memitem:acab03ea6ec6df824368bf9851316e140"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acab03ea6ec6df824368bf9851316e140"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getGateID</b> () const </td></tr>
 <tr class="separator:acab03ea6ec6df824368bf9851316e140"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd0cbb46d1c8a17a5eb4f5ab679f2dcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#acd0cbb46d1c8a17a5eb4f5ab679f2dcb">getPassengers</a> () const </td></tr>
+<tr class="memitem:acd0cbb46d1c8a17a5eb4f5ab679f2dcb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd0cbb46d1c8a17a5eb4f5ab679f2dcb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getPassengers</b> () const </td></tr>
 <tr class="separator:acd0cbb46d1c8a17a5eb4f5ab679f2dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2341fbcce9704ffdb81f7638ab74c0cb"><td class="memItemLeft" align="right" valign="top">const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a2341fbcce9704ffdb81f7638ab74c0cb">getNumber</a> () const </td></tr>
+<tr class="memitem:a2341fbcce9704ffdb81f7638ab74c0cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2341fbcce9704ffdb81f7638ab74c0cb"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getNumber</b> () const </td></tr>
 <tr class="separator:a2341fbcce9704ffdb81f7638ab74c0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9eddf3e39a40dca935be7bbfd9d6f1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ae9eddf3e39a40dca935be7bbfd9d6f1d">setNumber</a> (const string &amp;fNumber)</td></tr>
-<tr class="separator:ae9eddf3e39a40dca935be7bbfd9d6f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a62bd06d28789336c5ce1543d9391f1"><td class="memItemLeft" align="right" valign="top">const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a6a62bd06d28789336c5ce1543d9391f1">getCallsign</a> () const </td></tr>
+<tr class="memitem:aaf68ef47d3ce790e39f629a4441459c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf68ef47d3ce790e39f629a4441459c7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setNumber</b> (const std::string &amp;fNumber)</td></tr>
+<tr class="separator:aaf68ef47d3ce790e39f629a4441459c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a62bd06d28789336c5ce1543d9391f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a62bd06d28789336c5ce1543d9391f1"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCallsign</b> () const </td></tr>
 <tr class="separator:a6a62bd06d28789336c5ce1543d9391f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b9b2ea3c51f0d1be91e1ffb7543f03d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a2b9b2ea3c51f0d1be91e1ffb7543f03d">setCallsign</a> (const string &amp;fCallsign)</td></tr>
-<tr class="separator:a2b9b2ea3c51f0d1be91e1ffb7543f03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3086ab630a7e427df70c7b45f11dd82"><td class="memItemLeft" align="right" valign="top">const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab3086ab630a7e427df70c7b45f11dd82">getModel</a> () const </td></tr>
+<tr class="memitem:a40a6b914a5f719f346dc983dc9e7ffd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40a6b914a5f719f346dc983dc9e7ffd3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCallsign</b> (const std::string &amp;fCallsign)</td></tr>
+<tr class="separator:a40a6b914a5f719f346dc983dc9e7ffd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3086ab630a7e427df70c7b45f11dd82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3086ab630a7e427df70c7b45f11dd82"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getModel</b> () const </td></tr>
 <tr class="separator:ab3086ab630a7e427df70c7b45f11dd82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79639d54a99b5d1fc33c8e97ee091fe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a79639d54a99b5d1fc33c8e97ee091fe8">setModel</a> (const string &amp;fModel)</td></tr>
-<tr class="separator:a79639d54a99b5d1fc33c8e97ee091fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40bbb3024a476115700977c60bae2705"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19f">EPlaneStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a40bbb3024a476115700977c60bae2705">getStatus</a> () const </td></tr>
+<tr class="memitem:a1c802997a57f1f9ff1dcca87a900de57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c802997a57f1f9ff1dcca87a900de57"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setModel</b> (const std::string &amp;fModel)</td></tr>
+<tr class="separator:a1c802997a57f1f9ff1dcca87a900de57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40bbb3024a476115700977c60bae2705"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40bbb3024a476115700977c60bae2705"></a>
+EPlaneStatus&#160;</td><td class="memItemRight" valign="bottom"><b>getStatus</b> () const </td></tr>
 <tr class="separator:a40bbb3024a476115700977c60bae2705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23934fb97d8fab12d4dc790cee673747"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a23934fb97d8fab12d4dc790cee673747">setStatus</a> (<a class="el" href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19f">EPlaneStatus</a> fStatus)</td></tr>
+<tr class="memitem:a23934fb97d8fab12d4dc790cee673747"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23934fb97d8fab12d4dc790cee673747"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setStatus</b> (EPlaneStatus fStatus)</td></tr>
 <tr class="separator:a23934fb97d8fab12d4dc790cee673747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39233c86a764ac1051ce4b4460a9a684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a39233c86a764ac1051ce4b4460a9a684">getTimeRemaining</a> () const </td></tr>
+<tr class="memitem:a39233c86a764ac1051ce4b4460a9a684"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39233c86a764ac1051ce4b4460a9a684"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getTimeRemaining</b> () const </td></tr>
 <tr class="separator:a39233c86a764ac1051ce4b4460a9a684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a656e916c30af73584f781e7e2e28e78a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a656e916c30af73584f781e7e2e28e78a">setPosition</a> (const string &amp;)</td></tr>
-<tr class="separator:a656e916c30af73584f781e7e2e28e78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4fa66c0adb05725a51524265f8c520c"><td class="memItemLeft" align="right" valign="top">const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab4fa66c0adb05725a51524265f8c520c">getPosition</a> () const </td></tr>
+<tr class="memitem:a9faa470c892f7a3ca82ca75efd31be16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9faa470c892f7a3ca82ca75efd31be16"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const std::string &amp;)</td></tr>
+<tr class="separator:a9faa470c892f7a3ca82ca75efd31be16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4fa66c0adb05725a51524265f8c520c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4fa66c0adb05725a51524265f8c520c"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const </td></tr>
 <tr class="separator:ab4fa66c0adb05725a51524265f8c520c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affcc5325670824881ccc1524223aa209"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#affcc5325670824881ccc1524223aa209">setRequest</a> (<a class="el" href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9b">EPlaneRequest</a>)</td></tr>
+<tr class="memitem:affcc5325670824881ccc1524223aa209"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affcc5325670824881ccc1524223aa209"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRequest</b> (EPlaneRequest)</td></tr>
 <tr class="separator:affcc5325670824881ccc1524223aa209"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe210aea9002a8975234a78350158c46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9b">EPlaneRequest</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#afe210aea9002a8975234a78350158c46">getRequest</a> () const </td></tr>
+<tr class="memitem:afe210aea9002a8975234a78350158c46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe210aea9002a8975234a78350158c46"></a>
+EPlaneRequest&#160;</td><td class="memItemRight" valign="bottom"><b>getRequest</b> () const </td></tr>
 <tr class="separator:afe210aea9002a8975234a78350158c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6dda72f7cfd29a7334e0494d184bbfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRunway.html">Runway</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#ab6dda72f7cfd29a7334e0494d184bbfa">getRunway</a> () const </td></tr>
+<tr class="memitem:ab6dda72f7cfd29a7334e0494d184bbfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6dda72f7cfd29a7334e0494d184bbfa"></a>
+<a class="el" href="classRunway.html">Runway</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getRunway</b> () const </td></tr>
 <tr class="separator:ab6dda72f7cfd29a7334e0494d184bbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81fe42b8f9310edae12abb6e5f3ae9ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a81fe42b8f9310edae12abb6e5f3ae9ac">setRunway</a> (<a class="el" href="classRunway.html">Runway</a> *)</td></tr>
+<tr class="memitem:a81fe42b8f9310edae12abb6e5f3ae9ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81fe42b8f9310edae12abb6e5f3ae9ac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRunway</b> (<a class="el" href="classRunway.html">Runway</a> *)</td></tr>
 <tr class="separator:a81fe42b8f9310edae12abb6e5f3ae9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23170e5f55fa9fc6822be06615f028db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a23170e5f55fa9fc6822be06615f028db">getFuel</a> () const </td></tr>
+<tr class="memitem:a23170e5f55fa9fc6822be06615f028db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23170e5f55fa9fc6822be06615f028db"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getFuel</b> () const </td></tr>
 <tr class="separator:a23170e5f55fa9fc6822be06615f028db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88f0199d7eae4d1f24b14802047549ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAirplane.html#a88f0199d7eae4d1f24b14802047549ea">getSquawk</a> () const </td></tr>
+<tr class="memitem:ab73e4992979bf4c34762423ede75f437"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab73e4992979bf4c34762423ede75f437"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getCurFuel</b> () const </td></tr>
+<tr class="separator:ab73e4992979bf4c34762423ede75f437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f0199d7eae4d1f24b14802047549ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88f0199d7eae4d1f24b14802047549ea"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getSquawk</b> () const </td></tr>
 <tr class="separator:a88f0199d7eae4d1f24b14802047549ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003a94e41f8d104ba31167a0103b0b3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a003a94e41f8d104ba31167a0103b0b3d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setATC</b> (<a class="el" href="classATC.html">ATC</a> *atc)</td></tr>
+<tr class="separator:a003a94e41f8d104ba31167a0103b0b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>: Class that represents an airplane in the simulation </p>
@@ -191,17 +260,125 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Default constructor <br />
  ENSURE(<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "constructor must end in properlyInitialized state"); </p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                   {</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    fPassengers = -1;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    fFuel = -1;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    fAltitude = 0;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    fTimeRemaining = 0;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    fRunway = NULL;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    fRequest = <a class="code" href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632">kIdle</a>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    fGateID = -1;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    fStatus = <a class="code" href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34">kAway</a>;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    fEngine = <a class="code" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e">kDefaultEngine</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    fType = <a class="code" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00">kDefaultType</a>;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    fSize = <a class="code" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a">kDefaultSize</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    fInitCheck = <span class="keyword">this</span>;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a>(<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;constructor must end in properlyInitialized state&quot;</span>);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="Airplane_8h_html_a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34"><div class="ttname"><a href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19fae2f5a04c74b7994ccc574acf7d014a34">kAway</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:22</div></div>
-<div class="ttc" id="Airplane_8h_html_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00"><div class="ttname"><a href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00">kDefaultType</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:25</div></div>
-<div class="ttc" id="Airplane_8h_html_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a"><div class="ttname"><a href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a">kDefaultSize</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:27</div></div>
-<div class="ttc" id="DesignByContract_8h_html_ab8da60ea2bcdd55183cc29d8526e6857"><div class="ttname"><a href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a></div><div class="ttdeci">#define ENSURE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:14</div></div>
-<div class="ttc" id="Airplane_8h_html_a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632"><div class="ttname"><a href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9ba19d8199da79ca4c28eb644052b08f632">kIdle</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:31</div></div>
-<div class="ttc" id="Airplane_8h_html_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e"><div class="ttname"><a href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e">kDefaultEngine</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:29</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abd790d1e894b85c33f698a920b5c2fe2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::approach </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flying functions Only use when really needed, else use <a class="el" href="classAirplane.html#ad705fa6ec334df7a62c2911e0981e95f">Airplane::performNextStep</a> Performs the approach of a given plane. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling approach"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7af6a3b907be25247455830265befd28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::ascend </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Ascends an airplane to 5000ft. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling ascend."); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2280da4f41ce62d63fe785d1935d4205"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::atRunway </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lets an airplane wait AT a runway until instructions are given. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling atRunway"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aba3070261e49daba68be9fb4f7bbc6cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::checkFuel </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check fuel, subtract fuelcost if needed, adjust squawk if needed, contact <a class="el" href="classATC.html">ATC</a> if needed. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling checkFuel"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afab6247e7e75ecf584dadbe19e581d23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::circle </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs the circling of a given plane. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling circle"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a44a6eac9309f6218c7e0c0332f25ee51"></a>
 <div class="memitem">
 <div class="memproto">
@@ -215,37 +392,71 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Checks if all the data members were initialized <br />
- REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane::complete"); </p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                              {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane::complete&quot;</span>);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> !(fEngine == <a class="code" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e">kDefaultEngine</a> or fType == <a class="code" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00">kDefaultType</a> or fFuel == -1</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;             or fSize == <a class="code" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a">kDefaultSize</a> or fPassengers == -1 or</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            fModel.empty() or fCallsign.empty() or fNumber.empty());</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="Airplane_8h_html_a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00"><div class="ttname"><a href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9acd07e6d14d5fa33ad175535684278e00">kDefaultType</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:25</div></div>
-<div class="ttc" id="Airplane_8h_html_a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a"><div class="ttname"><a href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbfaf7c1619fb726ec0ab9a3b7cfbf797b4a">kDefaultSize</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:27</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-<div class="ttc" id="Airplane_8h_html_a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e"><div class="ttname"><a href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791dabffa4f472eaab68b56c1f1e7c56d221e">kDefaultEngine</a></div><div class="ttdef"><b>Definition:</b> Airplane.h:29</div></div>
-</div><!-- fragment -->
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane::complete"); </p><dl class="section return"><dt>Returns</dt><dd>boolean isComplete </dd></dl>
+
 </div>
 </div>
-<a class="anchor" id="aed1d8b816a7140ba82223901fa7bb1d5"></a>
+<a class="anchor" id="ab389f4b94829a8b87b42fb30625a21af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::crossArrival </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Crosses a runway <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling crossArrival"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab321adcb22c349b2917416c33a052dfe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::deboard </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs the deboarding of a given plane. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling deboard"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a94b54e287a5bd8ca9b5959f9e74bbf19"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Airplane::decreaseAltitude </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
-          <td class="paramname"><em>difference</em> = <code>1</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Decreases the plane's altitude by a given amount <br />
- REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling decreaseAltitude"); <br />
- REQUIRE(difference &gt; 0, "Difference can't be negative"); <br />
- REQUIRE(fAltitude - difference &gt;= 0, "New altitude can't be less than 0!"); <br />
- ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly."); </p>
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                              {</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling decreaseAltitude&quot;</span>);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(difference &gt; 0, <span class="stringliteral">&quot;Difference can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(fAltitude - difference &gt;= 0, <span class="stringliteral">&quot;New altitude can&#39;t be less than 0!&quot;</span>);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">int</span> oldAltitude = Airplane::fAltitude;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    Airplane::fAltitude -= difference;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a>(fAltitude == oldAltitude - difference, <span class="stringliteral">&quot;Altitude hasn&#39;t been decreased correctly.&quot;</span>);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-<div class="ttc" id="DesignByContract_8h_html_ab8da60ea2bcdd55183cc29d8526e6857"><div class="ttname"><a href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a></div><div class="ttdeci">#define ENSURE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:14</div></div>
-</div><!-- fragment -->
+<p>Decreases the plane's altitude by 1000 <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling decreaseAltitude"); </p>
+
 </div>
 </div>
 <a class="anchor" id="ac97a6ca10328e33558f682e0b45e5a60"></a>
@@ -260,198 +471,52 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Decreases the time of the remaining operation by one. If there's no operation busy, it does nothing. <br />
+<p>Decreases the time of the remaining operation by one. <br />
+ If there's no operation busy, it does nothing. <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling decreaseTimeRemaining"); </p>
-<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                                     {</div><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling decreaseTimeRemaining&quot;</span>);</div><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">if</span> (fTimeRemaining &gt; 0) {</div><div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        fTimeRemaining--;</div><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
-<a class="anchor" id="ad2550909ab563f7df850f79f23c3a308"></a>
+<a class="anchor" id="ae250403048844ff6cd5a1de3be2fdf56"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getAltitude </td>
+          <td class="memname">void Airplane::descend </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                {</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> fAltitude;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+<p>Performs the descend of a given plane. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling descend"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="a6a62bd06d28789336c5ce1543d9391f1"></a>
+<a class="anchor" id="a3948e4de793ba5d20d17d16d6eaf88f8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const string &amp; Airplane::getCallsign </td>
+          <td class="memname">int Airplane::getFuelCost </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                          {</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> fCallsign;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a7c594903638696b53c2dd823fe33ecf2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791d">EPlaneEngine</a> Airplane::getEngine </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                                       {</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> fEngine;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a23170e5f55fa9fc6822be06615f028db"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getFuel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                            {</div><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">return</span> fFuel;</div><div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="acab03ea6ec6df824368bf9851316e140"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getGateID </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                              {</div><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">return</span> Airplane::fGateID;</div><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab3086ab630a7e427df70c7b45f11dd82"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const string &amp; Airplane::getModel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                       {</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> fModel;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a2341fbcce9704ffdb81f7638ab74c0cb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const string &amp; Airplane::getNumber </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                        {</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> fNumber;</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="acd0cbb46d1c8a17a5eb4f5ab679f2dcb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getPassengers </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                                  {</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">return</span> fPassengers;</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab4fa66c0adb05725a51524265f8c520c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const string &amp; Airplane::getPosition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                                          {</div><div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">return</span> fPosition;</div><div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="afe210aea9002a8975234a78350158c46"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9b">EPlaneRequest</a> Airplane::getRequest </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                                         {</div><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">return</span> fRequest;</div><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab6dda72f7cfd29a7334e0494d184bbfa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classRunway.html">Runway</a> * Airplane::getRunway </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                                  {</div><div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordflow">return</span> fRunway;</div><div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+<p>Calculate the fuel cost for a plane <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling getFuelCost"); <br />
+ REQUIRE(getEngine != kDefaultEngine, "Invalid engine type for calculating fuel."); <br />
+ REQUIRE(getSize != kDefaultSize, "Invalid size for calculating fuel."); </p><dl class="section return"><dt>Returns</dt><dd>fuel cost </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a0160009a553a9bf339892ba4c3803830"></a>
@@ -459,107 +524,102 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbf">EPlaneSize</a> Airplane::getSize </td>
+          <td class="memname">EPlaneSize Airplane::getSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Getters and setters for the fields of the class. <br />
- REQUIRE(<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane wasn't initialized when calling Airplane getter/setter"); </p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                   {</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> fSize;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+<p>Getters and setters For each method: REQUIRE(<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane wasn't initialized when calling Airplane getter/setter"); </p>
+
 </div>
 </div>
-<a class="anchor" id="a88f0199d7eae4d1f24b14802047549ea"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getSquawk </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                              {</div><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">return</span> fSquawk;</div><div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;}</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a40bbb3024a476115700977c60bae2705"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19f">EPlaneStatus</a> Airplane::getStatus </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                                       {</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">return</span> fStatus;</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a39233c86a764ac1051ce4b4460a9a684"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a> Airplane::getTimeRemaining </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                                     {</div><div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">return</span> fTimeRemaining;</div><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a6ba13e6c94762127b5b87238f9fbb037"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9">EPlaneType</a> Airplane::getType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                   {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> fType;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a5a1735c5e75f857a4de0a473c5e26ffe"></a>
+<a class="anchor" id="a53f024bb7bd5d429e30d54a87bb0ec0b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Airplane::increaseAltitude </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
-          <td class="paramname"><em>difference</em> = <code>1</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Increases the plane's altitude by a given amount <br />
- REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling increaseAltitude"); <br />
- REQUIRE(difference &gt; 0, "Difference can't be negative"); <br />
- ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly."); </p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                              {</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling increaseAltitude&quot;</span>);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(difference &gt; 0, <span class="stringliteral">&quot;Difference can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> oldAltitude = Airplane::fAltitude;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Airplane::fAltitude += difference;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a>(fAltitude == oldAltitude + difference, <span class="stringliteral">&quot;Altitude hasn&#39;t been increased correctly.&quot;</span>);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-<div class="ttc" id="DesignByContract_8h_html_ab8da60ea2bcdd55183cc29d8526e6857"><div class="ttname"><a href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">ENSURE</a></div><div class="ttdeci">#define ENSURE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:14</div></div>
-</div><!-- fragment -->
+<p>Increases the plane's altitude by 1000 <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling increaseAltitude"); </p>
+
+</div>
+</div>
+<a class="anchor" id="aee84fa3894dc1978bc78e307c3c628c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::onRunway </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lets an airplane wait ON a runway before taking off. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling onRunway."); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad705fa6ec334df7a62c2911e0981e95f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::performNextStep </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calls the right flying function according to the status. <br />
+ At the end, checks fuel and decreases time remaining <br />
+ REQUIRE(<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Plane was not properly initialized when calling performNextStep."); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab3275ffc4b5e27f61180ed6f03fce0f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::prepare </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Refuels the airplane and lets passengers board. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling prepare"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="aa58418c017671c7b5de17c81a4172971"></a>
@@ -575,7 +635,30 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Checks if the object is properly initialized </p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                         {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">this</span> == fInitCheck;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div></div><!-- fragment -->
+
+</div>
+</div>
+<a class="anchor" id="a0238712883456e7df2073f054dbe1347"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::pushback </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pushes an airplane back from the gate. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling pushback"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a60ea276094957364060f7b22bb6e549d"></a>
@@ -585,54 +668,38 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setAltitude </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>altitude</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Getters and setters with special contracts/documentation. </p>
 <p>Setter for the altitude <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(altitude &gt;= 0, "Altitude can't be negative"); </p>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                       {</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(altitude &gt;= 0, <span class="stringliteral">&quot;Altitude can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    fAltitude = altitude;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
-<a class="anchor" id="a2b9b2ea3c51f0d1be91e1ffb7543f03d"></a>
+<a class="anchor" id="a4f15d7aaed74d4e001ef03aefb477afd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Airplane::setCallsign </td>
+          <td class="memname">void Airplane::setCurFuel </td>
           <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>fCallsign</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fuel</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                                  {</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    Airplane::fCallsign = fCallsign;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a9df8583afc31aad36bf893db5fc37dbd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setEngine </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Airplane_8h.html#a3d2a8adb53da58e78cb0018d784e791d">EPlaneEngine</a>&#160;</td>
-          <td class="paramname"><em>engine</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                            {</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    fEngine = engine;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+<p>Setter for the current amount of fuel <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
+ REQUIRE(fuel &gt;= 0, "Fuel can't be negative"); <br />
+ REQUIRE(fuel &lt;= getFuel, "Fuel can't be more than the max. fuel"); </p>
+
 </div>
 </div>
 <a class="anchor" id="a13aeed597173ecae5951cb9bdaf22474"></a>
@@ -642,7 +709,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setFuel </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fuel</em></td><td>)</td>
           <td></td>
         </tr>
@@ -651,9 +718,7 @@ Public Member Functions</h2></td></tr>
 <p>Setter for the maximum amount of fuel (in 10.000 units) <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(fuel &gt; 0, "Fuel can't be less than 1"); </p>
-<div class="fragment"><div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                               {</div><div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(fuel &gt; 0, <span class="stringliteral">&quot;Fuel can&#39;t be less than 1&quot;</span>);</div><div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    fFuel = fuel;</div><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a class="anchor" id="aed585c73c9dd5065bd1f8b55236260a0"></a>
@@ -663,7 +728,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setGateID </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
         </tr>
@@ -672,45 +737,7 @@ Public Member Functions</h2></td></tr>
 <p>Setter for the gate the plane's at <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(id &gt;= -1, "Gate id can't be less than -1"); </p>
-<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                               {</div><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(<span class="keywordtype">id</span> &gt;= -1, <span class="stringliteral">&quot;Gate id can&#39;t be less than -1&quot;</span>);</div><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    Airplane::fGateID = id;</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a79639d54a99b5d1fc33c8e97ee091fe8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setModel </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>fModel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                            {</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    Airplane::fModel = fModel;</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ae9eddf3e39a40dca935be7bbfd9d6f1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setNumber </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>fNumber</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                                              {</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    Airplane::fNumber = fNumber;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a class="anchor" id="a1f8bcb214c96664d15d8c4d82c3f613a"></a>
@@ -720,7 +747,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setPassengers </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fPassengers</em></td><td>)</td>
           <td></td>
         </tr>
@@ -729,82 +756,7 @@ Public Member Functions</h2></td></tr>
 <p>Setter for the maximum amount of passengers <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(passengers &gt;= 0, "Passenger amount can't be negative"); </p>
-<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                           {</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(passengers &gt;= 0, <span class="stringliteral">&quot;Passenger amount can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    Airplane::fPassengers = passengers;</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a656e916c30af73584f781e7e2e28e78a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setPosition </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>position</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                                                 {</div><div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    fPosition = <a class="code" href="happyDay4ATC_8txt.html#adfd9ba164d3d89874d56c97b672d9b6c">position</a>;</div><div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="happyDay4ATC_8txt_html_adfd9ba164d3d89874d56c97b672d9b6c"><div class="ttname"><a href="happyDay4ATC_8txt.html#adfd9ba164d3d89874d56c97b672d9b6c">position</a></div><div class="ttdeci">Antwerp Speedbird four six requesting IFR clearancy[12:11][Antwerp Tower] Speedbird four six Antwerp cleared to one one maintain five expect flight level one zero zero ten minutes after squawk zero[12:12][Speedbird 466] Cleared to one one initial altitude five expecting one zero zero in squawking Speedbird four six six[12:22][Speedbird 466] Speedbird four six Speedbird four six six at gate requesting pushback[12:23][Antwerp Tower] Speedbird four six Antwerp pushback approved[12:24][Speedbird 466] Pushback Speedbird four six six[12:27][Speedbird 466] Speedbird four six six is ready to taxi[12:28][Antwerp Tower] Speedbird four six taxi to holding point one one romeo via Alpha[12:35][Speedbird 466] Antwerp Speedbird four six holding short at one one romeo[12:36][Antwerp Tower] Speedbird four six cleared to cross one one romeo[12:37][Speedbird 466] Cleared to cross one one taxi to holding point one one lima via Speedbird four six six[12:43][Speedbird 466] Antwerp Speedbird four six holding short at one one lima[12:44][Antwerp Tower] Speedbird four six hold position[12:45][Speedbird 466] Holding position</div><div class="ttdef"><b>Definition:</b> happyDay4ATC.txt:2</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="affcc5325670824881ccc1524223aa209"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setRequest </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Airplane_8h.html#a4a8a3f45932bdf601f093bea061bad9b">EPlaneRequest</a>&#160;</td>
-          <td class="paramname"><em>request</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                                               {</div><div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    fRequest = request;</div><div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a81fe42b8f9310edae12abb6e5f3ae9ac"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setRunway </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classRunway.html">Runway</a> *&#160;</td>
-          <td class="paramname"><em>runway</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                                       {</div><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    fRunway = runway;</div><div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab88c4d346a27430d4812f37c717c26d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setSize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Airplane_8h.html#a0526623f951311ba6780209b9e278dbf">EPlaneSize</a>&#160;</td>
-          <td class="paramname"><em>size</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                      {</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    fSize = size;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a class="anchor" id="ac9106f1b9f793b2a17bb605f514e0fcf"></a>
@@ -814,7 +766,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setSquawk </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>squawk</em></td><td>)</td>
           <td></td>
         </tr>
@@ -823,27 +775,7 @@ Public Member Functions</h2></td></tr>
 <p>Setter for the squawk code <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(squawk &gt;= 0, "Squawk code can't be negative"); </p>
-<div class="fragment"><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                                   {</div><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(squawk &gt;= 0, <span class="stringliteral">&quot;Squawk code can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    fSquawk = squawk;</div><div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a23934fb97d8fab12d4dc790cee673747"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Airplane::setStatus </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Airplane_8h.html#a0e5bbf7c6c727baaba49062300fae19f">EPlaneStatus</a>&#160;</td>
-          <td class="paramname"><em>fStatus</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                             {</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    Airplane::fStatus = fStatus;</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a class="anchor" id="a43e7b856df001168956ed6d115943ec9"></a>
@@ -853,7 +785,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Airplane::setTimeRemaining </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>time</em></td><td>)</td>
           <td></td>
         </tr>
@@ -862,32 +794,127 @@ Public Member Functions</h2></td></tr>
 <p>Setter for the time remaining on the operation <br />
  REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling Airplane getter/setter"); <br />
  REQUIRE(time &gt;= 0, "Time remaining can't be negative"); </p>
-<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                                        {</div><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(time &gt;= 0, <span class="stringliteral">&quot;Time remaining can&#39;t be negative&quot;</span>);</div><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    fTimeRemaining = time;</div><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
-<a class="anchor" id="acaf1e610b7b45804e1ae27408fd9f40f"></a>
+<a class="anchor" id="a8e23b42b6c256110579e8d64c32fd196"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Airplane::setType </td>
+          <td class="memname">void Airplane::taxiArrival </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Airplane_8h.html#a537b68b9ecaac78d371a35d8cf7604e9">EPlaneType</a>&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                      {</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a>(this-&gt;<a class="code" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized</a>(), <span class="stringliteral">&quot;Airplane was&#39;t initialized when calling Airplane getter/setter&quot;</span>);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    fType = type;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div><div class="ttc" id="classAirplane_html_aa58418c017671c7b5de17c81a4172971"><div class="ttname"><a href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">Airplane::properlyInitialized</a></div><div class="ttdeci">bool properlyInitialized() const </div><div class="ttdef"><b>Definition:</b> Airplane.cpp:28</div></div>
-<div class="ttc" id="DesignByContract_8h_html_aeb774672b46dbe80afc14e0d1970f017"><div class="ttname"><a href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">REQUIRE</a></div><div class="ttdeci">#define REQUIRE(assertion, what)</div><div class="ttdef"><b>Definition:</b> DesignByContract.h:11</div></div>
-</div><!-- fragment -->
+<p>Performs the taxiing upon arrival of a given plane. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling taxiArrival"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab7eaf297d958af5764755d76bd23177c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::taxiDepartureCross </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs a cross. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling taxiDepartureCross"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a96fabaa910b088a1173aa3706d2e4c42"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::taxiDepartureStart </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lets an airplane wait before taxiing. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling taxiDepartureStart"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abaa6cc9cae3821e26731f0f0792b878e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::taxiDepartureStep </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>fLog</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs the next taxi-step. <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was not properly initialized when calling taxiDepartureStep"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a15f4ddd77be6754ffd31e1c4f499e41c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Airplane::technicalCheck </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>log</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs the technical check of the plane <br />
+ REQUIRE(this-&gt;<a class="el" href="classAirplane.html#aa58418c017671c7b5de17c81a4172971">properlyInitialized()</a>, "Airplane was't initialized when calling technicalCheck"); </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">log</td><td>ostream used for logging events </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/max/CLionProjects/ProjectVliegveld/headers/<a class="el" href="Airplane_8h_source.html">Airplane.h</a></li>
-<li>/home/max/CLionProjects/ProjectVliegveld/src/<a class="el" href="Airplane_8cpp.html">Airplane.cpp</a></li>
+<li>/home/max/CLionProjects/ProjectVliegveld/src/Airplane.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

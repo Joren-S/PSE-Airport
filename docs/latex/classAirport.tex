@@ -13,13 +13,15 @@
 \item 
 bool \hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized} () const 
 \item 
-void \hyperlink{classAirport_a2a4915cb5db8ff9a992c262af3f333cb}{init\+Stack} ()
+bool \hyperlink{classAirport_a76819017f88f563183bd16a0b4da4e40}{complete} () const 
 \item 
-\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirport_a73b57b192084fb8082d912da70beb5b0}{get\+Free\+Gate} ()
+void \hyperlink{classAirport_ae207524a428ee2d93dd25ad5ef4fa1f7}{init\+Gates} ()
 \item 
-void \hyperlink{classAirport_ad93ec78d36fa040b97e6ff2a806e5885}{restore\+Gate} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} id)
+int \hyperlink{classAirport_a73b57b192084fb8082d912da70beb5b0}{get\+Free\+Gate} ()
 \item 
-\hyperlink{classRunway}{Runway} $\ast$ \hyperlink{classAirport_a15405cc39a7a397466fff1d54cc738d1}{get\+Runway} (const string \&) const 
+void \hyperlink{classAirport_ad93ec78d36fa040b97e6ff2a806e5885}{restore\+Gate} (int id)
+\item 
+\hyperlink{classRunway}{Runway} $\ast$ \hyperlink{classAirport_a49a0963b8e15ad1fd299c9ccf2c97ab4}{get\+Runway} (const std\+::string \&) const 
 \item 
 \hyperlink{classRunway}{Runway} $\ast$ \hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{get\+Next\+Runway} (\hyperlink{classAirplane}{Airplane} $\ast$airplane) const 
 \item 
@@ -29,29 +31,42 @@ void \hyperlink{classAirport_a346e81f1bbb8b9eb9a0eee341d947fc1}{add\+Runway} (\h
 \item 
 size\+\_\+t \hyperlink{classAirport_a587d39bfd3934a70f94b42f40fe72245}{amount\+Of\+Runways} () const 
 \item 
-bool \hyperlink{classAirport_a76819017f88f563183bd16a0b4da4e40}{complete} () const 
+std\+::string \hyperlink{classAirport_a011dbf8ff05f8d6a2c52d2f39f365051}{draw\+Impression} (const \hyperlink{classTime}{Time} \&time, const std\+::vector$<$ \hyperlink{classFlightPlan}{Flight\+Plan} $\ast$ $>$ \&plans) const 
 \item 
-void \hyperlink{classAirport_a6bc9b678b5f9f0c9f2d9c179436766ef}{draw\+Impression} (\hyperlink{classTime}{Time} time, ostream \&stream, vector$<$ \hyperlink{classFlightplan}{Flightplan} $\ast$ $>$ plans)
+std\+::string \hyperlink{classAirport_aa280a5763b0dbc605e46b951b4e7781b}{graphics\+I\+NI} (const std\+::vector$<$ \hyperlink{classFlightPlan}{Flight\+Plan} $\ast$ $>$ \&plans)
 \item 
-void \hyperlink{classAirport_af2c69fb8b654073f978b9bf373b3216f}{set\+Gates} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} f\+Gates)
+void \hyperlink{classAirport_a9c7d8fabce9110b49c2b9426e9527420}{set\+Gates} (int gates)
 \item 
-const string \& \hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{get\+Name} () const 
+const std\+::string \& \hyperlink{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{get\+Name} () const 
 \item 
-void \hyperlink{classAirport_aef847257fe845bbcbc2ac446663481c0}{set\+Name} (const string \&f\+Name)
+void {\bfseries set\+Name} (const std\+::string \&f\+Name)\hypertarget{classAirport_a72a44055d44906f95c38076086d59593}{}\label{classAirport_a72a44055d44906f95c38076086d59593}
+
 \item 
-const string \& \hyperlink{classAirport_a4550198ddc92d3583a0f3c31278189b2}{get\+Iata} () const 
+const std\+::string \& {\bfseries get\+Iata} () const \hypertarget{classAirport_a4550198ddc92d3583a0f3c31278189b2}{}\label{classAirport_a4550198ddc92d3583a0f3c31278189b2}
+
 \item 
-void \hyperlink{classAirport_ae4698bb1842fc83574c1650425c8daa6}{set\+Iata} (const string \&f\+Iata)
+void {\bfseries set\+Iata} (const std\+::string \&f\+Iata)\hypertarget{classAirport_a1e2cdca63de4684afa01261658c7a56a}{}\label{classAirport_a1e2cdca63de4684afa01261658c7a56a}
+
 \item 
-const string \& \hyperlink{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{get\+Callsign} () const 
+const std\+::string \& {\bfseries get\+Callsign} () const \hypertarget{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{}\label{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}
+
 \item 
-void \hyperlink{classAirport_a5e682d5e40ba9513f075348d51a9cb53}{set\+Callsign} (const string \&f\+Callsign)
+void {\bfseries set\+Callsign} (const std\+::string \&f\+Callsign)\hypertarget{classAirport_a2824907ce62938bf83aefd3384cba216}{}\label{classAirport_a2824907ce62938bf83aefd3384cba216}
+
 \item 
-\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} \hyperlink{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}{get\+Gates} () const 
+int {\bfseries get\+Gates} () const \hypertarget{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}{}\label{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}
+
 \item 
-vector$<$ \hyperlink{classRunway}{Runway} $\ast$ $>$ \hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{get\+Runways} () const 
+std\+::vector$<$ \hyperlink{classRunway}{Runway} $\ast$ $>$ {\bfseries get\+Runways} () const \hypertarget{classAirport_a14310ffeba8a024105071c156fd42cf7}{}\label{classAirport_a14310ffeba8a024105071c156fd42cf7}
+
+\item 
+std\+::map$<$ int, bool $>$ {\bfseries get\+Gate\+Map} () const \hypertarget{classAirport_acaf321951a6657d167046d7bbc87cdd9}{}\label{classAirport_acaf321951a6657d167046d7bbc87cdd9}
+
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Class that represents the airport in a simulation 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{Airport@{Airport}!Airport@{Airport}}
@@ -62,16 +77,7 @@ vector$<$ \hyperlink{classRunway}{Runway} $\ast$ $>$ \hyperlink{classAirport_a14
 \end{DoxyParamCaption}
 )}\hypertarget{classAirport_a2fc0f2402c94225b9deaf76176bb887f}{}\label{classAirport_a2fc0f2402c94225b9deaf76176bb887f}
 Default constructor ~\newline
- E\+N\+S\+U\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized after constructing\char`\"{}); 
-\begin{DoxyCode}
-10                  \{
-11     fGates = -1;
-12     fInitCheck = \textcolor{keyword}{this};
-13     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized after
-       constructing."});
-14 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!````~Airport@{$\sim$\+Airport}}
+ E\+N\+S\+U\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized after constructing\char`\"{}); \index{Airport@{Airport}!````~Airport@{$\sim$\+Airport}}
 \index{````~Airport@{$\sim$\+Airport}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{$\sim$\+Airport()}{~Airport()}}]{\setlength{\rightskip}{0pt plus 5cm}Airport\+::$\sim$\+Airport (
 \begin{DoxyParamCaption}
@@ -79,17 +85,6 @@ Default constructor ~\newline
 \end{DoxyParamCaption}
 )}\hypertarget{classAirport_a2c42073a186171586f3ac66d84af97ca}{}\label{classAirport_a2c42073a186171586f3ac66d84af97ca}
 Destructor 
-\begin{DoxyCode}
-331                   \{
-332     vector<Runway*>::const\_iterator itr;
-333     \textcolor{keywordflow}{for} (itr = fRunways.begin(); itr != fRunways.end(); ++itr) \{
-334         \textcolor{keywordflow}{if} (*itr != NULL or !(*itr)->properlyInitialized()) \{
-335             \textcolor{keyword}{delete} *itr;
-336         \}
-337     \}
-338 \}
-\end{DoxyCode}
-
 
 \subsection{Member Function Documentation}
 \index{Airport@{Airport}!add\+Runway@{add\+Runway}}
@@ -99,40 +94,15 @@ Destructor
 \item[{{\bf Runway} $\ast$}]{runway}
 \end{DoxyParamCaption}
 )}\hypertarget{classAirport_a346e81f1bbb8b9eb9a0eee341d947fc1}{}\label{classAirport_a346e81f1bbb8b9eb9a0eee341d947fc1}
-Adds a runway to the airport. ~\newline
+Adds a runway to the airport. Present is a boolean indicating if the object is already in the get\+Runways() ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling add\+Runway.\char`\"{}); ~\newline
  R\+E\+Q\+U\+I\+RE(runway != N\+U\+LL, \char`\"{}\+Runway cannot be N\+U\+L\+L.\char`\"{}); ~\newline
  E\+N\+S\+U\+RE(!present, \char`\"{}\+Runway is already in system.\char`\"{}); ~\newline
- E\+N\+S\+U\+RE(f\+Runways.\+back() == runway, \char`\"{}\+Runway was not properly added to the system.\char`\"{}); 
+ E\+N\+S\+U\+RE(get\+Runways().back() == runway, \char`\"{}\+Runway was not properly added to the system.\char`\"{}); 
 \begin{DoxyParams}{Parameters}
 {\em runway} & Pointer to runway that needs to be added. \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyCode}
-94                                       \{
-95     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling addRunway."});
-96     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(runway != NULL, \textcolor{stringliteral}{"Runway cannot be NULL."});
-97 
-98     \textcolor{comment}{// Iterate over all runways}
-99     vector<Runway*>::const\_iterator itr;
-100     \textcolor{keywordtype}{bool} present = \textcolor{keyword}{false};
-101     \textcolor{keywordflow}{for} (itr = fRunways.begin(); itr != fRunways.end(); ++itr) \{
-102         \textcolor{keywordflow}{if} ((*itr)->getName() == runway->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() or
-103             (*itr)->getTaxiPoint() == runway->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}()) \{
-104             \textcolor{comment}{// If a duplicate runway already exists in the airport}
-105             present = \textcolor{keyword}{true};
-106             \textcolor{keywordflow}{break};
-107         \}
-108     \}
-109 
-110     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(!present, \textcolor{stringliteral}{"Runway is already in system."});
-111     \textcolor{comment}{// If valid, we can add our runway.}
-112     fRunways.push\_back(runway);
-113     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fRunways.back() == runway, \textcolor{stringliteral}{"Runway was not properly added to the system."});
-114 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!amount\+Of\+Runways@{amount\+Of\+Runways}}
 \index{amount\+Of\+Runways@{amount\+Of\+Runways}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{amount\+Of\+Runways() const }{amountOfRunways() const }}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Airport\+::amount\+Of\+Runways (
@@ -144,16 +114,6 @@ Return the amount of runways the airport has. ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling amount\+Of\+Runways.\char`\"{}); \begin{DoxyReturn}{Returns}
 \+: Amount of runways. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-22                                       \{
-23     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling amountOfRunways."});
-24 
-25     \textcolor{comment}{// Return the size of the vector containing all runways.}
-26     \textcolor{keywordflow}{return} fRunways.size();
-27 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!complete@{complete}}
 \index{complete@{complete}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{complete() const }{complete() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Airport\+::complete (
@@ -165,217 +125,38 @@ Checks if all the data members were initialized ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling complete.\char`\"{}); \begin{DoxyReturn}{Returns}
 \+: Boolean indicating if everything was initialized. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-16                              \{
-17     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling complete."});
-18     \textcolor{keywordflow}{return} !(fName.empty() or fCallsign.empty() or
-19              fIata.empty() or fGates == -1);
-20 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!draw\+Impression@{draw\+Impression}}
 \index{draw\+Impression@{draw\+Impression}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{draw\+Impression(\+Time time, ostream \&stream, vector$<$ Flightplan $\ast$ $>$ plans)}{drawImpression(Time time, ostream &stream, vector< Flightplan * > plans)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::draw\+Impression (
+\subsubsection[{\texorpdfstring{draw\+Impression(const Time \&time, const std\+::vector$<$ Flight\+Plan $\ast$ $>$ \&plans) const }{drawImpression(const Time &time, const std::vector< FlightPlan * > &plans) const }}]{\setlength{\rightskip}{0pt plus 5cm}string Airport\+::draw\+Impression (
 \begin{DoxyParamCaption}
-\item[{{\bf Time}}]{time, }
-\item[{ostream \&}]{stream, }
-\item[{vector$<$ {\bf Flightplan} $\ast$ $>$}]{plans}
+\item[{const {\bf Time} \&}]{time, }
+\item[{const std\+::vector$<$ {\bf Flight\+Plan} $\ast$ $>$ \&}]{plans}
 \end{DoxyParamCaption}
-)}\hypertarget{classAirport_a6bc9b678b5f9f0c9f2d9c179436766ef}{}\label{classAirport_a6bc9b678b5f9f0c9f2d9c179436766ef}
+) const}\hypertarget{classAirport_a011dbf8ff05f8d6a2c52d2f39f365051}{}\label{classAirport_a011dbf8ff05f8d6a2c52d2f39f365051}
 Generates a graphical impression for the current state of the airport. ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling draw\+Impression.\char`\"{}); 
 \begin{DoxyParams}{Parameters}
 {\em time} & time of the impression. \\
 \hline
-{\em stream} & ostream to write the impression to. \\
+{\em plans} & the flight plans to access the planes \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyCode}
-159                                                                                   \{
-160     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling drawImpression."});
-161 
-162     stringstream impression;
-163 
-164     \textcolor{comment}{// We begin with a timestamp}
-165     impression << \textcolor{stringliteral}{"["} << time.\hyperlink{classTime_aeeb2d2b5a624d0d78b7f5d146d0682f5}{formatted}() << \textcolor{stringliteral}{"]"} << endl;
-166 
-167     \textcolor{comment}{// Iterate over all runways}
-168     vector<Runway*>::const\_reverse\_iterator i;
-169     \textcolor{keywordflow}{for} (i = fRunways.rbegin(); i != fRunways.rend(); ++i) \{
-170         \hyperlink{classRunway}{Runway} *curRW = *i;
-171         \textcolor{keywordtype}{string} curTP = curRW->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}();
-172 
-173         \textcolor{comment}{// begin of line}
-174         impression << curRW->\hyperlink{classRunway_a2934c38f3af6080f7b40c306a27c57cd}{getName}() << \textcolor{stringliteral}{" | ====="};
-175 
-176         \textcolor{comment}{// Iterate over flightplans}
-177         \textcolor{keywordtype}{bool} planeFound = \textcolor{keyword}{false};
-178         \textcolor{keywordtype}{int} planesAtTaxiPoint = 0;
-179         vector<Flightplan*>::const\_iterator j;
-180         \textcolor{keywordflow}{for} (j = plans.begin(); j != plans.end(); ++j) \{
-181             \hyperlink{classAirplane}{Airplane} *curPlane = (*j)->getAirplane();
-182 
-183             \textcolor{comment}{// Plane is landing}
-184             \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}().empty() and curPlane->
-      \hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 0 and curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa65b72f8e33cb194d21d822e5b6626e2e}{kDescending} and curPlane->
-      \hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}() == curRW) \{
-185                 planeFound = \textcolor{keyword}{true};
-186             \}
-187 
-188             \textcolor{comment}{// Plane is crossing when taxiing at arrival}
-189             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival} and this->
-      \hyperlink{classAirport_a894669e2c8865a6c0442004e7e75063c}{getNextRunway}(curPlane) == curRW) \{
-190                 planeFound = \textcolor{keyword}{true};
-191             \}
-192 
-193             \textcolor{comment}{// Plane just landed}
-194             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}().empty() and curPlane->
-      \hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival} and curPlane->\hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}() == curRW) \{
-195                 planesAtTaxiPoint++;
-196             \}
-197 
-198             \textcolor{comment}{// At taxipoint}
-199             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival} and curPlane->
-      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == curTP) \{
-200                 planesAtTaxiPoint++;
-201             \}
-202 
-203 
-204 
-205             \textcolor{comment}{// at taxipoint during taxiing}
-206             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture} and curPlane->
-      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == curTP) \{
-207                 planesAtTaxiPoint++;
-208             \}
-209 
-210             \textcolor{comment}{// plane is waiting at runway before takeoff}
-211             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5fc2da75439f367169d2a71f865d6bde}{kWaitingForDeparture} and 
-      curPlane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == curTP) \{
-212                 planesAtTaxiPoint++;
-213             \}
-214 
-215             \textcolor{comment}{// plane is waiting on runway before takeoff}
-216             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa67924d857373a72f3eb2f5d7b3046f92}{kAscending} and curPlane->
-      \hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() == curTP and curPlane->
-      \hyperlink{classAirplane_ad2550909ab563f7df850f79f23c3a308}{getAltitude}() == 0) \{
-217                 planeFound = \textcolor{keyword}{true};
-218             \}
-219 
-220             \textcolor{comment}{// plane is waiting on runway before takeoff}
-221             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fae2255e82c6ed427f0820a47f2e5f5ac9}{kDeparture} and curPlane->
-      \hyperlink{classAirplane_ab6dda72f7cfd29a7334e0494d184bbfa}{getRunway}()->\hyperlink{classRunway_ad2d8fd5696ec93e2fa3d32bec3d02f59}{getTaxiPoint}() == curTP) \{
-222                 planeFound = \textcolor{keyword}{true};
-223             \}
-224 
-225             \textcolor{comment}{// plane is crossing runway}
-226             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{kCrossingDeparture} and curPlane->
-      \hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}() == curTP) \{
-227                 planeFound = \textcolor{keyword}{true};
-228             \}
-229 \textcolor{comment}{//}
-230 \textcolor{comment}{//            if (curPlane->getPosition() == curTP) \{}
-231 \textcolor{comment}{//                EPlaneStatus status = curPlane->getStatus();}
-232 \textcolor{comment}{//}
-233 \textcolor{comment}{//                // if plane is on runway}
-234 \textcolor{comment}{//                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture or
-       (status == kDescending and curPlane->getAltitude() == 0)) \{}
-235 \textcolor{comment}{//                    impression << "V====" << endl;}
-236 \textcolor{comment}{//                    planeFound = true;}
-237 \textcolor{comment}{//                \}}
-238 \textcolor{comment}{//                else \{}
-239 \textcolor{comment}{//                    planesAtTaxiPoint++;}
-240 \textcolor{comment}{//                \}}
-241 \textcolor{comment}{//            \}}
-242         \}
-243         \textcolor{keywordflow}{if} (!planeFound) \{
-244             impression << \textcolor{stringliteral}{"====="} << endl;
-245         \}
-246         \textcolor{keywordflow}{else} \{
-247             impression << \textcolor{stringliteral}{"V===="} << endl;
-248         \}
-249 
-250         \textcolor{keywordtype}{string} planesattaxi (planesAtTaxiPoint, \textcolor{charliteral}{'V'});
-251         impression << \textcolor{stringliteral}{"TP"} << curTP.at(0) << \textcolor{stringliteral}{" | "} << planesattaxi << endl;
-252     \}
-253 
-254     \textcolor{comment}{// Count the planes at the gates}
-255     \textcolor{keywordtype}{int} planesAtGate = 0;
-256     vector<Flightplan*>::const\_iterator j;
-257     \textcolor{keywordflow}{for} (j = plans.begin(); j != plans.end(); ++j) \{
-258         \hyperlink{classAirplane}{Airplane} *curPlane = (*j)->getAirplane();
-259         \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19f}{EPlaneStatus} status = curPlane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}();
-260 
-261         \textcolor{comment}{// Landing}
-262         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa5c095afa8db10ea77f3303a7b8573cdf}{kDeboarding} or status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa525fdcc62e65d5ea900d499b4468b4e1}{kTechnicalCheck} or status == 
-      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa2ff2af945a2d4bb8758de3308e352bd0}{kParked}) \{
-263             planesAtGate++;
-264         \}
-265 
-266         \textcolor{keywordflow}{if} (status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa20dbec285a7773f72e48eccef8ae84da}{kGate} or status == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabfff972a5d3596bc68662c89987639df}{kAirport} or status == 
-      \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa117bb5da4739b13c4915f7d721f3d2a5}{kPushback}) \{
-267             planesAtGate++;
-268         \}
-269     \}
-270 
-271     \textcolor{comment}{// Write result to impression}
-272     \textcolor{keywordtype}{string} planesatgate (planesAtGate, \textcolor{charliteral}{'V'});
-273     impression << \textcolor{stringliteral}{"Gates [ "} << planesatgate << \textcolor{stringliteral}{" ]"} << endl;
-274 
-275     \textcolor{comment}{// Write the result to our stream}
-276     stream << impression.str();
-277 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!get\+Callsign@{get\+Callsign}}
-\index{get\+Callsign@{get\+Callsign}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Callsign() const }{getCallsign() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airport\+::get\+Callsign (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hypertarget{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}{}\label{classAirport_a6ed56e05a8c881b8e4718a34ba9cccc5}
-
-\begin{DoxyCode}
-303                                          \{
-304     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-305     \textcolor{keywordflow}{return} fCallsign;
-306 \}
-\end{DoxyCode}
+\begin{DoxyReturn}{Returns}
+string containing the impression. 
+\end{DoxyReturn}
 \index{Airport@{Airport}!get\+Free\+Gate@{get\+Free\+Gate}}
 \index{get\+Free\+Gate@{get\+Free\+Gate}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Free\+Gate()}{getFreeGate()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airport\+::get\+Free\+Gate (
+\subsubsection[{\texorpdfstring{get\+Free\+Gate()}{getFreeGate()}}]{\setlength{\rightskip}{0pt plus 5cm}int Airport\+::get\+Free\+Gate (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classAirport_a73b57b192084fb8082d912da70beb5b0}{}\label{classAirport_a73b57b192084fb8082d912da70beb5b0}
 Returns the ID of a free gate ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling get\+Free\+Gate.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(!f\+Gate\+Stack.empty(), \char`\"{}\+Can\textquotesingle{}t get free gate\+: no gate in stack.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(f\+Gates $>$ 0, \char`\"{}\+Airport has no gates.\char`\"{}); ~\newline
- E\+N\+S\+U\+RE(id $<$= f\+Gates \&\& id $>$ 0, \char`\"{}\+Gate has an invalid I\+D.\char`\"{}); ~\newline
- E\+N\+S\+U\+RE(f\+Gate\+Stack.\+top() != id, \char`\"{}\+Gate wasn\textquotesingle{}t properly popped from the stack.\char`\"{}); \begin{DoxyReturn}{Returns}
-\+: ID of a free gate. 
+ R\+E\+Q\+U\+I\+RE(get\+Gates() $>$ 0, \char`\"{}\+Airport has no gates.\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(!get\+Gate\+Map().empty(), \char`\"{}\+Gate map not initialized yet\char`\"{}); \begin{DoxyReturn}{Returns}
+\+: ID of a free gate. -\/1 if nothing available 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-58                          \{
-59     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getFreeGate."});
-60     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(!fGateStack.empty(), \textcolor{stringliteral}{"Can't get free gate: no gate in stack."});
-61     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fGates > 0, \textcolor{stringliteral}{"Airport has no gates."});
-62 
-63     \textcolor{comment}{// Get top of stack, store it, then pop it.}
-64     \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = fGateStack.top();
-65     fGateStack.pop();
-66 
-67     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(id <= fGates && id > 0, \textcolor{stringliteral}{"Gate has an invalid ID."});
-68 
-69     \textcolor{comment}{// Return the popped gate ID.}
-70     \textcolor{keywordflow}{return} id;
-71 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!get\+Free\+Runway@{get\+Free\+Runway}}
 \index{get\+Free\+Runway@{get\+Free\+Runway}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{get\+Free\+Runway(\+Airplane $\ast$plane) const }{getFreeRunway(Airplane *plane) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway} $\ast$ Airport\+::get\+Free\+Runway (
@@ -393,57 +174,6 @@ Looks for a runway that is free and is suitable for a given airplane. ~\newline
 \begin{DoxyReturn}{Returns}
 \+: Pointer to runway, N\+U\+LL if nothing is found. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-29                                                     \{
-30     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getFreeRunway."});
-31     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(plane != NULL, \textcolor{stringliteral}{"Plane object does not exist."});
-32 
-33     \textcolor{comment}{// Iterate over all runways}
-34     vector<Runway*>::const\_iterator itr;
-35     \textcolor{keywordflow}{for} (itr = fRunways.begin(); itr != fRunways.end(); ++itr) \{
-36 
-37         \textcolor{comment}{// If runway is free and valid for the airplane, return a pointer to it.}
-38         \textcolor{keywordflow}{if} ((*itr)->isFree() and (*itr)->validForAirplane(plane)) \{
-39             \textcolor{keywordflow}{return} *itr;
-40         \}
-41     \}
-42 
-43     \textcolor{comment}{// If no runway is found, we return a null pointer.}
-44     \textcolor{keywordflow}{return} NULL;
-45 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!get\+Gates@{get\+Gates}}
-\index{get\+Gates@{get\+Gates}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Gates() const }{getGates() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} Airport\+::get\+Gates (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hypertarget{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}{}\label{classAirport_a4d23d65ad0ba4d3878e9e32429dd9286}
-
-\begin{DoxyCode}
-314                             \{
-315     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-316     \textcolor{keywordflow}{return} fGates;
-317 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!get\+Iata@{get\+Iata}}
-\index{get\+Iata@{get\+Iata}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Iata() const }{getIata() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airport\+::get\+Iata (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hypertarget{classAirport_a4550198ddc92d3583a0f3c31278189b2}{}\label{classAirport_a4550198ddc92d3583a0f3c31278189b2}
-
-\begin{DoxyCode}
-292                                      \{
-293     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-294     \textcolor{keywordflow}{return} fIata;
-295 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!get\+Name@{get\+Name}}
 \index{get\+Name@{get\+Name}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{get\+Name() const }{getName() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Airport\+::get\+Name (
@@ -451,19 +181,7 @@ Looks for a runway that is free and is suitable for a given airplane. ~\newline
 {}
 \end{DoxyParamCaption}
 ) const}\hypertarget{classAirport_a9b6eb908a82342b64dda9a72f9369d43}{}\label{classAirport_a9b6eb908a82342b64dda9a72f9369d43}
-Getters and setters for the fields of the class. ~\newline
- R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling getter/setter.\char`\"{});
-
-Setters\+: ~\newline
- E\+N\+S\+U\+RE(f\+Field == value, \char`\"{}\+Field wasn\textquotesingle{}t set properly\char`\"{}); 
-\begin{DoxyCode}
-281                                      \{
-282     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-283     \textcolor{keywordflow}{return} fName;
-284 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!get\+Next\+Runway@{get\+Next\+Runway}}
+Getters and setters For all\+: R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling getter/setter.\char`\"{}); For setters\+: E\+N\+S\+U\+RE(get\+Field() == value, \char`\"{}\+Field wasn\textquotesingle{}t set properly\char`\"{}); Where get\+Field() is flexible \index{Airport@{Airport}!get\+Next\+Runway@{get\+Next\+Runway}}
 \index{get\+Next\+Runway@{get\+Next\+Runway}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{get\+Next\+Runway(\+Airplane $\ast$airplane) const }{getNextRunway(Airplane *airplane) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway} $\ast$ Airport\+::get\+Next\+Runway (
 \begin{DoxyParamCaption}
@@ -480,107 +198,43 @@ Gets the next runway (for taxiing) based on what the airplane is doing. ~\newlin
 \begin{DoxyReturn}{Returns}
 \+: Pointer to the found runway, N\+U\+LL if nothing is found. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-133                                                        \{
-134     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getNextRunway."});
-135     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(airplane != NULL, \textcolor{stringliteral}{"Airplane cannot be NULL."});
-136 
-137     \textcolor{comment}{// Iterate over all runways}
-138     vector<Runway*>::const\_iterator itr;
-139     vector<Runway*> runways = \hyperlink{classAirport_a14310ffeba8a024105071c156fd42cf7}{getRunways}();
-140     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i=0; i<runways.size(); i++) \{
-141 
-142         \textcolor{comment}{// if the current runway is found}
-143         \textcolor{keywordflow}{if} (runways[i]->getTaxiPoint() == airplane->\hyperlink{classAirplane_ab4fa66c0adb05725a51524265f8c520c}{getPosition}()) \{
-144 
-145             \textcolor{comment}{// Return the next runway based on the current action of the plane.}
-146             \textcolor{comment}{// Return NULL if no next runway is available.}
-147             \textcolor{keywordflow}{if} (airplane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fabe52f2e86df226a44cc8ba29e8f259b2}{kTaxiArrival} or airplane->
-      \hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fac8a18187b65420ae9ceda0d5073512ce}{kCrossingArrival}) \{
-148                 \textcolor{keywordflow}{return} (i == 0? NULL: runways[i-1]);
-149             \}
-150             \textcolor{keywordflow}{if} (airplane->\hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa3a6a40398243a8892b8084a9e0107015}{kTaxiDeparture} or airplane->
-      \hyperlink{classAirplane_a40bbb3024a476115700977c60bae2705}{getStatus}() == \hyperlink{Airplane_8h_a0e5bbf7c6c727baaba49062300fae19fa53315b4aeb1d32cbe1f8b8aacd283f2d}{kCrossingDeparture}) \{
-151                 \textcolor{keywordflow}{return} i+1 < runways.size()? runways[i+1]: NULL;
-152             \}
-153         \}
-154     \}
-155 
-156     \textcolor{keywordflow}{return} NULL;
-157 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!get\+Runway@{get\+Runway}}
 \index{get\+Runway@{get\+Runway}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Runway(const string \&) const }{getRunway(const string &) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway} $\ast$ Airport\+::get\+Runway (
+\subsubsection[{\texorpdfstring{get\+Runway(const std\+::string \&) const }{getRunway(const std::string &) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Runway} $\ast$ Airport\+::get\+Runway (
 \begin{DoxyParamCaption}
-\item[{const string \&}]{taxipoint}
+\item[{const std\+::string \&}]{}
 \end{DoxyParamCaption}
-) const}\hypertarget{classAirport_a15405cc39a7a397466fff1d54cc738d1}{}\label{classAirport_a15405cc39a7a397466fff1d54cc738d1}
+) const}\hypertarget{classAirport_a49a0963b8e15ad1fd299c9ccf2c97ab4}{}\label{classAirport_a49a0963b8e15ad1fd299c9ccf2c97ab4}
 Searches the runway with the given taxipoint. ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling get\+Runway.\char`\"{}); \begin{DoxyReturn}{Returns}
 \+: Pointer to the found runway, N\+U\+LL if nothing is found. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-116                                                         \{
-117     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getRunway."});
-118 
-119     \textcolor{comment}{// Iterate over all runways}
-120     vector<Runway*>::const\_iterator itr;
-121     \textcolor{keywordflow}{for} (itr = fRunways.begin(); itr != fRunways.end(); ++itr) \{
-122         \textcolor{keywordflow}{if} ((*itr)->getTaxiPoint() == taxipoint) \{
-123 
-124             \textcolor{comment}{// If a runway with the taxipoint exist, return a pointer to it.}
-125             \textcolor{keywordflow}{return} *itr;
-126         \}
-127     \}
-128 
-129     \textcolor{comment}{// If nothing is found, return null pointer.}
-130     \textcolor{keywordflow}{return} NULL;
-131 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!get\+Runways@{get\+Runways}}
-\index{get\+Runways@{get\+Runways}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{get\+Runways() const }{getRunways() const }}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Runway} $\ast$ $>$ Airport\+::get\+Runways (
+\index{Airport@{Airport}!graphics\+I\+NI@{graphics\+I\+NI}}
+\index{graphics\+I\+NI@{graphics\+I\+NI}!Airport@{Airport}}
+\subsubsection[{\texorpdfstring{graphics\+I\+N\+I(const std\+::vector$<$ Flight\+Plan $\ast$ $>$ \&plans)}{graphicsINI(const std::vector< FlightPlan * > &plans)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Airport\+::graphics\+I\+NI (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ {\bf Flight\+Plan} $\ast$ $>$ \&}]{plans}
+\end{DoxyParamCaption}
+)}\hypertarget{classAirport_aa280a5763b0dbc605e46b951b4e7781b}{}\label{classAirport_aa280a5763b0dbc605e46b951b4e7781b}
+Generates a string containing the info for use with the graphics engine ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling graphics\+I\+N\+I.\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em plans} & the flight plans \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string containing ini file 
+\end{DoxyReturn}
+\index{Airport@{Airport}!init\+Gates@{init\+Gates}}
+\index{init\+Gates@{init\+Gates}!Airport@{Airport}}
+\subsubsection[{\texorpdfstring{init\+Gates()}{initGates()}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::init\+Gates (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hypertarget{classAirport_a14310ffeba8a024105071c156fd42cf7}{}\label{classAirport_a14310ffeba8a024105071c156fd42cf7}
-
-\begin{DoxyCode}
-326                                           \{
-327     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-328     \textcolor{keywordflow}{return} fRunways;
-329 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!init\+Stack@{init\+Stack}}
-\index{init\+Stack@{init\+Stack}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{init\+Stack()}{initStack()}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::init\+Stack (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classAirport_a2a4915cb5db8ff9a992c262af3f333cb}{}\label{classAirport_a2a4915cb5db8ff9a992c262af3f333cb}
+)}\hypertarget{classAirport_ae207524a428ee2d93dd25ad5ef4fa1f7}{}\label{classAirport_ae207524a428ee2d93dd25ad5ef4fa1f7}
 Initializes the gate\+Stack ~\newline
- R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling init\+Stack.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(f\+Gate\+Stack.\+empty(), \char`\"{}\+Can\textquotesingle{}t initialize gate stack, already in use.\char`\"{}); 
-\begin{DoxyCode}
-47                         \{
-48     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling initStack."});
-49     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fGateStack.empty(), \textcolor{stringliteral}{"Can't initialize gate stack, already in use."});
-50 
-51     \textcolor{comment}{// Initialize the stack for our gates}
-52     \textcolor{comment}{// We count down so 1 is the last value to get pushed and first to get popped.}
-53     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = fGates; i > 0; --i) \{
-54         fGateStack.push(i);
-55     \}
-56 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!properly\+Initialized@{properly\+Initialized}}
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling init\+Gates.\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(get\+Gate\+Map().empty(), \char`\"{}\+Can\textquotesingle{}t initialize gate map, already in use.\char`\"{}); \index{Airport@{Airport}!properly\+Initialized@{properly\+Initialized}}
 \index{properly\+Initialized@{properly\+Initialized}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Airport\+::properly\+Initialized (
 \begin{DoxyParamCaption}
@@ -590,128 +244,39 @@ Initializes the gate\+Stack ~\newline
 Checks if the object is properly initialized \begin{DoxyReturn}{Returns}
 \+: Boolean indicating if properly initialized or not. 
 \end{DoxyReturn}
-
-\begin{DoxyCode}
-342                                         \{
-343     \textcolor{keywordflow}{return} fInitCheck == \textcolor{keyword}{this};
-344 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!restore\+Gate@{restore\+Gate}}
 \index{restore\+Gate@{restore\+Gate}!Airport@{Airport}}
 \subsubsection[{\texorpdfstring{restore\+Gate(int id)}{restoreGate(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::restore\+Gate (
 \begin{DoxyParamCaption}
-\item[{{\bf int}}]{id}
+\item[{int}]{id}
 \end{DoxyParamCaption}
 )}\hypertarget{classAirport_ad93ec78d36fa040b97e6ff2a806e5885}{}\label{classAirport_ad93ec78d36fa040b97e6ff2a806e5885}
 Restores a gate, making it available for use again. ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling restore\+Gate.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(id $<$= f\+Gates \&\& id $>$ 0, \char`\"{}\+Gate I\+D is invalid.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(f\+Gates $>$ 0, \char`\"{}\+Airport has no gates.\char`\"{}); ~\newline
- E\+N\+S\+U\+RE(f\+Gate\+Stack.\+top() == id, \char`\"{}\+Gate was not properly added to stack\char`\"{}); 
+ R\+E\+Q\+U\+I\+RE(id $<$= get\+Gates() \&\& id $>$ 0, \char`\"{}\+Gate I\+D is invalid.\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(get\+Gate\+Map()\mbox{[}id\mbox{]}, \char`\"{}\+Gate has to be in use to restore it\char`\"{}); 
 \begin{DoxyParams}{Parameters}
 {\em id} & ID of gate to restore \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyCode}
-73                                 \{
-74     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling restoreGate."});
-75     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(fGates > 0, \textcolor{stringliteral}{"Airport has no gates."});
-76     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(id <= fGates && id > 0, \textcolor{stringliteral}{"Gate ID is invalid."});
-77 
-78     \textcolor{comment}{// Check if gate is already in fGateStack}
-79     stack<int> copy = fGateStack;
-80     \textcolor{keywordflow}{while} (!copy.empty()) \{
-81         \textcolor{keywordtype}{int} elem = copy.top();
-82         copy.pop();
-83         \textcolor{keywordflow}{if} (elem == \textcolor{keywordtype}{id}) \{
-84             \textcolor{comment}{// If it is, we can return.}
-85             \textcolor{keywordflow}{return};
-86         \}
-87     \}
-88     \textcolor{comment}{// If it isn't, push the gate ID back on the stack.}
-89     Airport::fGateStack.push(\textcolor{keywordtype}{id});
-90 
-91     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fGateStack.top() == id, \textcolor{stringliteral}{"Gate was not properly added to stack"});
-92 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!set\+Callsign@{set\+Callsign}}
-\index{set\+Callsign@{set\+Callsign}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{set\+Callsign(const string \&f\+Callsign)}{setCallsign(const string &fCallsign)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::set\+Callsign (
-\begin{DoxyParamCaption}
-\item[{const string \&}]{f\+Callsign}
-\end{DoxyParamCaption}
-)}\hypertarget{classAirport_a5e682d5e40ba9513f075348d51a9cb53}{}\label{classAirport_a5e682d5e40ba9513f075348d51a9cb53}
-
-\begin{DoxyCode}
-308                                                 \{
-309     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-310     fCallsign = callsign;
-311     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fCallsign == callsign, \textcolor{stringliteral}{"Field wasn't set properly"});
-312 \}
-\end{DoxyCode}
 \index{Airport@{Airport}!set\+Gates@{set\+Gates}}
 \index{set\+Gates@{set\+Gates}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{set\+Gates(int f\+Gates)}{setGates(int fGates)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::set\+Gates (
+\subsubsection[{\texorpdfstring{set\+Gates(int gates)}{setGates(int gates)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::set\+Gates (
 \begin{DoxyParamCaption}
-\item[{{\bf int}}]{f\+Gates}
+\item[{int}]{gates}
 \end{DoxyParamCaption}
-)}\hypertarget{classAirport_af2c69fb8b654073f978b9bf373b3216f}{}\label{classAirport_af2c69fb8b654073f978b9bf373b3216f}
+)}\hypertarget{classAirport_a9c7d8fabce9110b49c2b9426e9527420}{}\label{classAirport_a9c7d8fabce9110b49c2b9426e9527420}
 Set the amount of gates in the airport. ~\newline
  R\+E\+Q\+U\+I\+RE(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properly\+Initialized()}, \char`\"{}\+Airport wasn\textquotesingle{}t properly initialized when calling getter/setter.\char`\"{}); ~\newline
- R\+E\+Q\+U\+I\+RE(f\+Gates $>$= 0, \char`\"{}\+Number of gates cannot be negative!\char`\"{}); ~\newline
- E\+N\+S\+U\+RE(f\+Gates == gates, \char`\"{}\+Field wasn\textquotesingle{}t set properly\char`\"{}); 
+ R\+E\+Q\+U\+I\+RE(get\+Gates() $>$= 0, \char`\"{}\+Number of gates cannot be negative!\char`\"{}); ~\newline
+ E\+N\+S\+U\+RE(get\+Gates() == gates, \char`\"{}\+Field wasn\textquotesingle{}t set properly\char`\"{}); 
 \begin{DoxyParams}{Parameters}
-{\em f\+Gates} & Amount of gates. \\
+{\em gates} & Amount of gates. \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyCode}
-319                                 \{
-320     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-321     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(gates >= 0, \textcolor{stringliteral}{"Number of gates cannot be negative!"});
-322     fGates = gates;
-323     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fGates == gates, \textcolor{stringliteral}{"Field wasn't set properly"});
-324 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!set\+Iata@{set\+Iata}}
-\index{set\+Iata@{set\+Iata}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{set\+Iata(const string \&f\+Iata)}{setIata(const string &fIata)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::set\+Iata (
-\begin{DoxyParamCaption}
-\item[{const string \&}]{f\+Iata}
-\end{DoxyParamCaption}
-)}\hypertarget{classAirport_ae4698bb1842fc83574c1650425c8daa6}{}\label{classAirport_ae4698bb1842fc83574c1650425c8daa6}
-
-\begin{DoxyCode}
-297                                         \{
-298     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-299     fIata = iata;
-300     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fIata == iata, \textcolor{stringliteral}{"Field wasn't set properly"});
-301 \}
-\end{DoxyCode}
-\index{Airport@{Airport}!set\+Name@{set\+Name}}
-\index{set\+Name@{set\+Name}!Airport@{Airport}}
-\subsubsection[{\texorpdfstring{set\+Name(const string \&f\+Name)}{setName(const string &fName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Airport\+::set\+Name (
-\begin{DoxyParamCaption}
-\item[{const string \&}]{f\+Name}
-\end{DoxyParamCaption}
-)}\hypertarget{classAirport_aef847257fe845bbcbc2ac446663481c0}{}\label{classAirport_aef847257fe845bbcbc2ac446663481c0}
-
-\begin{DoxyCode}
-286                                         \{
-287     \hyperlink{DesignByContract_8h_aeb774672b46dbe80afc14e0d1970f017}{REQUIRE}(\hyperlink{classAirport_a1ac3a730b557a36ac7521cce6ab64722}{properlyInitialized}(), \textcolor{stringliteral}{"Airport wasn't properly initialized when
-       calling getter/setter."});
-288     fName = name;
-289     \hyperlink{DesignByContract_8h_ab8da60ea2bcdd55183cc29d8526e6857}{ENSURE}(fName == name, \textcolor{stringliteral}{"Field wasn't set properly"});
-290 \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/\hyperlink{Airport_8h}{Airport.\+h}\item 
-/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/\hyperlink{Airport_8cpp}{Airport.\+cpp}\end{DoxyCompactItemize}
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/Airport.\+h\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/Airport.\+cpp\end{DoxyCompactItemize}
