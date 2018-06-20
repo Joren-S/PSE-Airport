@@ -1,13 +1,13 @@
-[12:17] Cessna 842 is approaching Antwerp International Airport at 10.000ft.
-[12:18] Cessna 842 descended to 9.000ft.
-[12:19] Cessna 842 descended to 8.000ft.
-[12:20] Cessna 842 descended to 7.000ft.
-[12:21] Cessna 842 descended to 6.000ft.
-[12:22] Cessna 842 descended to 5.000ft.
-[12:25] Cessna 842 descended to 4.000ft.
-[12:26] Cessna 842 descended to 3.000ft.
-[12:29] Cessna 842 descended to 2.000ft.
-[12:30] Cessna 842 descended to 1.000ft.
+[12:17] Cessna 842 is approaching Antwerp International Airport at 10000ft.
+[12:18] Cessna 842 descended to 9000ft.
+[12:19] Cessna 842 descended to 8000ft.
+[12:20] Cessna 842 descended to 7000ft.
+[12:21] Cessna 842 descended to 6000ft.
+[12:22] Cessna 842 descended to 5000ft.
+[12:25] Cessna 842 descended to 4000ft.
+[12:26] Cessna 842 descended to 3000ft.
+[12:29] Cessna 842 descended to 2000ft.
+[12:30] Cessna 842 descended to 1000ft.
 [12:31] Cessna 842 is landing at Antwerp International Airport on runway 12B
 [12:33] Cessna 842 has landed at Antwerp International Airport on runway 12B
 [12:41] Cessna 842 has taxied to holding point at 11L
@@ -15,5 +15,5 @@
 [12:50] Cessna 842 has taxied to holding point at 11R
 [12:54] Cessna 842 crossed 11R.
 [12:59] Cessna 842 is standing at Gate 1
-[13:03] 8 passengers exited Cessna 842 at gate 1 of Antwerp International Airport
-[13:04] Cessna 842 has been checked for technical malfunctions
+[13:04] 8 passengers exited Cessna 842 at gate 1 of Antwerp International Airport
+[13:05] Cessna 842 has been checked for technical malfunctions

@@ -1,15 +1,25 @@
-[12:17] Cessna 842 is approaching Antwerp International Airport at 10.000ft.
-[12:18] Cessna 842 descended to 9.000ft.
-[12:19] Cessna 842 descended to 8.000ft.
-[12:20] Cessna 842 descended to 7.000ft.
-[12:21] Cessna 842 descended to 6.000ft.
-[12:22] Cessna 842 descended to 5.000ft.
-[12:25] Cessna 842 descended to 4.000ft.
-[12:26] Cessna 842 descended to 3.000ft.
-[12:29] Cessna 842 descended to 2.000ft.
-[12:30] Cessna 842 descended to 1.000ft.
-[12:31] Cessna 842 is landing at Antwerp International Airport on runway 11R
-[12:33] Cessna 842 has landed at Antwerp International Airport on runway 11R
-[12:41] Cessna 842 is standing at Gate 1
-[12:45] 8 passengers exited Cessna 842 at gate 1 of Antwerp International Airport
-[12:46] Cessna 842 has been checked for technical malfunctions
+[12:17] Cessna 842 is approaching Antwerp International Airport at 10000ft.
+[12:17] Cessna 842 has ran out of fuel and has requested an emergency landing on Antwerp International Airport.
+[12:18] Cessna 842 descended to 9500ft. (EL).
+[12:19] Cessna 842 descended to 9000ft. (EL).
+[12:20] Cessna 842 descended to 8500ft. (EL).
+[12:21] Cessna 842 descended to 8000ft. (EL).
+[12:22] Cessna 842 descended to 7500ft. (EL).
+[12:23] Cessna 842 descended to 7000ft. (EL).
+[12:24] Cessna 842 descended to 6500ft. (EL).
+[12:25] Cessna 842 descended to 6000ft. (EL).
+[12:26] Cessna 842 descended to 5500ft. (EL).
+[12:27] Cessna 842 descended to 5000ft. (EL).
+[12:28] Cessna 842 descended to 4500ft. (EL).
+[12:29] Cessna 842 descended to 4000ft. (EL).
+[12:30] Cessna 842 descended to 3500ft. (EL).
+[12:31] Cessna 842 descended to 3000ft. (EL).
+[12:32] Cessna 842 descended to 2500ft. (EL).
+[12:33] Cessna 842 descended to 2000ft. (EL).
+[12:34] Cessna 842 descended to 1500ft. (EL).
+[12:35] Cessna 842 descended to 1000ft. (EL).
+[12:36] Cessna 842 descended to 500ft. (EL).
+[12:37] Cessna 842 has made an emergency landing at Antwerp International Airport.
+[12:45] Cessna 842 is standing at Gate 1
+[12:50] 8 passengers exited Cessna 842 at gate 1 of Antwerp International Airport
+[12:51] Cessna 842 has been checked for technical malfunctions

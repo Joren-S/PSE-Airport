@@ -7,36 +7,42 @@ $ Speedbird four six six, Antwerp Tower, cleared to one one lima, maintain five 
 [12:12][Speedbird 466]
 $ Cleared to one one lima, initial altitude five thousand, expecting one zero zero in ten, squawking zero, Speedbird four six six.
 
-[12:22][Speedbird 466]
+[12:27][Speedbird 466]
 $ Speedbird four six six, Speedbird four six six at gate one, requesting pushback.
 
-[12:23][Antwerp Tower]
+[12:28][Antwerp Tower]
 $ Speedbird four six six, Antwerp Tower, pushback approved.
 
-[12:24][Speedbird 466]
+[12:29][Speedbird 466]
 $ Pushback approved, Speedbird four six six.
 
-[12:27][Speedbird 466]
+[12:32][Speedbird 466]
 $ Speedbird four six six is ready to taxi.
 
-[12:28][Antwerp Tower]
+[12:33][Antwerp Tower]
 $ Speedbird four six six, taxi to holding point one one lima via Alpha.
 
-[12:35][Speedbird 466]
+[12:40][Speedbird 466]
 $ Antwerp Tower, Speedbird four six six, holding short at one one lima.
 
-[12:36][Antwerp Tower]
+[12:41][Antwerp Tower]
 $ Speedbird four six six, hold position.
 
-[12:37][Speedbird 466]
+[12:42][Speedbird 466]
 $ Holding position, Speedbird four six six.
 
-[12:38][Speedbird 466]
+[12:43][Speedbird 466]
 $ Antwerp Tower, Speedbird four six six, holding short at one one lima.
 
-[12:39][Antwerp Tower]
+[12:44][Antwerp Tower]
 $ Speedbird four six six, runway one one lima cleared for take-off.
 
-[12:40][Speedbird 466]
+[12:45][Speedbird 466]
 $ Runway one one lima cleared for take-off, Speedbird four six six.
+
+[12:47][Speedbird 466]
+$ Mayday mayday mayday, Antwerp Tower, Speedbird four six six, out of fuel, performing emergency landing, one zero persons on board.
+
+[12:48][Antwerp Tower]
+$ Speedbird four six six, roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!
 

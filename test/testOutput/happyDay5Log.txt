@@ -1,11 +1,12 @@
-[12:12] Boeing 747 is being refueled
-[12:12] 10 passengers are boarding Boeing 747 at Gate 1 of Antwerp International Airport
-[12:12] Boeing 747 is standing at Gate 1
-[12:24] Boeing 747 is being pushed back
-[12:29] Boeing 747 has started taxiing to runway 11L
-[12:41] Boeing 747 ascended to 1.000 ft.
-[12:42] Boeing 747 ascended to 2.000 ft.
-[12:43] Boeing 747 ascended to 3.000 ft.
-[12:44] Boeing 747 ascended to 4.000 ft.
-[12:45] Boeing 747 ascended to 5.000 ft.
-[12:46] Boeing 747 has left Antwerp International Airport
+[12:12] Speedbird 466 is being refueled
+[12:12] 10 passengers are boarding Speedbird 466 at Gate 1 of Antwerp International Airport
+[12:12] Speedbird 466 is standing at Gate 1
+[12:29] Speedbird 466 is being pushed back
+[12:34] Speedbird 466 has started taxiing to runway 11L
+[12:46] Speedbird 466 ascended to 1000ft.
+[12:47] Speedbird 466 ascended to 2000ft.
+[12:47] Speedbird 466 has ran out of fuel and is making an urgent emergency landing outside Antwerp International Airport.
+[12:48] Speedbird 466 descended to 1500ft. (EL).
+[12:49] Speedbird 466 descended to 1000ft. (EL).
+[12:50] Speedbird 466 descended to 500ft. (EL).
+[12:51] Speedbird 466 has made an emergency landing outside Antwerp International Airport.
