@@ -24,6 +24,7 @@ Time::Time(const Time &time) {
 }
 
 string Time::formatted() const {
+    REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling setMinute");
     // Set up an output string stream
     ostringstream stream;
 
@@ -98,6 +99,10 @@ bool Time::operator==(const Time& time) const {
 
 
 bool Time::operator<(const Time& time) const {
+    // If it's midnight, return true
+    if (time == Time() and !(*this == Time())) {
+        return false;
+    }
     if (this->getHour() < time.getHour()) {
         return true;
     }

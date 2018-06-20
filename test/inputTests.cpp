@@ -58,7 +58,7 @@ TEST_F(inputTest, HappyDay) {
     EXPECT_EQ(runway2->getLength(), 1010);
     EXPECT_EQ(runway2->getTaxiPoint(), "Bravo");
 
-    // Flightplan
+    // FlightPlan
     EXPECT_EQ(flightplan->getDestination(), "LCY");
     EXPECT_EQ(flightplan->getDeparture(), 30);
     EXPECT_EQ(flightplan->getArrival(), 15);

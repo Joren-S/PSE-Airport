@@ -14,7 +14,7 @@
 #include "DesignByContract.h"
 #include "Runway.h"
 #include "Time.h"
-#include "Flightplan.h"
+#include "FlightPlan.h"
 #include "Graphics.h"
 
 /**
@@ -124,9 +124,9 @@ public:
      * @param plans: the flight plans to access the planes
      * @return string containing the impression.
      */
-    std::string drawImpression(const Time& time, const std::vector<Flightplan *>& plans) const;
+    std::string drawImpression(const Time& time, const std::vector<FlightPlan *>& plans) const;
 
-    std::string graphicsINI(const std::vector<Flightplan *>& plans);
+    std::string graphicsINI(const std::vector<FlightPlan *>& plans);
 
     /**
      * Set the amount of gates in the airport.

@@ -40,58 +40,7 @@ struct Comparator {
 };
 
 class ATC {
-private:
 
-    /**
-     * Pointer to the ATC object to check for proper initialization
-     */
-    ATC *fInitCheck;
-
-    /**
-     * Output stream.
-     */
-    std::ostream& fStream;
-
-    /**
-     * Queue of messages.
-     */
-    std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> fQueue;
-
-    /**
-     * Object that keeps track of current time
-     */
-    Time fTime;
-
-    /**
-    * Time when ATC was last active.
-    */
-    Time fLastActive;
-
-    /**
-     * Bool if 3.000ft is occupied.
-     */
-    bool f3Occupied;
-
-    /**
-     * Bool if 5.000ft is occupied.
-     */
-    bool f5Occupied;
-
-    /**
-     * Pointer to the airport the ATC is located in.
-     */
-    Airport* fAirport;
-
-    /**
-     * The std::set of used squawk codes
-     */
-    std::set<int> fUsedCodes;
-    
-    /**
-     * Bool indicating if tests are running
-     * Gives back 0 for all squawk codes
-     */
-    bool fTest;
 
 public:
 
@@ -261,23 +210,73 @@ public:
     */
     void setTime(Time);
 
+    ////////////////
+    ///  Getters and setters for the fields of the class.
+    ///  For all:
+    ///  REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    ///  For setters;
+    ///  ENSURE(getField == value, "Field wasn't std::set properly");
+    ///  where getField is specific for the member
+    ///////////////
 
-    /**
-     * Getters and setters for the fields of the class.
-     * \n REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
-     *
-     * Setters:
-     * \n ENSURE(fField == value, "Field wasn't std::set properly");
-     */
     std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> *getQueue();
-    void setLastActive(Time);
-    Time getLastActive() const;
     Airport* getAirport() const;
     void setAirport(Airport*);
     bool get3occupied() const;
     void set3occupied(bool);
     bool get5occupied() const;
     void set5occupied(bool);
+    void setTestMode(bool);
+    bool isTestMode() const;
+
+private:
+
+    /**
+     * Output stream.
+     */
+    std::ostream& fStream;
+
+    /**
+     * Queue of messages.
+     */
+    std::priority_queue<ATCRequest*, std::vector<ATCRequest*>, Comparator> fQueue;
+
+    /**
+     * Object that keeps track of current time
+     */
+    Time fTime;
+
+    /**
+     * Bool if 3.000ft is occupied.
+     */
+    bool f3Occupied;
+
+    /**
+     * Bool if 5.000ft is occupied.
+     */
+    bool f5Occupied;
+
+    /**
+     * Pointer to the airport the ATC is located in.
+     */
+    Airport* fAirport;
+
+    /**
+     * The std::set of used squawk codes
+     */
+    std::set<int> fUsedCodes;
+
+    /**
+     * Bool indicating if tests are running
+     * Gives back 0 for all squawk codes
+     */
+    bool fTest;
+
+    /**
+    * Pointer to the ATC object to check for proper initialization
+    */
+    ATC *fInitCheck;
+
 };
 
 

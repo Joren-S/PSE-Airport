@@ -12,12 +12,17 @@ System::System(const Input& input, ostream& atc, const Time& end): fEndTime(end)
     REQUIRE(!input.getAirports().empty(), "There has to be an airport in the input to start the simulation");
     
     // Make new atc
-    fATC = new ATC(atc);
+    fATC = new ATC(atc, false);
 
     // Get input
     fAirport = input.getAirports()[0];
     fATC->setAirport(fAirport);
     fFlightPlans = input.getFlightPlans();
+
+    // Set atc for all airplanes
+    for (unsigned int i=0; i<fFlightPlans.size(); i++) {
+        fFlightPlans[i]->getAirplane()->setATC(fATC);
+    }
 
     fInitCheck = this;
     ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
@@ -38,8 +43,8 @@ void System::info(ostream& out) {
     out << endl;
     
     // Loop over flight plans
-    vector<Flightplan *>::iterator itr_air;
-    vector<Flightplan *> flightplans = getFlightPlans();
+    vector<FlightPlan *>::iterator itr_air;
+    vector<FlightPlan *> flightplans = getFlightPlans();
     for (itr_air = flightplans.begin(); itr_air < flightplans.end(); ++itr_air) {
         // Get airplane
         Airplane* cur_ap = (*itr_air)->getAirplane();
@@ -80,70 +85,46 @@ void System::info(ostream& out) {
 
 void System::run(ostream& log, const string& impressionName, const string& iniName) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
-    REQUIRE(fAirport != NULL, "No airport in the simulation.");
+    REQUIRE(getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
 
     while (!simulationFinished()) {
-
-        // Current time
         Time fTime = getATC()->getTime();
 
         // Each tick, we make sure our ATC handles requests.
         fATC->doHeartbeat(fTime);
 
-        // Set up ostream for impression
+        // Draw impression
         string name = impressionName + fTime.formatted();
         ofstream impression(name.c_str());
-
-        // Each tick, we draw a graphical impression of the airport.
-        string impressionStr = getAirport()->drawImpression(fTime, getFlightPlans());
-        impression << impressionStr;
+        impression << getAirport()->drawImpression(fTime, getFlightPlans());
         impression.close();
 
-        // Also generate an ini file for use with the graphics engine
+        // Generate an ini file for use with the graphics engine
         name = iniName + fTime.formatted() + ".ini";
         ofstream graphics(name.c_str());
         graphics << getAirport()->graphicsINI(getFlightPlans());
         graphics.close();
 
-        // Get flightplans and set up iterator
-        vector<Flightplan*>::iterator flightplanItr;
-
-        // Get flightplans
-        vector<Flightplan*> flightplans = getFlightPlans();
-
-        // Loop over flightplans
-        for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
-
-            // Change airplane status according to flightplan
-            // Get flightplan
-            Flightplan* flightplan = *flightplanItr;
-
-            // Get the event at this time
+        // Loop over flight plans
+        vector<FlightPlan*>::iterator itr;
+        vector<FlightPlan*> flightPlans = getFlightPlans();
+        for (itr = flightPlans.begin(); itr != flightPlans.end(); ++itr)
+        {
+            // Get info
+            FlightPlan* flightplan = *itr;
             EEvent event = flightplan->getEvent(fTime);
-
-            // Get the airplane
             Airplane* airplane = flightplan->getAirplane();
 
-            // Set the ATC of the airport the airplane is communicating with
-            airplane->setATC(fATC);
-
+            // Change status according to flight plan if plane is available
             if (airplane->getStatus() == kAway and event == kLand) {
                 airplane->setStatus(kApproaching);
             }
-
-            // Plane has to be at airport to takeoff
-            if (airplane->getStatus() == kParked and event == kTakeoff) {
+            else if (airplane->getStatus() == kParked and event == kTakeoff) {
                 airplane->setStatus(kAirport);
             }
 
-            airplane->land(log);
-
-            airplane->takeoff(log);
-
-            airplane->checkFuel(log);
-
-            airplane->decreaseTimeRemaining();
+            airplane->performNextStep(log);
         }
 
         // Advance time
@@ -151,7 +132,7 @@ void System::run(ostream& log, const string& impressionName, const string& iniNa
         getATC()->setTime(fTime);
     }
 
-    ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
+    ENSURE(simulationFinished(), "Simulation is not finished yet, error occurred");
 }
 
 bool System::simulationFinished() const {
@@ -167,7 +148,7 @@ Airport* System::getAirport() const {
     return System::fAirport;
 }
 
-vector<Flightplan*> System::getFlightPlans() const {
+vector<FlightPlan*> System::getFlightPlans() const {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans");
     return System::fFlightPlans;
 }
@@ -180,29 +161,17 @@ System::~System() {
     delete fATC;
 
     // Delete all flightplans, which in the destructor deletes the airplane
-    vector<Flightplan*>::iterator flightplanItr;
-    vector<Flightplan*> flightplans = getFlightPlans();
-    for (flightplanItr = flightplans.begin(); flightplanItr != flightplans.end(); ++flightplanItr) {
-        delete *flightplanItr;
+    vector<FlightPlan*>::iterator itr;
+    vector<FlightPlan*> flightplans = getFlightPlans();
+    for (itr = flightplans.begin(); itr != flightplans.end(); ++itr) {
+        delete *itr;
     }
-}
-
-
-void System::initializeATC(ostream &log, bool test) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling initializeATC");
-    fATC = new ATC(log, test);
-}
-
-void System::setEndTime(Time end) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling setEndTime");
-    fEndTime = end;
 }
 
 ATC* System::getATC() const {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
     return fATC;
 }
-
 
 void System::generateImages(Time start, Time end) {
     REQUIRE(this->properlyInitialized(), "System was't initialized when calling generateImages");

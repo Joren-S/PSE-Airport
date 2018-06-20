@@ -22,13 +22,13 @@ enum EEvent { kLand, kTakeoff, kNothing };
 /**
  * \brief: Class that represents a flight plan in the simulation
  */
-class Flightplan {
+class FlightPlan {
 private:
 
     /**
      * Pointer to itself
      */
-    Flightplan *fInitCheck;
+    FlightPlan *fInitCheck;
 
     /**
      * Airplane associated with the flightplan
@@ -61,12 +61,12 @@ public:
      * Default constructor
      * \n ENSURE(properlyInitialized(), "constructor must end in properlyInitialized state");
      */
-    Flightplan();
+    FlightPlan();
 
     /**
      * Destructor
      */
-    ~Flightplan();
+    ~FlightPlan();
 
     /**
      * Checks if the object is properly initialized

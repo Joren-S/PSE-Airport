@@ -157,7 +157,7 @@ Runway* Airport::getNextRunway(Airplane *airplane) const {
     return NULL;
 }
 
-string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>& plans) const {
+string Airport::drawImpression(const Time& time, const std::vector<FlightPlan *>& plans) const {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
 
     stringstream impression;
@@ -177,7 +177,7 @@ string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>
         // Iterate over flightplans
         bool planeFound = false;
         int planesAtTaxiPoint = 0;
-        vector<Flightplan*>::const_iterator j;
+        vector<FlightPlan*>::const_iterator j;
         for (j = plans.begin(); j != plans.end(); ++j) {
             Airplane *curPlane = (*j)->getAirplane();
 
@@ -254,7 +254,7 @@ string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>
 
     // Count the planes at the gates
     int planesAtGate = 0;
-    vector<Flightplan*>::const_iterator j;
+    vector<FlightPlan*>::const_iterator j;
     for (j = plans.begin(); j != plans.end(); ++j) {
         Airplane *curPlane = (*j)->getAirplane();
         EPlaneStatus status = curPlane->getStatus();
@@ -278,12 +278,12 @@ string Airport::drawImpression(const Time& time, const std::vector<Flightplan *>
 }
 
 
-std::string Airport::graphicsINI(const std::vector<Flightplan *>& plans) {
+std::string Airport::graphicsINI(const std::vector<FlightPlan *>& plans) {
     Graphics graphics(this);
     for (vector<Runway*>::const_iterator itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
         graphics.addElement(*itr);
     }
-    for (vector<Flightplan*>::const_iterator itr = plans.begin(); itr != plans.end(); ++itr) {
+    for (vector<FlightPlan*>::const_iterator itr = plans.begin(); itr != plans.end(); ++itr) {
         graphics.addElement((*itr)->getAirplane());
     }
     return graphics.generateINI(300, 80, 140);

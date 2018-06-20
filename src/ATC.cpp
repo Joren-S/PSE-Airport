@@ -300,15 +300,13 @@ priority_queue<ATCRequest*, vector<ATCRequest*>, Comparator> *ATC::getQueue() {
     return &fQueue;
 }
 
-void ATC::setLastActive(Time time) {
-    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
-    fLastActive = time;
-    ENSURE(fLastActive == time, "Field wasn't set properly");
+void ATC::setTestMode(bool in) {
+    fTest = in;
+    ENSURE(isTestMode() == in, "Field wasn't set properly");
 }
 
-Time ATC::getLastActive() const {
-    REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
-    return fLastActive;
+bool ATC::isTestMode() const {
+    return fTest;
 }
 
 Airport* ATC::getAirport() const {
@@ -319,7 +317,7 @@ Airport* ATC::getAirport() const {
 void ATC::setAirport(Airport *airport) {
     REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
     fAirport = airport;
-    ENSURE(fAirport == airport, "Field wasn't set properly");
+    ENSURE(getAirport() == airport, "Field wasn't set properly");
 }
 
 bool ATC::get3occupied() const {
@@ -330,7 +328,7 @@ bool ATC::get3occupied() const {
 void ATC::set3occupied(bool occupied) {
     REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
     f3Occupied = occupied;
-    ENSURE(f3Occupied == occupied, "Field wasn't set properly");
+    ENSURE(get3occupied() == occupied, "Field wasn't set properly");
 }
 
 bool ATC::get5occupied() const {
@@ -341,7 +339,7 @@ bool ATC::get5occupied() const {
 void ATC::set5occupied(bool occupied) {
     REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
     f5Occupied = occupied;
-    ENSURE(f5Occupied == occupied, "Field wasn't set properly");
+    ENSURE(get5occupied() == occupied, "Field wasn't set properly");
 }
 
 void ATC::processApproach(Airplane *airplane, Time time) {

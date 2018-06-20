@@ -15,12 +15,13 @@
 // Libraries
 #include "DesignByContract.h"
 #include "../tinyXML/tinyxml.h"
+#include "TestUtils.h"
 
 // Project headers
 #include "Airport.h"
 #include "Airplane.h"
 #include "Runway.h"
-#include "Flightplan.h"
+#include "FlightPlan.h"
 
 
 /**
@@ -36,12 +37,8 @@ public:
     Input();
 
     /**
-     * Checks if the object is properly initialized
-     */
-    bool properlyInitialized() const;
-
-    /**
      * Reads the given file and stores the information
+     * \n REQUIRE(TiXmlDocument::LoadFile(filename.c_str()), "Couldn't open $filename.");
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling read");
      * @param filename: name of the file with input
      * @param errorLog: output stream where errors will be written to
@@ -49,16 +46,16 @@ public:
     void read(const std::string& filename, std::ostream& errorLog = std::cerr);
 
     /**
-     * Adds an airport to the simulation
+     * Adds an airport if all data members are initialized.
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
      * \n REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
-     * \n ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
+     * \n ENSURE(getAirports().back() == airport, "Airplane was not added to simulation.");
      * @param airport: the airport to be added
      */
     void addAirport(Airport* airport);
 
     /**
-     * Adds a runway to the simulation with the given specifications
+     * Adds a runway if all data members are initialized.
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
      * \n REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
      * \n ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
@@ -67,19 +64,20 @@ public:
     void addRunway(Runway* runway);
 
     /**
-     * Adds a flightplan to the simulation with the given specifications
+     * Adds a flight plan if all data members are initialized.
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
-     * \n REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
-     * \n ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
-     * @param flightplan: the flightplan to be added
+     * \n REQUIRE(flightPlan->complete(), "FlightPlan has to be completely initialized to add it to the simulation");
+     * \n ENSURE(getFlightPlans().back() == flightPlan, "FlightPlan was not added to simulation.");
+     * @param flightPlan: the flight plan to be added
      */
-    void addFlightplan(Flightplan* flightplan);
+    void addFlightPlan(FlightPlan* flightPlan);
 
     /**
      * Finds an airport with a specific IATA.
      * \n Returns NULL if not found.
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
      * @param iata: the iata of the wanted airport
+     * @return the airport if found
      */
     Airport* findAirportByIATA(const std::string& iata) const;
 
@@ -91,35 +89,26 @@ public:
     std::vector<Airport*> getAirports() const;
 
     /**
-     * Getter for the flightplans in the simulation
-     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
-     * @return vec of all flightplans
+     * Getter for the flight plans in the simulation
+     * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightPlans");
+     * @return vec of all flight plans
      */
-    std::vector<Flightplan*> getFlightplans() const;
+    std::vector<FlightPlan*> getFlightPlans() const;
 
     /**
      * Checks if a given std::string is a valid unsigned int
      * \n REQUIRE(this->properlyInitialized(), "Input was't initialized when calling isNumber");
      * @param input: the std::string to be analyzed
+     * @return boolean isNumber
      */
     static bool isNumber(const std::string& input);
 
+    /**
+     * Checks if the object is properly initialized
+     */
+    bool properlyInitialized() const;
+
 private:
-
-    /**
-     * Pointer to itself
-     */
-    Input *fInitCheck;
-
-    /**
-     * Vector of pointers to all the airports
-     */
-    std::vector<Airport*> airports;
-
-    /**
-     * Vector of pointer to all the flightplans
-     */
-    std::vector<Flightplan*> flightplans;
 
     /**
      * Reads an airport from a given xml element
@@ -137,28 +126,42 @@ private:
 
     /**
      * Reads an airplane from a given xml element
-     * \n REQUIRE(!airports.empty(), "No airport in simulation");
      * @param elem: the xml element
      * @param errorLog: output stream where errors will be written to
      */
     void readAirplane(TiXmlElement *elem, std::ostream& errorLog);
 
     /**
-     * Reads a taxiroute and returns the name of the taxipoint of the runway.
-     * \n If invalid, returns the empty std::string.
+     * Reads a taxi route
      * @param elem: the xml element
      * @param airport: the airport where the taxiroute is in
      * @param errorLog: output stream where errors will be written to
+     * @return the name of the taxiPoint of the runway if found, else empty
      */
-    std::string readTaxiroute(TiXmlElement *elem, Airport* airport, std::ostream& errorLog);
+    std::string readTaxiRoute(TiXmlElement *elem, Airport* airport, std::ostream& errorLog);
 
     /**
-     * Reads a flightplan and returns a pointer to the newly made object.
-     * \n If invalid, returns NULL.
+     * Reads a flight plan
      * @param elem: the xml element
      * @param errorLog: output stream where errors will be written to
+     * @return pointer to the newly made object, if unsuccessful NULL
      */
-    Flightplan* readFlightplan(TiXmlElement *elem, std::ostream& errorLog);
+    FlightPlan* readFlightPlan(TiXmlElement *elem, std::ostream& errorLog);
+
+    /**
+     * Vector of pointers to all the airports
+     */
+    std::vector<Airport*> fAirports;
+
+    /**
+     * Vector of pointer to all the flightplans
+     */
+    std::vector<FlightPlan*> fFlightPlans;
+
+    /**
+     * Pointer to itself
+     */
+    Input *fInitCheck;
 
 };
 

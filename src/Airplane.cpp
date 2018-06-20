@@ -37,27 +37,20 @@ bool Airplane::complete() const {
             fModel.empty() or fCallsign.empty() or fNumber.empty());
 }
 
-void Airplane::decreaseAltitude(int difference) {
+void Airplane::decreaseAltitude() {
     REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseAltitude");
-    REQUIRE(difference > 0, "Difference can't be negative");
-    REQUIRE(fAltitude - difference >= 0, "New altitude can't be less than 0!");
-    int oldAltitude = Airplane::fAltitude;
-    Airplane::fAltitude -= difference;
-    ENSURE(fAltitude == oldAltitude - difference, "Altitude hasn't been decreased correctly.");
+    Airplane::fAltitude -= 1000;
 }
 
-void Airplane::increaseAltitude(int difference) {
+void Airplane::increaseAltitude() {
     REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling increaseAltitude");
-    REQUIRE(difference > 0, "Difference can't be negative");
-    int oldAltitude = Airplane::fAltitude;
-    Airplane::fAltitude += difference;
-    ENSURE(fAltitude == oldAltitude + difference, "Altitude hasn't been increased correctly.");
+    Airplane::fAltitude += 1000;
 }
 
 int Airplane::getFuelCost() {
     REQUIRE(this->properlyInitialized(), "Airplane was not properly initialized when calling getFuelCost");
-    REQUIRE(fEngine != kDefaultEngine, "Invalid engine type for calculating fuel.");
-    REQUIRE(fSize != kDefaultSize, "Invalid size for calculating fuel.");
+    REQUIRE(getEngine() != kDefaultEngine, "Invalid engine type for calculating fuel.");
+    REQUIRE(getSize() != kDefaultSize, "Invalid size for calculating fuel.");
 
     int result = -1;
     if (fSize == kSmall) {
@@ -482,7 +475,7 @@ void Airplane::descend(ostream& log) {
     // Plane is descending
     if ((getAltitude() != 5000 and getAltitude() != 3000) or getRequest() == kConfirmed) {
         // Decrease the altitude
-        decreaseAltitude(1000);
+        decreaseAltitude();
 
         // If plane is at one of the key altitudes, send a request to atc
         if (getAltitude() == 5000 or getAltitude() == 3000) {
@@ -750,54 +743,6 @@ void Airplane::technicalCheck(ostream &log) {
     // Set request status to idle
     setRequest(kIdle);
 }
-
-void Airplane::land(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling land");
-
-    // If time remaining is not 0, plane is still busy
-    if (getTimeRemaining() != 0) {
-        return;
-    }
-
-    // Plane is approaching
-    if (getStatus() == kApproaching) {
-        approach(log);
-    }
-
-        // Plane is descending
-    else if (getStatus() == kDescending) {
-        descend(log);
-    }
-
-        // Plane is circling
-    else if (getStatus() == kCircling) {
-        circle(log);
-    }
-
-        // Plane is taxiing
-    else if (getStatus() == kTaxiArrival) {
-        taxiArrival(log);
-    }
-
-        // Plane is crossing a runway
-    else if (getStatus() == kCrossingArrival) {
-        crossArrival(log);
-    }
-
-        // Plane is deboarding
-    else if (getStatus() == kDeboarding) {
-        deboard(log);
-    }
-
-        // Plane is having a technical check
-    else if (getStatus() == kTechnicalCheck) {
-        technicalCheck(log);
-    }
-}
-
-
-
-// ---- TAKE-OFF ----
 
 void Airplane::prepare(ostream& fLog) {
     REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare.");
@@ -1128,7 +1073,7 @@ void Airplane::ascend(ostream &fLog) {
     if (getAltitude() < 5000) {
 
         // Ascend 1000 ft
-        increaseAltitude(1000);
+        increaseAltitude();
         setTimeRemaining(getEngine() == kPropeller? 2 : 1);
         fLog << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " ascended to " << getAltitude() << "ft." << endl;
     }
@@ -1143,55 +1088,66 @@ void Airplane::ascend(ostream &fLog) {
     return;
 }
 
-void Airplane::takeoff(ostream& fLog) {
+
+void Airplane::performNextStep(ostream& log) {
     REQUIRE(fATC->properlyInitialized(), "ATC was not properly initialized.");
     REQUIRE(fATC->getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(fATC->getAirport()->properlyInitialized(), "ATC was not properly initialized.");
     REQUIRE(properlyInitialized(), "Plane was not properly initialized.");
 
-    // if plane is still busy, we do nothing
+    // If plane is still busy, we do nothing
     if (getTimeRemaining() == 0) {
-
-        EPlaneStatus status = getStatus();
-
-        // if plane is at airport, but not yet refueled and boarded
-        if (status == kAirport) {
-            prepare(fLog);
-        }
-
-        // plane is done refueling and boarding
-        if (status == kGate) {
-            pushback(fLog);
-        }
-
-        // plane is done pushing back
-        if (status == kPushback) {
-            taxiDepartureStart(fLog);
-        }
-
-        // plane is at a taxipoint
-        if (status == kTaxiDeparture) {
-            taxiDepartureStep(fLog);
-        }
-
-        // plane is done crossing runway
-        if (status == kCrossingDeparture) {
-            taxiDepartureCross(fLog);
-        }
-
-        // Plane is done taxiing and is waiting at runway
-        if (status == kWaitingForDeparture) {
-            atRunway(fLog);
-        }
-
-        // Plane is waiting on runway
-        if (status == kDeparture) {
-            onRunway(fLog);
-        }
-
-        // Plane is taking off
-        if (status == kAscending) {
-            ascend(fLog);
-        }
+        return;
     }
+
+    EPlaneStatus status = getStatus();
+
+    if (status == kApproaching) {
+        approach(log);
+    }
+    else if (status == kDescending) {
+        descend(log);
+    }
+    else if (status == kCircling) {
+        circle(log);
+    }
+    else if (status == kTaxiArrival) {
+        taxiArrival(log);
+    }
+    else if (status == kCrossingArrival) {
+        crossArrival(log);
+    }
+    else if (status == kDeboarding) {
+        deboard(log);
+    }
+    else if (status == kTechnicalCheck) {
+        technicalCheck(log);
+    }
+    else if (status == kAirport) {
+        prepare(log);
+    }
+    else if (status == kGate) {
+        pushback(log);
+    }
+    else if (status == kPushback) {
+        taxiDepartureStart(log);
+    }
+    else if (status == kTaxiDeparture) {
+        taxiDepartureStep(log);
+    }
+    else if (status == kCrossingDeparture) {
+        taxiDepartureCross(log);
+    }
+    else if (status == kWaitingForDeparture) {
+        atRunway(log);
+    }
+    else if (status == kDeparture) {
+        onRunway(log);
+    }
+    else if (status == kAscending) {
+        ascend(log);
+    }
+
+    checkFuel(log);
+    decreaseTimeRemaining();
 }

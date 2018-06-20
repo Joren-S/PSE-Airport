@@ -11,11 +11,12 @@ using namespace std;
 void Input::read(const string &filename, ostream& errorLog) {
     // Load xml file, program will end if failed
     TiXmlDocument xml;
-    string error = "Couldn't open " + filename + ".";
     if (!xml.LoadFile(filename.c_str())) {
         errorLog << xml.ErrorDesc() << endl;
         xml.Clear();
     }
+
+    string error = "Couldn't open " + filename + ".";
     REQUIRE(xml.LoadFile(filename.c_str()), error.c_str());
 
     // We iterate over all root elements.
@@ -52,7 +53,7 @@ Input::Input() {
 }
 
 void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
-    REQUIRE(!airports.empty(), "No airport in simulation");
+    REQUIRE(!fAirports.empty(), "No airport in simulation");
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
@@ -60,7 +61,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
     Airplane *tmp = new Airplane();
 
     // Pointer to the associated flightplan
-    Flightplan* flightplan = NULL;
+    FlightPlan* flightplan = NULL;
 
     //  We iterate over all members, check if it's a valid element and if so, add it to our object.
     for (; elem != NULL; elem = elem->NextSiblingElement()) {
@@ -155,7 +156,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
             tmp->setCurFuel(tmp->getFuel());
         }
 
-        // Flightplan
+        // FlightPlan
         else if (strcmp(elem->Value(), "FLIGHTPLAN") == 0) {
             // Check if there already was a flightplan
             if (flightplan != NULL) {
@@ -165,9 +166,9 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
             }
 
             // Read the flightplan, it returns a pointer to the object
-            flightplan = readFlightplan(elem->FirstChildElement(), errorLog);
+            flightplan = readFlightPlan(elem->FirstChildElement(), errorLog);
 
-            // Flightplan is NULL when there was an error
+            // FlightPlan is NULL when there was an error
             if (flightplan == NULL) {
                 fieldCount = -1;
                 errorLog << "Didn't add airplane because of invalid flightplan." << endl;
@@ -177,7 +178,7 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
             // Set gate and altitude of plane
             if (flightplan->getArrival() > flightplan->getDeparture()) {
                 tmp->setStatus(kParked);
-                tmp->setGateID(airports[0]->getFreeGate());
+                tmp->setGateID(fAirports[0]->getFreeGate());
             }
 
             // Set plane in flightplan
@@ -209,14 +210,14 @@ void Input::readAirplane(TiXmlElement *elem, ostream& errorLog) {
     if (flightplan != NULL) {
         // Restore gate in airport
         if (tmp->getGateID() != -1) {
-            airports[0]->restoreGate(tmp->getGateID());
+            fAirports[0]->restoreGate(tmp->getGateID());
         }
 
         // Delete the flightplan
         delete flightplan;
 
         // Pop flightplan from vector
-        flightplans.pop_back();
+        fFlightPlans.pop_back();
     }
 }
 
@@ -284,7 +285,7 @@ void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
                 break;
             }
             // Read the taxiroute
-            string taxipoint = readTaxiroute(elem->FirstChildElement(), tmp->getAirport(), errorLog);
+            string taxipoint = readTaxiRoute(elem->FirstChildElement(), tmp->getAirport(), errorLog);
 
             // Not valid
             if (taxipoint.empty()) {
@@ -323,7 +324,7 @@ void Input::readRunway(TiXmlElement *elem, ostream& errorLog) {
     delete tmp;
 }
 
-string Input::readTaxiroute(TiXmlElement *elem, Airport* airport, ostream& errorLog) {
+string Input::readTaxiRoute(TiXmlElement *elem, Airport* airport, ostream& errorLog) {
     string returnstr;
     string error = "Inconsistent taxiroute data, runway will not be added.";
     bool taxipoint = true;
@@ -443,12 +444,12 @@ void Input::readAirport(TiXmlElement *elem, ostream& errorLog) {
     delete tmp;
 }
 
-Flightplan* Input::readFlightplan(TiXmlElement *elem, ostream& errorLog) {
+FlightPlan* Input::readFlightPlan(TiXmlElement *elem, ostream& errorLog) {
     // Keep track of how many fields the element has
     int fieldCount = 0;
 
     // Make new object
-    Flightplan *tmp = new Flightplan();
+    FlightPlan *tmp = new FlightPlan();
 
     //  We iterate over all members, check if it's a valid element and if so, add it to our object.
     for (; elem != NULL; elem = elem->NextSiblingElement()) {
@@ -501,14 +502,14 @@ Flightplan* Input::readFlightplan(TiXmlElement *elem, ostream& errorLog) {
 
     // If there were 4 field (all fields present), add the Airport to our system.
     if (fieldCount == 4 and tmp->complete()) {
-        Input::addFlightplan(tmp);
+        Input::addFlightPlan(tmp);
         return tmp;
     }
 
     // Something went wrong, if the field count is -1, an error msg has already been logged
     // Else, there were missing fields
     if (fieldCount != -1) {
-        errorLog << "Duplicate or missing field(s) for Flightplan." << endl;
+        errorLog << "Duplicate or missing field(s) for FlightPlan." << endl;
     }
 
     // Delete the object
@@ -524,9 +525,9 @@ void Input::addAirport(Airport *airport) {
     airport->initStack();
 
     // Add to vec
-    airports.push_back(airport);
+    fAirports.push_back(airport);
 
-    ENSURE(airports.back() == airport, "Airplane was not added to simulation.");
+    ENSURE(getAirports().back() == airport, "Airplane was not added to simulation.");
 }
 
 void Input::addRunway(Runway *runway) {
@@ -536,18 +537,18 @@ void Input::addRunway(Runway *runway) {
     ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
 }
 
-void Input::addFlightplan(Flightplan *flightplan) {
+void Input::addFlightPlan(FlightPlan *flightPlan) {
     REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
-    REQUIRE(flightplan->complete(), "Flightplan has to be completely initialized to add it to the simulation");
-    flightplans.push_back(flightplan);
-    ENSURE(flightplans.back() == flightplan, "Flightplan was not added to simulation.");
+    REQUIRE(flightPlan->complete(), "FlightPlan has to be completely initialized to add it to the simulation");
+    fFlightPlans.push_back(flightPlan);
+    ENSURE(getFlightPlans().back() == flightPlan, "FlightPlan was not added to simulation.");
 }
 
 Airport *Input::findAirportByIATA(const string& iata) const {
     REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
     // Check all Airports and if the Airport matches the IATA, return this Airport.
     vector<Airport*>::const_iterator itr;
-    for (itr = airports.begin(); itr < airports.end(); ++itr) {
+    for (itr = fAirports.begin(); itr < fAirports.end(); ++itr) {
         Airport* cur_ap = *itr;
         if (cur_ap->getIata() == iata) {
             return cur_ap;
@@ -558,12 +559,12 @@ Airport *Input::findAirportByIATA(const string& iata) const {
 
 vector<Airport*> Input::getAirports() const {
     REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
-    return Input::airports;
+    return Input::fAirports;
 }
 
-vector<Flightplan*> Input::getFlightplans() const {
+vector<FlightPlan*> Input::getFlightPlans() const {
     REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
-    return flightplans;
+    return fFlightPlans;
 }
 
 bool Input::properlyInitialized() const {

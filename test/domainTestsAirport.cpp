@@ -203,7 +203,7 @@ TEST_F(domainTestAirport, impressions) {
     Airplane* airplane = new Airplane;
     airplane->setStatus(kDeboarding);
     airplane->setGateID(1);
-    Flightplan* plan = new Flightplan;
+    Flightplan* plan = new FlightPlan;
     plan->setAirplane(airplane);
     plans.push_back(plan);
 

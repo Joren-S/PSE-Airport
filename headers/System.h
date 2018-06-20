@@ -51,9 +51,9 @@ public:
     /**
      * Runs the complete simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
-     * \n REQUIRE(fAirport != NULL, "No airport in the simulation.");
+     * \n REQUIRE(getAirport() != NULL, "No airport in the simulation.");
      * \n REQUIRE(!simulationFinished(), "Simulation is already finished");.
-     * \n ENSURE(simulationFinished(), "Simulation is not finished yet, error occured");
+     * \n ENSURE(simulationFinished(), "Simulation is not finished yet, error occurred");
      * @param log: ostream where all the log messages will be written to
      * @param impressionName: basename of the files for the impressions
      * @param iniName: basename of the files for the ini files
@@ -68,7 +68,7 @@ public:
      * \n REQUIRE(fAirport != NULL, "No airport in the simulation");
      * @param out: the ostream where the info will be written to
      */
-    void info(ostream& out);
+    void info(std::ostream& out);
 
     /**
      * Generates the images from the start time until the end time, with the use of
@@ -101,7 +101,7 @@ public:
      * Getter for the flight plans in the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans);
      */
-    std::vector<Flightplan*> getFlightPlans() const;
+    std::vector<FlightPlan*> getFlightPlans() const;
 
     /**
      * Checks if the object is properly initialized
@@ -123,7 +123,7 @@ private:
     /**
      * List of flight plans
      */
-    std::vector<Flightplan*> fFlightPlans;
+    std::vector<FlightPlan*> fFlightPlans;
 
     /**
      * Ending time of simulation
