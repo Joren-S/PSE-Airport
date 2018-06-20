@@ -519,7 +519,7 @@ FlightPlan* Input::readFlightPlan(TiXmlElement *elem, ostream& errorLog) {
 }
 
 void Input::addAirport(Airport *airport) {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling addAirport");
     REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
     // Initialize gates
     airport->initGates();
@@ -531,21 +531,21 @@ void Input::addAirport(Airport *airport) {
 }
 
 void Input::addRunway(Runway *runway) {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addRunway");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling addRunway");
     REQUIRE(runway->complete(), "Runway has to be completely initialized to add it to the simulation");
     runway->getAirport()->addRunway(runway);
     ENSURE(runway->getAirport()->getRunways().back() == runway, "Runway was not added to the airport");
 }
 
 void Input::addFlightPlan(FlightPlan *flightPlan) {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addFlightplan");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling addFlightplan");
     REQUIRE(flightPlan->complete(), "FlightPlan has to be completely initialized to add it to the simulation");
     fFlightPlans.push_back(flightPlan);
     ENSURE(getFlightPlans().back() == flightPlan, "FlightPlan was not added to simulation.");
 }
 
 Airport *Input::findAirportByIATA(const string& iata) const {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling findAirportByIATA");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling findAirportByIATA");
     // Check all Airports and if the Airport matches the IATA, return this Airport.
     vector<Airport*>::const_iterator itr;
     for (itr = fAirports.begin(); itr < fAirports.end(); ++itr) {
@@ -558,12 +558,12 @@ Airport *Input::findAirportByIATA(const string& iata) const {
 }
 
 vector<Airport*> Input::getAirports() const {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getAirports");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling getAirports");
     return Input::fAirports;
 }
 
 vector<FlightPlan*> Input::getFlightPlans() const {
-    REQUIRE(this->properlyInitialized(), "Input was't initialized when calling getFlightplans");
+    REQUIRE(this->properlyInitialized(), "Input wasn't properly initialized when calling getFlightplans");
     return fFlightPlans;
 }
 

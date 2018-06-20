@@ -201,22 +201,24 @@ public:
      * Generates a squawk code for a given plane.
      * The returned code will not be generated for any other plane.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
+     * @param airplane: airplane to generate squawk for.
      * @return squawk code
      */
-    int getSquawk(Airplane*);
+    int getSquawk(Airplane* airplane);
 
     /**
      * Getter for the current time
-     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+     * \n REQUIRE(this->properlyInitialized(), "ATC was't initialized when calling getTime");
      * @return current time
      */
     Time getTime() const;
 
     /**
     * Setter for the current time
-    * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+    * \n REQUIRE(this->properlyInitialized(), "ATC was't initialized when calling setTime");
+    * @param time: time to set
     */
-    void setTime(Time);
+    void setTime(Time time);
 
     ////////////////
     ///  Getters and setters for the fields of the class.

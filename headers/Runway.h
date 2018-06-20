@@ -58,9 +58,9 @@ public:
     ////////////////
     ///  Getters and setters for the fields of the class.
     ///  For all:
-    ///  REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    ///  REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling getter/setter.");
     ///  For setters;
-    ///  ENSURE(getField == value, "Field wasn't std::set properly");
+    ///  ENSURE(getField == value, "Field wasn't set properly");
     ///  where getField is specific for the member
     ///////////////
 

@@ -91,12 +91,12 @@ Graphics::Graphics(Airport* airport): fAirport(airport), fMaximumY(0) {
     stream << "point3 = (" << xMin - 7 << ", 4, -0.5)" << endl;
     fFigures.push_back(stream.str());
 
-    ENSURE(properlyInitialized(), "Graphics object was not properly constructed");
+    ENSURE(properlyInitialized(), "Graphics object wasn't properly constructed");
 }
 
 
 std::string Graphics::generateINI(double x, double y, double z, int size) const {
-    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling generateINI");
+    REQUIRE(properlyInitialized(), "Graphics wasn't properly initialized when calling generateINI");
     REQUIRE(size > 0, "Size can't be negative");
     ostringstream ini;
 
@@ -228,7 +228,7 @@ void Graphics::parseCoordinates(const std::string &coordinates, double &x, doubl
 
 
 void Graphics::addElement(Runway *runway) {
-    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(runway)");
+    REQUIRE(properlyInitialized(), "Graphics wasn't properly initialized when calling addElement(runway)");
     REQUIRE(runway != NULL, "Element can't be NULL when calling addElement");
 
     ostringstream figure;
@@ -284,7 +284,7 @@ void Graphics::addElement(Runway *runway) {
 
 
 void Graphics::addElement(Airplane *airplane) {
-    REQUIRE(properlyInitialized(), "Graphics was not properly initialized when calling addElement(airplane)");
+    REQUIRE(properlyInitialized(), "Graphics wasn't properly initialized when calling addElement(airplane)");
     REQUIRE(airplane != NULL, "Element can't be NULL when calling addElement");
     ostringstream figure;
 

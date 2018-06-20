@@ -337,7 +337,7 @@ void ATC::set5occupied(bool occupied) {
 }
 
 void ATC::processApproach(Airplane *airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processApproach.");
     // Change request status
     airplane->setRequest(kAccepted);
 
@@ -355,7 +355,7 @@ void ATC::processApproach(Airplane *airplane) {
 }
 
 void ATC::processDescend(Airplane *airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processDescend.");
     if (airplane->getAltitude() == 5000) {
 
         // A plane is already circling at 3000ft, 5000ft is clear
@@ -433,7 +433,7 @@ void ATC::processDescend(Airplane *airplane) {
 }
 
 void ATC::processTaxiArrival(Airplane *airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiArrival.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processTaxiArrival.");
     // Plane position is not set yet, so it just arrived
     if (airplane->getPosition().empty()) {
 
@@ -528,7 +528,7 @@ void ATC::processTaxiArrival(Airplane *airplane) {
 }
 
 void ATC::processIFRClearance(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processIFRClearancy.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processIFRClearancy.");
     // Requesting IFR clearance.
     Runway *dest = getAirport()->getFreeRunway(airplane);
     if (dest == NULL) {
@@ -550,14 +550,14 @@ void ATC::processIFRClearance(Airplane* airplane) {
 }
 
 void ATC::processPushback(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processPushback.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processPushback.");
     // Requesting pushback
     airplane->setRequest(kAccepted);
     sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
 }
 
 void ATC::processTaxiInitialise(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInitialise.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processTaxiInitialise.");
     // Requesting permission to taxi
     Runway *firstRW = getAirport()->getRunways().at(0);
     sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
@@ -565,7 +565,7 @@ void ATC::processTaxiInitialise(Airplane* airplane) {
 }
 
 void ATC::processTaxiInstruction(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInstruction.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processTaxiInstruction.");
     // Requesting taxi instructions
     Runway *curRw = getAirport()->getRunway(airplane->getPosition());
     Runway *dest = airplane->getRunway();
@@ -593,7 +593,7 @@ void ATC::processTaxiInstruction(Airplane* airplane) {
 }
 
 void ATC::processTakeOff(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoff.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processTakeoff.");
     // Requesting permission to take-off.
     Runway *curRW = airplane->getRunway();
     if (curRW->isFree()) {
@@ -617,7 +617,7 @@ void ATC::processTakeOff(Airplane* airplane) {
 };
 
 void ATC::processTakeOffRunway(Airplane* airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoffRunway.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processTakeoffRunway.");
     // Requesting permission to start taking off
     if (f3Occupied == false) {
 
@@ -668,19 +668,19 @@ void ATC::processEmergency(Airplane *airplane) {
 }
 
 void ATC::processUrgentEmergency(Airplane *airplane) {
-    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processUrgentEmergency.");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling processUrgentEmergency.");
     airplane->setRequest(kAccepted);
     sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!"));
 }
 
 // test
 Time ATC::getTime() const {
-    REQUIRE(this->properlyInitialized(), "ATC wasn't initialized when calling getTime");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling getTime");
     return fTime;
 }
 
 void ATC::setTime(Time time) {
-    REQUIRE(this->properlyInitialized(), "ATC wasn't initialized when calling getTime");
+    REQUIRE(this->properlyInitialized(), "ATC wasn't properly initialized when calling getTime");
     fTime = time;
 }
 

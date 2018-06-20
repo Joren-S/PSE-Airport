@@ -47,6 +47,7 @@ public:
      * Advances the time by an amount of minutes
      * \n REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling advance");
      * \n REQUIRE(minutes >= 0, "Advancing by a negative amount of minutes is not possible");
+     * @param minutes: amount of minutes to advance
      */
     void advance(int minutes = 1);
 
@@ -54,12 +55,14 @@ public:
      * Setter for the minute.
      * \n REQUIRE(minute < 60 && minute >= 0, "Minute has to be between 0 and 60");
      * \n REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling setMinute");
+     * @param minute: minute to set
      */
     void setMinute(int minute);
 
     /**
      * Getter for the minute
      * \n REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling getMinute");
+     * @return: minute
      */
     int getMinute() const;
 
@@ -67,12 +70,14 @@ public:
      * Setter for the hour.
      * \n REQUIRE(hour < 24 && hour >= 0, "Hour has to be between 0 and 24");
      * \n REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling setHour");
+     * @param hour: hour to set
      */
     void setHour(int hour);
 
     /**
      * Getter for the hour
      * \n REQUIRE(properlyInitialized(), "Time wasn't properlyInitialized when calling getHour");
+     * @return: hour
      */
     int getHour() const;
 

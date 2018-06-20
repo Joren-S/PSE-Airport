@@ -82,29 +82,34 @@ public:
     /**
      * Checks if the simulation has ended, i.e. specified end time has been reached
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling simulationFinished");
+     * @return: boolean indicating if the simulation is finished.
      */
     bool simulationFinished() const;
 
     /**
      * Getter for the airport in the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getAirport");
+     * @return: airport in the simulation
      */
     Airport* getAirport() const;
 
     /**
      * Getter for the air traffic control in the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
+     * @return: ATC in the simulation
      */
     ATC* getATC() const;
 
     /**
      * Getter for the flight plans in the simulation
      * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans);
+     * @return: vector of flightplans that are in the simulation
      */
     std::vector<FlightPlan*> getFlightPlans() const;
 
     /**
      * Checks if the object is properly initialized
+     * @return: boolean indicating if object is properly initialized.
      */
     bool properlyInitialized() const;
 

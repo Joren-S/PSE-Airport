@@ -93,7 +93,7 @@ void Airport::addRunway(Runway *runway) {
     ENSURE(!present, "Runway is already in system.");
     // If valid, we can add our runway.
     fRunways.push_back(runway);
-    ENSURE(getRunways().back() == runway, "Runway was not properly added to the system.");
+    ENSURE(getRunways().back() == runway, "Runway wasn't properly added to the system.");
 }
 
 Runway* Airport::getRunway(const string &taxipoint) const {

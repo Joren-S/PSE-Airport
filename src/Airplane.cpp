@@ -31,19 +31,19 @@ bool Airplane::properlyInitialized() const {
 }
 
 bool Airplane::complete() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane::complete");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane::complete");
     return !(fEngine == kDefaultEngine or fType == kDefaultType or fFuel == -1
              or fSize == kDefaultSize or fPassengers == -1 or
             fModel.empty() or fCallsign.empty() or fNumber.empty());
 }
 
 void Airplane::decreaseAltitude() {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseAltitude");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling decreaseAltitude");
     Airplane::fAltitude -= 1000;
 }
 
 void Airplane::increaseAltitude() {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling increaseAltitude");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling increaseAltitude");
     Airplane::fAltitude += 1000;
 }
 
@@ -83,7 +83,7 @@ int Airplane::getFuelCost() {
 }
 
 void Airplane::checkFuel(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling checkFuel");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling checkFuel");
 
     // normal operation
     if (fSquawk != 7700) {
@@ -216,192 +216,192 @@ void Airplane::checkFuel(ostream& log) {
 // Getters and setters
 
 EPlaneSize Airplane::getSize() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fSize;
 }
 
 void Airplane::setSize(EPlaneSize size) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fSize = size;
 }
 
 EPlaneType Airplane::getType() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fType;
 }
 
 void Airplane::setType(EPlaneType type) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fType = type;
 }
 
 EPlaneEngine Airplane::getEngine() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fEngine;
 }
 
 void Airplane::setEngine(EPlaneEngine engine) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fEngine = engine;
 }
 
 int Airplane::getAltitude() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fAltitude;
 }
 
 void Airplane::setAltitude(int altitude) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(altitude >= 0, "Altitude can't be negative");
     fAltitude = altitude;
 }
 
 int Airplane::getPassengers() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fPassengers;
 }
 
 void Airplane::setPassengers(int passengers) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(passengers >= 0, "Passenger amount can't be negative");
     Airplane::fPassengers = passengers;
 }
 
 const string &Airplane::getNumber() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fNumber;
 }
 
 void Airplane::setNumber(const string &fNumber) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     Airplane::fNumber = fNumber;
 }
 
 const string &Airplane::getCallsign() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fCallsign;
 }
 
 void Airplane::setCallsign(const string &fCallsign) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     Airplane::fCallsign = fCallsign;
 }
 
 const string &Airplane::getModel() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fModel;
 }
 
 void Airplane::setModel(const string &fModel) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     Airplane::fModel = fModel;
 }
 
 EPlaneStatus Airplane::getStatus() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fStatus;
 }
 
 void Airplane::setStatus(EPlaneStatus fStatus) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     Airplane::fStatus = fStatus;
 }
 
 int Airplane::getGateID() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return Airplane::fGateID;
 }
 
 void Airplane::setGateID(int id) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(id >= -1, "Gate id can't be less than -1");
     Airplane::fGateID = id;
 }
 
 int Airplane::getTimeRemaining() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fTimeRemaining;
 }
 
 void Airplane::setTimeRemaining(int time) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(time >= 0, "Time remaining can't be negative");
     fTimeRemaining = time;
 }
 
 void Airplane::decreaseTimeRemaining() {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling decreaseTimeRemaining");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling decreaseTimeRemaining");
     if (fTimeRemaining > 0) {
         fTimeRemaining--;
     }
 }
 
 const string& Airplane::getPosition() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fPosition;
 }
 
 void Airplane::setPosition(const string &position) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fPosition = position;
 }
 
 EPlaneRequest Airplane::getRequest() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fRequest;
 }
 
 void Airplane::setRequest(EPlaneRequest request) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fRequest = request;
 }
 
 Runway* Airplane::getRunway() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fRunway;
 }
 
 void Airplane::setRunway(Runway* runway) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fRunway = runway;
 }
 
 int Airplane::getFuel() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fFuel;
 }
 
 void Airplane::setFuel(int fuel) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(fuel > 0, "Fuel can't be less than 1");
     fFuel = fuel;
 }
 
 void Airplane::setSquawk(int squawk) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(squawk >= 0, "Squawk code can't be negative");
     fSquawk = squawk;
 }
 
 int Airplane::getSquawk() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fSquawk;
 }
 
 int Airplane::getCurFuel() const {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     return fCurFuel;
 }
 
 void Airplane::setCurFuel(int fuel) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     REQUIRE(fuel >= 0, "Fuel can't be negative");
     REQUIRE(fuel <= fFuel, "Fuel can't be more than the max. fuel");
     fCurFuel = fuel;
 }
 
 void Airplane::setATC(ATC *atc) {
-    REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling Airplane getter/setter");
     fATC = atc;
 }
 
@@ -411,7 +411,7 @@ void Airplane::setATC(ATC *atc) {
 // LANDING/TAKEOFF
 
 void Airplane::approach(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling approach");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling approach");
 
     // Request has been accepted by fATC
     if (getRequest() == kAccepted) {
@@ -454,7 +454,7 @@ void Airplane::approach(ostream& log) {
 }
 
 void Airplane::descend(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling descend");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling descend");
     // Plane has landed
     if (getAltitude() == 0) {
         // Log event
@@ -529,7 +529,7 @@ void Airplane::descend(ostream& log) {
 }
 
 void Airplane::circle(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling circle");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling circle");
     // Log event
     log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has circled at " << getAltitude() << "ft." << endl;
 
@@ -550,7 +550,7 @@ void Airplane::circle(ostream& log) {
 
 
 void Airplane::taxiArrival(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling taxiArrival");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling taxiArrival");
     // Arrived at gate
     if (getPosition() == fATC->getAirport()->getRunways()[0]->getTaxiPoint() and getRequest() == kConfirmed) {
         // Log event
@@ -686,7 +686,7 @@ void Airplane::taxiArrival(ostream& log) {
 }
 
 void Airplane::crossArrival(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling crossArrival");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling crossArrival");
     // Get the runway the plane just crossed
     Runway* runway = fATC->getAirport()->getNextRunway(this);
 
@@ -707,7 +707,7 @@ void Airplane::crossArrival(ostream& log) {
 }
 
 void Airplane::deboard(ostream& log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling deboard");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling deboard");
 
     // Log event
     log << "[" << fATC->getTime().formatted() << "] " << getPassengers() << " passengers exited " <<
@@ -732,7 +732,7 @@ void Airplane::deboard(ostream& log) {
 }
 
 void Airplane::technicalCheck(ostream &log) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling technicalCheck");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't initialized when calling technicalCheck");
 
     // Log event
     log << "[" << fATC->getTime().formatted() << "] " << getCallsign() << " has been checked for technical malfunctions" << endl;
@@ -745,7 +745,7 @@ void Airplane::technicalCheck(ostream &log) {
 }
 
 void Airplane::prepare(ostream& fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling prepare.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling prepare.");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
     string planeCS = getCallsign();
@@ -812,7 +812,7 @@ void Airplane::prepare(ostream& fLog) {
 }
 
 void Airplane::pushback(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling pushback.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling pushback.");
     EPlaneRequest request = getRequest();
     EPlaneSize size = getSize();
     string planeCS = getCallsign();
@@ -866,7 +866,7 @@ void Airplane::pushback(ostream &fLog) {
 }
 
 void Airplane::taxiDepartureStart(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStart.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling taxiDepartureStart.");
     REQUIRE(fATC->getAirport()->amountOfRunways() >= 1, "No runways in airport.");
     EPlaneRequest request = getRequest();
     string planeCS = getCallsign();
@@ -899,7 +899,7 @@ void Airplane::taxiDepartureStart(ostream &fLog) {
 }
 
 void Airplane::taxiDepartureStep(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureStep.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling taxiDepartureStep.");
     REQUIRE(fATC->getAirport()->getRunways().size() > 0, "There are no runways in the airport.");
     EPlaneRequest request = getRequest();
     string tp = getPosition();
@@ -968,7 +968,7 @@ void Airplane::taxiDepartureStep(ostream &fLog) {
 }
 
 void Airplane::taxiDepartureCross(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling taxiDepartureCross");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling taxiDepartureCross");
 
     Runway *next_rw = fATC->getAirport()->getNextRunway(this);
     Runway *cur_rw = fATC->getAirport()->getRunway(getPosition());
@@ -992,7 +992,7 @@ void Airplane::taxiDepartureCross(ostream &fLog) {
 }
 
 void Airplane::atRunway(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling atRunway");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling atRunway");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
     string planeCS = getCallsign();
@@ -1040,7 +1040,7 @@ void Airplane::atRunway(ostream &fLog) {
 }
 
 void Airplane::onRunway(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling onRunway.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling onRunway.");
     EPlaneRequest request = getRequest();
     Runway *dest = getRunway();
     string planeCS = getCallsign();
@@ -1071,7 +1071,7 @@ void Airplane::onRunway(ostream &fLog) {
 }
 
 void Airplane::ascend(ostream &fLog) {
-    REQUIRE(this->properlyInitialized(), "System was not properly initialized when calling ascend.");
+    REQUIRE(this->properlyInitialized(), "Airplane wasn't properly initialized when calling ascend.");
     setPosition("");
     // If plane is at a height < 5000 ft
     if (getAltitude() < 5000) {
@@ -1094,7 +1094,7 @@ void Airplane::ascend(ostream &fLog) {
 
 
 void Airplane::performNextStep(ostream& log) {
-    REQUIRE(properlyInitialized(), "Plane was not properly initialized when calling performNextStep.");
+    REQUIRE(properlyInitialized(), "Airplane wasn't properly initialized when calling performNextStep.");
 
     // If plane is still busy, we do nothing
     if (getTimeRemaining() != 0) {

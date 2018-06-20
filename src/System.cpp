@@ -33,7 +33,7 @@ bool System::properlyInitialized() const {
 }
 
 void System::info(ostream& out) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling info");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling info");
     REQUIRE(fAirport != NULL, "No airport in the simulation");
 
     // Log airport info
@@ -84,7 +84,7 @@ void System::info(ostream& out) {
 
 
 void System::run(ostream& log, const string& impressionName, const string& iniName) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling run");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling run");
     REQUIRE(getAirport() != NULL, "No airport in the simulation.");
     REQUIRE(!simulationFinished(), "Simulation is already finished");
 
@@ -136,7 +136,7 @@ void System::run(ostream& log, const string& impressionName, const string& iniNa
 }
 
 bool System::simulationFinished() const {
-    REQUIRE(this->properlyInitialized(), "System wasn't initialized when calling simulationFinished");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling simulationFinished");
     REQUIRE(this->getATC()->properlyInitialized(), "ATC wasn't initialized when calling simulationFinished");
     Time fTime = getATC()->getTime();
     return !(fTime < fEndTime or fTime == fEndTime);
@@ -144,12 +144,12 @@ bool System::simulationFinished() const {
 
 
 Airport* System::getAirport() const {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getAirport");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling getAirport");
     return System::fAirport;
 }
 
 vector<FlightPlan*> System::getFlightPlans() const {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getFlightPlans");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling getFlightPlans");
     return System::fFlightPlans;
 }
 
@@ -169,12 +169,12 @@ System::~System() {
 }
 
 ATC* System::getATC() const {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling getATC");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling getATC");
     return fATC;
 }
 
 void System::generateImages(Time start, Time end) {
-    REQUIRE(this->properlyInitialized(), "System was't initialized when calling generateImages");
+    REQUIRE(this->properlyInitialized(), "System wasn't properly initialized when calling generateImages");
     string command = "../graphics/engine ";
     for (; start < end; start.advance()) {
         command += "../output/ini/graphics" + start.formatted() + ".ini ";
