@@ -91,6 +91,10 @@ void System::run(ostream& log, const string& impressionName, const string& iniNa
     while (!simulationFinished()) {
         Time fTime = getATC()->getTime();
 
+        if (fTime == Time(12,53)) {
+            cout << "";
+        }
+
         // Each tick, we make sure our ATC handles requests.
         fATC->doHeartbeat();
 
