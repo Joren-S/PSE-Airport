@@ -21,7 +21,7 @@ set(RELEASE_SOURCE_FILES
 set(DEBUG_SOURCE_FILES
         test/init_test.cpp test/inputTests.cpp test/outputTests.cpp
         test/domainTestsAirplane.cpp test/domainTestsAirport.cpp test/domainTestsATC.cpp test/domainTestsFlightplan.cpp
-        test/domainTestsRunway.cpp test/domainTestsSystem.cpp test/domainTestsTime.cpp test/TestUtils.cpp test/domainTestsGraphics.cpp
+        test/domainTestsRunway.cpp test/domainTestsTime.cpp test/TestUtils.cpp test/domainTestsGraphics.cpp
         src/Airplane.cpp src/Airport.cpp src/Runway.cpp src/System.cpp src/Input.cpp src/FlightPlan.cpp src/Time.cpp src/ATC.cpp src/Graphics.cpp
         tinyXML/tinystr.cpp tinyXML/tinyxml.cpp tinyXML/tinyxmlerror.cpp tinyXML/tinyxmlparser.cpp)
 

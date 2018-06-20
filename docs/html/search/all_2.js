@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['b',['b',['../docs_2html_2jquery_8js.html#aa4026ad5544b958e54ce5e106fa1c805',1,'b():&#160;jquery.js'],['../html_2jquery_8js.html#aa4026ad5544b958e54ce5e106fa1c805',1,'b():&#160;jquery.js'],['../docs_2html_2jquery_8js.html#a2fa551895933fae935a0a6b87282241d',1,'b(function(){if(!b.support.reliableMarginRight){b.cssHooks.marginRight={get:function(bw, bv){var e;b.swap(bw,{display:&quot;inline-block&quot;}, function(){if(bv){e=Z(bw,&quot;margin-right&quot;,&quot;marginRight&quot;)}else{e=bw.style.marginRight}});return e}}}}):&#160;jquery.js'],['../html_2jquery_8js.html#a2fa551895933fae935a0a6b87282241d',1,'b(function(){if(!b.support.reliableMarginRight){b.cssHooks.marginRight={get:function(bw, bv){var e;b.swap(bw,{display:&quot;inline-block&quot;}, function(){if(bv){e=Z(bw,&quot;margin-right&quot;,&quot;marginRight&quot;)}else{e=bw.style.marginRight}});return e}}}}):&#160;jquery.js']]],
-  ['backward',['backward',['../CMakeCache_8txt.html#a4e00b9c657cdeb7b14ea0c43097dcecc',1,'CMakeCache.txt']]],
-  ['bb',['bb',['../docs_2html_2jquery_8js.html#a1d6558865876e1c8cca029fce41a4bdb',1,'bb():&#160;jquery.js'],['../html_2jquery_8js.html#a1d6558865876e1c8cca029fce41a4bdb',1,'bb():&#160;jquery.js']]],
-  ['bq',['bq',['../docs_2html_2jquery_8js.html#af6ee77c71b2c89bdb365145ac5ad1219',1,'bq():&#160;jquery.js'],['../html_2jquery_8js.html#af6ee77c71b2c89bdb365145ac5ad1219',1,'bq():&#160;jquery.js']]],
-  ['bravo',['Bravo',['../happyDay2ATC_8txt.html#acb3d304c3ed17a69007f1a5f35b55c6f',1,'Bravo():&#160;happyDay2ATC.txt'],['../happyDay2ExpectedATC_8txt.html#acb3d304c3ed17a69007f1a5f35b55c6f',1,'Bravo():&#160;happyDay2ExpectedATC.txt'],['../happyDay3ATC_8txt.html#a911138964635093e61b07b4b5b5332fb',1,'Bravo():&#160;happyDay3ATC.txt'],['../happyDay3ExpectedATC_8txt.html#a911138964635093e61b07b4b5b5332fb',1,'Bravo():&#160;happyDay3ExpectedATC.txt'],['../happyDay4ATC_8txt.html#ace27fd0bdc1b0da536a70f89116c159c',1,'Bravo():&#160;happyDay4ATC.txt'],['../happyDay4ExpectedATC_8txt.html#ace27fd0bdc1b0da536a70f89116c159c',1,'Bravo():&#160;happyDay4ExpectedATC.txt'],['../happyDay3ATC_8txt.html#a08d7b5c980380fb31f4a08ee2e35e432',1,'bravo():&#160;happyDay3ATC.txt'],['../happyDay3ExpectedATC_8txt.html#a08d7b5c980380fb31f4a08ee2e35e432',1,'bravo():&#160;happyDay3ExpectedATC.txt']]],
-  ['bs',['bs',['../docs_2html_2jquery_8js.html#ae77642f8ef73fb9c20c2a737d956acda',1,'bs():&#160;jquery.js'],['../html_2jquery_8js.html#ae77642f8ef73fb9c20c2a737d956acda',1,'bs():&#160;jquery.js']]]
+  ['deboard',['deboard',['../classAirplane.html#ab321adcb22c349b2917416c33a052dfe',1,'Airplane']]],
+  ['decreasealtitude',['decreaseAltitude',['../classAirplane.html#a94b54e287a5bd8ca9b5959f9e74bbf19',1,'Airplane']]],
+  ['decreasetimeremaining',['decreaseTimeRemaining',['../classAirplane.html#ac97a6ca10328e33558f682e0b45e5a60',1,'Airplane']]],
+  ['departingplanes',['departingPlanes',['../structRunwayInfo.html#afc7873501db8d18cd37dead150a3ecb3',1,'RunwayInfo']]],
+  ['descend',['descend',['../classAirplane.html#ae250403048844ff6cd5a1de3be2fdf56',1,'Airplane']]],
+  ['doheartbeat',['doHeartbeat',['../classATC.html#a731ad9baa5234612a9c1826d67d9edd8',1,'ATC']]],
+  ['drawimpression',['drawImpression',['../classAirport.html#a011dbf8ff05f8d6a2c52d2f39f365051',1,'Airport']]]
 ];

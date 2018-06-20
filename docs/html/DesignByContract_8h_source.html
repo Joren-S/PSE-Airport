@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>My Project: /home/max/CLionProjects/ProjectVliegveld/headers/DesignByContract.h Source File</title>
+<title>AirportSimulation: /home/max/CLionProjects/ProjectVliegveld/headers/DesignByContract.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">AirportSimulation
    </div>
   </td>
  </tr>
@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -80,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_ed353eea8d78a173a119b387b77c750d.html">CLionProjects</a></li><li class="navelem"><a class="el" href="dir_2a185852fc6cad1c0563d4c50f020e2f.html">ProjectVliegveld</a></li><li class="navelem"><a class="el" href="dir_5d3971fb70f7015cca2654c3baed570f.html">headers</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7f57b1e41c5acd0e859ae5f3a2b075a9.html">headers</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -88,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">DesignByContract.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="DesignByContract_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//=======================this-&gt;ammo &lt; 0, false=====================================================</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Name        : DesignByContract.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// Author      : Serge Demeyer</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Version     :</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// Description : Declarations for design by contract in C++</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//============================================================================</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="DesignByContract_8h.html#aeb774672b46dbe80afc14e0d1970f017">   11</a></span>&#160;<span class="preprocessor">#define REQUIRE(assertion, what) \</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">    if (!(assertion)) __assert (what, __FILE__, __LINE__)</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="DesignByContract_8h.html#ab8da60ea2bcdd55183cc29d8526e6857">   14</a></span>&#160;<span class="preprocessor">#define ENSURE(assertion, what) \</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">    if (!(assertion)) __assert (what, __FILE__, __LINE__)</span></div></div><!-- fragment --></div><!-- contents -->
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//=======================this-&gt;ammo &lt; 0, false=====================================================</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Name        : DesignByContract.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// Author      : Serge Demeyer</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Version     :</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// Description : Declarations for design by contract in C++</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//============================================================================</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define REQUIRE(assertion, what) \</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">    if (!(assertion)) __assert (what, __FILE__, __LINE__)</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define ENSURE(assertion, what) \</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">    if (!(assertion)) __assert (what, __FILE__, __LINE__)</span></div></div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

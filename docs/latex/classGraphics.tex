@@ -1,0 +1,113 @@
+\hypertarget{classGraphics}{}\section{Graphics Class Reference}
+\label{classGraphics}\index{Graphics@{Graphics}}
+
+
+{\ttfamily \#include $<$Graphics.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGraphics_aeb4dc61589dbc318e3b9b91da1079a73}{Graphics} (\hyperlink{classAirport}{Airport} $\ast$airport)
+\item 
+void \hyperlink{classGraphics_a0fe625122d443cffbc405e9f49808cd7}{add\+Element} (\hyperlink{classAirplane}{Airplane} $\ast$airplane)
+\item 
+void \hyperlink{classGraphics_a3dca71401d21a07a2c0a9d1f44df0d3c}{add\+Element} (\hyperlink{classRunway}{Runway} $\ast$runway)
+\item 
+std\+::string \hyperlink{classGraphics_a7650057214dabce915dfc6f104e0b1eb}{generate\+I\+NI} (double x, double y, double z, int size=3000) const 
+\item 
+bool \hyperlink{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{properly\+Initialized} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that generates a string in valid .ini format. ~\newline
+ This string can be used with the \hyperlink{classGraphics}{Graphics} Engine to generate an image ~\newline
+ of all the added elements and thus the airport. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Graphics@{Graphics}!Graphics@{Graphics}}
+\index{Graphics@{Graphics}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{Graphics(\+Airport $\ast$airport)}{Graphics(Airport *airport)}}]{\setlength{\rightskip}{0pt plus 5cm}Graphics\+::\+Graphics (
+\begin{DoxyParamCaption}
+\item[{{\bf Airport} $\ast$}]{airport}
+\end{DoxyParamCaption}
+)}\hypertarget{classGraphics_aeb4dc61589dbc318e3b9b91da1079a73}{}\label{classGraphics_aeb4dc61589dbc318e3b9b91da1079a73}
+Constructor. Adds the figures for the gates. ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{properly\+Initialized()}, \char`\"{}\+Graphics object was not properly constructed\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em airport} & airport in the simulation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Graphics@{Graphics}!add\+Element@{add\+Element}}
+\index{add\+Element@{add\+Element}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{add\+Element(\+Airplane $\ast$airplane)}{addElement(Airplane *airplane)}}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\+::add\+Element (
+\begin{DoxyParamCaption}
+\item[{{\bf Airplane} $\ast$}]{airplane}
+\end{DoxyParamCaption}
+)}\hypertarget{classGraphics_a0fe625122d443cffbc405e9f49808cd7}{}\label{classGraphics_a0fe625122d443cffbc405e9f49808cd7}
+Adds the figures for an airplane. ~\newline
+ The position is calculated with the status and position of the airplane. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{properly\+Initialized()}, \char`\"{}\+Graphics was not properly initialized when calling add\+Element(airplane)\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(runway != N\+U\+LL, \char`\"{}\+Element can\textquotesingle{}t be N\+U\+L\+L when calling add\+Element\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em airplane} & the airplane to be added \\
+\hline
+\end{DoxyParams}
+\index{Graphics@{Graphics}!add\+Element@{add\+Element}}
+\index{add\+Element@{add\+Element}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{add\+Element(\+Runway $\ast$runway)}{addElement(Runway *runway)}}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\+::add\+Element (
+\begin{DoxyParamCaption}
+\item[{{\bf Runway} $\ast$}]{runway}
+\end{DoxyParamCaption}
+)}\hypertarget{classGraphics_a3dca71401d21a07a2c0a9d1f44df0d3c}{}\label{classGraphics_a3dca71401d21a07a2c0a9d1f44df0d3c}
+Adds the figures for a runway. ~\newline
+ The position is calculated by the number of runways already added ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{properly\+Initialized()}, \char`\"{}\+Graphics was not properly initialized when calling add\+Element(runway)\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(airplane != N\+U\+LL, \char`\"{}\+Element can\textquotesingle{}t be N\+U\+L\+L when calling add\+Element\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em runway} & the runway to be added \\
+\hline
+\end{DoxyParams}
+\index{Graphics@{Graphics}!generate\+I\+NI@{generate\+I\+NI}}
+\index{generate\+I\+NI@{generate\+I\+NI}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{generate\+I\+N\+I(double x, double y, double z, int size=3000) const }{generateINI(double x, double y, double z, int size=3000) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string Graphics\+::generate\+I\+NI (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y, }
+\item[{double}]{z, }
+\item[{int}]{size = {\ttfamily 3000}}
+\end{DoxyParamCaption}
+) const}\hypertarget{classGraphics_a7650057214dabce915dfc6f104e0b1eb}{}\label{classGraphics_a7650057214dabce915dfc6f104e0b1eb}
+Generates the ini file of all the elements in the figures vector. ~\newline
+ R\+E\+Q\+U\+I\+RE(\hyperlink{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{properly\+Initialized()}, \char`\"{}\+Graphics was not properly initialized when calling generate\+I\+N\+I\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(size $>$ 0, \char`\"{}\+Size can\textquotesingle{}t be negative\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em x} & eye point x coordinate \\
+\hline
+{\em y} & eye point y coordinate \\
+\hline
+{\em z} & eye point z coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string in valid ini format 
+\end{DoxyReturn}
+\index{Graphics@{Graphics}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Graphics\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classGraphics_ac10231e8c943b3218a0d0260abf2065f}{}\label{classGraphics_ac10231e8c943b3218a0d0260abf2065f}
+Checks if the object is properly initialized \begin{DoxyReturn}{Returns}
+\+: Boolean indicating if properly initialized or not. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/Graphics.\+h\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/Graphics.\+cpp\end{DoxyCompactItemize}

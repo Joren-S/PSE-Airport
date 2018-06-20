@@ -1,0 +1,166 @@
+\hypertarget{classFlightPlan}{}\section{Flight\+Plan Class Reference}
+\label{classFlightPlan}\index{Flight\+Plan@{Flight\+Plan}}
+
+
+\+: Class that represents a flight plan in the simulation  
+
+
+
+
+{\ttfamily \#include $<$Flight\+Plan.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFlightPlan_acc9140958ec2b86f78089067833f68fb}{Flight\+Plan} ()
+\item 
+\hyperlink{classFlightPlan_a674104757ac93924187fe1fc6bd7a342}{$\sim$\+Flight\+Plan} ()
+\item 
+bool \hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized} () const 
+\item 
+void \hyperlink{classFlightPlan_a54774b1bb6606e7b11359f23c2e4d79f}{set\+Departure} (int departure)
+\item 
+void \hyperlink{classFlightPlan_a1fad15b79c3463a21e8a89e6c42fda57}{set\+Arrival} (int arrival)
+\item 
+void \hyperlink{classFlightPlan_a157e8a456b078a125b64e20d6cd8bf58}{set\+Interval} (int interval)
+\item 
+E\+Event \hyperlink{classFlightPlan_a2350e5250fcc621240768e5dd7a7bdeb}{get\+Event} (\hyperlink{classTime}{Time} time)
+\item 
+bool \hyperlink{classFlightPlan_a28cda60a1a425003eb869a03b9f2b550}{complete} () const 
+\item 
+const std\+::string \& \hyperlink{classFlightPlan_add7c304a2be8ff8b6d08b6de28c1a4c6}{get\+Destination} () const 
+\item 
+void {\bfseries set\+Destination} (const std\+::string \&f\+Destination)\hypertarget{classFlightPlan_ab362a8718bf636c4c2e1738327879bed}{}\label{classFlightPlan_ab362a8718bf636c4c2e1738327879bed}
+
+\item 
+int {\bfseries get\+Departure} () const \hypertarget{classFlightPlan_a80708983bd926613c36041cf948c1224}{}\label{classFlightPlan_a80708983bd926613c36041cf948c1224}
+
+\item 
+int {\bfseries get\+Arrival} () const \hypertarget{classFlightPlan_a2f97aeefbe8a18e6e2f69fca5b3b9998}{}\label{classFlightPlan_a2f97aeefbe8a18e6e2f69fca5b3b9998}
+
+\item 
+int {\bfseries get\+Interval} () const \hypertarget{classFlightPlan_a9c15b66aa6fd54166a952e2d2c11cba3}{}\label{classFlightPlan_a9c15b66aa6fd54166a952e2d2c11cba3}
+
+\item 
+void {\bfseries set\+Airplane} (\hyperlink{classAirplane}{Airplane} $\ast$)\hypertarget{classFlightPlan_a9eb1f6f7f83913c1ff321095624cc11b}{}\label{classFlightPlan_a9eb1f6f7f83913c1ff321095624cc11b}
+
+\item 
+\hyperlink{classAirplane}{Airplane} $\ast$ {\bfseries get\+Airplane} () const \hypertarget{classFlightPlan_a6a65c9c90452c47e736eb0db04c69f38}{}\label{classFlightPlan_a6a65c9c90452c47e736eb0db04c69f38}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Class that represents a flight plan in the simulation 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Flight\+Plan@{Flight\+Plan}!Flight\+Plan@{Flight\+Plan}}
+\index{Flight\+Plan@{Flight\+Plan}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{Flight\+Plan()}{FlightPlan()}}]{\setlength{\rightskip}{0pt plus 5cm}Flight\+Plan\+::\+Flight\+Plan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_acc9140958ec2b86f78089067833f68fb}{}\label{classFlightPlan_acc9140958ec2b86f78089067833f68fb}
+Default constructor ~\newline
+ E\+N\+S\+U\+RE(\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}constructor must end in properly\+Initialized state\char`\"{}); \index{Flight\+Plan@{Flight\+Plan}!````~Flight\+Plan@{$\sim$\+Flight\+Plan}}
+\index{````~Flight\+Plan@{$\sim$\+Flight\+Plan}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{$\sim$\+Flight\+Plan()}{~FlightPlan()}}]{\setlength{\rightskip}{0pt plus 5cm}Flight\+Plan\+::$\sim$\+Flight\+Plan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_a674104757ac93924187fe1fc6bd7a342}{}\label{classFlightPlan_a674104757ac93924187fe1fc6bd7a342}
+Destructor 
+
+\subsection{Member Function Documentation}
+\index{Flight\+Plan@{Flight\+Plan}!complete@{complete}}
+\index{complete@{complete}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{complete() const }{complete() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Flight\+Plan\+::complete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightPlan_a28cda60a1a425003eb869a03b9f2b550}{}\label{classFlightPlan_a28cda60a1a425003eb869a03b9f2b550}
+Checks if all the data members were initialized ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling complete\char`\"{}); \begin{DoxyReturn}{Returns}
+\+: boolean indicating if all members are initialized. 
+\end{DoxyReturn}
+\index{Flight\+Plan@{Flight\+Plan}!get\+Destination@{get\+Destination}}
+\index{get\+Destination@{get\+Destination}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{get\+Destination() const }{getDestination() const }}]{\setlength{\rightskip}{0pt plus 5cm}const string \& Flight\+Plan\+::get\+Destination (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightPlan_add7c304a2be8ff8b6d08b6de28c1a4c6}{}\label{classFlightPlan_add7c304a2be8ff8b6d08b6de28c1a4c6}
+Getters and setters for the fields of the class. For all\+: R\+E\+Q\+U\+I\+RE(\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan wasn\textquotesingle{}t properly initialized when calling getter/setter.\char`\"{}); \index{Flight\+Plan@{Flight\+Plan}!get\+Event@{get\+Event}}
+\index{get\+Event@{get\+Event}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{get\+Event(\+Time time)}{getEvent(Time time)}}]{\setlength{\rightskip}{0pt plus 5cm}E\+Event Flight\+Plan\+::get\+Event (
+\begin{DoxyParamCaption}
+\item[{{\bf Time}}]{time}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_a2350e5250fcc621240768e5dd7a7bdeb}{}\label{classFlightPlan_a2350e5250fcc621240768e5dd7a7bdeb}
+Returns the event at the given time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling get\+Event\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em time} & time to get event at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+event at this time 
+\end{DoxyReturn}
+\index{Flight\+Plan@{Flight\+Plan}!properly\+Initialized@{properly\+Initialized}}
+\index{properly\+Initialized@{properly\+Initialized}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{properly\+Initialized() const }{properlyInitialized() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Flight\+Plan\+::properly\+Initialized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{}\label{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}
+Checks if the object is properly initialized \begin{DoxyReturn}{Returns}
+\+: boolean indicating if properly initialized 
+\end{DoxyReturn}
+\index{Flight\+Plan@{Flight\+Plan}!set\+Arrival@{set\+Arrival}}
+\index{set\+Arrival@{set\+Arrival}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{set\+Arrival(int arrival)}{setArrival(int arrival)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flight\+Plan\+::set\+Arrival (
+\begin{DoxyParamCaption}
+\item[{int}]{arrival}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_a1fad15b79c3463a21e8a89e6c42fda57}{}\label{classFlightPlan_a1fad15b79c3463a21e8a89e6c42fda57}
+Setter for arrival time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Arrival\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(arrival $>$= 0 \&\& arrival $<$ 60, \char`\"{}\+Arrival has to be between 0 and 60\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em arrival} & arrival time to set \\
+\hline
+\end{DoxyParams}
+\index{Flight\+Plan@{Flight\+Plan}!set\+Departure@{set\+Departure}}
+\index{set\+Departure@{set\+Departure}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{set\+Departure(int departure)}{setDeparture(int departure)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flight\+Plan\+::set\+Departure (
+\begin{DoxyParamCaption}
+\item[{int}]{departure}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_a54774b1bb6606e7b11359f23c2e4d79f}{}\label{classFlightPlan_a54774b1bb6606e7b11359f23c2e4d79f}
+Setter for departure time ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Departure\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(departure $>$= 0 \&\& departure $<$ 60, \char`\"{}\+Departure has to be between 0 and 60\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em departure} & departure time to set \\
+\hline
+\end{DoxyParams}
+\index{Flight\+Plan@{Flight\+Plan}!set\+Interval@{set\+Interval}}
+\index{set\+Interval@{set\+Interval}!Flight\+Plan@{Flight\+Plan}}
+\subsubsection[{\texorpdfstring{set\+Interval(int interval)}{setInterval(int interval)}}]{\setlength{\rightskip}{0pt plus 5cm}void Flight\+Plan\+::set\+Interval (
+\begin{DoxyParamCaption}
+\item[{int}]{interval}
+\end{DoxyParamCaption}
+)}\hypertarget{classFlightPlan_a157e8a456b078a125b64e20d6cd8bf58}{}\label{classFlightPlan_a157e8a456b078a125b64e20d6cd8bf58}
+Setter for interval ~\newline
+ R\+E\+Q\+U\+I\+RE(this-\/$>$\hyperlink{classFlightPlan_a6ba1f8f9cd4a738a437a3ec7ae283978}{properly\+Initialized()}, \char`\"{}\+Flightplan was\textquotesingle{}t initialized when calling set\+Interval\char`\"{}); ~\newline
+ R\+E\+Q\+U\+I\+RE(interval $>$ 0, \char`\"{}\+Interval has to be at least 1\char`\"{}); 
+\begin{DoxyParams}{Parameters}
+{\em interval} & interval to set \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/headers/Flight\+Plan.\+h\item 
+/home/max/\+C\+Lion\+Projects/\+Project\+Vliegveld/src/Flight\+Plan.\+cpp\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flightplan',['Flightplan',['../classFlightplan.html',1,'']]]
+  ['flightplan',['FlightPlan',['../classFlightPlan.html',1,'']]]
 ];
