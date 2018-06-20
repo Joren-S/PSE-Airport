@@ -20,7 +20,7 @@
 	<type>airline</type>
 	<engine>jet</engine>
 	<size>large</size>
-	<fuel>50000</fuel>
+	<fuel>400</fuel>
 	<passengers>10</passengers>
 	<FLIGHTPLAN>
 		<destination>JFK</destination>
