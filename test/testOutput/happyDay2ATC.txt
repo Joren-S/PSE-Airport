@@ -7,27 +7,33 @@ $ Cessna eight four two, radar contact, descend and maintain five thousand feet,
 [12:17][Cessna 842]
 $ Descend and maintain five thousand feet, squawking zero, Cessna eight four two.
 
-[12:17][Cessna 842]
-$ Mayday mayday mayday, Antwerp Tower, Cessna eight four two, out of fuel, request immediate landing, eight persons on board.
+[12:23][Antwerp Tower]
+$ Cessna eight four two, descend and maintain three thousand feet.
 
-[12:18][Antwerp Tower]
-$ Cessna eight four two, roger mayday, squawk seven seven zero zero, cleared ILS landing runway one one lima
+[12:24][Cessna 842]
+$ Descend and maintain three thousand feet, Cessna eight four two.
 
-[12:38][Cessna 842]
+[12:27][Antwerp Tower]
+$ Cessna eight four two, cleared ILS approach runway one one lima.
+
+[12:28][Cessna 842]
+$ Cleared ILS approach runway one one lima, Cessna eight four two.
+
+[12:34][Cessna 842]
 $ Antwerp Tower, Cessna eight four two, runway one one lima vacated.
 
-[12:39][Antwerp Tower]
+[12:35][Antwerp Tower]
 $ Cessna eight four two, taxi to holding point one one romeo via Bravo.
 
-[12:40][Cessna 842]
+[12:36][Cessna 842]
 $ Taxi to holding point one one romeo via Bravo, Cessna eight four two.
 
-[12:46][Cessna 842]
+[12:42][Cessna 842]
 $ Antwerp Tower, Cessna eight four two, holding short at one one romeo.
 
-[12:47][Antwerp Tower]
+[12:43][Antwerp Tower]
 $ Cessna eight four two, cleared to cross one one romeo, taxi to gate one via Alpha, Cessna eight four two.
 
-[12:48][Cessna 842]
+[12:44][Cessna 842]
 $ Cleared to cross one one romeo, taxi to gate one via Alpha, Cessna eight four two.
 

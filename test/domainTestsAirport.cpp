@@ -51,7 +51,7 @@ TEST_F(domainTestAirport, happyDay) {
     rw->setLength(20000);
 
     // test for occupying/restoring gates.
-    airport.initStack();
+    airport.initGates();
     for (int i = 1; i <= 10; i++) {
         EXPECT_EQ(airport.getFreeGate(), i);
     }
@@ -139,23 +139,22 @@ TEST_F(domainTestAirport, fieldManipulation) {
 TEST_F(domainTestAirport, ContractViolations) {
     // getFreeGate
     airport.setGates(10);
-    EXPECT_DEATH(airport.getFreeGate(), "Can't get free gate: no gate in stack.");
-    airport.initStack();
+    EXPECT_DEATH(airport.getFreeGate(), "Gate map not initialized yet");
+    airport.initGates();
 
     // initStack
-    EXPECT_DEATH(airport.initStack(), "Can't initialize gate stack, already in use.");
+    EXPECT_DEATH(airport.initGates(), "Can't initialize gate map, already in use.");
 
     // getFreeGate continued
     airport.setGates(0);
     EXPECT_DEATH(airport.getFreeGate(), "Airport has no gates.");
     airport.setGates(1);
     airport.getFreeGate();
-    EXPECT_DEATH(airport.getFreeGate(), "Gate has an invalid ID.");
 
 
     // restoreGate
     airport.setGates(0);
-    EXPECT_DEATH(airport.restoreGate(11), "Airport has no gates.");
+    EXPECT_DEATH(airport.restoreGate(11), "Gate ID is invalid.");
     airport.setGates(10);
     EXPECT_DEATH(airport.restoreGate(11), "Gate ID is invalid.");
     EXPECT_DEATH(airport.restoreGate(0), "Gate ID is invalid.");
@@ -198,12 +197,12 @@ TEST_F(domainTestAirport, impressions) {
     airport.addRunway(rw);
     airport.addRunway(rw2);
 
-    std::vector<Flightplan*> plans;
+    std::vector<FlightPlan*> plans;
 
     Airplane* airplane = new Airplane;
     airplane->setStatus(kDeboarding);
     airplane->setGateID(1);
-    Flightplan* plan = new FlightPlan;
+    FlightPlan* plan = new FlightPlan;
     plan->setAirplane(airplane);
     plans.push_back(plan);
 

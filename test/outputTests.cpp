@@ -22,16 +22,16 @@ TEST(outputTest, happyDay) {
         std::string infoname = "../test/testOutput/happyDay" + ToString(counter) + "Info.txt";
         std::ofstream atc(atcname.c_str());
         std::ofstream log(logname.c_str());
+        std::ofstream info(infoname.c_str());
         Input input;
         input.read(filename);
-        System system;
-        system.initializeATC(atc, true);
-        system.import(input);
-        system.setEndTime(14);
+        System system(input, atc, Time(14));
+        system.getATC()->setTestMode(true);
         system.run(log);
-        system.info(infoname);
+        system.info(info);
         atc.close();
         log.close();
+        info.close();
 
         std::string expectedatc = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedATC.txt";
         std::string expectedlog = "../test/testOutput/happyDay" + ToString(counter) + "ExpectedLog.txt";

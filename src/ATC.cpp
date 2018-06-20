@@ -11,11 +11,11 @@ using namespace std;
 
 // Constructor and initialise-check
 
-ATC::ATC(ostream& stream, bool test): fStream(stream) {
+ATC::ATC(ostream& stream): fStream(stream) {
     fInitCheck = this;
     f3Occupied = false;
     f5Occupied = false;
-    fTest = test;
+    fTest = false;
     fTime = Time();
     ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
 }
@@ -34,17 +34,14 @@ void ATC::sendMessage(const string &message) {
 
 int ATC::getQueueSize() const {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
-    int size = fQueue.size();
-    ENSURE(size >= 0, "Queue has a negative size.");
-    return size;
+    return int(fQueue.size());
 }
 
 void ATC::sendRequest(Time time, Airplane *source) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling sendRequest.");
     REQUIRE(source != NULL, "Source is NULL.");
     ATCRequest *rqst = new ATCRequest(time, source);
-
-    getQueue()->push(rqst);
+    fQueue.push(rqst);
 }
 
 string ATC::formatMessage(Time time, string source, string message) {
@@ -158,14 +155,11 @@ ATCRequest *ATC::getNextRequest() {
     ATCRequest *rqst = getQueue()->top();
     getQueue()->pop();
 
-    // Make sure our message was retrieved correctly.
-    ENSURE(rqst != NULL, "Request popped from priority_queue is NULL.");
-
     // Return our message.
     return rqst;
 }
 
-void ATC::doHeartbeat(Time curTime) {
+void ATC::doHeartbeat() {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
 
     // Fetch the next request in the priority_queue
@@ -182,27 +176,27 @@ void ATC::doHeartbeat(Time curTime) {
 
     // ---- EMERGENCY ----
     if (status == kEmergencyLanding) {
-        processEmergency(airplane, curTime);
+        processEmergency(airplane);
     }
     if (status == kEmergencyLandingUrgent) {
-        processUrgentEmergency(airplane, curTime);
+        processUrgentEmergency(airplane);
     }
 
     // ---- LANDING ----
 
     // Plane has requested an approach
     if (status == kApproaching) {
-        processApproach(airplane, curTime);
+        processApproach(airplane);
     }
 
     // Plane has requested a descend/landing
     else if (status == kDescending) {
-        processDescend(airplane, curTime);
+        processDescend(airplane);
     }
 
     // Plane has requested instructions for taxiing at arrival
     else if (status == kTaxiArrival) {
-        processTaxiArrival(airplane, curTime);
+        processTaxiArrival(airplane);
     }
 
 
@@ -211,32 +205,32 @@ void ATC::doHeartbeat(Time curTime) {
 
     // First stage : Not refueled and not boarded.
     else if (status == kAirport) {
-        processIFRClearance(airplane, curTime);
+        processIFRClearance(airplane);
     }
 
     // Plane was refueled and boared.
     else if (status == kGate) {
-        processPushback(airplane, curTime);
+        processPushback(airplane);
     }
 
     // Plane was pushed back.
     else if (status == kPushback) {
-        processTaxiInitialise(airplane, curTime);
+        processTaxiInitialise(airplane);
     }
 
     // Plane started taxiing.
     else if (status == kTaxiDeparture) {
-        processTaxiInstruction(airplane, curTime);
+        processTaxiInstruction(airplane);
     }
 
     // Plane is waiting AT runway
     else if (status == kWaitingForDeparture) {
-        processTakeOff(airplane, curTime);
+        processTakeOff(airplane);
     }
 
     // Plane is waiting ON runway
     else if (status == kDeparture) {
-        processTakeOffRunway(airplane, curTime);
+        processTakeOffRunway(airplane);
     }
 
     // Delete request
@@ -342,7 +336,7 @@ void ATC::set5occupied(bool occupied) {
     ENSURE(get5occupied() == occupied, "Field wasn't set properly");
 }
 
-void ATC::processApproach(Airplane *airplane, Time time) {
+void ATC::processApproach(Airplane *airplane) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
     // Change request status
     airplane->setRequest(kAccepted);
@@ -357,10 +351,10 @@ void ATC::processApproach(Airplane *airplane, Time time) {
 
     // Send message to plane
     string message = airplane->getCallsign() + ", radar contact, descend and maintain five thousand feet, squawk " + stream.str() + ".";
-    fStream << formatMessage(time, fAirport->getCallsign(), message) << endl;
+    fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
 }
 
-void ATC::processDescend(Airplane *airplane, Time curTime) {
+void ATC::processDescend(Airplane *airplane) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processDescend.");
     if (airplane->getAltitude() == 5000) {
 
@@ -374,12 +368,12 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
             f5Occupied = true;
 
             // Get clearance time
-            Time clearance = curTime;
+            Time clearance = fTime;
             clearance.advance(4);
 
             // Send message to plane
             string message = airplane->getCallsign() + ", hold south on the one eighty radial, expect further clearance at " + clearance.formatted() + ".";
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
         }
 
         // Accept request
@@ -389,7 +383,7 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
 
             // Send message to plane
             string message = airplane->getCallsign() + ", descend and maintain three thousand feet.";
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
         }
     }
 
@@ -408,12 +402,12 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
             f3Occupied = true;
 
             // Get clearance time
-            Time clearance = curTime;
+            Time clearance = fTime;
             clearance.advance(4);
 
             // Send message to plane
             string message = airplane->getCallsign() + ", hold south on the one eighty radial, expect further clearance at " + clearance.formatted() + ".";
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
         }
 
         // Runway available
@@ -433,12 +427,12 @@ void ATC::processDescend(Airplane *airplane, Time curTime) {
 
             // Send message to plane
             string message = airplane->getCallsign() + ", cleared ILS approach runway " + runway->getName() + ".";
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
         }
     }
 }
 
-void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
+void ATC::processTaxiArrival(Airplane *airplane) {
     REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiArrival.");
     // Plane position is not set yet, so it just arrived
     if (airplane->getPosition().empty()) {
@@ -459,7 +453,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
                              + " via " + airplane->getRunway()->getTaxiPoint() + ".";
 
             // Send message to plane
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
 
         }
 
@@ -474,7 +468,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
                              runway->getName() + " via " + airplane->getRunway()->getTaxiPoint() + ".";
 
             // Send message to plane
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
         }
 
         // Accept request
@@ -520,7 +514,7 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
             }
 
             // Send message to plane
-            fStream << formatMessage(curTime, fAirport->getCallsign(), message) << endl;
+            fStream << formatMessage(fTime, fAirport->getCallsign(), message) << endl;
 
             // Accept request
             airplane->setRequest(kAccepted);
@@ -533,14 +527,15 @@ void ATC::processTaxiArrival(Airplane *airplane, Time curTime) {
     }
 }
 
-void ATC::processIFRClearance(Airplane* airplane, Time time) {
+void ATC::processIFRClearance(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processIFRClearancy.");
     // Requesting IFR clearance.
     Runway *dest = getAirport()->getFreeRunway(airplane);
     if (dest == NULL) {
         // IFR clearance denied
         airplane->setRunway(NULL);
         airplane->setRequest(kDenied);
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", no free runway, hold position."));
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", no free runway, hold position."));
     } else {
 
         // IFR clearance granted.
@@ -549,34 +544,35 @@ void ATC::processIFRClearance(Airplane* airplane, Time time) {
         airplane->setSquawk(getSquawk(airplane));
         stringstream sqwk;
         sqwk << airplane->getSquawk();
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", cleared to " + dest->getName() +
                                                                         ", maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk " + sqwk.str() + "."));
     }
 }
 
-void ATC::processPushback(Airplane* airplane, Time time) {
-
+void ATC::processPushback(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processPushback.");
     // Requesting pushback
     airplane->setRequest(kAccepted);
-    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
+    sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", " + getAirport()->getCallsign() + ", pushback approved."));
 }
 
-void ATC::processTaxiInitialise(Airplane* airplane, Time time) {
-
+void ATC::processTaxiInitialise(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInitialise.");
     // Requesting permission to taxi
     Runway *firstRW = getAirport()->getRunways().at(0);
-    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
+    sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", taxi to holding point " + firstRW->getName() + " via " + firstRW->getTaxiPoint() + "."));
     airplane->setRequest(kAccepted);
 }
 
-void ATC::processTaxiInstruction(Airplane* airplane, Time time) {
+void ATC::processTaxiInstruction(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInstruction.");
     // Requesting taxi instructions
     Runway *curRw = getAirport()->getRunway(airplane->getPosition());
     Runway *dest = airplane->getRunway();
 
     // if at destination -> go to runway
     if (dest->getTaxiPoint() == curRw->getTaxiPoint()) {
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
         airplane->setRequest(kConfirmed);
     }
 
@@ -584,60 +580,62 @@ void ATC::processTaxiInstruction(Airplane* airplane, Time time) {
     else {
         // if runway is free, plane can cross
         if (curRw->isFree()) {
-            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + curRw->getName() + "."));
+            sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", cleared to cross " + curRw->getName() + "."));
             airplane->setRequest(kAccepted);
         }
 
             //if not, plane has to wait
         else {
-            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+            sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
             airplane->setRequest(kDenied);
         }
     }
 }
 
-void ATC::processTakeOff(Airplane* airplane, Time time) {
+void ATC::processTakeOff(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoff.");
     // Requesting permission to take-off.
     Runway *curRW = airplane->getRunway();
     if (curRW->isFree()) {
         if (f3Occupied == false) {
 
             // Permission to line-up and take-off
-            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
+            sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", runway " + curRW->getName() + " cleared for take-off."));
             airplane->setRequest(kAcceptedImmediate);
         } else {
 
             // Permission to line-up
-            sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
+            sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", line-up runway " + curRW->getName() + " and wait."));
             airplane->setRequest(kAccepted);
         }
     } else {
 
         // Permission denied, keep waiting.
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
         airplane->setRequest(kDenied);
     }
 };
 
-void ATC::processTakeOffRunway(Airplane* airplane, Time time) {
+void ATC::processTakeOffRunway(Airplane* airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoffRunway.");
     // Requesting permission to start taking off
     if (f3Occupied == false) {
 
         // Permission granted, start take-off
         airplane->setRequest(kAccepted);
         string runwayName = getAirport()->getRunway(airplane->getPosition())->getName();
-        sendMessage(formatMessage(time, getAirport()->getCallsign(),
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(),
                                   airplane->getCallsign() + ", runway " + runwayName + " cleared for take-off."));
     }
     else {
 
         // Permission denied.
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", hold position."));
         airplane->setRequest(kDenied);
     }
 }
 
-void ATC::processEmergency(Airplane *airplane, Time time) {
+void ATC::processEmergency(Airplane *airplane) {
 
     // Get a free runway
     Runway* runway = getAirport()->getFreeRunway(airplane);
@@ -665,14 +663,14 @@ void ATC::processEmergency(Airplane *airplane, Time time) {
         runway->setFree(false);
 
         // send message to plane
-        sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, cleared ILS landing runway " + runway->getName()));
+        sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, cleared ILS landing runway " + runway->getName()));
     }
 }
 
-void ATC::processUrgentEmergency(Airplane *airplane, Time time) {
-
+void ATC::processUrgentEmergency(Airplane *airplane) {
+    REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processUrgentEmergency.");
     airplane->setRequest(kAccepted);
-    sendMessage(formatMessage(time, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!"));
+    sendMessage(formatMessage(fTime, getAirport()->getCallsign(), airplane->getCallsign() + ", roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!"));
 }
 
 // test

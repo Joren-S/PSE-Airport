@@ -45,51 +45,34 @@ Runway* Airport::getFreeRunway(Airplane *plane) const {
     return NULL;
 }
 
-void Airport::initStack() {
-    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initStack.");
-    REQUIRE(fGateStack.empty(), "Can't initialize gate stack, already in use.");
+void Airport::initGates() {
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initGates.");
+    REQUIRE(getGateMap().empty(), "Can't initialize gate map, already in use.");
 
-    // Initialize the stack for our gates
-    // We count down so 1 is the last value to get pushed and first to get popped.
-    for (int i = fGates; i > 0; --i) {
-        fGateStack.push(i);
+    for (int i=1; i<=getGates(); i++) {
+        fGateMap[i] = true;
     }
 }
 
 int Airport::getFreeGate() {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeGate.");
-    REQUIRE(!fGateStack.empty(), "Can't get free gate: no gate in stack.");
-    REQUIRE(fGates > 0, "Airport has no gates.");
+    REQUIRE(getGates() > 0, "Airport has no gates.");
+    REQUIRE(!getGateMap().empty(), "Gate map not initialized yet");
 
-    // Get top of stack, store it, then pop it.
-    int id = fGateStack.top();
-    fGateStack.pop();
-
-    ENSURE(id <= fGates && id > 0, "Gate has an invalid ID.");
-
-    // Return the popped gate ID.
-    return id;
+    for (int i=1; i<=getGates(); i++) {
+        if (fGateMap[i]) {
+            fGateMap[i] = false;
+            return i;
+        }
+    }
+    return -1;
 }
 
 void Airport::restoreGate(int id) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling restoreGate.");
-    REQUIRE(fGates > 0, "Airport has no gates.");
-    REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
-
-    // Check if gate is already in fGateStack
-    stack<int> copy = fGateStack;
-    while (!copy.empty()) {
-        int elem = copy.top();
-        copy.pop();
-        if (elem == id) {
-            // If it is, we can return.
-            return;
-        }
-    }
-    // If it isn't, push the gate ID back on the stack.
-    Airport::fGateStack.push(id);
-
-    ENSURE(fGateStack.top() == id, "Gate was not properly added to stack");
+    REQUIRE(id <= getGates() && id > 0, "Gate ID is invalid.");
+    REQUIRE(!getGateMap()[id], "Gate has to be in use to restore it");
+    fGateMap[id] = true;
 }
 
 void Airport::addRunway(Runway *runway) {
@@ -107,11 +90,10 @@ void Airport::addRunway(Runway *runway) {
             break;
         }
     }
-
     ENSURE(!present, "Runway is already in system.");
     // If valid, we can add our runway.
     fRunways.push_back(runway);
-    ENSURE(fRunways.back() == runway, "Runway was not properly added to the system.");
+    ENSURE(getRunways().back() == runway, "Runway was not properly added to the system.");
 }
 
 Runway* Airport::getRunway(const string &taxipoint) const {
@@ -201,8 +183,6 @@ string Airport::drawImpression(const Time& time, const std::vector<FlightPlan *>
                 planesAtTaxiPoint++;
             }
 
-
-
             // at taxipoint during taxiing
             else if (curPlane->getStatus() == kTaxiDeparture and curPlane->getPosition() == curTP) {
                 planesAtTaxiPoint++;
@@ -227,19 +207,6 @@ string Airport::drawImpression(const Time& time, const std::vector<FlightPlan *>
             else if (curPlane->getStatus() == kCrossingDeparture and curPlane->getPosition() == curTP) {
                 planeFound = true;
             }
-//
-//            if (curPlane->getPosition() == curTP) {
-//                EPlaneStatus status = curPlane->getStatus();
-//
-//                // if plane is on runway
-//                if (status == kCrossingArrival or status == kCrossingDeparture or status == kDeparture or (status == kDescending and curPlane->getAltitude() == 0)) {
-//                    impression << "V====" << endl;
-//                    planeFound = true;
-//                }
-//                else {
-//                    planesAtTaxiPoint++;
-//                }
-//            }
         }
         if (!planeFound) {
             impression << "=====" << endl;
@@ -279,6 +246,7 @@ string Airport::drawImpression(const Time& time, const std::vector<FlightPlan *>
 
 
 std::string Airport::graphicsINI(const std::vector<FlightPlan *>& plans) {
+    REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
     Graphics graphics(this);
     for (vector<Runway*>::const_iterator itr = fRunways.begin(); itr != fRunways.end(); ++itr) {
         graphics.addElement(*itr);
@@ -292,6 +260,10 @@ std::string Airport::graphicsINI(const std::vector<FlightPlan *>& plans) {
 
 // Getters en setters
 
+std::map<int, bool> Airport::getGateMap() const {
+    return fGateMap;
+}
+
 const string &Airport::getName() const {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     return fName;
@@ -300,7 +272,7 @@ const string &Airport::getName() const {
 void Airport::setName(const string &name) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fName = name;
-    ENSURE(fName == name, "Field wasn't set properly");
+    ENSURE(getName() == name, "Field wasn't set properly");
 }
 
 const string &Airport::getIata() const {
@@ -311,7 +283,7 @@ const string &Airport::getIata() const {
 void Airport::setIata(const string &iata) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fIata = iata;
-    ENSURE(fIata == iata, "Field wasn't set properly");
+    ENSURE(getIata() == iata, "Field wasn't set properly");
 }
 
 const string &Airport::getCallsign() const {
@@ -322,7 +294,7 @@ const string &Airport::getCallsign() const {
 void Airport::setCallsign(const string &callsign) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     fCallsign = callsign;
-    ENSURE(fCallsign == callsign, "Field wasn't set properly");
+    ENSURE(getCallsign() == callsign, "Field wasn't set properly");
 }
 
 int Airport::getGates() const {
@@ -334,7 +306,7 @@ void Airport::setGates(int gates) {
     REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
     REQUIRE(gates >= 0, "Number of gates cannot be negative!");
     fGates = gates;
-    ENSURE(fGates == gates, "Field wasn't set properly");
+    ENSURE(getGates() == gates, "Field wasn't set properly");
 }
 
 vector<Runway*> Airport::getRunways() const {

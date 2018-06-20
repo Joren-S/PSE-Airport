@@ -12,7 +12,7 @@ System::System(const Input& input, ostream& atc, const Time& end): fEndTime(end)
     REQUIRE(!input.getAirports().empty(), "There has to be an airport in the input to start the simulation");
     
     // Make new atc
-    fATC = new ATC(atc, false);
+    fATC = new ATC(atc);
 
     // Get input
     fAirport = input.getAirports()[0];
@@ -92,7 +92,7 @@ void System::run(ostream& log, const string& impressionName, const string& iniNa
         Time fTime = getATC()->getTime();
 
         // Each tick, we make sure our ATC handles requests.
-        fATC->doHeartbeat(fTime);
+        fATC->doHeartbeat();
 
         // Draw impression
         string name = impressionName + fTime.formatted();

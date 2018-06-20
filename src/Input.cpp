@@ -521,8 +521,8 @@ FlightPlan* Input::readFlightPlan(TiXmlElement *elem, ostream& errorLog) {
 void Input::addAirport(Airport *airport) {
     REQUIRE(this->properlyInitialized(), "Input was't initialized when calling addAirport");
     REQUIRE(airport->complete(), "Airport has to be completely initialized to add it to the simulation");
-    // Initialize gateStack
-    airport->initStack();
+    // Initialize gates
+    airport->initGates();
 
     // Add to vec
     fAirports.push_back(airport);

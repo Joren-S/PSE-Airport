@@ -17,24 +17,21 @@ protected:
         Input input;
         input.read("../test/testInput/happyDay.xml");
 
-        system.initializeATC(out);
-
-        // Import info
-        system.import(input);
+        system = new System(input, out, Time(13));
 
         // Get airplane
-        airplane = system.getFlightplans()[0]->getAirplane();
-        airplane->setATC(system.getATC());
+        airplane = system->getFlightPlans()[0]->getAirplane();
+        airplane->setATC(system->getATC());
 
         // Get runway
-        runway = system.getAirport()->getRunways()[0];
+        runway = system->getAirport()->getRunways()[0];
     }
 
     std::ofstream out;
     Airplane* airplane;
     Airplane* airplaneInc;
     Runway* runway;
-    System system;
+    System* system;
 };
 
 
@@ -55,13 +52,6 @@ TEST_F(domainTestAirplane, DefaultConstructor) {
 }
 
 TEST_F(domainTestAirplane, happyDay) {
-    airplane->increaseAltitude(3000);
-    EXPECT_EQ(airplane->getAltitude(), 3000);
-    airplane->increaseAltitude(2000);
-    EXPECT_EQ(airplane->getAltitude(), 5000);
-    airplane->decreaseAltitude(5000);
-    EXPECT_EQ(airplane->getAltitude(), 0);
-
     airplane->decreaseTimeRemaining();
     EXPECT_EQ(airplane->getTimeRemaining(), 0);
 
@@ -251,13 +241,13 @@ TEST_F(domainTestAirplane, taxiArrival) {
 
     // Arrived at taxipoint
     airplane->setStatus(kTaxiArrival);
-    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setPosition(system->getAirport()->getRunways()[1]->getTaxiPoint());
     airplane->setRequest(kConfirmed);
     airplane->taxiArrival(out);
     EXPECT_EQ(airplane->getRequest(), kIdle);
 
     // Hasn't send a request yet for taxi instructions
-    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setPosition(system->getAirport()->getRunways()[1]->getTaxiPoint());
     airplane->setRequest(kIdle);
     airplane->taxiArrival(out);
     EXPECT_EQ(airplane->getRequest(), kPending);
@@ -274,14 +264,14 @@ TEST_F(domainTestAirplane, taxiArrival) {
 
     // Request has been accepted, plane crosses a runway
     airplane->setRequest(kAccepted);
-    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setPosition(system->getAirport()->getRunways()[1]->getTaxiPoint());
     airplane->taxiArrival(out);
     EXPECT_EQ(airplane->getStatus(), kCrossingArrival);
     EXPECT_EQ(airplane->getRequest(), kConfirmed);
 }
 
 TEST_F(domainTestAirplane, crossArrival) {
-    airplane->setPosition(system.getAirport()->getRunways()[1]->getTaxiPoint());
+    airplane->setPosition(system->getAirport()->getRunways()[1]->getTaxiPoint());
     airplane->setStatus(kTaxiArrival);
     airplane->crossArrival(out);
     EXPECT_EQ(airplane->getStatus(), kTaxiArrival);
@@ -417,7 +407,7 @@ TEST_F(domainTestAirplane, taxiDepartureStep) {
     // first ever taxi step
     airplane->taxiDepartureStep(out);
     EXPECT_EQ(airplane->getStatus(), kTaxiDeparture);
-    EXPECT_EQ(airplane->getPosition(), system.getAirport()->getRunways().at(0)->getTaxiPoint());
+    EXPECT_EQ(airplane->getPosition(), system->getAirport()->getRunways().at(0)->getTaxiPoint());
     EXPECT_EQ(airplane->getTimeRemaining(), 5);
 
     // request crossing
@@ -437,7 +427,7 @@ TEST_F(domainTestAirplane, taxiDepartureStep) {
     airplane->taxiDepartureStep(out);
     EXPECT_EQ(airplane->getRequest(), kIdle);
     EXPECT_EQ(airplane->getStatus(), kCrossingDeparture);
-    EXPECT_FALSE(system.getAirport()->getRunway(airplane->getPosition())->isFree());
+    EXPECT_FALSE(system->getAirport()->getRunway(airplane->getPosition())->isFree());
     EXPECT_EQ(airplane->getTimeRemaining(), 1);
 
     // atc has responded and has confirmed the request (arrived at destination)
@@ -482,10 +472,14 @@ TEST_F(domainTestAirplane, pushback) {
     EXPECT_EQ(airplane->getStatus(), kGate);
     EXPECT_EQ(airplane->getTimeRemaining(), 1);
 
+
     // ATC hasn't responded yet
     airplane->pushback(out);
     EXPECT_EQ(airplane->getRequest(), kPending);
     EXPECT_EQ(airplane->getStatus(), kGate);
+
+    airplane->setGateID(system->getAirport()->getFreeGate());
+
 
     // ATC has responded and accepted request
     // different plane sizes:
@@ -496,12 +490,17 @@ TEST_F(domainTestAirplane, pushback) {
     EXPECT_EQ(airplane->getStatus(), kPushback);
     EXPECT_EQ(airplane->getTimeRemaining(), 1);
 
+    airplane->setGateID(system->getAirport()->getFreeGate());
+
     airplane->setRequest(kAccepted);
     airplane->setSize(kMedium);
     airplane->pushback(out);
     EXPECT_EQ(airplane->getRequest(), kIdle);
     EXPECT_EQ(airplane->getStatus(), kPushback);
     EXPECT_EQ(airplane->getTimeRemaining(), 2);
+
+    airplane->setGateID(system->getAirport()->getFreeGate());
+
 
     airplane->setRequest(kAccepted);
     airplane->setSize(kLarge);
@@ -588,13 +587,6 @@ TEST_F(domainTestAirplane, fieldManipulation) {
 }
 
 TEST_F(domainTestAirplane, ContractViolations) {
-    EXPECT_DEATH(airplane->decreaseAltitude(-3000), "Difference can't be negative");
-    EXPECT_DEATH(airplane->increaseAltitude(-2000), "Difference can't be negative");
-
-    // Set altitude to 1 and try to decrease by 2
-    airplane->setAltitude(1000);
-    EXPECT_DEATH(airplane->decreaseAltitude(2000), "New altitude can't be less than 0!");
-
     EXPECT_DEATH(airplane->setAltitude(-3), "Altitude can't be negative");
     EXPECT_DEATH(airplane->setTimeRemaining(-5), "Time remaining can't be negative");
     EXPECT_DEATH(airplane->setPassengers(-4), "Passenger amount can't be negative");

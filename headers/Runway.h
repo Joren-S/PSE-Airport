@@ -11,6 +11,7 @@
 #include "DesignByContract.h"
 #include "Airplane.h"
 
+// Forward declaration
 class Airport;
 
 
@@ -54,13 +55,15 @@ public:
      */
     bool validForAirplane(Airplane* plane) const;
 
-    /**
-     * Getters and setters for the fields of the class.
-     * \n REQUIRE(properlyInitialized(), "Runway wasn't properly initialized when calling getter/setter.");
-     *
-     * \n Specific for setters:
-     * \n ENSURE(getField() == newValue, "Field wasn't set properly");
-     */
+    ////////////////
+    ///  Getters and setters for the fields of the class.
+    ///  For all:
+    ///  REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    ///  For setters;
+    ///  ENSURE(getField == value, "Field wasn't std::set properly");
+    ///  where getField is specific for the member
+    ///////////////
+
     ERunwayType getType() const;
     void setType(ERunwayType type);
     int getLength() const;
@@ -105,11 +108,6 @@ private:
      * Pointer to the airport in which the runway is
      */
     Airport* fAirport;
-
-    /**
-     * Pointer to the runway tied to this airplane
-     */
-    Runway* fRunway;
 
     /**
      * Pointer to itself

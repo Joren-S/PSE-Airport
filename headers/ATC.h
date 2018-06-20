@@ -12,13 +12,13 @@
 #include <queue>
 #include <set>
 #include <map>
-
 #include "Runway.h"
 #include "Time.h"
 #include "Airport.h"
 #include "Airplane.h"
 
 struct ATCRequest {
+
     /**
      * Time message was sent.
      */
@@ -33,15 +33,16 @@ struct ATCRequest {
      * Constructor.
      */
     ATCRequest(Time time, Airplane* plane);
+
 };
 
 struct Comparator {
     bool operator()(const ATCRequest* lhs, const ATCRequest* rhs);
 };
 
+
+
 class ATC {
-
-
 public:
 
     /**
@@ -49,12 +50,19 @@ public:
      * \n ENSURE(properlyInitialized(), "ATC was not properly initialized after constructing.");
      * @param stream: std::ostream to write to.
      */
-    ATC(std::ostream& stream, bool test);
+    ATC(std::ostream& stream);
 
     /**
      * Destructor
      */
     ~ATC();
+
+    /**
+     * Main function of the ATC, needs to be called every time we advance in time.
+     * \n Handles requests and responds correctly.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
+     */
+    void doHeartbeat();
 
     /**
      * Checks if the object is properly initialized
@@ -74,7 +82,6 @@ public:
     /**
      * Return the amount of requests that are queued.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getQueueSize.");
-     * \n ENSURE(size >= 0, "Queue has a negative size.");
      * @return: Size of the std::priority_queue.
      */
     int getQueueSize() const;
@@ -82,8 +89,7 @@ public:
     /**
      * Get the next request that needs to be handled by the ATC.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getNextRequest.");
-     * \n ENSURE(msg != NULL, "Request popped from std::priority_queue is NULL.");
-     * @return: Pointer to the request, NULL if std::priority_queue is empty.
+     * @return: Pointer to the request, NULL if priority_queue is empty.
      */
     ATCRequest *getNextRequest();
 
@@ -97,20 +103,12 @@ public:
     static std::string formatMessage(Time time, std::string source, std::string message);
 
     /**
-     * Main function of the ATC, needs to be called every time we advance in time.
-     * Handles requests and responds correctly.
-     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling doHeartbeat.");
-     * @param time: Time of "heartbeat".
-     */
-    void doHeartbeat(Time time);
-
-    /**
      * Processes a request for approach.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processApproach.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processApproach(Airplane* airplane, Time time);
+    void processApproach(Airplane* airplane);
 
     /**
      * Processes a request for descend.
@@ -118,7 +116,7 @@ public:
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processDescend(Airplane* airplane, Time time);
+    void processDescend(Airplane* airplane);
 
     /**
      * Processes a request for taxiing at arrival.
@@ -126,63 +124,71 @@ public:
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processTaxiArrival(Airplane* airplane, Time time);
+    void processTaxiArrival(Airplane* airplane);
 
     /**
      * Processes a request for IFR clearance.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processIFRClearancy.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processIFRClearance(Airplane* airplane, Time time);
+    void processIFRClearance(Airplane* airplane);
 
     /**
      * Processes a request for pushback.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processPushback.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processPushback(Airplane* airplane, Time time);
+    void processPushback(Airplane* airplane);
 
     /**
      * Processes a request to start taxiing.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInitialise.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processTaxiInitialise(Airplane* airplane, Time time);
+    void processTaxiInitialise(Airplane* airplane);
 
     /**
      * Processes a request for a taxi instruction.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTaxiInstruction.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processTaxiInstruction(Airplane* airplane, Time time);
+    void processTaxiInstruction(Airplane* airplane);
 
     /**
      * Processes a request for takeoff when waiting at runway.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoff.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processTakeOff(Airplane* airplane, Time time);
+    void processTakeOff(Airplane* airplane);
 
     /**
      * Processes a request for takeoff when waiting on runway.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoffRunway.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processTakeOffRunway(Airplane* airplane, Time time);
+    void processTakeOffRunway(Airplane* airplane);
 
     /**
      * Processes a request for an emergency landing.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processTakeoffRunway.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processEmergency(Airplane* airplane, Time time);
+    void processEmergency(Airplane* airplane);
 
     /**
      * Processes a request for an urgent emergency landing.
+     * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling processUrgentEmergency.");
      * @param airplane: the sender of the request
      * @param time: current time
      */
-    void processUrgentEmergency(Airplane* airplane, Time time);
+    void processUrgentEmergency(Airplane* airplane);
 
     /**
      * Write a message to the ATC stream.
@@ -195,13 +201,15 @@ public:
      * Generates a squawk code for a given plane.
      * The returned code will not be generated for any other plane.
      * \n REQUIRE(this->properlyInitialized(), "ATC was not properly initialized when calling getSquawk.");
+     * @return squawk code
      */
     int getSquawk(Airplane*);
 
     /**
-    * Getter for the current time
-    * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
-    */
+     * Getter for the current time
+     * \n REQUIRE(this->properlyInitialized(), "System was't initialized when calling getTime");
+     * @return current time
+     */
     Time getTime() const;
 
     /**

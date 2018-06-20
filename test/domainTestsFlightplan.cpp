@@ -11,7 +11,7 @@
 class domainTestFlightplan: public ::testing::Test {
 protected:
 
-    Flightplan flightplan;
+    FlightPlan flightplan;
 
 };
 

@@ -839,6 +839,10 @@ void Airplane::pushback(ostream &fLog) {
         if (size == kLarge) {
             setTimeRemaining(3);
         }
+
+        fATC->getAirport()->restoreGate(getGateID());
+        setGateID(-1);
+
         return;
     }
 
@@ -1090,13 +1094,12 @@ void Airplane::ascend(ostream &fLog) {
 
 
 void Airplane::performNextStep(ostream& log) {
-    REQUIRE(fATC->properlyInitialized(), "ATC was not properly initialized.");
-    REQUIRE(fATC->getAirport() != NULL, "No airport in the simulation.");
-    REQUIRE(fATC->getAirport()->properlyInitialized(), "ATC was not properly initialized.");
-    REQUIRE(properlyInitialized(), "Plane was not properly initialized.");
+    REQUIRE(properlyInitialized(), "Plane was not properly initialized when calling performNextStep.");
 
     // If plane is still busy, we do nothing
-    if (getTimeRemaining() == 0) {
+    if (getTimeRemaining() != 0) {
+        checkFuel(log);
+        decreaseTimeRemaining();
         return;
     }
 

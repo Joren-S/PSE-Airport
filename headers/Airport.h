@@ -8,7 +8,7 @@
 #define PROJECTVLIEGVELD_AIRPORTS_H
 
 #include <string>
-#include <stack>
+#include <map>
 #include <vector>
 #include <sstream>
 #include "DesignByContract.h"
@@ -41,29 +41,33 @@ public:
     bool properlyInitialized() const;
 
     /**
-     * Initializes the gateStack
-     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initStack.");
-     * \n REQUIRE(fGateStack.empty(), "Can't initialize gate stack, already in use.");
+     * Checks if all the data members were initialized
+     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling complete.");
+     * @return: Boolean indicating if everything was initialized.
      */
-    void initStack();
+    bool complete() const;
+
+    /**
+     * Initializes the gateStack
+     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling initGates.");
+     * \n REQUIRE(getGateMap().empty(), "Can't initialize gate map, already in use.");
+     */
+    void initGates();
 
     /**
      * Returns the ID of a free gate
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getFreeGate.");
-     * \n REQUIRE(!fGateStack.empty(), "Can't get free gate: no gate in stack.");
-     * \n REQUIRE(fGates > 0, "Airport has no gates.");
-     * \n ENSURE(id <= fGates && id > 0, "Gate has an invalid ID.");
-     * \n ENSURE(fGateStack.top() != id, "Gate wasn't properly popped from the stack.");
-     * @return: ID of a free gate.
+     * \n REQUIRE(getGates() > 0, "Airport has no gates.");
+     * \n REQUIRE(!getGateMap().empty(), "Gate map not initialized yet");
+     * @return: ID of a free gate. -1 if nothing available
      */
     int getFreeGate();
 
     /**
      * Restores a gate, making it available for use again.
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling restoreGate.");
-     * \n REQUIRE(id <= fGates && id > 0, "Gate ID is invalid.");
-     * \n REQUIRE(fGates > 0, "Airport has no gates.");
-     * \n ENSURE(fGateStack.top() == id, "Gate was not properly added to stack");
+     * \n REQUIRE(id <= getGates() && id > 0, "Gate ID is invalid.");
+     * \n REQUIRE(getGateMap()[id], "Gate has to be in use to restore it");
      * @param id: ID of gate to restore
      */
     void restoreGate(int id);
@@ -85,11 +89,11 @@ public:
     Runway* getNextRunway(Airplane* airplane) const;
 
     /**
-     * Adds a runway to the airport.
+     * Adds a runway to the airport. Present is a boolean indicating if the object is already in the getRunways()
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling addRunway.");
      * \n REQUIRE(runway != NULL, "Runway cannot be NULL.");
      * \n ENSURE(!present, "Runway is already in system.");
-     * \n ENSURE(fRunways.back() == runway, "Runway was not properly added to the system.");
+     * \n ENSURE(getRunways().back() == runway, "Runway was not properly added to the system.");
      * @param runway: Pointer to runway that needs to be added.
      */
     void addRunway(Runway* runway);
@@ -111,13 +115,6 @@ public:
     size_t amountOfRunways() const;
 
     /**
-     * Checks if all the data members were initialized
-     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling complete.");
-     * @return: Boolean indicating if everything was initialized.
-     */
-    bool complete() const;
-
-    /**
      * Generates a graphical impression for the current state of the airport.
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling drawImpression.");
      * @param time: time of the impression.
@@ -126,24 +123,30 @@ public:
      */
     std::string drawImpression(const Time& time, const std::vector<FlightPlan *>& plans) const;
 
+    /**
+     * Generates a string containing the info for use with the graphics engine
+     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling graphicsINI.");
+     * @param plans: the flight plans
+     * @return string containing ini file
+     */
     std::string graphicsINI(const std::vector<FlightPlan *>& plans);
 
     /**
      * Set the amount of gates in the airport.
      * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
-     * \n REQUIRE(fGates >= 0, "Number of gates cannot be negative!");
-     * \n ENSURE(fGates == gates, "Field wasn't set properly");
-     * @param fGates: Amount of gates.
+     * \n REQUIRE(getGates() >= 0, "Number of gates cannot be negative!");
+     * \n ENSURE(getGates() == gates, "Field wasn't set properly");
+     * @param gates: Amount of gates.
      */
-    void setGates(int fGates);
+    void setGates(int gates);
 
-    /**
-     * Getters and setters for the fields of the class.
-     * \n REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
-     *
-     * Setters:
-     * \n ENSURE(fField == value, "Field wasn't set properly");
-     */
+    //////////////
+    /// Getters and setters
+    /// For all: REQUIRE(properlyInitialized(), "Airport wasn't properly initialized when calling getter/setter.");
+    /// For setters: ENSURE(getField() == value, "Field wasn't set properly");
+    /// Where getField() is flexible
+    //////////////
+
     const std::string &getName() const;
     void setName(const std::string &fName);
     const std::string &getIata() const;
@@ -152,6 +155,7 @@ public:
     void setCallsign(const std::string &fCallsign);
     int getGates() const;
     std::vector<Runway*> getRunways() const;
+    std::map<int, bool> getGateMap() const;
 
 private:
 
@@ -171,9 +175,9 @@ private:
     int fGates;
 
     /**
-     * Stack of available gates
+     * Map with all the gates and boolean indicating if free
      */
-    std::stack<int> fGateStack;
+    std::map<int, bool> fGateMap;
 
     /**
      * Vector of all the runways the airport contains

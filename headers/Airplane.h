@@ -51,11 +51,8 @@ public:
 
     /**
      * Calls the right flying function according to the status.
-     * At the end, checks fuel and decreases time remaining
-     * \n REQUIRE(fATC->properlyInitialized(), "ATC was not properly initialized.");
-     * \n REQUIRE(fATC->getAirport() != NULL, "No airport in the simulation.");
-     * \n REQUIRE(fATC->getAirport()->properlyInitialized(), "ATC was not properly initialized.");
-     * \n REQUIRE(properlyInitialized(), "Plane was not properly initialized.");
+     * \n At the end, checks fuel and decreases time remaining
+     * \n REQUIRE(properlyInitialized(), "Plane was not properly initialized when calling performNextStep.");
      * @param log: ostream used for logging events
      */
     void performNextStep(std::ostream& log);
@@ -265,7 +262,7 @@ public:
      * Setter for the current amount of fuel
      * \n REQUIRE(this->properlyInitialized(), "Airplane was't initialized when calling Airplane getter/setter");
      * \n REQUIRE(fuel >= 0, "Fuel can't be negative");
-     * \n REQUIRE(fuel <= fFuel, "Fuel can't be more than the max. fuel");
+     * \n REQUIRE(fuel <= getFuel, "Fuel can't be more than the max. fuel");
      */
     void setCurFuel(int fuel);
 

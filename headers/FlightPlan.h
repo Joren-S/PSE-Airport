@@ -78,25 +78,26 @@ public:
      * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setDeparture");
      * \n REQUIRE(departure >= 0 && departure < 60, "Departure has to be between 0 and 60");
      */
-    void setDeparture(int fDeparture);
+    void setDeparture(int departure);
 
     /**
      * Setter for arrival time
      * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setArrival");
      * \n REQUIRE(arrival >= 0 && arrival < 60, "Arrival has to be between 0 and 60");
      */
-    void setArrival(int fArrival);
+    void setArrival(int arrival);
 
     /**
      * Setter for interval
      * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling setInterval");
      * \n REQUIRE(interval > 0, "Interval has to be at least 1");
      */
-    void setInterval(int fInterval);
+    void setInterval(int interval);
 
     /**
      * Returns the event at the given time
      * \n REQUIRE(this->properlyInitialized(), "Flightplan was't initialized when calling getEvent");
+     * @return event at this time
      */
     EEvent getEvent(Time time);
 
@@ -106,11 +107,12 @@ public:
      */
     bool complete() const;
 
-    /**
-     * Getters and setters for the fields of the class.
-     * \n REQUIRE(properlyInitialized(), "Flightplan wasn't initialized when calling getter/setter");
-     *
-     */
+    ////////////////
+    ///  Getters and setters for the fields of the class.
+    ///  For all:
+    ///  REQUIRE(properlyInitialized(), "ATC wasn't properly initialized when calling getter/setter.");
+    ///////////////
+
     const std::string &getDestination() const;
     void setDestination(const std::string &fDestination);
     int getDeparture() const;
