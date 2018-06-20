@@ -1,0 +1,30 @@
+[12:10][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, arriving at Antwerp International Airport.
+
+[12:11][Antwerp Tower]
+$ Speedbird four six six, radar contact, descend and maintain five thousand feet, squawk zero.
+
+[12:12][Speedbird 466]
+$ Descend and maintain five thousand feet, squawking zero, Speedbird four six six.
+
+[12:18][Antwerp Tower]
+$ Speedbird four six six, descend and maintain three thousand feet.
+
+[12:19][Speedbird 466]
+$ Descend and maintain three thousand feet, Speedbird four six six.
+
+[12:22][Antwerp Tower]
+$ Speedbird four six six, cleared ILS approach runway one one lima.
+
+[12:23][Speedbird 466]
+$ Cleared ILS approach runway one one lima, Speedbird four six six.
+
+[12:29][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, runway one one lima vacated.
+
+[12:30][Antwerp Tower]
+$ Speedbird four six six, taxi to gate one via Alpha.
+
+[12:31][Speedbird 466]
+$ Taxi to gate one via Alpha, Speedbird four six six.
+

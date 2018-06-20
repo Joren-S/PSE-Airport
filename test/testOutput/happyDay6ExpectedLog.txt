@@ -1,0 +1,15 @@
+[12:12] Speedbird 466 is approaching Antwerp International Airport at 10000ft.
+[12:13] Speedbird 466 descended to 9000ft.
+[12:14] Speedbird 466 descended to 8000ft.
+[12:15] Speedbird 466 descended to 7000ft.
+[12:16] Speedbird 466 descended to 6000ft.
+[12:17] Speedbird 466 descended to 5000ft.
+[12:20] Speedbird 466 descended to 4000ft.
+[12:21] Speedbird 466 descended to 3000ft.
+[12:24] Speedbird 466 descended to 2000ft.
+[12:25] Speedbird 466 descended to 1000ft.
+[12:26] Speedbird 466 is landing at Antwerp International Airport on runway 11L
+[12:28] Speedbird 466 has landed at Antwerp International Airport on runway 11L
+[12:36] Speedbird 466 is standing at Gate 1
+[12:51] 10 passengers exited Speedbird 466 at gate 1 of Antwerp International Airport
+[12:54] Speedbird 466 has been checked for technical malfunctions

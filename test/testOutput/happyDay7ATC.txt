@@ -1,0 +1,39 @@
+[12:15][CNCRD-666]
+$ Antwerp Tower, CNCRD-six six six, arriving at Antwerp International Airport.
+
+[12:16][Antwerp Tower]
+$ CNCRD-six six six, radar contact, descend and maintain five thousand feet, squawk zero.
+
+[12:17][CNCRD-666]
+$ Descend and maintain five thousand feet, squawking zero, CNCRD-six six six.
+
+[12:23][Antwerp Tower]
+$ CNCRD-six six six, descend and maintain three thousand feet.
+
+[12:24][CNCRD-666]
+$ Descend and maintain three thousand feet, CNCRD-six six six.
+
+[12:27][Antwerp Tower]
+$ CNCRD-six six six, cleared ILS approach runway one two lima.
+
+[12:28][CNCRD-666]
+$ Cleared ILS approach runway one two lima, CNCRD-six six six.
+
+[12:34][CNCRD-666]
+$ Antwerp Tower, CNCRD-six six six, runway one two lima vacated.
+
+[12:35][Antwerp Tower]
+$ CNCRD-six six six, taxi to holding point one one lima via Bravo.
+
+[12:36][CNCRD-666]
+$ Taxi to holding point one one lima via Bravo, CNCRD-six six six.
+
+[12:42][CNCRD-666]
+$ Antwerp Tower, CNCRD-six six six, holding short at one one lima.
+
+[12:43][Antwerp Tower]
+$ CNCRD-six six six, cleared to cross one one lima, taxi to gate one via Alpha, CNCRD-six six six.
+
+[12:44][CNCRD-666]
+$ Cleared to cross one one lima, taxi to gate one via Alpha, CNCRD-six six six.
+

@@ -1,0 +1,78 @@
+[12:10][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, requesting IFR clearancy.
+
+[12:11][Antwerp Tower]
+$ Speedbird four six six, Antwerp Tower, cleared to one one lima, maintain five thousand, expect flight level one zero zero - ten minutes after departure, squawk zero.
+
+[12:12][Speedbird 466]
+$ Cleared to one one lima, initial altitude five thousand, expecting one zero zero in ten, squawking zero, Speedbird four six six.
+
+[12:15][CNCRD-666]
+$ Antwerp Tower, CNCRD-six six six, arriving at Antwerp International Airport.
+
+[12:16][Antwerp Tower]
+$ CNCRD-six six six, radar contact, descend and maintain five thousand feet, squawk zero.
+
+[12:17][CNCRD-666]
+$ Descend and maintain five thousand feet, squawking zero, CNCRD-six six six.
+
+[12:23][Antwerp Tower]
+$ CNCRD-six six six, descend and maintain three thousand feet.
+
+[12:24][CNCRD-666]
+$ Descend and maintain three thousand feet, CNCRD-six six six.
+
+[12:27][Antwerp Tower]
+$ CNCRD-six six six, cleared ILS approach runway one one lima.
+
+[12:27][Speedbird 466]
+$ Speedbird four six six, Speedbird four six six at gate one, requesting pushback.
+
+[12:28][Antwerp Tower]
+$ Speedbird four six six, Antwerp Tower, pushback approved.
+
+[12:28][CNCRD-666]
+$ Cleared ILS approach runway one one lima, CNCRD-six six six.
+
+[12:29][Speedbird 466]
+$ Pushback approved, Speedbird four six six.
+
+[12:32][Speedbird 466]
+$ Speedbird four six six is ready to taxi.
+
+[12:33][Antwerp Tower]
+$ Speedbird four six six, taxi to holding point one one lima via Alpha.
+
+[12:34][CNCRD-666]
+$ Antwerp Tower, CNCRD-six six six, runway one one lima vacated.
+
+[12:35][Antwerp Tower]
+$ CNCRD-six six six, taxi to gate one via Alpha.
+
+[12:36][CNCRD-666]
+$ Taxi to gate one via Alpha, CNCRD-six six six.
+
+[12:40][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, holding short at one one lima.
+
+[12:41][Antwerp Tower]
+$ Speedbird four six six, hold position.
+
+[12:42][Speedbird 466]
+$ Holding position, Speedbird four six six.
+
+[12:43][Speedbird 466]
+$ Antwerp Tower, Speedbird four six six, holding short at one one lima.
+
+[12:44][Antwerp Tower]
+$ Speedbird four six six, runway one one lima cleared for take-off.
+
+[12:45][Speedbird 466]
+$ Runway one one lima cleared for take-off, Speedbird four six six.
+
+[12:47][Speedbird 466]
+$ Mayday mayday mayday, Antwerp Tower, Speedbird four six six, out of fuel, performing emergency landing, one zero persons on board.
+
+[12:48][Antwerp Tower]
+$ Speedbird four six six, roger mayday, squawk seven seven zero zero, emergency personal on standby, good luck!
+

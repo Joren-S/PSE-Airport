@@ -1,0 +1,42 @@
+<AIRPORT>
+	<name>Antwerp International Airport</name>
+	<iata>ANR</iata>
+	<callsign>Antwerp Tower</callsign>
+	<gates>10</gates>
+</AIRPORT>
+<RUNWAY>
+	<name>11L</name>
+	<airport>ANR</airport>
+	<type>grass</type>
+	<length>1010</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+	</TAXIROUTE>
+</RUNWAY>
+<RUNWAY>
+	<name>12L</name>
+	<airport>ANR</airport>
+	<type>asphalt</type>
+	<length>3210</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+		<crossing>11L</crossing>
+		<taxipoint>Bravo</taxipoint>
+	</TAXIROUTE>
+</RUNWAY>
+<AIRPLANE>
+	<number>BAW666</number>
+	<callsign>CNCRD-666</callsign>
+	<model>Concorde</model>
+	<type>airline</type>
+	<engine>jet</engine>
+	<size>large</size>
+	<fuel>10000</fuel>
+	<passengers>120</passengers>
+	<FLIGHTPLAN>
+		<destination>JFK</destination>
+		<departure>25</departure>
+		<arrival>15</arrival>
+		<interval>2</interval>
+	</FLIGHTPLAN>
+</AIRPLANE>

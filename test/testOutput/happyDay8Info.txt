@@ -1,0 +1,18 @@
+Airport: Antwerp International Airport (ANR)
+ -> gates: 10
+ -> runways: 1
+
+Airplane: Speedbird 466 (BAW466)
+ -> model: Boeing 747
+ -> type: airline
+ -> engine: jet
+ -> size: large
+ -> passengers: 10
+
+Airplane: CNCRD-666 (BAW666)
+ -> model: Concorde
+ -> type: airline
+ -> engine: jet
+ -> size: large
+ -> passengers: 120
+

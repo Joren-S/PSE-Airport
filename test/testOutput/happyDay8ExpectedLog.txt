@@ -1,0 +1,27 @@
+[12:12] Speedbird 466 is being refueled
+[12:12] 10 passengers are boarding Speedbird 466 at Gate 1 of Antwerp International Airport
+[12:12] Speedbird 466 is standing at Gate 1
+[12:17] CNCRD-666 is approaching Antwerp International Airport at 10000ft.
+[12:18] CNCRD-666 descended to 9000ft.
+[12:19] CNCRD-666 descended to 8000ft.
+[12:20] CNCRD-666 descended to 7000ft.
+[12:21] CNCRD-666 descended to 6000ft.
+[12:22] CNCRD-666 descended to 5000ft.
+[12:25] CNCRD-666 descended to 4000ft.
+[12:26] CNCRD-666 descended to 3000ft.
+[12:29] Speedbird 466 is being pushed back
+[12:29] CNCRD-666 descended to 2000ft.
+[12:30] CNCRD-666 descended to 1000ft.
+[12:31] CNCRD-666 is landing at Antwerp International Airport on runway 11L
+[12:33] CNCRD-666 has landed at Antwerp International Airport on runway 11L
+[12:34] Speedbird 466 has started taxiing to runway 11L
+[12:41] CNCRD-666 is standing at Gate 1
+[12:46] Speedbird 466 ascended to 1000ft.
+[12:47] Speedbird 466 ascended to 2000ft.
+[12:47] Speedbird 466 has ran out of fuel and is making an urgent emergency landing outside Antwerp International Airport.
+[12:48] Speedbird 466 descended to 1500ft. (EL).
+[12:49] Speedbird 466 descended to 1000ft. (EL).
+[12:50] Speedbird 466 descended to 500ft. (EL).
+[12:51] Speedbird 466 has made an emergency landing outside Antwerp International Airport.
+[12:56] 120 passengers exited CNCRD-666 at gate 1 of Antwerp International Airport
+[12:59] CNCRD-666 has been checked for technical malfunctions

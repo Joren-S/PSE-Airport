@@ -1,0 +1,17 @@
+[12:17] CNCRD-666 is approaching Antwerp International Airport at 10000ft.
+[12:18] CNCRD-666 descended to 9000ft.
+[12:19] CNCRD-666 descended to 8000ft.
+[12:20] CNCRD-666 descended to 7000ft.
+[12:21] CNCRD-666 descended to 6000ft.
+[12:22] CNCRD-666 descended to 5000ft.
+[12:25] CNCRD-666 descended to 4000ft.
+[12:26] CNCRD-666 descended to 3000ft.
+[12:29] CNCRD-666 descended to 2000ft.
+[12:30] CNCRD-666 descended to 1000ft.
+[12:31] CNCRD-666 is landing at Antwerp International Airport on runway 12L
+[12:33] CNCRD-666 has landed at Antwerp International Airport on runway 12L
+[12:41] CNCRD-666 has taxied to holding point at 11L
+[12:45] CNCRD-666 crossed 11L.
+[12:50] CNCRD-666 is standing at Gate 1
+[13:05] 120 passengers exited CNCRD-666 at gate 1 of Antwerp International Airport
+[13:08] CNCRD-666 has been checked for technical malfunctions

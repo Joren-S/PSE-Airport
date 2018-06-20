@@ -1,0 +1,42 @@
+<AIRPORT>
+	<name>Antwerp International Airport</name>
+	<iata>ANR</iata>
+	<callsign>Antwerp Tower</callsign>
+	<gates>5</gates>
+</AIRPORT>
+<RUNWAY>
+	<name>11L</name>
+	<airport>ANR</airport>
+	<type>asphalt</type>
+	<length>3210</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+	</TAXIROUTE>
+</RUNWAY>
+<RUNWAY>
+	<name>12B</name>
+	<airport>ANR</airport>
+	<type>asphalt</type>
+	<length>1010</length>
+	<TAXIROUTE>
+		<taxipoint>Alpha</taxipoint>
+		<crossing>11L</crossing>
+		<taxipoint>Bravo</taxipoint>
+	</TAXIROUTE>
+</RUNWAY>
+<AIRPLANE>
+	<number>BAW466</number>
+	<callsign>Speedbird 466</callsign>
+	<model>Boeing 747</model>
+	<type>airline</type>
+	<engine>jet</engine>
+	<size>large</size>
+	<fuel>10000</fuel>
+	<passengers>10</passengers>
+	<FLIGHTPLAN>
+		<destination>JFK</destination>
+		<departure>35</departure>
+		<arrival>10</arrival>
+		<interval>3</interval>
+	</FLIGHTPLAN>
+</AIRPLANE>
